@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Пошук адреси по району</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Пошук по вулиці та дому</h1>
+
+  <label>Адмінрайон:
+    <select id="districtSelect">
+      <option value="">-- оберіть район --</option>
+      <option value="industrialnyi.json">Індустріальний</option>
+      <option value="kyivskyi.json">Київський</option>
+      <option value="nemyshlianskyi.json">Немишлянський</option>
+      <option value="novobavarskyi.json">Новобаварський</option>
+      <option value="osnovianskyi.json">Основ’янський</option>
+      <option value="saltivskyi.json">Салтівський</option>
+      <option value="slobidskyi.json">Слобідський</option>
+      <option value="kholodnohirskyi.json">Холодногірський</option>
+      <option value="shevchenkivskyi.json">Шевченківський</option>
+    </select>
+  </label>
+
+  <div class="field-container">
+    <label>Вулиця:
+      <input type="text" id="streetInput" autocomplete="off" disabled>
+      <div id="streetSuggestions" class="suggestions hidden"></div>
+    </label>
+  </div>
+
+  <div class="field-container">
+    <label>Дім:
+      <input type="text" id="houseInput" autocomplete="off" disabled>
+      <div id="houseSuggestions" class="suggestions hidden"></div>
+    </label>
+  </div>
+
+  <label>Орієнтир (мікрорайон):
+    <input type="text" id="microInput" readonly>
+  </label>
+
+  <script src="script.js"></script>
+</body>
+</html>

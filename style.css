@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+select,
+input {
+  padding: 5px;
+  width: 320px;
+  margin-bottom: 5px;
+}
+
+.suggestions {
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  background: white;
+  width: 320px;
+  position: absolute;
+  z-index: 100;
+}
+
+.suggestions.hidden {
+  display: none;
+}
+
+.suggestions div {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.suggestions div:hover {
+  background: #f0f0f0;
+}
+
+.field-container {
+  position: relative;
+}
