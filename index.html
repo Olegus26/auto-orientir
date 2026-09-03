@@ -1,46 +1,81 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Пошук адреси по району</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма Объекта</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Пошук по вулиці та дому</h1>
 
-  <label>Адмінрайон:
-    <select id="districtSelect">
-      <option value="">-- оберіть район --</option>
-      <option value="industrialnyi.json">Індустріальний</option>
-      <option value="kyivskyi.json">Київський</option>
-      <option value="nemyshlianskyi.json">Немишлянський</option>
-      <option value="novobavarskyi.json">Новобаварський</option>
-      <option value="osnovianskyi.json">Основ’янський</option>
-      <option value="saltivskyi.json">Салтівський</option>
-      <option value="slobidskyi.json">Слобідський</option>
-      <option value="kholodnohirskyi.json">Холодногірський</option>
-      <option value="shevchenkivskyi.json">Шевченківський</option>
-    </select>
-  </label>
+<div class="form-container">
+    
+    <!-- Ориентир и Метро -->
+    <div class="form-row">
+        <div class="form-group half-width">
+            <label for="landmark">Ориентир</label>
+            <!-- Поле для ориентиров (может быть несколько через запятую) -->
+            <textarea id="landmark" name="landmark" placeholder="Например: Аэропорт, Парк" readonly class="readonly-input" rows="2" style="resize: none; font-family: Arial, sans-serif;"></textarea>
+            <div class="hint">Подтянется автоматически (через запятую)</div>
+        </div>
 
-  <div class="field-container">
-    <label>Вулиця:
-      <input type="text" id="streetInput" autocomplete="off" disabled>
-      <div id="streetSuggestions" class="suggestions hidden"></div>
-    </label>
-  </div>
+        <div class="form-group half-width">
+            <label for="metro">Метро</label>
+            <!-- Поле для метро (только одно) -->
+            <input type="text" id="metro" name="metro" placeholder="Например: Гагарина" readonly class="readonly-input">
+            <div class="hint">Подтянется автоматически (только одно)</div>
+        </div>
+    </div>
 
-  <div class="field-container">
-    <label>Дім:
-      <input type="text" id="houseInput" autocomplete="off" disabled>
-      <div id="houseSuggestions" class="suggestions hidden"></div>
-    </label>
-  </div>
+    <!-- Район и ЖК -->
+    <div class="form-row">
+        <div class="form-group half-width">
+            <label for="district">Админ-район</label>
+            <select id="district" name="district">
+                <option value="">— выбери район —</option>
+            </select>
+            <div class="hint">Выбор района ограничивает список ЖК.</div>
+        </div>
 
-  <label>Орієнтир (мікрорайон):
-    <input type="text" id="microInput" readonly>
-  </label>
+        <div class="form-group half-width">
+            <label for="complex">ЖК</label>
+            <select id="complex" name="complex" disabled>
+                <option value="all">Все</option>
+                <option value="none">Нет</option>
+            </select>
+            <div class="hint">Выбор ЖК автоматически выставит район.</div>
+        </div>
+    </div>
+    
+    <!-- Улица, Номер дома, Номер кв. -->
+    <div class="form-row">
+        <div class="form-group street-width aw" id="AW">
+            <label for="street"><span class="required">*</span> Улица</label>
+            <input type="text" id="street" name="street" placeholder="Например: Аерокосмічний (Гагарина) просп." autocomplete="off">
+            <div class="drop" id="SD"></div>
+        </div>
 
-  <script src="script.js"></script>
+        <div class="form-group small-width">
+            <label for="house_number">Номер дома</label>
+            <input type="text" id="house_number" name="house_number" placeholder="211">
+        </div>
+
+        <div class="form-group small-width">
+            <label for="apartment_number">Номер кв.</label>
+            <input type="text" id="apartment_number" name="apartment_number" placeholder="">
+        </div>
+    </div>
+
+    <!-- Карта -->
+    <div id="map"></div>
+
+</div>
+
+<!-- Leaflet & Turf JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

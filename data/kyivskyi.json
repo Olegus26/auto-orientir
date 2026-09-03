@@ -1,0 +1,187 @@
+[
+  {
+    "name": "Urban One Sumskaya",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/urban-one-sumskaya-харків"
+  },
+  {
+    "name": "Вул Мироносицька 74",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/вул-мироносицька-74-харків"
+  },
+  {
+    "name": "Вул Чернишевська 7",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/вул-чернишевська-7-харків"
+  },
+  {
+    "name": "Вул Шевченка 331а",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/вул-шевченка-331а-харків"
+  },
+  {
+    "name": "ЖК Cоncept House Futurium",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-cоncept-house-futurium-харків"
+  },
+  {
+    "name": "ЖК Cофія",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-cофія-харків"
+  },
+  {
+    "name": "ЖК Royal Residence",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-royal-residence-харків"
+  },
+  {
+    "name": "ЖК The First Capital Residence",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-the-first-capital-residence-харків"
+  },
+  {
+    "name": "ЖК Брюссель",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-брюссель-харків"
+  },
+  {
+    "name": "ЖК Будинок Академіка",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-будинок-академіка-харків"
+  },
+  {
+    "name": "ЖК Воробйовi Гори",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-воробйовi-гори-харків"
+  },
+  {
+    "name": "ЖК Времена Года",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-времена-года-харків"
+  },
+  {
+    "name": "ЖК Віденський Будинок",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-віденський-будинок-харків"
+  },
+  {
+    "name": "ЖК Гідропарк",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-гідропарк-харків"
+  },
+  {
+    "name": "ЖК Гідропарк Сіті",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-гідропарк-сіті-харків"
+  },
+  {
+    "name": "ЖК Журавлевский",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-журавлевский-харків"
+  },
+  {
+    "name": "ЖК Кава з Молоком",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-кава-з-молоком-харків"
+  },
+  {
+    "name": "ЖК Карат",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-карат-харків"
+  },
+  {
+    "name": "ЖК Київський",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-київський-харків"
+  },
+  {
+    "name": "ЖК Клеменова Дача",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-клеменова-дача-харків"
+  },
+  {
+    "name": "ЖК Континенталь на Валентинівській",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-континенталь-на-валентинівській-харків"
+  },
+  {
+    "name": "ЖК Куликовський",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-куликовський-харків"
+  },
+  {
+    "name": "ЖК Муромець",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-муромець-харків"
+  },
+  {
+    "name": "ЖК Оазис",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-оазис-харків"
+  },
+  {
+    "name": "ЖК Октава",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-октава-харків"
+  },
+  {
+    "name": "ЖК Пташка",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-пташка-харків"
+  },
+  {
+    "name": "ЖК Пурпурові Вітрила Циркуни",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-пурпурові-вітрила-циркуни"
+  },
+  {
+    "name": "ЖК Пушкін",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-пушкін-харків"
+  },
+  {
+    "name": "ЖК Садиба Чернишевського",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-садиба-чернишевського-харків"
+  },
+  {
+    "name": "ЖК Свобода",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-свобода-харків"
+  },
+  {
+    "name": "ЖК Свобода 2",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-свобода-2-харків"
+  },
+  {
+    "name": "ЖК Титул Будинок на Пушкінській",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-титул-будинок-на-пушкінській-харків"
+  },
+  {
+    "name": "ЖК Фаворит",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-фаворит-харків"
+  },
+  {
+    "name": "ЖК Центр",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-центр-харків"
+  },
+  {
+    "name": "ЖК Чумацький Шлях",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-чумацький-шлях-харків"
+  },
+  {
+    "name": "ЖК Європейський",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/жк-європейський-харків"
+  },
+  {
+    "name": "Клуб Будинок Leonardo Town",
+    "district": "Київський р-н",
+    "source": "https://lun.ua/uk/клуб-будинок-leonardo-town-харків"
+  }
+]

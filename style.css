@@ -1,43 +1,161 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
+    background-color: #f4f6f8;
+    padding: 20px;
+    margin: 0;
 }
 
-label {
-  display: block;
-  margin-top: 10px;
+.form-container {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-select,
-input {
-  padding: 5px;
-  width: 320px;
-  margin-bottom: 5px;
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
-.suggestions {
-  border: 1px solid #ccc;
-  max-height: 150px;
-  overflow-y: auto;
-  background: white;
-  width: 320px;
-  position: absolute;
-  z-index: 100;
+.form-group {
+    display: flex;
+    flex-direction: column;
 }
 
-.suggestions.hidden {
-  display: none;
+.form-group label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 6px;
 }
 
-.suggestions div {
-  padding: 5px;
-  cursor: pointer;
+.required {
+    color: #e53935;
 }
 
-.suggestions div:hover {
-  background: #f0f0f0;
+input[type="text"], textarea, select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
 }
 
-.field-container {
-  position: relative;
+input[type="text"]:focus, textarea:focus, select:focus {
+    border-color: #007bff;
+}
+
+select:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background-color: #f9f9f9;
+}
+
+.readonly-input {
+    background-color: #f9f9f9;
+    color: #555;
+    cursor: default;
+}
+
+.readonly-input:focus {
+    border-color: #ccc;
+}
+
+.hint {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+}
+
+.half-width {
+    flex: 1 1 calc(50% - 8px);
+}
+
+.street-width {
+    flex: 2 1 40%;
+}
+
+.small-width {
+    flex: 1 1 20%;
+}
+
+@media (max-width: 600px) {
+    .half-width, .street-width, .small-width {
+        flex: 1 1 100%;
+    }
+}
+
+/* Autocomplete styles */
+.aw {
+    position: relative;
+}
+
+.drop {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: none;
+    max-height: 230px;
+    overflow-y: auto;
+}
+
+.drop.open {
+    display: block;
+}
+
+.di {
+    padding: 10px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.di:last-child {
+    border-bottom: none;
+}
+
+.di:hover {
+    background: #f0f7ff;
+}
+
+.di-n {
+    font-weight: 600;
+}
+
+.di-s {
+    font-size: 11px;
+    color: #666;
+    margin-top: 2px;
+}
+
+.dmsg {
+    padding: 12px;
+    font-size: 12px;
+    color: #666;
+}
+
+#map {
+    height: 350px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    z-index: 1; /* Чтобы не перекрывал выпадающий список автокомплита */
 }
