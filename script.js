@@ -26,6 +26,7 @@ const elements = {
     metro: document.getElementById('metro'),
     district: document.getElementById('district'),
     complex: document.getElementById('complex'),
+    jkClass: document.getElementById('jk_class'),
     streetDrop: document.getElementById('SD'),
     houseDrop: document.getElementById('HD')
 };
@@ -224,6 +225,7 @@ function showHouseSuggestions(val) {
 function resetFieldsOnChange() {
     elements.complex.value = "none";
     elements.district.value = "";
+    elements.jkClass.value = '';
     elements.metro.value = '';
     elements.landmark.value = '';
     if (marker) {
@@ -333,8 +335,11 @@ async function handleHouseSelection() {
                 elements.district.value = jkDistrict;
                 silentState = false;
                 await applyDistrictFilter(jkDistrict, jkName);
+                // Fill class field
+                elements.jkClass.value = getClassForComplex(jkName) || '';
             } else {
                 elements.complex.value = "none";
+                elements.jkClass.value = '';
             }
 
             await fetchLandmarks(coords.lat, coords.lon);
@@ -493,6 +498,12 @@ function getDistrictForComplex(jkName) {
     if (!jkAddressesData) return null;
     const jk = jkAddressesData.find(x => x.jk_name === jkName);
     return jk ? jk.district : null;
+}
+
+function getClassForComplex(jkName) {
+    if (!jkAddressesData) return null;
+    const jk = jkAddressesData.find(x => x.jk_name === jkName);
+    return jk && jk.class ? jk.class : null;
 }
 
 function resetComplexDropdown() {

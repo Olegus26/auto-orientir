@@ -29,23 +29,26 @@
         </div>
     </div>
 
-    <!-- Район и ЖК -->
+    <!-- Район, ЖК и Класс -->
     <div class="form-row">
-        <div class="form-group half-width">
+        <div class="form-group" style="flex: 1 1 35%;">
             <label for="district"><span class="required">*</span> Админ. район</label>
             <select id="district" name="district" disabled>
                 <option value="" disabled selected>Выберите район</option>
             </select>
-            <div class="hint">Выбор района ограничивает список ЖК.</div>
         </div>
 
-        <div class="form-group half-width">
+        <div class="form-group" style="flex: 1 1 40%;">
             <label for="complex">ЖК</label>
             <select id="complex" name="complex" disabled>
                 <option value="all">Все</option>
                 <option value="none">Нет</option>
             </select>
-            <div class="hint">Выбор ЖК автоматически выставит район.</div>
+        </div>
+
+        <div class="form-group" style="flex: 0 1 20%;">
+            <label for="jk_class">Класс</label>
+            <input type="text" id="jk_class" name="jk_class" readonly class="readonly-input" placeholder="—">
         </div>
     </div>
     
