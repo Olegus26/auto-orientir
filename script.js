@@ -1,391 +1,531 @@
-const NOM = 'https://nominatim.openstreetmap.org/search';
-const H = { 'User-Agent': 'OrientirHKH/3.0', 'Accept-Language': 'uk' };
+// ==========================================
+// Constants & Configuration
+// ==========================================
+const NOMINATIM_URL = 'https://nominatim.openstreetmap.org';
+const NOMINATIM_HEADERS = { 'User-Agent': 'OrientirHKH/3.0', 'Accept-Language': 'uk' };
+const MAP_INITIAL_COORDS = [49.9935, 36.2304];
+const MAP_INITIAL_ZOOM = 12;
 
-// Helpers for distance and parsing
-const slp = ms => new Promise(r => setTimeout(r, ms));
-function hav(a,b,c,d){const R=6371000,p1=a*Math.PI/180,p2=c*Math.PI/180,dp=(c-a)*Math.PI/180,dl=(d-b)*Math.PI/180;const x=Math.sin(dp/2)**2+Math.cos(p1)*Math.cos(p2)*Math.sin(dl/2)**2;return Math.round(2*R*Math.atan2(Math.sqrt(x),Math.sqrt(1-x)))}
-function gN(x){
-  if(x.name&&x.name.length<80)return x.name;
-  if(x.display_name){const p=x.display_name.split(',')[0].trim();if(p.length>1&&p.length<80)return p}
-  return null;
-}
-function gT(x){
-  const cl=x.class||'',tp=x.type||'',n=(x.name||x.display_name||'').toLowerCase();
-  if(cl==='place' && (tp==='suburb'||tp==='neighbourhood'||tp==='quarter')) return 'ngb';
-  if(cl==='railway' && (tp==='subway_entrance'||tp==='station')) return 'metro';
-  if(cl==='amenity' && tp==='subway_entrance') return 'metro';
-  if(cl==='leisure' && (tp==='park'||tp==='garden')) return 'prk';
-  if(/метро|subway|підземк/.test(n))return 'metro';
-  if(/парк|сквер|сад/.test(n))return 'prk';
-  if(/мікрорайон|мкр/.test(n))return 'ngb';
-  return 'oth';
+// ==========================================
+// Global State & Data
+// ==========================================
+let map = null;
+let marker = null;
+let streetsData = [];
+let housesData = {};
+let districtPolygons = null;
+let jkAddressesData = null;
+let selectedStreetId = null;
+let silentState = false;
+
+// DOM Elements
+const elements = {
+    street: document.getElementById('street'),
+    house: document.getElementById('house_number'),
+    landmark: document.getElementById('landmark'),
+    metro: document.getElementById('metro'),
+    district: document.getElementById('district'),
+    complex: document.getElementById('complex'),
+    streetDrop: document.getElementById('SD'),
+    houseDrop: document.getElementById('HD')
+};
+
+const DISTRICTS = [
+    "Індустріальний р-н", "Київський р-н", "Немишлянський р-н",
+    "Новобаварський р-н", "Основ'янський р-н", "Салтівський р-н",
+    "Слобідський р-н", "Холодногірський р-н", "Шевченківський р-н",
+    "Без району"
+];
+
+// ==========================================
+// Helpers
+// ==========================================
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+function getHaversineDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371000;
+    const p1 = lat1 * Math.PI / 180;
+    const p2 = lat2 * Math.PI / 180;
+    const dp = (lat2 - lat1) * Math.PI / 180;
+    const dl = (lon2 - lon1) * Math.PI / 180;
+    const x = Math.sin(dp / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) ** 2;
+    return Math.round(2 * R * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x)));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const streetInput = document.getElementById('street');
-    const houseNumberInput = document.getElementById('house_number');
-    const landmarkInput = document.getElementById('landmark');
-    const metroInput = document.getElementById('metro');
-    const drop = document.getElementById('SD');
+function getPlaceName(item) {
+    if (item.name && item.name.length < 80) return item.name;
+    if (item.display_name) {
+        const part = item.display_name.split(',')[0].trim();
+        if (part.length > 1 && part.length < 80) return part;
+    }
+    return null;
+}
+
+function getPlaceType(item) {
+    const cl = item.class || '';
+    const tp = item.type || '';
+    const n = (item.name || item.display_name || '').toLowerCase();
     
-    // --- 0. Map Initialization ---
-    let map = L.map('map').setView([49.9935, 36.2304], 12);
+    if (cl === 'place' && ['suburb', 'neighbourhood', 'quarter'].includes(tp)) return 'ngb';
+    if (cl === 'railway' && ['subway_entrance', 'station'].includes(tp)) return 'metro';
+    if (cl === 'amenity' && tp === 'subway_entrance') return 'metro';
+    if (cl === 'leisure' && ['park', 'garden'].includes(tp)) return 'prk';
+    
+    if (/метро|subway|підземк/.test(n)) return 'metro';
+    if (/парк|сквер|сад/.test(n)) return 'prk';
+    if (/мікрорайон|мкр/.test(n)) return 'ngb';
+    
+    return 'oth';
+}
+
+// ==========================================
+// Initialization
+// ==========================================
+document.addEventListener('DOMContentLoaded', async () => {
+    initMap();
+    initDropdowns();
+    await loadAllData();
+    setupEventListeners();
+});
+
+function initMap() {
+    map = L.map('map').setView(MAP_INITIAL_COORDS, MAP_INITIAL_ZOOM);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
-    let marker = null;
+}
 
-    let streetsData = [];
-    fetch('streets_sorted_ua.json')
-      .then(r => r.json())
-      .then(d => { 
-          streetsData = d.map(s => ({
-              ...s,
-              _lowerFull: s.full ? s.full.toLowerCase() : ''
-          })); 
-      })
-      .catch(e => console.error('Помилка завантаження вулиць:', e));
+function initDropdowns() {
+    DISTRICTS.forEach(d => elements.district.append(new Option(d, d)));
+}
 
-    let districtPolygons = null;
-    fetch('data/districts_polygons.json')
-      .then(r => r.json())
-      .then(d => { districtPolygons = d; })
-      .catch(e => console.error('Помилка завантаження полігонів:', e));
+async function loadAllData() {
+    try {
+        const [streets, houses, polygons, jks] = await Promise.all([
+            fetch('data/streets.json').then(r => r.json()),
+            fetch('data/houses.json').then(r => r.json()),
+            fetch('data/districts.json').then(r => r.json()),
+            fetch('data/complexes.json').then(r => r.json())
+        ]);
 
-    // --- 1. Street Autocomplete ---
-    function sugg(val){
-      const lowerVal = val.toLowerCase();
-      const matches = streetsData.filter(s => 
-          (s.search_key && s.search_key.includes(lowerVal)) || 
-          (s._lowerFull && s._lowerFull.includes(lowerVal))
-      ).slice(0, 10);
+        streetsData = streets.map(s => {
+            let display = `${s.current_name} ${s.short_type}`;
+            if (s.old_names && s.old_names.length > 0) {
+                display += ` (колиш. ${s.old_names.join(', ')})`;
+            }
+            return {
+                ...s,
+                full: display,
+                _lowerFull: display.toLowerCase()
+            };
+        });
 
-      drop.classList.add('open');
-      
-      if(!matches.length){
-          drop.innerHTML='<div class="dmsg">😕 Не знайдено</div>';
-          return;
-      }
-      
-      drop.innerHTML='';
-      matches.forEach(it => {
-        const el=document.createElement('div');el.className='di';el.tabIndex=0;
-        el.innerHTML='<div><div class="di-n">'+it.full+'</div></div>';
-        const pick=()=>{streetInput.value=it.full; cD(); houseNumberInput.focus();};
-        el.onclick=pick; 
-        el.onkeydown=e=>{
-            if(e.key==='Enter') pick();
-            if(e.key==='ArrowDown') { e.preventDefault(); const next = el.nextElementSibling; if(next) next.focus(); }
-            if(e.key==='ArrowUp') { e.preventDefault(); const prev = el.previousElementSibling; if(prev) prev.focus(); else streetInput.focus(); }
-        };
-        drop.appendChild(el);
-      });
+        housesData = houses;
+        districtPolygons = polygons;
+        jkAddressesData = jks;
+
+        populateComplexDropdown();
+    } catch (e) {
+        console.error('Ошибка загрузки данных:', e);
     }
+}
 
-    function cD(){drop.classList.remove('open');}
+// ==========================================
+// Autocomplete Logic
+// ==========================================
+function closeStreetDropdown() { elements.streetDrop.classList.remove('open'); }
+function closeHouseDropdown() { elements.houseDrop.classList.remove('open'); }
 
-    streetInput.addEventListener('input', e => {
-      const v = e.target.value.trim();
-      if(v.length < 2) { cD(); return; }
-      sugg(v);
-    });
+function showStreetSuggestions(val) {
+    const lowerVal = val.toLowerCase();
+    const matches = streetsData.filter(s => 
+        (s.search_key && s.search_key.includes(lowerVal)) || 
+        (s._lowerFull && s._lowerFull.includes(lowerVal))
+    ).slice(0, 10);
 
-    streetInput.addEventListener('keydown', e => {
-      if(e.key==='Escape') cD();
-      if(e.key==='Enter') { cD(); houseNumberInput.focus(); }
-      if(e.key==='ArrowDown') { 
-          e.preventDefault();
-          const f=document.querySelector('#SD .di'); 
-          f&&f.focus(); 
-      }
-    });
-
-    document.addEventListener('click', e => { if(!e.target.closest('#AW')) cD(); });
-
-    // --- 2. Auto-fetch Landmarks on House Number Blur ---
-    houseNumberInput.addEventListener('blur', async () => {
-        const s = streetInput.value.trim();
-        const h = houseNumberInput.value.trim();
-        
-        if(s.length > 2 && h.length > 0) {
-            metroInput.value = 'Пошук...';
-            landmarkInput.value = 'Пошук...';
-            
-            try {
-                // Geocode Address
-                const geoUrl = NOM+'?'+new URLSearchParams({
-                    q:s+' '+h+', Харків',format:'json',limit:1,addressdetails:1,countrycodes:'ua','accept-language':'uk'
-                });
-                const rGeo = await fetch(geoUrl, {headers:H});
-                const dGeo = await rGeo.json();
-                if(!dGeo.length) throw new Error('Адреса не знайдена');
-                
-                const lat = parseFloat(dGeo[0].lat);
-                const lon = parseFloat(dGeo[0].lon);
-
-                // Update Map
-                map.setView([lat, lon], 16);
-                if (marker) {
-                    marker.setLatLng([lat, lon]);
-                } else {
-                    marker = L.marker([lat, lon]).addTo(map);
-                }
-
-                // Check Polygon for District
-                if (districtPolygons && window.turf) {
-                    const pt = turf.point([lon, lat]);
-                    for (const [distName, geom] of Object.entries(districtPolygons)) {
-                        try {
-                            const poly = geom.type === 'MultiPolygon' ? turf.multiPolygon(geom.coordinates) : turf.polygon(geom.coordinates);
-                            if (turf.booleanPointInPolygon(pt, poly)) {
-                                if (districtSelect.value !== distName) {
-                                    districtSelect.value = distName;
-                                    districtSelect.dispatchEvent(new Event('change'));
-                                }
-                                break;
-                            }
-                        } catch (e) {
-                            console.error('Error checking polygon for', distName, e);
-                        }
-                    }
-                }
-
-                // Fetch Landmarks 
-                const D = 0.014;
-                const vb = `${lon-D},${lat+D},${lon+D},${lat-D}`;
-                const B = {format:'json',addressdetails:1,bounded:1,viewbox:vb,countrycodes:'ua','accept-language':'uk'};
-                
-                const Q = [
-                    {...B,amenity:'subway_entrance',limit:10}, 
-                    {...B,q:'парк',limit:8},
-                    {...B,place:'neighbourhood',limit:5}
-                ];
-
-                let allItems = [];
-                for(let i=0; i<Q.length; i++){
-                    try {
-                        const res = await fetch(NOM+'?'+new URLSearchParams(Q[i]),{headers:H});
-                        if(res.ok) { const d = await res.json(); allItems.push(...d); }
-                    } catch(e) {}
-                    await slp(1000); // 1000ms delay to respect Nominatim policy
-                }
-
-                // Reverse geocode for microraion
-                try {
-                    const revR = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&addressdetails=1&accept-language=uk`, {headers:H});
-                    const dRev = await revR.json();
-                    const hood = dRev.address?.residential || dRev.address?.neighbourhood || dRev.address?.suburb;
-                    if(hood) {
-                        allItems.push({name:hood, lat:String(lat), lon:String(lon), class:'place', type:'neighbourhood', _R:true});
-                    }
-                } catch(e) {}
-
-                // Filter and sort by distance
-                const sorted = [
-                    ...allItems.filter(x=>x._R),
-                    ...allItems.filter(x=>!x._R).sort((a,b)=>hav(lat,lon,parseFloat(a.lat),parseFloat(a.lon))-hav(lat,lon,parseFloat(b.lat),parseFloat(b.lon)))
-                ];
-
-                let metros = [];
-                let orientirs = [];
-                let seen = new Set();
-
-                for(let x of sorted) {
-                    const n = gN(x);
-                    if(!n) continue;
-                    const type = gT(x);
-                    
-                    if(!['metro', 'ngb', 'prk'].includes(type)) continue;
-
-                    // Exclude fake matches
-                    if(type === 'prk' && !/парк|сквер|сад/i.test(n)) continue;
-                    if(type === 'metro' && !/метро|subway/i.test(n) && x.class !== 'railway') continue;
-
-                    const k = (n + type).toLowerCase();
-                    if(seen.has(k)) continue;
-                    seen.add(k);
-
-                    if(type === 'metro') {
-                        metros.push(n);
-                    } else {
-                        orientirs.push(n);
-                    }
-                }
-
-                metroInput.value = metros.length > 0 ? metros[0] : 'Нет';
-                landmarkInput.value = orientirs.length > 0 ? orientirs.slice(0, 3).join(', ') : 'Нет';
-
-            } catch (error) {
-                metroInput.value = 'Помилка';
-                landmarkInput.value = 'Помилка';
-            }
-        } else if (h.length === 0) {
-            metroInput.value = '';
-            landmarkInput.value = '';
-            if (marker) {
-                map.removeLayer(marker);
-                marker = null;
-            }
-        }
-    });
-
-    // --- 3. Районы и ЖК ---
-    const DISTRICTS = {
-      "Індустріальний р-н": "industrialnyi.json",
-      "Київський р-н": "kyivskyi.json",
-      "Немишлянський р-н": "nemyshlianskyi.json",
-      "Новобаварський р-н": "novobavarskyi.json",
-      "Основ'янський р-н": "osnovianskyi.json",
-      "Салтівський р-н": "saltivskyi.json",
-      "Слобідський р-н": "slobidskyi.json",
-      "Холодногірський р-н": "kholodnohirskyi.json",
-      "Шевченківський р-н": "shevchenkivskyi.json",
-      "Без району": "unknown.json",
-    };
-
-    const districtSelect = document.getElementById("district");
-    const complexSelect  = document.getElementById("complex");
+    elements.streetDrop.classList.add('open');
+    if (!matches.length) {
+        elements.streetDrop.innerHTML = '<div class="dmsg">😕 Не знайдено</div>';
+        return;
+    }
     
-    const districtToNamesCache = new Map();
-    let nameToDistrictMap = null;
-    let silent = false;
+    elements.streetDrop.innerHTML = '';
+    matches.forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'di';
+        el.tabIndex = 0;
+        el.innerHTML = `<div><div class="di-n">${item.full}</div></div>`;
+        
+        const pick = () => {
+            elements.street.value = item.full;
+            selectedStreetId = item.street_id;
+            closeStreetDropdown();
+            elements.house.focus();
+        };
+        
+        el.onmousedown = e => { e.preventDefault(); pick(); };
+        el.onkeydown = e => {
+            if (e.key === 'Enter') pick();
+            if (e.key === 'ArrowDown') { e.preventDefault(); el.nextElementSibling?.focus(); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); el.previousElementSibling ? el.previousElementSibling.focus() : elements.street.focus(); }
+        };
+        elements.streetDrop.appendChild(el);
+    });
+}
 
-    function resetComplexSelect() {
-      if (!complexSelect) return;
-      complexSelect.innerHTML = "";
-      complexSelect.append(new Option("Все", "all"));
-      complexSelect.append(new Option("Нет", "none"));
+function showHouseSuggestions(val) {
+    if (!selectedStreetId) {
+        elements.houseDrop.classList.add('open');
+        elements.houseDrop.innerHTML = '<div class="dmsg">Спочатку оберіть вулицю</div>';
+        return;
     }
-
-    function fillDistricts() {
-      if (!districtSelect) return;
-      const names = Object.keys(DISTRICTS).sort((a,b)=>a.localeCompare(b, "uk"));
-      for (const name of names) districtSelect.append(new Option(name, name));
+    
+    const streetHouses = housesData[selectedStreetId];
+    if (!streetHouses) {
+        elements.houseDrop.classList.add('open');
+        elements.houseDrop.innerHTML = '<div class="dmsg">Немає будинків для цієї вулиці</div>';
+        return;
     }
-
-    async function loadDistrictNames(filename) {
-      if (districtToNamesCache.has(filename)) return districtToNamesCache.get(filename);
-
-      const url = `./data/${filename}`;
-      try {
-          const res = await fetch(url, { cache: "no-store" });
-          if (!res.ok) {
-              console.warn(`Не удалось загрузить ${url}`);
-              return [];
-          }
-          const data = await res.json();
-          const names = [...new Set(
-            (Array.isArray(data) ? data : [])
-              .map(x => (x && x.name ? String(x.name).trim() : ""))
-              .filter(Boolean)
-          )].sort((a,b)=>a.localeCompare(b, "ru"));
-
-          districtToNamesCache.set(filename, names);
-          return names;
-      } catch (e) {
-          console.error(e);
-          return [];
-      }
+    
+    const allHouses = Object.keys(streetHouses);
+    const lowerVal = val.toLowerCase().replace(/[\s-]/g, '');
+    
+    const matches = allHouses.filter(h => h.toLowerCase().replace(/[\s-]/g, '').includes(lowerVal)).slice(0, 15);
+    
+    elements.houseDrop.classList.add('open');
+    if (!matches.length) {
+        elements.houseDrop.innerHTML = '<div class="dmsg">😕 Не знайдено</div>';
+        return;
     }
+    
+    elements.houseDrop.innerHTML = '';
+    matches.forEach(h => {
+        const el = document.createElement('div');
+        el.className = 'di';
+        el.tabIndex = 0;
+        el.innerHTML = `<div><div class="di-n">${h}</div></div>`;
+        
+        const pick = () => {
+            elements.house.value = h;
+            closeHouseDropdown();
+            elements.house.dispatchEvent(new Event('blur'));
+        };
+        
+        el.onmousedown = e => { e.preventDefault(); pick(); };
+        el.onkeydown = e => {
+            if (e.key === 'Enter') pick();
+            if (e.key === 'ArrowDown') { e.preventDefault(); el.nextElementSibling?.focus(); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); el.previousElementSibling ? el.previousElementSibling.focus() : elements.house.focus(); }
+        };
+        elements.houseDrop.appendChild(el);
+    });
+}
 
-    async function buildNameToDistrictMap() {
-      if (nameToDistrictMap) return nameToDistrictMap;
+function resetFieldsOnChange() {
+    elements.complex.value = "none";
+    elements.district.value = "";
+    elements.metro.value = '';
+    elements.landmark.value = '';
+    if (marker) {
+        map.removeLayer(marker);
+        marker = null;
+    }
+}
 
-      const map = new Map();
-      for (const [districtName, filename] of Object.entries(DISTRICTS)) {
-        const names = await loadDistrictNames(filename);
-        for (const n of names) {
-          if (!map.has(n)) map.set(n, districtName);
+// ==========================================
+// Event Listeners
+// ==========================================
+function setupEventListeners() {
+    // Street Input
+    elements.street.addEventListener('input', e => {
+        selectedStreetId = null;
+        resetFieldsOnChange();
+        const v = e.target.value.trim();
+        if (v.length < 2) { closeStreetDropdown(); return; }
+        showStreetSuggestions(v);
+    });
+
+    elements.street.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeStreetDropdown();
+        if (e.key === 'Enter') { closeStreetDropdown(); elements.house.focus(); }
+        if (e.key === 'ArrowDown') { e.preventDefault(); document.querySelector('#SD .di')?.focus(); }
+    });
+
+    // House Input
+    elements.house.addEventListener('input', e => {
+        resetFieldsOnChange();
+        const v = e.target.value.trim();
+        if (v.length === 0) { closeHouseDropdown(); return; }
+        showHouseSuggestions(v);
+    });
+
+    elements.house.addEventListener('focus', e => {
+        showHouseSuggestions(e.target.value.trim());
+    });
+
+    elements.house.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeHouseDropdown();
+        if (e.key === 'Enter') {
+            closeHouseDropdown();
+            elements.house.dispatchEvent(new Event('blur'));
         }
-      }
+        if (e.key === 'ArrowDown') { e.preventDefault(); document.querySelector('#HD .di')?.focus(); }
+    });
 
-      nameToDistrictMap = map;
-      return map;
+    // Outside clicks
+    document.addEventListener('click', e => {
+        if (!e.target.closest('#AW')) closeStreetDropdown();
+        if (!e.target.closest('#H_AW')) closeHouseDropdown();
+    });
+
+    // Main Geocoding Trigger
+    elements.house.addEventListener('blur', handleHouseSelection);
+
+    // District & Complex overrides
+    elements.district.addEventListener('change', async () => {
+        if (silentState) return;
+        const dist = elements.district.value;
+        if (dist) await applyDistrictFilter(dist, elements.complex.value);
+        else populateComplexDropdown();
+    });
+
+    elements.complex.addEventListener('change', async () => {
+        if (silentState) return;
+        const selected = elements.complex.value;
+        if (selected === "all" || selected === "none") return;
+        
+        const dist = getDistrictForComplex(selected);
+        if (dist) {
+            silentState = true;
+            elements.district.value = dist;
+            silentState = false;
+            await applyDistrictFilter(dist, selected);
+        }
+    });
+}
+
+// ==========================================
+// Core Geo Logic
+// ==========================================
+async function handleHouseSelection() {
+    const streetVal = elements.street.value.trim();
+    const houseVal = elements.house.value.trim();
+    
+    if (!selectedStreetId) {
+        const match = streetsData.find(x => x.full === streetVal);
+        if (match) selectedStreetId = match.street_id;
     }
 
-    async function applyDistrict(districtName, keepValue = null) {
-      resetComplexSelect();
-
-      if (!districtName) {
-        complexSelect.disabled = true;
-        return;
-      }
-
-      const filename = DISTRICTS[districtName];
-      if (!filename) {
-        complexSelect.disabled = true;
-        return;
-      }
-
-      complexSelect.disabled = true;
-      const names = await loadDistrictNames(filename);
-
-      for (const n of names) complexSelect.append(new Option(n, n));
-
-      complexSelect.disabled = false;
-
-      if (keepValue && [...complexSelect.options].some(o => o.value === keepValue)) {
-        complexSelect.value = keepValue;
-      } else if (keepValue && keepValue !== "all" && keepValue !== "none") {
-        complexSelect.value = "all";
-      }
-    }
-
-    async function fillComplexAll() {
-      resetComplexSelect();
-      if (!complexSelect) return;
-      complexSelect.disabled = true;
-
-      const map = await buildNameToDistrictMap();
-      const allNames = Array.from(map.keys()).sort((a,b)=>a.localeCompare(b,"ru"));
-
-      for (const n of allNames) complexSelect.append(new Option(n, n));
-
-      complexSelect.disabled = false;
-    }
-
-    if (districtSelect) {
-        districtSelect.addEventListener("change", async () => {
-          if (silent) return;
-          const districtName = districtSelect.value;
-          try {
-            if (districtName) {
-              await applyDistrict(districtName, complexSelect.value);
+    if (selectedStreetId && houseVal.length > 0) {
+        elements.metro.value = 'Пошук...';
+        elements.landmark.value = 'Пошук...';
+        
+        try {
+            const coords = geocodeLocal(selectedStreetId, houseVal);
+            updateMap(coords.lat, coords.lon);
+            const district = detectDistrictPolygon(coords.lat, coords.lon);
+            
+            // Auto-detect JK
+            const jkName = detectResidentialComplex(selectedStreetId, houseVal);
+            if (jkName) {
+                const jkDistrict = getDistrictForComplex(jkName) || district;
+                silentState = true;
+                elements.district.value = jkDistrict;
+                silentState = false;
+                await applyDistrictFilter(jkDistrict, jkName);
             } else {
-              await fillComplexAll();
+                elements.complex.value = "none";
             }
-          } catch (e) {
-            console.error(e);
-            complexSelect.disabled = true;
-          }
-        });
+
+            await fetchLandmarks(coords.lat, coords.lon);
+        } catch (error) {
+            console.error(error);
+            elements.metro.value = 'Помилка';
+            elements.landmark.value = 'Помилка';
+        }
+    } else {
+        resetFieldsOnChange();
+    }
+}
+
+function geocodeLocal(stId, house) {
+    const streetHouses = housesData[stId];
+    if (!streetHouses || !streetHouses[house]) throw new Error('Будинок не знайдено');
+    return { lat: streetHouses[house][0], lon: streetHouses[house][1] };
+}
+
+function updateMap(lat, lon) {
+    map.setView([lat, lon], 16);
+    if (marker) marker.setLatLng([lat, lon]);
+    else marker = L.marker([lat, lon]).addTo(map);
+}
+
+function detectDistrictPolygon(lat, lon) {
+    if (!districtPolygons || !window.turf) return null;
+    const pt = turf.point([lon, lat]);
+    for (const [distName, geom] of Object.entries(districtPolygons)) {
+        try {
+            const poly = geom.type === 'MultiPolygon' ? turf.multiPolygon(geom.coordinates) : turf.polygon(geom.coordinates);
+            if (turf.booleanPointInPolygon(pt, poly)) {
+                if (elements.district.value !== distName) {
+                    elements.district.value = distName;
+                    elements.district.dispatchEvent(new Event('change'));
+                }
+                return distName;
+            }
+        } catch (e) {
+            console.error('Error polygon:', distName, e);
+        }
+    }
+    return null;
+}
+
+function detectResidentialComplex(stId, userHouse) {
+    if (!jkAddressesData) return null;
+    
+    const streetObj = streetsData.find(x => x.street_id === stId);
+    if (!streetObj) return null;
+
+    const cleanUserHouse = userHouse.toLowerCase().replace(/[\s-]/g, '');
+    const matchUserNumber = cleanUserHouse.match(/^\d+/);
+    if (!matchUserNumber) return null;
+
+    let bestMatch = null;
+
+    for (const jk of jkAddressesData) {
+        if (!jk.address) continue;
+        const addresses = jk.address.split(';');
+        
+        for (let addr of addresses) {
+            addr = addr.toLowerCase().trim();
+            let hasStreet = false;
+            
+            if (streetObj.current_name && addr.includes(streetObj.current_name.toLowerCase())) {
+                hasStreet = true;
+            } else if (streetObj.old_names && streetObj.old_names.some(old => addr.includes(old.toLowerCase()))) {
+                hasStreet = true;
+            }
+            
+            if (hasStreet) {
+                const addrParts = addr.split(',');
+                const cleanJKHouse = addrParts[addrParts.length - 1].replace(/[\s-]/g, '');
+                const matchJKNumber = cleanJKHouse.match(/^\d+/);
+                
+                if (matchJKNumber && matchUserNumber[0] === matchJKNumber[0]) {
+                    if (cleanJKHouse.includes(cleanUserHouse) || cleanUserHouse.includes(cleanJKHouse)) {
+                        bestMatch = jk.jk_name;
+                        break;
+                    }
+                }
+            }
+        }
+        if (bestMatch) break;
+    }
+    
+    return bestMatch;
+}
+
+// ==========================================
+// External API (Nominatim)
+// ==========================================
+async function fetchLandmarks(lat, lon) {
+    const delta = 0.014;
+    const viewbox = `${lon - delta},${lat + delta},${lon + delta},${lat - delta}`;
+    const baseParams = { format: 'json', addressdetails: 1, bounded: 1, viewbox, countrycodes: 'ua', 'accept-language': 'uk' };
+    
+    const queries = [
+        { ...baseParams, amenity: 'subway_entrance', limit: 10 },
+        { ...baseParams, q: 'парк', limit: 8 },
+        { ...baseParams, place: 'neighbourhood', limit: 5 }
+    ];
+
+    let results = [];
+    for (const q of queries) {
+        try {
+            const res = await fetch(`${NOMINATIM_URL}/search?` + new URLSearchParams(q), { headers: NOMINATIM_HEADERS });
+            if (res.ok) results.push(...(await res.json()));
+        } catch (e) {
+            console.error('API Error:', e);
+        }
+        await sleep(1000); // Nominatim 1 req/sec policy
     }
 
-    if (complexSelect) {
-        complexSelect.addEventListener("change", async () => {
-          if (silent) return;
-          const selected = complexSelect.value;
-          if (selected === "all" || selected === "none") return;
+    try {
+        const rev = await fetch(`${NOMINATIM_URL}/reverse?lat=${lat}&lon=${lon}&format=json&addressdetails=1&accept-language=uk`, { headers: NOMINATIM_HEADERS });
+        const dRev = await rev.json();
+        const hood = dRev.address?.residential || dRev.address?.neighbourhood || dRev.address?.suburb;
+        if (hood) results.push({ name: hood, lat: String(lat), lon: String(lon), class: 'place', type: 'neighbourhood', isReverse: true });
+    } catch(e) {}
 
-          try {
-            const map = await buildNameToDistrictMap();
-            const districtName = map.get(selected);
+    const sorted = [
+        ...results.filter(x => x.isReverse),
+        ...results.filter(x => !x.isReverse).sort((a,b) => getHaversineDistance(lat, lon, parseFloat(a.lat), parseFloat(a.lon)) - getHaversineDistance(lat, lon, parseFloat(b.lat), parseFloat(b.lon)))
+    ];
 
-            if (!districtName) return;
+    let metros = [], orientirs = [], seen = new Set();
+    
+    for (let item of sorted) {
+        const name = getPlaceName(item);
+        if (!name) continue;
+        
+        const type = getPlaceType(item);
+        if (!['metro', 'ngb', 'prk'].includes(type)) continue;
 
-            silent = true;
-            districtSelect.value = districtName;
-            silent = false;
+        if (type === 'prk' && !/парк|сквер|сад/i.test(name)) continue;
+        if (type === 'metro' && !/метро|subway/i.test(name) && item.class !== 'railway') continue;
 
-            await applyDistrict(districtName, selected);
-          } catch (e) {
-            console.error(e);
-          }
-        });
+        const key = (name + type).toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+
+        if (type === 'metro') metros.push(name);
+        else orientirs.push(name);
     }
 
-    (async function init() {
-      fillDistricts();
-      await fillComplexAll();
-    })();
-});
+    elements.metro.value = metros.length > 0 ? metros[0] : 'Нет';
+    elements.landmark.value = orientirs.length > 0 ? orientirs.slice(0, 3).join(', ') : 'Нет';
+}
+
+// ==========================================
+// Complex & District Mapping
+// ==========================================
+function getDistrictForComplex(jkName) {
+    if (!jkAddressesData) return null;
+    const jk = jkAddressesData.find(x => x.jk_name === jkName);
+    return jk ? jk.district : null;
+}
+
+function resetComplexDropdown() {
+    elements.complex.innerHTML = "";
+    elements.complex.append(new Option("Все", "all"));
+    elements.complex.append(new Option("Нет", "none"));
+}
+
+function populateComplexDropdown() {
+    resetComplexDropdown();
+    
+    if (jkAddressesData) {
+        const names = jkAddressesData.map(j => j.jk_name).filter(Boolean).sort((a,b) => a.localeCompare(b, "ru"));
+        names.forEach(n => elements.complex.append(new Option(n, n)));
+    }
+}
+
+async function applyDistrictFilter(districtName, keepValue = null) {
+    resetComplexDropdown();
+
+    if (!districtName || !jkAddressesData) return;
+
+    const filteredNames = jkAddressesData
+        .filter(jk => jk.district === districtName && jk.jk_name)
+        .map(jk => jk.jk_name)
+        .sort((a,b) => a.localeCompare(b, "ru"));
+
+    filteredNames.forEach(n => elements.complex.append(new Option(n, n)));
+
+    const options = Array.from(elements.complex.options).map(o => o.value);
+    if (keepValue && options.includes(keepValue)) {
+        elements.complex.value = keepValue;
+    } else {
+        elements.complex.value = keepValue && keepValue !== "all" && keepValue !== "none" ? "none" : "all";
+    }
+}

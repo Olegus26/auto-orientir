@@ -1,0 +1,1065 @@
+[
+    {
+        "jk_name": "ЖК вул. Велозаводська",
+        "url": "https://lun.ua/new/kharkiv/velozavodska-st",
+        "city": "Харків",
+        "address": "вул. Велозаводська, 37",
+        "class": "Економ",
+        "district": "Немишлянський р-н"
+    },
+    {
+        "jk_name": "ЖК Адмірал",
+        "url": "https://lun.ua/sale/kharkiv/admiral",
+        "city": "Харків",
+        "address": "Клочківська вул., 258",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Казка",
+        "url": "https://lun.ua/new/kharkiv/kazka",
+        "city": "Харків",
+        "address": "вул. Полтавський Шлях, 184-Б; вул. Полтавський Шлях, 184-Г; вул. Полтавський Шлях, 184-В; вул. Полтавський Шлях, 184-А, корпус 9; вул. Полтавський Шлях, 184-А корпус 18; вул. Полтавський Шлях, 184-А корпус 22; вул. Полтавський Шлях, 184, корпус 10; вул. Полтавський Шлях, 184-А, корпус 16; вул. Полтавський Шлях, 184-А, корп. 19; вул. Полтавський Шлях, 184, корп. 21; вул. Полтавський Шлях, 184-А, корп. 17",
+        "class": "Економ",
+        "district": "Холодногірський р-н"
+    },
+    {
+        "jk_name": "ЖК Левада",
+        "url": "https://lun.ua/new/kharkiv/levada",
+        "city": "Харків",
+        "address": "вул. Лисаветинська, 1; вул. Лисаветинська, 1-Б; вул. Лисаветинська, 3-Б; вул. Лисаветинська, 3-В; вул. Лисаветинська, 5-Б; вул. Лисаветинська, 5-В; вул. Лисаветинська, 3; вул. Лисаветинська, 5-А; вул. Лисаветинська, 3-А; вул. Лисаветинська, 5; вул. Лисаветинська, 7; вул. Лисаветинська, 7-А; вул. Лисаветинська, 7-Б; вул. Єлизаветинська, 1-А; вул. Лисаветинська, 7-В; вул. Заливна, 2; вул. Заливна, 4; вул. Заливна, 6; вул. Заливна, 8-А; вул. Єлизаветинська, 7-Д; вулю Заливна, 10; вул. Заливна, 12",
+        "class": "Комфорт",
+        "district": "Основ'янський р-н"
+    },
+    {
+        "jk_name": "ЖК Пролісок",
+        "url": "https://lun.ua/new/kharkiv/prolisok",
+        "city": "Харків",
+        "address": "просп. Московський, 162; просп. Московський, 160; просп. Московський, 158; просп. Московський, 156",
+        "class": "Комфорт",
+        "district": "Немишлянський р-н"
+    },
+    {
+        "jk_name": "ЖК Авіаційний",
+        "url": "https://lun.ua/new/kharkiv/aviatsiinyi",
+        "city": "Харків",
+        "address": "вул. Авіаційна, 39-А",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Оазис",
+        "url": "https://lun.ua/new/kharkiv/oazys",
+        "city": "Харків",
+        "address": "вул. Героїв Праці, 1-Ж; вул. Героїв Праці, 1-К",
+        "class": "Комфорт",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Миру-3",
+        "url": "https://lun.ua/new/kharkiv/myru-3",
+        "city": "Харків",
+        "address": "вул. Миру, 51; вул. Миру, 53; вул. Миру, 49; просп. Героїв Харкова (Московський), 270; просп. Героїв Харкова (Московський), 270-А; просп. Героїв Харкова (Московський), 270-В; просп. Героїв Харкова, 270-Г; вул. Миру, 47; просп. Героїв Харкова (Московський), 270-Б; вул. Миру, 43; вул. Миру, 41",
+        "class": "Економ",
+        "district": "Індустріальний р-н"
+    },
+    {
+        "jk_name": "ЖК Мангеттен",
+        "url": "https://lun.ua/new/kharkiv/manhattan",
+        "city": "Харків",
+        "address": "Харків, просп. Героїв Харкова, 97",
+        "class": "Бізнес",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "ЖК Куликовський",
+        "url": "https://lun.ua/new/kharkiv/kulykovskyi",
+        "city": "Харків",
+        "address": "Харків, вул. Куликівська, 32",
+        "class": "Бізнес",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Спортивний",
+        "url": "https://lun.ua/new/kharkiv/sportyvnyi",
+        "city": "Харків",
+        "address": "вул. Гипиків Братів, 1",
+        "class": "Комфорт",
+        "district": "Слобідський р-н"
+    },
+    {
+        "jk_name": "ЖК Меридіан",
+        "url": "https://lun.ua/new/kharkiv/merydian",
+        "city": "Харків",
+        "address": "вул. Гвардійців-Широнінців, 70-Б; вул. Гвардійців-Широнінців, 72-А; вул. Гвардійців-Широнінців, 74-Б; вул. Гвардійців-Широнінців, 70; вул. Гвардійців-Широнінців, 74-Г; вул. Гвардійців-Широнінців, 72-В; вул. Гвардійців-Широнінців, 72",
+        "class": "Економ",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "ЖК Пташка",
+        "url": "https://lun.ua/new/kharkiv/ptashka",
+        "city": "Харків",
+        "address": "вул. Козакевича, 27; вул. Козакевича, 25; вул. Козакевича, 31; вул. Козакевича, 29; вул. Барабашова, 12-А; вул. Барабашова, 10-А; ул. Барабашова, 12; вул. Барабашова, 10-Б; вул. Барабашова, 10-В; вул. Барабашова, 10; вул. Барабашова, 14; вул. Барабашова, 14-А; вул. Барабашова, 14-Б; вул. Барабашова, 16; вул. Барабашова, 18",
+        "class": "Економ",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Bauhaus",
+        "url": "https://lun.ua/new/kharkiv/bauhaus",
+        "city": "Харків",
+        "address": "вул.  Сокільницька, 26",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Подвір'я",
+        "url": "https://lun.ua/new/kharkiv/podvirky-podviria",
+        "city": "Харків",
+        "address": "вул. Куряжська, 16",
+        "class": "Економ",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Магістр",
+        "url": "https://lun.ua/new/kharkiv/mahistr",
+        "city": "Харків",
+        "address": "Харків, вул. Професора Отамановського, 4",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "КМ RAY-ELENOVKA",
+        "url": "https://lun.ua/new/kharkiv/rai-olenivka-ray-elenovka-cottages",
+        "city": "Харків",
+        "address": "Рай-Оленівка, вул. Рай-Оленівська, 1-А",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Royal Residence",
+        "url": "https://lun.ua/new/kharkiv/royal-residence",
+        "city": "Харків",
+        "address": "пров. Партизанський, 8",
+        "class": "Преміум",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Будинок на Сумській",
+        "url": "https://lun.ua/new/kharkiv/budynok-na-sumskii",
+        "city": "Харків",
+        "address": "вул. Динамівська, 77/1",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "Ботанічний сад",
+        "url": "https://lun.ua/new/kharkiv/park-house-cottages",
+        "city": "Харків",
+        "address": "Харків, вул. Батумська, 4",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК IT-Парк Manufactura",
+        "url": "https://lun.ua/new/kharkiv/it-park-manufactura",
+        "city": "Харків",
+        "address": "вул. Чигирина, 13",
+        "class": "Преміум",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "ЖК Ключ",
+        "url": "https://lun.ua/new/kharkiv/kliuch",
+        "city": "Харків",
+        "address": "вул. Дмитра Антоненка (Мінська), 49-К1; вул. Дмитра Антоненка (Мінська), 49",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Люксембург",
+        "url": "https://lun.ua/new/kharkiv/luxemburg",
+        "city": "Харків",
+        "address": "Харків, вул. Динамівська",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Аквамарин",
+        "url": "https://lun.ua/new/kharkiv/akvamaryn",
+        "city": "Харків",
+        "address": "Харків, пров. Буковий, 4",
+        "class": "Комфорт",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Перемоги 2",
+        "url": "https://lun.ua/new/kharkiv/peremohy-2",
+        "city": "Харків",
+        "address": "просп. Перемоги, 86; просп. Перемоги, 86-Б; просп. Перемоги, 86-А",
+        "class": "Економ",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "Мегаінвестбуд",
+        "url": "https://lun.ua/new/kharkiv/leonardo-town",
+        "city": "Харків",
+        "address": "Харків, вул. Донець-Захаржевського, 6/8",
+        "class": "Преміум",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Дипломат",
+        "url": "https://lun.ua/new/kharkiv/dyplomat",
+        "city": "Харків",
+        "address": "вул. Мінська, 50",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Воробйовi гори",
+        "url": "https://lun.ua/new/kharkiv/vorobiovi-hory",
+        "city": "Харків",
+        "address": "вул. Чернівецька, 5; вул. Чернівецька, 5-В; пров. Шевченківський, 30-А; пров. Шевченківський, 30; вул. Чернівецька, 3-В; пров. Шевченківський, 32; пров. Шевченківський, 36; пров. Шевченківський, 38; пров. Шевченківський, 40",
+        "class": "Комфорт",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Шекспіра",
+        "url": "https://lun.ua/new/kharkiv/shekspira",
+        "city": "Харків",
+        "address": "Харків, вул. Клочковська, 228",
+        "class": "Комфорт",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Воробйовi гори на Полях",
+        "url": "https://lun.ua/new/kharkiv/vorobiovi-hory-na-poliakh",
+        "city": "Харків",
+        "address": "вул. Авіахімічна, 7; вул. Авіахімічна, 9",
+        "class": "Комфорт",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Континенталь на Валентинівській",
+        "url": "https://lun.ua/new/kharkiv/kontynental-na-valentynivskii",
+        "city": "Харків",
+        "address": "Харків, вул. Валентинівська, 15-А",
+        "class": "Бізнес",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Октава",
+        "url": "https://lun.ua/new/kharkiv/oktava",
+        "city": "Харків",
+        "address": "Харків, вул. Садова, 9",
+        "class": "Преміум",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Журавли",
+        "url": "https://lun.ua/new/kharkiv/zhuravly",
+        "city": "Харків",
+        "address": "вул. Академіка Павлова, 158/1; вул. Академіка Павлова, 158/2",
+        "class": "Бізнес",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "Новий дім",
+        "url": "https://lun.ua/new/kharkiv/novyi-dim-kotlova",
+        "city": "Харків",
+        "address": "вул. Велика Панасівська (Котлова), 76-Б",
+        "class": "Комфорт",
+        "district": "Холодногірський р-н"
+    },
+    {
+        "jk_name": "Перемога",
+        "url": "https://lun.ua/new/kharkiv/river-park-cottages",
+        "city": "Харків",
+        "address": "Харків, просп. Лозовеньковский",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК River Town",
+        "url": "https://lun.ua/new/kharkiv/river-town",
+        "city": "Харків",
+        "address": "Харків, вул. Мирна, 19",
+        "class": "Економ",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Слобожанський квартал",
+        "url": "https://lun.ua/new/kharkiv/slobozhanskyi-kvartal",
+        "city": "Харків",
+        "address": "Харків, просп. Льва Ландау, 156-А",
+        "class": "Економ",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "ЖК Овис",
+        "url": "https://lun.ua/new/kharkiv/ovys",
+        "city": "Харків",
+        "address": "вул. Клочковська, 108, корп.1",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Британський дім",
+        "url": "https://lun.ua/new/kharkiv/brytanskyi-dim",
+        "city": "Харків",
+        "address": "Харків, вул. Богдана Хмельницького, 10",
+        "class": "Бізнес",
+        "district": "Основ'янський р-н"
+    },
+    {
+        "jk_name": "ЖК Конторський",
+        "url": "https://lun.ua/new/kharkiv/kontorskyi",
+        "city": "Харків",
+        "address": "вул. Конторська, 15, корп. 1; вул. Конторська, 15, корп. 2",
+        "class": "Економ",
+        "district": "Новобаварський р-н"
+    },
+    {
+        "jk_name": "ЖК Liberty Gardens",
+        "url": "https://lun.ua/new/kharkiv/liberty-gardens",
+        "city": "Харків",
+        "address": "Харків, вул. Клочківська /вул. Отакара Яроша",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "Мала Данилівка",
+        "url": "https://lun.ua/new/kharkiv/mala-danylivka-shalie-hraal-cottages",
+        "city": "Харків",
+        "address": "Мала Данилівка, вул. Зелена",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Бестужевські сади",
+        "url": "https://lun.ua/new/kharkiv/bestuzhevski-sady",
+        "city": "Харків",
+        "address": "вул. Бестужева, 11-Б; вул. Бестужева, 11-В",
+        "class": "Комфорт",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "ЖК High Hills",
+        "url": "https://lun.ua/new/kharkiv/high-hills",
+        "city": "Харків",
+        "address": "Харків, вул. Серпова, 4",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Річковий квартал",
+        "url": "https://lun.ua/new/kharkiv/richkovyi-kvartal",
+        "city": "Харків",
+        "address": "вул. Франківська, 10; вул. Франківська, 10-А; вул. Франківська, 10-Б",
+        "class": "Комфорт",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "КМ Comfort Club",
+        "url": "https://lun.ua/new/kharkiv/babai-comfort-club-cottages",
+        "city": "Харків",
+        "address": "Бабаї, пров. Соборний",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК YARD",
+        "url": "https://lun.ua/new/kharkiv/yard",
+        "city": "Харків",
+        "address": "Харків, вул. Данилевського, 28",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "Артюхівка",
+        "url": "https://lun.ua/new/kharkiv/artiukhivka-artvillage-cottages",
+        "city": "Харків",
+        "address": "Артюхівка, вул. Харківська",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК OASIS",
+        "url": "https://lun.ua/new/kharkiv/oasis",
+        "city": "Харків",
+        "address": "Харків, вул. Лозівська, 5",
+        "class": "Комфорт",
+        "district": "Холодногірський р-н"
+    },
+    {
+        "jk_name": "Ботанічний сад",
+        "url": "https://lun.ua/new/kharkiv/forest-town-cottages",
+        "city": "Харків",
+        "address": "Харків, Білгородське шосе",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Urban City",
+        "url": "https://lun.ua/new/kharkiv/urban-city",
+        "city": "Харків",
+        "address": "Харків, просп. Героїв Харкова, 118",
+        "class": "Економ",
+        "district": "Слобідський р-н"
+    },
+    {
+        "jk_name": "ЖК Новий дім Ньютона",
+        "url": "https://lun.ua/new/kharkiv/novyi-dim-niutona",
+        "city": "Харків",
+        "address": "Харків, вул. Ньютона, 115",
+        "class": "Економ",
+        "district": "Слобідський р-н"
+    },
+    {
+        "jk_name": "ЖК NOW",
+        "url": "https://lun.ua/new/kharkiv/now",
+        "city": "Харків",
+        "address": "Харків, вул. Науки, 14, вул. Культури, 20-Б",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "С-Інвест",
+        "url": "https://lun.ua/new/kharkiv/park-house-residence",
+        "city": "Харків",
+        "address": "Харків, вул. Батумська",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "КМ Європейський квартал",
+        "url": "https://lun.ua/new/kharkiv/yevropeiskyi-kvartal-cottages",
+        "city": "Харків",
+        "address": "Харків, Велика Данилівка, вул. Білецького",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК ТИТУЛ Будинок на Пушкінській",
+        "url": "https://lun.ua/new/kharkiv/tytul-budynok-na-pushkinskii",
+        "city": "Харків",
+        "address": "Харків, вул. Свободи, 36",
+        "class": "Преміум",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "Мала Данилівка",
+        "url": "https://lun.ua/new/kharkiv/mala-danylivka-florynka-cottages",
+        "city": "Харків",
+        "address": "Мала Данилівка, вул. Райський куточок, 9",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Shatilovka Hillside",
+        "url": "https://lun.ua/new/kharkiv/shatilovka-hillside",
+        "city": "Харків",
+        "address": "вул. Липова, 8; ул. Липова, 14; вул. Новгородська, 85",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "КМ INWHITE family park",
+        "url": "https://lun.ua/new/kharkiv/mala-danylivka-inwhite-family-park-cottages",
+        "city": "Харків",
+        "address": "Мала Данилівка, вул. Зелена",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Олімпійський",
+        "url": "https://lun.ua/new/kharkiv/olimpiiskyi",
+        "city": "Харків",
+        "address": "Харків, вул. Олімпійська, 6",
+        "class": "Комфорт",
+        "district": "Немишлянський р-н"
+    },
+    {
+        "jk_name": "Строй Сіті Development",
+        "url": "https://lun.ua/new/kharkiv/urban-one-sumskaya",
+        "city": "Харків",
+        "address": "Харків, вул. Сумська, 130",
+        "class": "Бізнес",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "вул. Букова, 1а",
+        "url": "https://lun.ua/new/kharkiv/bukova-st-1a",
+        "city": "Харків",
+        "address": "Харків, вул. Букова, 1-А",
+        "class": "Економ",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "Армійська",
+        "url": "https://lun.ua/new/kharkiv/traktorobudivnykiv-st-2a",
+        "city": "Харків",
+        "address": "Харків, просп. Тракторобудівників, 2-А",
+        "class": "Комфорт",
+        "district": "Немишлянський р-н"
+    },
+    {
+        "jk_name": "ЖК ZerNova",
+        "url": "https://lun.ua/new/kharkiv/zernova",
+        "city": "Харків",
+        "address": "Харків, вул. Зернова, 55",
+        "class": "Бізнес",
+        "district": "Слобідський р-н"
+    },
+    {
+        "jk_name": "ЖК Райдужний",
+        "url": "https://lun.ua/new/kharkiv/raiduzhnyi",
+        "city": "Харків",
+        "address": "вул. Зубарєва, 34; вул. Зубарєва, 34-А",
+        "class": "Економ",
+        "district": "Індустріальний р-н"
+    },
+    {
+        "jk_name": "ЖК Комфорт на Салтівці",
+        "url": "https://lun.ua/new/kharkiv/komfort-na-saltivtsi",
+        "city": "Харків",
+        "address": "Харків, вул. Руслана Плоходько",
+        "class": "Комфорт",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "ЖК Воробйові гори Family",
+        "url": "https://lun.ua/new/kharkiv/vorobiovi-hory-family",
+        "city": "Харків",
+        "address": "Харків, вул. Весела",
+        "class": "Економ",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК НАДІЯ",
+        "url": "https://lun.ua/new/kharkiv/nadiya",
+        "city": "Харків",
+        "address": "вул. Ярославська, 25-А",
+        "class": "Комфорт",
+        "district": "Новобаварський р-н"
+    },
+    {
+        "jk_name": "ЖК Перспектива Радужная",
+        "url": "https://lun.ua/new/kharkiv/perspektyva-raduzhnaia",
+        "city": "Харків",
+        "address": "Харків, просп. Героїв Сталінграда, 163-167",
+        "class": "Бізнес",
+        "district": "Слобідський р-н"
+    },
+    {
+        "jk_name": "Циркуни",
+        "url": "https://lun.ua/new/kharkiv/tsyrkuny-goodlife-park-cottages",
+        "city": "Харків",
+        "address": "Циркуни, вул. Культури, 14",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Вектор",
+        "url": "https://lun.ua/new/kharkiv/vektor",
+        "city": "Харків",
+        "address": "Харків, вул. Серпова, 4-А",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК ParkVille",
+        "url": "https://lun.ua/new/kharkiv/parkville",
+        "city": "Харків",
+        "address": "Харків, вул. Батумська, 2",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Сонячний квартал 4",
+        "url": "https://lun.ua/new/kharkiv/soniachnyi-kvartal-4",
+        "city": "Харків",
+        "address": "Харків, вул. Василя Стуса, 13/1",
+        "class": "Бізнес",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "Таунхаус Холодногірський",
+        "url": "https://lun.ua/new/kharkiv/kholodnohirskyi-townhouse",
+        "city": "Харків",
+        "address": "Харків, вул. Комбайнівська, 4",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Мирний",
+        "url": "https://lun.ua/new/kharkiv/myrnyi",
+        "city": "Харків",
+        "address": "Харків, вул. Мирна, 19",
+        "class": "Комфорт",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "Строй Сіті Development",
+        "url": "https://lun.ua/new/kharkiv/urban-one-klochkivska",
+        "city": "Харків",
+        "address": "Харків, вул. Клочківська, 148-Б",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Слобожанський квартал-2",
+        "url": "https://lun.ua/new/kharkiv/slobozhanskyi-kvartal-2",
+        "city": "Харків",
+        "address": "Харків, просп. Льва Ландау, 180",
+        "class": "Економ",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "ЖК Кава з молоком",
+        "url": "https://lun.ua/new/kharkiv/kava-z-molokom",
+        "city": "Харків",
+        "address": "Харків, вул. Шевченка / вул. Героїв Праці",
+        "class": "Комфорт",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Воробйовi гори на полях-3",
+        "url": "https://lun.ua/new/kharkiv/vorobiovi-hory-na-poliakh-3",
+        "city": "Харків",
+        "address": "Харків, вул. Весела",
+        "class": "Комфорт",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Технопарк",
+        "url": "https://lun.ua/new/kharkiv/tekhnopark",
+        "city": "Харків",
+        "address": "Харків, вул. Велика Панасівська, 29",
+        "class": "Бізнес",
+        "district": "Холодногірський р-н"
+    },
+    {
+        "jk_name": "ЖК Центр",
+        "url": "https://lun.ua/new/kharkiv/tsentr",
+        "city": "Харків",
+        "address": "Харків, вул. Чернишевська, 39",
+        "class": "Преміум",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Німецький проект на Холодній Горі",
+        "url": "https://lun.ua/new/kharkiv/nimetskyi-proekt-na-kholodnii-hori",
+        "city": "Харків",
+        "address": "Харків, Григорівське шосе, 22",
+        "class": "Бізнес",
+        "district": "Новобаварський р-н"
+    },
+    {
+        "jk_name": "ЖК Shatilov Park",
+        "url": "https://lun.ua/new/kharkiv/shatilov-park",
+        "city": "Харків",
+        "address": "Харків, вул. Новгородська, 87",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Dominant",
+        "url": "https://lun.ua/new/kharkiv/pisochyn-dominant",
+        "city": "Харків",
+        "address": "Пісочин, вул. Технологічна",
+        "class": "Економ",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Європейський",
+        "url": "https://lun.ua/new/kharkiv/yevropeiskyi",
+        "city": "Харків",
+        "address": "Харків, вул. Куликівська, 2, 4",
+        "class": "Комфорт",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Гідропарк Сіті",
+        "url": "https://lun.ua/new/kharkiv/hidropark-city",
+        "city": "Харків",
+        "address": "Харків, пров. Шевченківський, 50",
+        "class": "Економ",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "КМ Добрі сусіди",
+        "url": "https://lun.ua/new/kharkiv/dobri-susidy-cottages",
+        "city": "Харків",
+        "address": "Харків, вул. Підгірна, 87-А",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Concept House Futurium",
+        "url": "https://lun.ua/new/kharkiv/concept-house-futurium",
+        "city": "Харків",
+        "address": "Харків, вул.Чернишевська, 81-83",
+        "class": "Преміум",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "КМ SKANDINAVSKY",
+        "url": "https://lun.ua/new/kharkiv/skandinavsky-cottages",
+        "city": "Харків",
+        "address": "Харків, вул. Беркоса, 151",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК BonAparte",
+        "url": "https://lun.ua/new/kharkiv/bonaparte",
+        "city": "Харків",
+        "address": "Харків, пров. Лосівський",
+        "class": "Бізнес",
+        "district": "Холодногірський р-н"
+    },
+    {
+        "jk_name": "ЖК Дім на Подолі",
+        "url": "https://lun.ua/new/kharkiv/dim-na-podoli",
+        "city": "Харків",
+        "address": "Харків, пров. Лопатинський, 10",
+        "class": "Бізнес",
+        "district": "Основ'янський р-н"
+    },
+    {
+        "jk_name": "ЖК Нова Шатилівка",
+        "url": "https://lun.ua/new/kharkiv/nova-shatylivka",
+        "city": "Харків",
+        "address": "Харків, вул. Шатилівська, 1-А",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "просп. Жуковського, 7",
+        "url": "https://lun.ua/new/kharkiv/zhukovskoho-ave-7",
+        "city": "Харків",
+        "address": "Харків, просп. Жуковського, 7",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "Таунхауси в П'ятихатках",
+        "url": "https://lun.ua/new/kharkiv/v-piatykhatkakh-townhouse",
+        "city": "Харків",
+        "address": "Харків, вул. Лейпунського, вул. Москаленко",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Графіка",
+        "url": "https://lun.ua/new/kharkiv/hrafika",
+        "city": "Харків",
+        "address": "Харків, вул. Серпова, 4",
+        "class": "Преміум",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "просп. Петра Григоренка, 2б",
+        "url": "https://lun.ua/new/kharkiv/petra-hryhorenka-ave-2b",
+        "city": "Харків",
+        "address": "Харків, просп. Петра Григоренка, 2-Б",
+        "class": "",
+        "district": "Немишлянський р-н"
+    },
+    {
+        "jk_name": "ЖК Котловський",
+        "url": "https://lun.ua/new/kharkiv/kotlovskyi",
+        "city": "Харків",
+        "address": "вул. Велика Панасівська, 54",
+        "class": "Економ",
+        "district": "Холодногірський р-н"
+    },
+    {
+        "jk_name": "вул. Шевченка, 331а",
+        "url": "https://lun.ua/new/kharkiv/shevchenka-st-331a",
+        "city": "Харків",
+        "address": "Харків, вул. Шевченка, 331-А",
+        "class": "Економ",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Ренесанс парк",
+        "url": "https://lun.ua/new/kharkiv/renesans-park",
+        "city": "Харків",
+        "address": "Харків, вул. Балакірєва",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Південний Горизонт",
+        "url": "https://lun.ua/new/kharkiv/pivdennyi-horyzont",
+        "city": "Харків",
+        "address": "Харків, вул. Велика Кільцева",
+        "class": "",
+        "district": "Індустріальний р-н"
+    },
+    {
+        "jk_name": "Мала Данилівка",
+        "url": "https://lun.ua/new/kharkiv/mala-danylivka-danylivskyi-cottages",
+        "city": "Харків",
+        "address": "Мала Данилівка, вул. Межова, 23",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "просп. Перемоги",
+        "url": "https://lun.ua/new/kharkiv/peremohy-ave",
+        "city": "Харків",
+        "address": "Харків, просп. Перемоги",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Добряночка",
+        "url": "https://lun.ua/new/kharkiv/dobrianochka",
+        "city": "Харків",
+        "address": "просп. Любові Малої, 4-Б",
+        "class": "Економ",
+        "district": "Новобаварський р-н"
+    },
+    {
+        "jk_name": "С-Інвест",
+        "url": "https://lun.ua/new/kharkiv/molochna-st-8a",
+        "city": "Харків",
+        "address": "Харків, вул. Молочна, 8-А",
+        "class": "Бізнес",
+        "district": "Основ'янський р-н"
+    },
+    {
+        "jk_name": "ЖК Кріптон",
+        "url": "https://lun.ua/new/kharkiv/kripton",
+        "city": "Харків",
+        "address": "Харків, пров. Санжарівський",
+        "class": "Бізнес",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "вул. Білогірська",
+        "url": "https://lun.ua/new/kharkiv/bilohirska-st",
+        "city": "Харків",
+        "address": "Харків, вул. Білогірська",
+        "class": "",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Дипломат Клаб",
+        "url": "https://lun.ua/new/kharkiv/dyplomat-club",
+        "city": "Харків",
+        "address": "Харків, пров. Отакара Яроша",
+        "class": "",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Пушкін",
+        "url": "https://lun.ua/new/kharkiv/pushkin",
+        "city": "Харків",
+        "address": "Харків, вул. Воробйова, 10",
+        "class": "Комфорт",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Consol City",
+        "url": "https://lun.ua/new/kharkiv/consol-city",
+        "city": "Харків",
+        "address": "Харків, вул. Самарська / вул. Мирна",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК the first capital residence",
+        "url": "https://lun.ua/new/kharkiv/the-first-capital-residence",
+        "city": "Харків",
+        "address": "Харків, вул. Свободи, 35",
+        "class": "Преміум",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Воробйовi гори PRO",
+        "url": "https://lun.ua/new/kharkiv/vorobiovi-hory-pro",
+        "city": "Харків",
+        "address": "Харків, пров. Спортивний, 7",
+        "class": "Комфорт",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "КМ EVO country club",
+        "url": "https://lun.ua/new/kharkiv/cherkaski-tyshky-evo-country-club-cottages",
+        "city": "Харків",
+        "address": "Черкаські Тишки",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "вул. Балакірєва, 9",
+        "url": "https://lun.ua/new/kharkiv/balakirieva-st-9",
+        "city": "Харків",
+        "address": "Харків, вул. Балакірєва, 9",
+        "class": "",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "вул. Балакірєва",
+        "url": "https://lun.ua/new/kharkiv/balakirieva-st",
+        "city": "Харків",
+        "address": "Харків, вул. Балакірєва",
+        "class": "",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "ЖК Обсидіан",
+        "url": "https://lun.ua/new/kharkiv/obsydian",
+        "city": "Харків",
+        "address": "Харків, просп. Перемоги",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "вул. Миру",
+        "url": "https://lun.ua/new/kharkiv/myru-st",
+        "city": "Харків",
+        "address": "Харків, вул. Миру",
+        "class": "",
+        "district": "Індустріальний р-н"
+    },
+    {
+        "jk_name": "ЖК Олексіївський дворик",
+        "url": "https://lun.ua/new/kharkiv/oleksiivskyi-dvoryk",
+        "city": "Харків",
+        "address": "Харків, вул. Клочківська, 368",
+        "class": "Економ",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "Будівельний Альянс Моноліт",
+        "url": "https://lun.ua/new/kharkiv/renesans-park-cottages",
+        "city": "Харків",
+        "address": "Харків, вул. Балакірєва",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Олексіївська рів'єра",
+        "url": "https://lun.ua/new/kharkiv/oleksiivska-riviera",
+        "city": "Харків",
+        "address": "Харків, вул. Букова, 20-Г",
+        "class": "Бізнес",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "Трест Житлобуд-1",
+        "url": "https://lun.ua/new/kharkiv/chobotarska-st-80",
+        "city": "Харків",
+        "address": "Харків, вул. Чоботарська, 80",
+        "class": "Економ",
+        "district": "Холодногірський р-н"
+    },
+    {
+        "jk_name": "КМ Country House",
+        "url": "https://lun.ua/new/kharkiv/cherkaska-lozova-country-house-cottages",
+        "city": "Харків",
+        "address": "Черкаська Лозова, вул. Межова",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Київський",
+        "url": "https://lun.ua/new/kharkiv/kyivskyi",
+        "city": "Харків",
+        "address": "Харків, вул. Петропавліська, 1-А",
+        "class": "Бізнес",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "ЖК Райдужний-3",
+        "url": "https://lun.ua/new/kharkiv/raiduzhnyi-3",
+        "city": "Харків",
+        "address": "Харків, просп. Льва Ландау, 52-А",
+        "class": "Економ",
+        "district": "Немишлянський р-н"
+    },
+    {
+        "jk_name": "КМ Графський",
+        "url": "https://lun.ua/new/kharkiv/tsyrkuny-hrafskyi-cottages",
+        "city": "Харків",
+        "address": "Циркуни, вул. Механізаторська, 2",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Брюссель",
+        "url": "https://lun.ua/new/kharkiv/briussel",
+        "city": "Харків",
+        "address": "Харків, вул. Маршала Бажанова, 11",
+        "class": "Бізнес",
+        "district": "Київський р-н"
+    },
+    {
+        "jk_name": "DOMEXPERT",
+        "url": "https://lun.ua/new/kharkiv/tsyrkuny-dzherelna-st-6",
+        "city": "Харків",
+        "address": "Циркуни, вул. Джерельна, 6",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Twenty two",
+        "url": "https://lun.ua/new/kharkiv/twenty-two",
+        "city": "Харків",
+        "address": "Харків, просп. Гагаріна, 39-А",
+        "class": "Бізнес",
+        "district": "Слобідський р-н"
+    },
+    {
+        "jk_name": "ЖК NewTown",
+        "url": "https://lun.ua/new/kharkiv/newtown",
+        "city": "Харків",
+        "address": "Харків",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "вул. Семена Кузнеця, 42",
+        "url": "https://lun.ua/new/kharkiv/semena-kuznetsia-st-42",
+        "city": "Харків",
+        "address": "Харків, вул. Семена Кузнеця, 42",
+        "class": "",
+        "district": "Шевченківський р-н"
+    },
+    {
+        "jk_name": "КМ WHITEWOOD",
+        "url": "https://lun.ua/new/kharkiv/whitewood-cottages",
+        "city": "Харків",
+        "address": "Харків",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "Таунхаус  Shatilovka Hillside",
+        "url": "https://lun.ua/new/kharkiv/shatilovka-hillside-townhouse",
+        "city": "Харків",
+        "address": "Харків, вул. Липова, 2",
+        "class": "",
+        "district": "Без району"
+    },
+    {
+        "jk_name": "ЖК Янтарний",
+        "url": "https://lun.ua/new/kharkiv/yantarnyi",
+        "city": "Харків",
+        "address": "просп. Тракторобудівників, 94-Б",
+        "class": "Економ",
+        "district": "Салтівський р-н"
+    },
+    {
+        "jk_name": "ЖК Пурпурові вітрила",
+        "url": "https://lun.ua/new/kharkiv/purpurovi-vitryla",
+        "city": "Харків",
+        "address": "вул. Кричевського, 34; вул. Кричевського, 35; вул. Кричевського, 36",
+        "class": "Економ",
+        "district": "Київський р-н"
+    }
+]

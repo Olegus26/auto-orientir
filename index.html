@@ -32,9 +32,9 @@
     <!-- Район и ЖК -->
     <div class="form-row">
         <div class="form-group half-width">
-            <label for="district">Админ-район</label>
-            <select id="district" name="district">
-                <option value="">— выбери район —</option>
+            <label for="district"><span class="required">*</span> Админ. район</label>
+            <select id="district" name="district" disabled>
+                <option value="" disabled selected>Выберите район</option>
             </select>
             <div class="hint">Выбор района ограничивает список ЖК.</div>
         </div>
@@ -57,9 +57,10 @@
             <div class="drop" id="SD"></div>
         </div>
 
-        <div class="form-group small-width">
+        <div class="form-group small-width aw" id="H_AW">
             <label for="house_number">Номер дома</label>
-            <input type="text" id="house_number" name="house_number" placeholder="211">
+            <input type="text" id="house_number" name="house_number" placeholder="211" autocomplete="off">
+            <div class="drop" id="HD"></div>
         </div>
 
         <div class="form-group small-width">

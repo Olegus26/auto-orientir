@@ -1,0 +1,5 @@
+raw_data/
+node_modules/
+.vscode/
+.idea/
+.DS_Store
