@@ -1,7 +1,7 @@
 // ==========================================
 // Constants & Configuration
 // ==========================================
-const DATA_VERSION = '20261106_6';
+const DATA_VERSION = '20261107_1';
 const MAP_INITIAL_CENTER = [36.2720, 50.0010]; // [lon, lat] Kharkiv overview
 const MAP_INITIAL_ZOOM = 10.65;
 const OPENFREEMAP_BRIGHT_URL = 'https://tiles.openfreemap.org/styles/bright';
@@ -143,7 +143,16 @@ const RU_UA_ROOTS = [
     [/лесн(ая|ой|ое)/g, 'лісов'],
     [/полев(ая|ой|ое)/g, 'польов'],
     [/речн(ая|ой|ое)/g, 'річков'],
-    [/степн(ая|ой|ое)/g, 'степов']
+    [/степн(ая|ой|ое)/g, 'степов'],
+    [/жилстро[йя]/g, 'житлобуд'],
+    [/(^|\s)жс\s*1(?=\s|$)/g, '$1житлобуд 1'],
+    [/(^|\s)жс\s*2(?=\s|$)/g, '$1житлобуд 2'],
+    [/воробьев/g, 'воробйов'],
+    [/бел(ый|ого|ому)/g, 'білий'],
+    [/изумрудн/g, 'смарагдов'],
+    [/янтарн/g, 'бурштинов'],
+    [/сирен(ь|и)(?=\s|$)/g, 'бузок'],
+    [/(^|\s)мира(?=\s|$)/g, '$1миру']
 ];
 
 const LAT_TO_CYR = {
@@ -266,9 +275,10 @@ function normalizePhonetic(raw) {
             : w
     ));
 
-    s = s.replace(/['’`ʼ]/g, '').replace(/["«»(),]/g, ' ');
+    s = s.replace(/['’`ʼ]/g, '').replace(/["«»(),;№]/g, ' ');
     s = normalizeStreetTypes(s);
     s = s.replace(/[.\-/]/g, ' ').replace(/\s+/g, ' ').trim();
+    s = s.replace(/([аоуеиіїяює])\1+/g, '$1');
     s = normalizeStreetTypes(s);
 
     for (const [rx, rep] of RU_UA_ROOTS) {
@@ -574,8 +584,8 @@ async function buildRieltorMapStyle() {
                 layer.layout['visibility'] = 'none';
             }
 
-            // Keep overview zoom clean of street names; show major street names from zoom 13.2+
-            if (id === 'highway-name-major') {
+            // Keep overview zoom clean of street and river names; show from zoom 13.2+
+            if (id === 'highway-name-major' || id === 'waterway_line_label' || id === 'water_name_line_label' || id === 'water_name_point_label') {
                 layer.minzoom = 13.2;
             }
 
@@ -822,8 +832,8 @@ function ensureCustomMapLayers() {
             source: 'district-outline-src',
             paint: {
                 'line-color': '#5662f6',
-                'line-width': 1.6,
-                'line-opacity': 0.65
+                'line-width': 1.0,
+                'line-opacity': 0.22
             }
         },
         beforeLabelLayerId
@@ -916,14 +926,14 @@ function renderMetroMarkersOnMap() {
         }
         el.title = `м. ${station.name}${station.old_name ? ' (колиш. ' + station.old_name + ')' : ''}`;
 
-        // Curved Kharkiv/Rieltor Metro 'M' emblem with white halo + station label + minor overview dot
+        // Crisp Rieltor.ua / LUN Metro 'M' emblem with white halo + station label + minor overview dot
         el.innerHTML = `
             <div class="metro-dot"></div>
             <div class="metro-badge">
                 <svg class="metro-m-svg" viewBox="0 0 24 16" aria-hidden="true">
-                    <path d="M 2.4 13.6 C 3.5 7.2, 5.6 2.3, 8.2 2.3 C 10.2 2.3, 11.3 6.8, 12 10.7 C 12.7 6.8, 13.8 2.3, 15.8 2.3 C 18.4 2.3, 20.5 7.2, 21.6 13.6"
-                          fill="none" stroke="#ffffff" stroke-width="5.0" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M 2.4 13.6 C 3.5 7.2, 5.6 2.3, 8.2 2.3 C 10.2 2.3, 11.3 6.8, 12 10.7 C 12.7 6.8, 13.8 2.3, 15.8 2.3 C 18.4 2.3, 20.5 7.2, 21.6 13.6"
+                    <path d="M 2.6 13.6 L 7.5 2.5 L 12 10.2 L 16.5 2.5 L 21.4 13.6"
+                          fill="none" stroke="#ffffff" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M 2.6 13.6 L 7.5 2.5 L 12 10.2 L 16.5 2.5 L 21.4 13.6"
                           fill="none" stroke="${color}" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <div class="metro-label">${formatMetroDisplayLabel(station.name)}</div>
@@ -1128,13 +1138,41 @@ async function loadAllData() {
         jkByName.clear();
         jkList = jks.map(jk => {
             const normName = normalizePhonetic(jk.jk_name);
-            const normAddr = normalizePhonetic((jk.address || '') + ' ' + (jk.raw_address || ''));
+            const normAliases = (jk.aliases || []).map(normalizePhonetic).filter(Boolean);
+            const normDev = normalizePhonetic(jk.developer || '');
+
+            // Collect historical street names from all bound registry houses so searching e.g. "косиора" or "целиноградская" finds JKs on that street
+            const boundStreetOldNames = [];
+            if (Array.isArray(jk.houses)) {
+                const seenSt = new Set();
+                for (const [stId] of jk.houses) {
+                    if (seenSt.has(stId)) continue;
+                    seenSt.add(stId);
+                    const stObj = streetById.get(stId);
+                    if (stObj) {
+                        boundStreetOldNames.push(stObj.current_name, ...(stObj.old_names || []), ...(stObj.aliases || []));
+                    }
+                }
+            }
+            const normAddr = normalizePhonetic(
+                [jk.address || '', jk.raw_address || '', ...boundStreetOldNames].join(' ')
+            );
+            const phoneticAll = [normName, ...normAliases, normAddr, normDev].filter(Boolean).join(' ');
+            const akanjeAll = toAkanje(phoneticAll);
+            const akanjeWords = Array.from(new Set(akanjeAll.split(' ').filter(w => w.length >= 3)));
+
             const enriched = {
                 ...jk,
                 _normName: normName,
                 _akanjeName: toAkanje(normName),
+                _normAliases: normAliases,
+                _akanjeAliases: normAliases.map(toAkanje),
                 _normAddr: normAddr,
-                _akanjeAddr: toAkanje(normAddr)
+                _akanjeAddr: toAkanje(normAddr),
+                _normDev: normDev,
+                _phoneticAll: phoneticAll,
+                _akanjeAll: akanjeAll,
+                _akanjeWords: akanjeWords
             };
             jkByName.set(jk.jk_name, enriched);
             if (Array.isArray(jk.houses)) {
@@ -1536,25 +1574,113 @@ function showHouseSuggestions(val) {
     });
 }
 
+const JK_STOP_TOKENS = new Set([
+    'жк', 'жб', 'жд', 'жбк', 'км', 'кг', 'мжк', 'кжк', 'кб', 'мфк',
+    'таунхаус', 'таунхауси', 'таунхаусы', 'новобудова', 'новострой', 'новостройка',
+    'по', 'на', 'в', 'у', 'за', 'от', 'від',
+    'вул', 'улице', 'улици', 'вулици', 'просп', 'пров', 'бр', 'вд', 'прд', 'наб', 'узв', 'мн', 'шосе'
+]);
+
+function searchJKsRanked(query, distFilter = '', limit = 35) {
+    const qNorm = normalizePhonetic(query);
+    if (!qNorm) return [];
+    const rawTokens = qNorm.split(' ').filter(Boolean);
+    const contentTokens = rawTokens.filter(t => !JK_STOP_TOKENS.has(t));
+    const effectiveTokens = contentTokens.length > 0 ? contentTokens : rawTokens;
+    const mainQuery = effectiveTokens.join(' ');
+    const mainAkanje = toAkanje(mainQuery);
+    const effectiveAkanje = effectiveTokens.map(toAkanje);
+
+    const tokenMatchesHaystack = (haystack, tk) => {
+        if (/^\d+$/.test(tk)) {
+            return new RegExp(`(?:^|\\s)${tk}(?:\\s|[а-яіїєґa-z]|$)`).test(haystack);
+        }
+        return haystack.includes(tk);
+    };
+
+    const scored = [];
+    for (const jk of jkList) {
+        let exactMatch = true;
+        for (const tk of effectiveTokens) {
+            if (!tokenMatchesHaystack(jk._phoneticAll, tk)) {
+                exactMatch = false;
+                break;
+            }
+        }
+        let akanjeMatch = false;
+        if (!exactMatch) {
+            akanjeMatch = true;
+            for (const atk of effectiveAkanje) {
+                if (!tokenMatchesHaystack(jk._akanjeAll, atk)) {
+                    akanjeMatch = false;
+                    break;
+                }
+            }
+        }
+        if (!exactMatch && !akanjeMatch) continue;
+
+        let score = exactMatch ? 45 : 30;
+        if (jk._normName.includes(mainQuery)) score += jk._normName.startsWith('жк ' + mainQuery) || jk._normName === mainQuery ? 110 : 80;
+        else if (jk._akanjeName.includes(mainAkanje)) score += 68;
+
+        for (let i = 0; i < jk._normAliases.length; i++) {
+            if (jk._normAliases[i] === mainQuery || jk._normAliases[i] === 'жк ' + mainQuery) {
+                score = Math.max(score, 135);
+                break;
+            }
+            if (jk._akanjeAliases[i].includes(mainAkanje)) {
+                score = Math.max(score, 90);
+            }
+        }
+
+        if (jk._akanjeAddr.includes(mainAkanje)) score += 40;
+        if (distFilter && jk.district === distFilter) score += 12;
+        if (jk.houses && jk.houses.length > 0) score += 4;
+
+        scored.push({ jk, score });
+    }
+
+    const fuzzyTokens = effectiveAkanje.filter(t => t.length >= 4);
+    const shortTokens = effectiveAkanje.filter(t => t.length < 4);
+    if (scored.length < 3 && fuzzyTokens.length > 0) {
+        const alreadyNames = new Set(scored.map(x => x.jk.jk_name));
+        for (const jk of jkList) {
+            if (alreadyNames.has(jk.jk_name)) continue;
+            if (shortTokens.length > 0 && shortTokens.some(st => !jk._akanjeAll.includes(st))) continue;
+            let totalDist = 0;
+            let ok = true;
+            for (const qTk of fuzzyTokens) {
+                const maxD = qTk.length >= 7 ? 2 : 1;
+                let bestD = maxD + 1;
+                for (const w of jk._akanjeWords) {
+                    const target = w.length > qTk.length + 1 ? w.slice(0, qTk.length) : w;
+                    const d = editDistanceBounded(qTk, target, maxD);
+                    if (d < bestD) bestD = d;
+                    if (bestD === 0) break;
+                }
+                if (bestD > maxD) { ok = false; break; }
+                totalDist += bestD;
+            }
+            if (!ok) continue;
+            let fuzzyScore = 26 - totalDist * 8 + (jk.houses?.length ? 3 : 0);
+            if (distFilter && jk.district === distFilter) fuzzyScore += 6;
+            scored.push({ jk, score: fuzzyScore });
+        }
+    }
+
+    scored.sort((a, b) => b.score - a.score || naturalCollator.compare(a.jk.jk_name, b.jk.jk_name));
+    return scored.slice(0, limit).map(x => x.jk);
+}
+
 function showJKSuggestions(val) {
     const distFilter = elements.district.value;
     const qNorm = normalizePhonetic(val);
-    const qAkanje = toAkanje(qNorm);
 
     let matches = jkList;
     if (distFilter && !qNorm) {
         matches = jkList.filter(j => j.district === distFilter);
     } else if (qNorm) {
-        const tokens = qAkanje.split(' ').filter(Boolean);
-        matches = jkList.filter(j =>
-            tokens.every(tk => j._akanjeName.includes(tk) || j._akanjeAddr.includes(tk))
-        );
-        matches.sort((a, b) => {
-            const aInName = a._akanjeName.includes(qAkanje) ? 1 : 0;
-            const bInName = b._akanjeName.includes(qAkanje) ? 1 : 0;
-            if (aInName !== bInName) return bInName - aInName;
-            return naturalCollator.compare(a.jk_name, b.jk_name);
-        });
+        matches = searchJKsRanked(val, distFilter, 35);
     }
 
     elements.jkDrop.classList.add('open');
@@ -1585,7 +1711,10 @@ function showJKSuggestions(val) {
         el.className = 'di';
         el.tabIndex = 0;
         const firstAddr = jk.address ? jk.address.split(';')[0] : '';
-        const sub = [jk.district?.replace(' р-н', ''), firstAddr].filter(Boolean).join(' • ');
+        const firstAlias = (jk.aliases || []).find(a =>
+            !a.startsWith('ЖК по ') && !jk.jk_name.toLowerCase().includes(a.toLowerCase())
+        ) || '';
+        const sub = [jk.district?.replace(' р-н', ''), firstAddr, firstAlias].filter(Boolean).join(' • ');
         el.innerHTML = `
             <div class="di-main">
                 <div class="di-n">${jk.jk_name}</div>
