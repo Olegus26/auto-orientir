@@ -1,9 +1,10 @@
 // ==========================================
 // Constants & Configuration
 // ==========================================
-const DATA_VERSION = '20261106_3';
-const MAP_INITIAL_COORDS = [49.9935, 36.2304];
-const MAP_INITIAL_ZOOM = 12;
+const DATA_VERSION = '20261106_6';
+const MAP_INITIAL_CENTER = [36.2720, 50.0010]; // [lon, lat] Kharkiv overview
+const MAP_INITIAL_ZOOM = 10.65;
+const OPENFREEMAP_BRIGHT_URL = 'https://tiles.openfreemap.org/styles/bright';
 
 const DISTRICT_BY_ID = {
     1: "Немишлянський р-н",
@@ -29,6 +30,39 @@ const DISTRICTS = [
     "Шевченківський р-н",
     "Передмістя"
 ];
+
+// Official Kharkiv Metro Line Colors (Rieltor.ua palette)
+const METRO_LINE_COLORS = {
+    "Холодногірсько-Заводська": "#c91d52",
+    "Салтівська": "#1877f2",
+    "Олексіївська": "#11965d"
+};
+
+// Key well-spaced stations visible with full 'M' + label even at city overview zoom (< 13.1), matching Rieltor.ua
+const OVERVIEW_PRIMARY_METROS = new Set([
+    "Перемога",
+    "23 Серпня",
+    "Наукова",
+    "Холодна Гора",
+    "Київська",
+    "Академіка Павлова",
+    "Салтівська",
+    "Захисників України",
+    "Заводська",
+    "Палац Спорту",
+    "Ім. О.С. Масельського",
+    "Індустріальна"
+]);
+
+// Transfer twin anti-collision pixel offsets (dotDx/dotDy at overview zoom; zoomDx/zoomDy when zoomed in)
+const METRO_OFFSETS = {
+    "Історичний музей":   { dotDx: 2,  dotDy: -5, zoomDx: 0,   zoomDy: -15 },
+    "Майдан Конституції": { dotDx: -1, dotDy: 4,  zoomDx: 0,   zoomDy: 15  },
+    "Держпром":           { dotDx: 0,  dotDy: 0,  zoomDx: -8,  zoomDy: -13 },
+    "Університет":        { dotDx: 0,  dotDy: 0,  zoomDx: 8,   zoomDy: 13  },
+    "Спортивна":          { dotDx: 0,  dotDy: -2, zoomDx: 0,   zoomDy: -14 },
+    "Метробудівників":    { dotDx: 0,  dotDy: 2,  zoomDx: 0,   zoomDy: 14  }
+};
 
 // Semantic RU -> UA root & phrase translations for Kharkiv street search
 const RU_UA_ROOTS = [
@@ -124,17 +158,24 @@ const naturalCollator = new Intl.Collator(['uk', 'ru', 'en'], { numeric: true, s
 // ==========================================
 let map = null;
 let marker = null;
-let activeDistrictLayer = null;
+let hoverPopup = null;
+let metroMarkers = [];
+let mapStyleLoaded = false;
+let allDataLoaded = false;
+let customLayersReady = false;
+let showJKDotsOnMap = true;
+let activeDistrictMaskName = '';
 
 let streetsData = [];
 let streetById = new Map();
 let housesData = {};
-let streetNormHouses = new Map(); // stId -> Map(normHouseKey -> canonicalLabel)
-let flatHouses = [];              // [{ lat, lon, stId, house, distId, postCode }]
+let streetNormHouses = new Map();
+let flatHouses = [];
 
 let districtPolygons = null;
 let jkList = [];
-let houseToJKMap = new Map();     // `${stId}:${normHouse}` -> jkObj
+let jkByName = new Map();
+let houseToJKMap = new Map();
 let metroData = [];
 let landmarksData = [];
 
@@ -148,6 +189,10 @@ let dataLoadFailed = false;
 
 // DOM Elements
 const elements = {
+    mapEl: document.getElementById('map'),
+    btnModeMap: document.getElementById('btn_mode_map'),
+    btnModeSat: document.getElementById('btn_mode_sat'),
+    btnToggleJKs: document.getElementById('btn_toggle_jks'),
     btnClear: document.getElementById('btn_clear'),
     btnCopyAll: document.getElementById('btn_copy_all'),
     street: document.getElementById('street'),
@@ -215,17 +260,13 @@ function normalizePhonetic(raw) {
     if (!raw) return '';
     let s = raw.toLowerCase().trim();
 
-    // Fix accidental Latin lookalike letters inside Cyrillic words (e.g. "cумская", "воробйовi")
     s = s.replace(/\S+/g, w => (
         /[а-яіїєґёъыэ]/.test(w)
             ? w.replace(/[abcehkmoptxyi]/g, ch => LAT_TO_CYR[ch] || ch)
             : w
     ));
 
-    // Strip apostrophes BEFORE street-type normalization (Дерев'янка -> деревянка, в'їзд -> вїзд)
     s = s.replace(/['’`ʼ]/g, '').replace(/["«»(),]/g, ' ');
-
-    // Normalize hyphenated street types (м-н, б-р, в-д, пр-д) BEFORE splitting hyphens
     s = normalizeStreetTypes(s);
     s = s.replace(/[.\-/]/g, ' ').replace(/\s+/g, ' ').trim();
     s = normalizeStreetTypes(s);
@@ -234,7 +275,6 @@ function normalizePhonetic(raw) {
         s = s.replace(rx, rep);
     }
 
-    // Unify UA/RU morphological suffixes & adjective endings (note: use (?=\s|$) for Cyrillic word ends)
     s = s
         .replace(/ционн/g, 'цийн')
         .replace(/(?:овская|евская|овська|евська|євська|івська|ївська|ьовська)(?=\s|$)/g, 'овска')
@@ -262,7 +302,6 @@ function normalizePhonetic(raw) {
         .replace(/([а-яіїєґ]{2,})яя(?=\s|$)/g, '$1я')
         .replace(/([а-яіїєґ]{2,})(?:ое|ее|єє)(?=\s|$)/g, '$1е');
 
-    // Fold vowels & soft/hard signs
     s = s
         .replace(/ії/g, 'и')
         .replace(/[іїы]/g, 'и')
@@ -270,12 +309,10 @@ function normalizePhonetic(raw) {
         .replace(/ґ/g, 'г')
         .replace(/[ьъ]/g, '');
 
-    // Collapse double letters ("мангеттен" == "мангетен", "пассіонарії" == "пасионари")
     s = s.replace(/([а-яa-z])\1+/g, '$1');
     return s.replace(/\s+/g, ' ').trim();
 }
 
-// Akan'ye / Ikan'ye skeleton ("холоднаярская" == "Холодноярська", "алексеевская" == "Олексіївська")
 function toAkanje(phoneticStr) {
     return phoneticStr
         .replace(/о/g, 'а')
@@ -283,7 +320,6 @@ function toAkanje(phoneticStr) {
         .replace(/([а-яa-z])\1+/g, '$1');
 }
 
-// Fast bounded Damerau-Levenshtein distance for typo resilience ("гагарна", "сумскя", "пушкнская")
 function editDistanceBounded(a, b, maxDist = 2) {
     const la = a.length;
     const lb = b.length;
@@ -335,42 +371,683 @@ function showToast(msg) {
 // Initialization
 // ==========================================
 document.addEventListener('DOMContentLoaded', async () => {
-    initMap();
     initDistrictDropdown();
-    await loadAllData();
     setupEventListeners();
+    await Promise.all([initMap(), loadAllData()]);
+    ensureCustomMapLayers();
 });
-
-function initMap() {
-    const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; OpenStreetMap'
-    });
-
-    const satLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 19,
-        attribution: '&copy; Esri Satellite'
-    });
-
-    map = L.map('map', {
-        center: MAP_INITIAL_COORDS,
-        zoom: MAP_INITIAL_ZOOM,
-        layers: [osmLayer]
-    });
-
-    L.control.layers(
-        { 'Схема': osmLayer, 'Спутник': satLayer },
-        null,
-        { position: 'topright' }
-    ).addTo(map);
-
-    map.on('click', e => handleMapClickOrDrag(e.latlng.lat, e.latlng.lng, 'Клик на карте'));
-}
 
 function initDistrictDropdown() {
     DISTRICTS.forEach(d => elements.district.append(new Option(d, d)));
 }
 
+// ==========================================
+// Rieltor.ua Vector Map Style & MapLibre Setup
+// ==========================================
+const MAJOR_YELLOW_ROAD_IDS = new Set([
+    'highway-motorway-link-casing',
+    'highway-primary-casing',
+    'highway-trunk-casing',
+    'highway-motorway-casing',
+    'highway-motorway-link',
+    'highway-primary',
+    'highway-trunk',
+    'highway-motorway',
+    'bridge-motorway-link-casing',
+    'bridge-trunk-primary-casing',
+    'bridge-motorway-casing',
+    'bridge-motorway-link',
+    'bridge-trunk-primary',
+    'bridge-motorway',
+    'road_oneway',
+    'road_oneway_opposite'
+]);
+
+const BASE_SURFACE_LAYER_IDS = new Set([
+    'background',
+    'landcover-glacier',
+    'landuse-residential',
+    'landuse-suburb',
+    'landuse-commercial',
+    'landuse-industrial',
+    'landuse-cemetery',
+    'landuse-hospital',
+    'landuse-school',
+    'landuse-railway',
+    'park',
+    'landcover-wood',
+    'landcover-grass',
+    'landcover-grass-park',
+    'waterway_tunnel',
+    'waterway-other',
+    'waterway-other-intermittent',
+    'waterway-stream-canal',
+    'waterway-stream-canal-intermittent',
+    'waterway-river',
+    'waterway-river-intermittent',
+    'water',
+    'water-intermittent',
+    'landcover-ice-shelf',
+    'landcover-sand',
+    'building',
+    'building-top'
+]);
+
+async function buildRieltorMapStyle() {
+    try {
+        const res = await fetch(OPENFREEMAP_BRIGHT_URL);
+        if (!res.ok) throw new Error('Style fetch failed');
+        const style = await res.json();
+
+        // Add Esri World Imagery source for Hybrid Satellite toggle
+        style.sources['esri-sat'] = {
+            type: 'raster',
+            tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+            tileSize: 256,
+            maxzoom: 19,
+            attribution: '&copy; Esri'
+        };
+
+        const baseLayers = [];
+        const underMaskLayers = [];
+        const majorRoadLayers = [];
+        const labelLayers = [];
+        let housenumberInserted = false;
+
+        const ukNameExpr = ['coalesce', ['get', 'name:uk'], ['get', 'name_uk'], ['get', 'name']];
+
+        for (const layer of style.layers) {
+            const id = layer.id;
+            layer.paint = layer.paint || {};
+            layer.layout = layer.layout || {};
+
+            // 1. Clean cool-slate background (Rieltor.ua base)
+            if (id === 'background') {
+                layer.paint['background-color'] = '#f2f4f8';
+            }
+
+            // 2. Landuse & Parks (Rieltor.ua soft pastel greens & cool grays)
+            if (id === 'landuse-residential' || id === 'landuse-suburb') {
+                layer.paint['fill-color'] = '#eceff5';
+            } else if (id === 'landuse-industrial' || id === 'landuse-commercial' || id === 'landuse-railway') {
+                layer.paint['fill-color'] = '#e1e5ef';
+            } else if (id === 'landuse-hospital' || id === 'landuse-school') {
+                layer.paint['fill-color'] = '#e9edf5';
+            } else if (id === 'landuse-cemetery') {
+                layer.paint['fill-color'] = '#dce8d6';
+            } else if (id === 'park' || id === 'landcover-grass' || id === 'landcover-grass-park') {
+                layer.paint['fill-color'] = '#bde39c';
+                layer.paint['fill-opacity'] = 0.94;
+            } else if (id === 'landcover-wood') {
+                layer.paint['fill-color'] = '#afd98a';
+                layer.paint['fill-opacity'] = 0.94;
+            } else if (id === 'aeroway-area') {
+                layer.paint['fill-color'] = '#d5dae8';
+            }
+
+            // 3. Water (crisp sky blue)
+            if (id === 'water' || id === 'water-intermittent') {
+                layer.paint['fill-color'] = '#74c8f4';
+            } else if (id.startsWith('waterway') && layer.type === 'line') {
+                layer.paint['line-color'] = '#74c8f4';
+            }
+
+            // 4. Buildings
+            if (id === 'building' || id === 'building-top') {
+                layer.paint['fill-color'] = '#dfe4ed';
+                if (id === 'building') layer.paint['fill-outline-color'] = '#cfd6e3';
+            }
+
+            // 5. Golden-yellow Rieltor.ua arterial roads (above district mask) vs crisp white secondary/minor streets (under district mask)
+            if (
+                id === 'highway-motorway' || id === 'highway-trunk' || id === 'highway-primary' ||
+                id === 'bridge-motorway' || id === 'bridge-trunk-primary'
+            ) {
+                layer.paint['line-color'] = '#f4c236';
+                layer.paint['line-width'] = [
+                    'interpolate', ['exponential', 1.25], ['zoom'],
+                    9, 1.3,
+                    11.2, 2.7,
+                    13.5, 4.8,
+                    16, 10,
+                    19, 20
+                ];
+            } else if (
+                id === 'highway-motorway-casing' || id === 'highway-trunk-casing' || id === 'highway-primary-casing' ||
+                id === 'bridge-motorway-casing' || id === 'bridge-trunk-primary-casing'
+            ) {
+                layer.paint['line-color'] = '#d89d1e';
+                layer.paint['line-width'] = [
+                    'interpolate', ['exponential', 1.25], ['zoom'],
+                    9, 2.1,
+                    11.2, 3.8,
+                    13.5, 6.4,
+                    16, 12.2,
+                    19, 23
+                ];
+            } else if (id === 'highway-motorway-link' || id === 'bridge-motorway-link' || id === 'tunnel-motorway' || id === 'tunnel-trunk-primary') {
+                layer.paint['line-color'] = '#f4c236';
+            } else if (id === 'highway-motorway-link-casing' || id === 'bridge-motorway-link-casing') {
+                layer.paint['line-color'] = '#d89d1e';
+            } else if (
+                id === 'highway-secondary-tertiary' || id === 'bridge-secondary-tertiary' ||
+                id === 'highway-link' || id === 'bridge-link'
+            ) {
+                layer.paint['line-color'] = '#ffffff';
+                layer.paint['line-width'] = [
+                    'interpolate', ['exponential', 1.25], ['zoom'],
+                    9.5, 0.6,
+                    11.2, 1.3,
+                    13.5, 3.0,
+                    16, 7.5,
+                    19, 15
+                ];
+            } else if (
+                id === 'highway-secondary-tertiary-casing' || id === 'bridge-secondary-tertiary-casing' ||
+                id === 'highway-link-casing' || id === 'bridge-link-casing'
+            ) {
+                layer.paint['line-color'] = '#cfd7e3';
+                layer.paint['line-width'] = [
+                    'interpolate', ['exponential', 1.25], ['zoom'],
+                    9.5, 1.1,
+                    11.2, 2.1,
+                    13.5, 4.2,
+                    16, 9.2,
+                    19, 17.5
+                ];
+            } else if (id === 'highway-minor' || id === 'bridge-minor') {
+                layer.paint['line-color'] = '#ffffff';
+            } else if (id === 'highway-minor-casing' || id === 'bridge-minor-casing') {
+                layer.paint['line-color'] = '#d5dce6';
+            } else if (id.startsWith('railway')) {
+                layer.paint['line-color'] = '#cbd4e3';
+            }
+
+            // 6. Hide noisy commercial POIs, highway shields & dashed internal admin boundaries
+            if (
+                id.startsWith('poi_') ||
+                id.includes('shield') ||
+                id === 'airport' ||
+                id === 'boundary_3' ||
+                id === 'boundary_disputed'
+            ) {
+                layer.layout['visibility'] = 'none';
+            }
+
+            // Keep overview zoom clean of street names; show major street names from zoom 13.2+
+            if (id === 'highway-name-major') {
+                layer.minzoom = 13.2;
+            }
+
+            // 7. Split label_other into surrounding hamlets (zoom 10.2+) vs internal suburbs (zoom 13.3+), normal case
+            if (id === 'label_other') {
+                const hamletLayer = JSON.parse(JSON.stringify(layer));
+                hamletLayer.id = 'label_hamlet';
+                hamletLayer.minzoom = 10.2;
+                hamletLayer.filter = ['in', ['get', 'class'], ['literal', ['hamlet', 'isolated_dwelling']]];
+                hamletLayer.layout['text-field'] = ukNameExpr;
+                hamletLayer.layout['text-font'] = ['Noto Sans Regular'];
+                hamletLayer.layout['text-transform'] = 'none';
+                hamletLayer.layout['text-letter-spacing'] = 0;
+                hamletLayer.layout['text-size'] = ['interpolate', ['linear'], ['zoom'], 10, 11, 13, 12.5];
+                hamletLayer.paint['text-color'] = '#3f4b73';
+                hamletLayer.paint['text-halo-color'] = 'rgba(255, 255, 255, 0.78)';
+                hamletLayer.paint['text-halo-width'] = 1.4;
+                labelLayers.push(hamletLayer);
+
+                layer.id = 'label_suburb';
+                layer.minzoom = 13.3;
+                layer.filter = [
+                    'all',
+                    ['!', ['in', ['get', 'class'], ['literal', ['city', 'continent', 'country', 'state', 'town', 'village', 'hamlet', 'isolated_dwelling']]]]
+                ];
+                layer.layout['text-field'] = ukNameExpr;
+                layer.layout['text-font'] = ['Noto Sans Regular'];
+                layer.layout['text-transform'] = 'none';
+                layer.layout['text-letter-spacing'] = 0.02;
+                layer.layout['text-size'] = ['interpolate', ['linear'], ['zoom'], 13.3, 11.5, 16, 13.5];
+                layer.paint['text-color'] = '#4a5678';
+                layer.paint['text-halo-color'] = 'rgba(255, 255, 255, 0.85)';
+                layer.paint['text-halo-width'] = 1.5;
+                labelLayers.push(layer);
+                continue;
+            }
+
+            // 8. Ukrainian labels & Rieltor.ua slate-indigo typography
+            if (layer.type === 'symbol' && layer.layout['text-field']) {
+                layer.layout['text-field'] = ukNameExpr;
+                if (id === 'label_city' || id === 'label_city_capital') {
+                    layer.layout['text-font'] = ['Noto Sans Bold'];
+                    layer.layout['icon-image'] = '';
+                    layer.layout['text-size'] = ['interpolate', ['linear'], ['zoom'], 6, 13, 11, 20, 13, 22];
+                    layer.paint['text-color'] = '#364163';
+                    layer.paint['text-halo-color'] = 'rgba(255, 255, 255, 0.75)';
+                    layer.paint['text-halo-width'] = 1.6;
+                } else if (id.startsWith('label_')) {
+                    layer.layout['icon-image'] = '';
+                    layer.paint['text-color'] = '#3f4b73';
+                    layer.paint['text-halo-color'] = 'rgba(255, 255, 255, 0.78)';
+                    layer.paint['text-halo-width'] = 1.4;
+                } else if (id.startsWith('highway-name')) {
+                    layer.paint['text-color'] = '#475569';
+                    layer.paint['text-halo-color'] = 'rgba(255, 255, 255, 0.92)';
+                    layer.paint['text-halo-width'] = 1.6;
+                }
+            }
+
+            // Insert building house numbers right before street labels
+            if (!housenumberInserted && id === 'highway-name-path' && style.sources.openmaptiles) {
+                labelLayers.push({
+                    id: 'building-housenumber',
+                    type: 'symbol',
+                    source: 'openmaptiles',
+                    'source-layer': 'housenumber',
+                    minzoom: 16,
+                    layout: {
+                        'text-field': ['get', 'housenumber'],
+                        'text-font': ['Noto Sans Regular'],
+                        'text-size': 10.5,
+                        'text-allow-overlap': false
+                    },
+                    paint: {
+                        'text-color': '#64748b',
+                        'text-halo-color': 'rgba(255,255,255,0.9)',
+                        'text-halo-width': 1.3
+                    }
+                });
+                housenumberInserted = true;
+            }
+
+            // Route layer into deterministic Rieltor.ua z-order bucket
+            if (BASE_SURFACE_LAYER_IDS.has(id)) {
+                baseLayers.push(layer);
+            } else if (MAJOR_YELLOW_ROAD_IDS.has(id)) {
+                majorRoadLayers.push(layer);
+            } else if (layer.type === 'symbol') {
+                labelLayers.push(layer);
+            } else {
+                underMaskLayers.push(layer);
+            }
+        }
+
+        const satLayer = {
+            id: 'esri-sat-layer',
+            type: 'raster',
+            source: 'esri-sat',
+            layout: { visibility: 'none' },
+            paint: { 'raster-opacity': 1 }
+        };
+
+        style.layers = [
+            ...baseLayers,
+            satLayer,
+            ...underMaskLayers,
+            ...majorRoadLayers,
+            ...labelLayers
+        ];
+        return style;
+    } catch (err) {
+        console.warn('Fallback to Carto Voyager raster style:', err);
+        return {
+            version: 8,
+            sources: {
+                voyager: {
+                    type: 'raster',
+                    tiles: ['https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png'],
+                    tileSize: 256,
+                    attribution: '&copy; OpenStreetMap &copy; CARTO'
+                },
+                'esri-sat': {
+                    type: 'raster',
+                    tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+                    tileSize: 256,
+                    attribution: '&copy; Esri'
+                }
+            },
+            layers: [
+                { id: 'voyager-base', type: 'raster', source: 'voyager' },
+                { id: 'esri-sat-layer', type: 'raster', source: 'esri-sat', layout: { visibility: 'none' } }
+            ]
+        };
+    }
+}
+
+async function initMap() {
+    if (!window.maplibregl) return;
+
+    const rieltorStyle = await buildRieltorMapStyle();
+
+    map = new maplibregl.Map({
+        container: 'map',
+        style: rieltorStyle,
+        center: MAP_INITIAL_CENTER,
+        zoom: MAP_INITIAL_ZOOM,
+        maxZoom: 19,
+        minZoom: 9.5,
+        attributionControl: true
+    });
+
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
+
+    hoverPopup = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        className: 'rieltor-tip',
+        offset: 8
+    });
+
+    const syncZoomClass = () => {
+        if (!elements.mapEl) return;
+        const isOverview = map.getZoom() < 13.15;
+        elements.mapEl.classList.toggle('map-overview-zoom', isOverview);
+    };
+    syncZoomClass();
+    map.on('zoom', syncZoomClass);
+
+    map.on('load', () => {
+        mapStyleLoaded = true;
+        ensureCustomMapLayers();
+    });
+
+    map.on('click', e => {
+        // Check if user clicked a purple JK / house dot first
+        if (customLayersReady && map.getLayer('rieltor-dots-layer')) {
+            const hits = map.queryRenderedFeatures(e.point, { layers: ['rieltor-dots-layer'] });
+            if (hits && hits.length > 0) {
+                const props = hits[0].properties || {};
+                if (props.stId && props.house) {
+                    const stObj = streetById.get(Number(props.stId));
+                    if (stObj) {
+                        applySelectedStreetAndHouse(stObj, String(props.house), '');
+                        return;
+                    }
+                }
+                if (props.jkName && jkByName.has(props.jkName)) {
+                    applyManualJKSelection(jkByName.get(props.jkName));
+                    return;
+                }
+            }
+        }
+        handleMapClickOrDrag(e.lngLat.lat, e.lngLat.lng, 'Клик на карте');
+    });
+}
+
+function ensureCustomMapLayers() {
+    if (!map || !mapStyleLoaded || !allDataLoaded || customLayersReady) return;
+    customLayersReady = true;
+
+    // 1. Spotlight District Mask (inserted ABOVE land/parks/water/minor-secondary streets, BELOW golden-yellow arterial roads & labels!)
+    map.addSource('district-mask-src', {
+        type: 'geojson',
+        data: { type: 'FeatureCollection', features: [] }
+    });
+
+    map.addSource('district-outline-src', {
+        type: 'geojson',
+        data: { type: 'FeatureCollection', features: [] }
+    });
+
+    const beforeMajorRoadLayerId = [
+        'highway-motorway-link-casing',
+        'highway-primary-casing',
+        'highway-trunk-casing',
+        'highway-motorway'
+    ].find(id => Boolean(map.getLayer(id)));
+
+    map.addLayer(
+        {
+            id: 'district-mask-fill',
+            type: 'fill',
+            source: 'district-mask-src',
+            paint: {
+                'fill-color': '#6873f7',
+                'fill-opacity': 0.40
+            }
+        },
+        beforeMajorRoadLayerId
+    );
+
+    const beforeLabelLayerId = [
+        'waterway_line_label',
+        'building-housenumber',
+        'label_hamlet',
+        'label_village',
+        'label_city'
+    ].find(id => Boolean(map.getLayer(id)));
+
+    map.addLayer(
+        {
+            id: 'district-outline-line',
+            type: 'line',
+            source: 'district-outline-src',
+            paint: {
+                'line-color': '#5662f6',
+                'line-width': 1.6,
+                'line-opacity': 0.65
+            }
+        },
+        beforeLabelLayerId
+    );
+
+    // 2. Rieltor.ua Purple Dots Layer (JK buildings & active street buildings)
+    map.addSource('rieltor-dots-src', {
+        type: 'geojson',
+        data: { type: 'FeatureCollection', features: [] }
+    });
+
+    map.addLayer({
+        id: 'rieltor-dots-layer',
+        type: 'circle',
+        source: 'rieltor-dots-src',
+        paint: {
+            'circle-color': [
+                'case',
+                ['==', ['get', 'kind'], 'street-house'], '#9333ea',
+                '#7c3aed'
+            ],
+            'circle-radius': [
+                'interpolate', ['linear'], ['zoom'],
+                10.5, 2.8,
+                12.5, 3.8,
+                15, 5.2,
+                17.5, 6.8
+            ],
+            'circle-stroke-color': '#ffffff',
+            'circle-stroke-width': [
+                'interpolate', ['linear'], ['zoom'],
+                11, 1.1,
+                15, 1.6
+            ],
+            'circle-opacity': 0.95
+        }
+    });
+
+    map.on('mouseenter', 'rieltor-dots-layer', e => {
+        map.getCanvas().style.cursor = 'pointer';
+        const feat = e.features?.[0];
+        if (feat && hoverPopup) {
+            const coords = feat.geometry.coordinates.slice();
+            const label = feat.properties?.title || '';
+            if (label) hoverPopup.setLngLat(coords).setHTML(label).addTo(map);
+        }
+    });
+
+    map.on('mouseleave', 'rieltor-dots-layer', () => {
+        map.getCanvas().style.cursor = '';
+        hoverPopup?.remove();
+    });
+
+    // 3. Render 30 Kharkiv Metro Stations with curved 'M' + Line Colors
+    renderMetroMarkersOnMap();
+
+    // 4. Refresh initial purple dots & any pending district mask
+    refreshPurpleDotsLayer();
+    if (activeDistrictMaskName) {
+        highlightDistrictPolygon(activeDistrictMaskName);
+    }
+}
+
+function formatMetroDisplayLabel(name) {
+    if (name === 'Ім. О.С. Масельського') return 'Імені О.С.<br>Масельського';
+    if (name === 'Холодна Гора') return 'Холодна гора';
+    if (name === 'Палац Спорту') return 'Палац спорту';
+    if (name === '23 Серпня') return '23 серпня';
+    return name;
+}
+
+function renderMetroMarkersOnMap() {
+    if (!map || !window.maplibregl) return;
+    metroMarkers.forEach(m => m.remove());
+    metroMarkers = [];
+
+    metroData.forEach(station => {
+        const color = METRO_LINE_COLORS[station.line] || '#1877f2';
+        const isPrimary = OVERVIEW_PRIMARY_METROS.has(station.name);
+        const off = METRO_OFFSETS[station.name] || null;
+
+        const el = document.createElement('div');
+        el.className = 'metro-marker' + (isPrimary ? ' metro-primary' : ' metro-minor');
+        el.style.setProperty('--m-color', color);
+        if (off) {
+            el.style.setProperty('--dot-dx', `${off.dotDx}px`);
+            el.style.setProperty('--dot-dy', `${off.dotDy}px`);
+            el.style.setProperty('--zoom-dx', `${off.zoomDx}px`);
+            el.style.setProperty('--zoom-dy', `${off.zoomDy}px`);
+        }
+        el.title = `м. ${station.name}${station.old_name ? ' (колиш. ' + station.old_name + ')' : ''}`;
+
+        // Curved Kharkiv/Rieltor Metro 'M' emblem with white halo + station label + minor overview dot
+        el.innerHTML = `
+            <div class="metro-dot"></div>
+            <div class="metro-badge">
+                <svg class="metro-m-svg" viewBox="0 0 24 16" aria-hidden="true">
+                    <path d="M 2.4 13.6 C 3.5 7.2, 5.6 2.3, 8.2 2.3 C 10.2 2.3, 11.3 6.8, 12 10.7 C 12.7 6.8, 13.8 2.3, 15.8 2.3 C 18.4 2.3, 20.5 7.2, 21.6 13.6"
+                          fill="none" stroke="#ffffff" stroke-width="5.0" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M 2.4 13.6 C 3.5 7.2, 5.6 2.3, 8.2 2.3 C 10.2 2.3, 11.3 6.8, 12 10.7 C 12.7 6.8, 13.8 2.3, 15.8 2.3 C 18.4 2.3, 20.5 7.2, 21.6 13.6"
+                          fill="none" stroke="${color}" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="metro-label">${formatMetroDisplayLabel(station.name)}</div>
+            </div>
+        `;
+
+        el.addEventListener('click', ev => {
+            ev.stopPropagation();
+            elements.metro.value = station.name;
+            elements.metroHint.textContent = `🚇 ${station.line} линия${station.old_name ? ' • колиш. ' + station.old_name : ''}`;
+            showToast(`Метро: ${station.name}`);
+        });
+
+        const mk = new maplibregl.Marker({ element: el, anchor: 'center' })
+            .setLngLat([station.lon, station.lat])
+            .addTo(map);
+        metroMarkers.push(mk);
+    });
+}
+
+function refreshPurpleDotsLayer() {
+    if (!customLayersReady || !map) return;
+    const src = map.getSource('rieltor-dots-src');
+    if (!src) return;
+
+    const features = [];
+    const distFilter = elements.district.value;
+
+    // 1. JK Residential Complex Buildings (Rieltor.ua violet dots)
+    if (showJKDotsOnMap) {
+        for (const jk of jkList) {
+            if (distFilter && distFilter !== 'Передмістя' && jk.district !== distFilter) continue;
+            const clsText = jk.class ? ` (${jk.class})` : '';
+
+            if (Array.isArray(jk.houses) && jk.houses.length > 0) {
+                for (const [stId, hLabel] of jk.houses) {
+                    const arr = housesData[stId]?.[hLabel];
+                    if (!arr) continue;
+                    const stObj = streetById.get(stId);
+                    features.push({
+                        type: 'Feature',
+                        geometry: { type: 'Point', coordinates: [arr[1], arr[0]] },
+                        properties: {
+                            kind: 'jk-house',
+                            jkName: jk.jk_name,
+                            stId,
+                            house: hLabel,
+                            title: `${jk.jk_name}${clsText}<br><span style="font-weight:400;opacity:0.85">${stObj ? stObj.shortDisplay + ', ' : ''}${hLabel}</span>`
+                        }
+                    });
+                }
+            } else if (jk.lat && jk.lon) {
+                features.push({
+                    type: 'Feature',
+                    geometry: { type: 'Point', coordinates: [jk.lon, jk.lat] },
+                    properties: {
+                        kind: 'jk-center',
+                        jkName: jk.jk_name,
+                        title: `${jk.jk_name}${clsText}`
+                    }
+                });
+            }
+        }
+    }
+
+    // 2. Also show registered houses on the currently selected street so agent can click any building
+    if (selectedStreetId && housesData[selectedStreetId]) {
+        const stObj = streetById.get(selectedStreetId);
+        const hMap = housesData[selectedStreetId];
+        for (const [hLabel, arr] of Object.entries(hMap)) {
+            features.push({
+                type: 'Feature',
+                geometry: { type: 'Point', coordinates: [arr[1], arr[0]] },
+                properties: {
+                    kind: 'street-house',
+                    stId: selectedStreetId,
+                    house: hLabel,
+                    title: `${stObj ? stObj.shortDisplay : ''}, буд. ${hLabel}`
+                }
+            });
+        }
+    }
+
+    src.setData({ type: 'FeatureCollection', features });
+}
+
+// Compute signed ring area to ensure proper hole winding for Rieltor.ua inverted district spotlight
+function ringSignedArea(ring) {
+    let area = 0;
+    for (let i = 0, len = ring.length, j = len - 1; i < len; j = i++) {
+        area += (ring[j][0] + ring[i][0]) * (ring[j][1] - ring[i][1]);
+    }
+    return area / 2;
+}
+
+function buildInvertedSpotlightMask(geom) {
+    const worldRing = [[-180, -85], [180, -85], [180, 85], [-180, 85], [-180, -85]];
+    const worldSign = Math.sign(ringSignedArea(worldRing)) || 1;
+    const holeRings = [];
+
+    const polys = geom.type === 'MultiPolygon' ? geom.coordinates : [geom.coordinates];
+    for (const poly of polys) {
+        if (!poly || !poly[0]) continue;
+        const ext = poly[0].map(pt => [pt[0], pt[1]]);
+        const extSign = Math.sign(ringSignedArea(ext)) || 1;
+        if (extSign === worldSign) ext.reverse();
+        holeRings.push(ext);
+    }
+
+    return {
+        type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            geometry: {
+                type: 'Polygon',
+                coordinates: [worldRing, ...holeRings]
+            }
+        }]
+    };
+}
+
+// ==========================================
+// Data Loading & Indexing
+// ==========================================
 async function loadAllData() {
     try {
         const q = `?v=${DATA_VERSION}`;
@@ -388,7 +1065,6 @@ async function loadAllData() {
         metroData = metro;
         landmarksData = landmarks;
 
-        // Index houses for instant normalized lookup & map reverse geocoding
         flatHouses = [];
         streetNormHouses.clear();
         for (const [stIdStr, hMap] of Object.entries(houses)) {
@@ -410,7 +1086,6 @@ async function loadAllData() {
             streetNormHouses.set(stId, nMap);
         }
 
-        // Index streets with phonetic, Akan'ye & fuzzy word tokens
         streetById.clear();
         streetsData = streets.map(s => {
             const typePart = s.short_type ? ` ${s.short_type}` : '';
@@ -449,8 +1124,8 @@ async function loadAllData() {
             return obj;
         });
 
-        // Index residential complexes (ЖК)
         houseToJKMap.clear();
+        jkByName.clear();
         jkList = jks.map(jk => {
             const normName = normalizePhonetic(jk.jk_name);
             const normAddr = normalizePhonetic((jk.address || '') + ' ' + (jk.raw_address || ''));
@@ -461,6 +1136,7 @@ async function loadAllData() {
                 _normAddr: normAddr,
                 _akanjeAddr: toAkanje(normAddr)
             };
+            jkByName.set(jk.jk_name, enriched);
             if (Array.isArray(jk.houses)) {
                 for (const [stId, hLabel] of jk.houses) {
                     const key = `${stId}:${normHouseKey(hLabel)}`;
@@ -471,11 +1147,12 @@ async function loadAllData() {
         });
 
         syncHiddenComplexSelect();
+        allDataLoaded = true;
     } catch (e) {
         dataLoadFailed = true;
         console.error('Ошибка загрузки базы данных:', e);
         if (typeof window !== 'undefined' && window.location?.protocol === 'file:') {
-            elements.mapStatus.textContent = '⚠️ Откройте проект через локальный сервер (например Live Server или python -m http.server), т.к. браузер блокирует загрузку JSON по file://';
+            elements.mapStatus.textContent = '⚠️ Откройте проект через локальный сервер (например Live Server или python -m http.server)';
         } else {
             elements.mapStatus.textContent = '⚠️ Ошибка загрузки базы адресов. Обновите страницу (Ctrl+F5).';
         }
@@ -504,7 +1181,6 @@ function searchStreetsRanked(query, limit = 12) {
     const typeTokens = tokens.filter(t => typeSet.has(t));
     const nameTokens = tokens.filter(t => !typeSet.has(t));
 
-    // Match against name tokens (street type acts as a ranking boost/penalty, not a hard blocker)
     const effectiveTokens = nameTokens.length > 0 ? nameTokens : typeTokens;
     const mainQuery = effectiveTokens.join(' ');
     const mainAkanje = toAkanje(mainQuery);
@@ -512,7 +1188,6 @@ function searchStreetsRanked(query, limit = 12) {
 
     const scored = [];
     for (const st of streetsData) {
-        // Tier 1: Exact phonetic token match
         let exactMatch = true;
         for (const tk of effectiveTokens) {
             if (!st._phoneticAll.includes(tk)) {
@@ -521,7 +1196,6 @@ function searchStreetsRanked(query, limit = 12) {
             }
         }
 
-        // Tier 2: Akan'ye / Ikan'ye vowel-tolerant match ("холоднаярская" -> "Холодноярська")
         let akanjeMatch = false;
         if (!exactMatch) {
             akanjeMatch = true;
@@ -567,7 +1241,6 @@ function searchStreetsRanked(query, limit = 12) {
         scored.push({ st, score });
     }
 
-    // Tier 3: Bounded Damerau-Levenshtein fuzzy fallback for keyboard typos ("гагарна", "сумскя")
     const fuzzyTokens = effectiveAkanje.filter(t => t.length >= 4);
     if (scored.length < 3 && fuzzyTokens.length > 0) {
         const alreadyIds = new Set(scored.map(x => x.st.street_id));
@@ -602,7 +1275,6 @@ function searchStreetsRanked(query, limit = 12) {
     return scored.slice(0, limit);
 }
 
-// Parse full pasted address directly inside #street (e.g. "пр. Гагарина 174 корп 3 кв 45" or "Холоднаярская 5")
 function parseFullAddressString(rawInput) {
     if (!rawInput || rawInput.trim().length < 4) return null;
     let s = rawInput.trim();
@@ -624,10 +1296,7 @@ function parseFullAddressString(rawInput) {
 
     const streetCandidate = hm[1].replace(/[,\s]+$/, '').replace(/\(([^)]*)\)/g, ' $1 ').replace(/\s+/g, ' ').trim();
     const houseCandidate = hm[2].trim();
-    if (!houseCandidate) return null;
-
-    // Avoid misinterpreting pure numbered streets like "23 Серпня" or "12 Квітня" when no house follows
-    if (/^\d+$/.test(streetCandidate)) return null;
+    if (!houseCandidate || /^\d+$/.test(streetCandidate)) return null;
 
     const ranked = searchStreetsRanked(streetCandidate, 3);
     if (!ranked.length) return null;
@@ -664,7 +1333,6 @@ function showStreetSuggestions(val) {
     elements.streetDrop.classList.add('open');
     elements.streetDrop.innerHTML = '';
 
-    // If user typed/pasted "Street + House" (e.g. "Сумская 25" or "Холоднаярская 5"), offer 1-click full fill at top
     if (parsedAddr && (parsedAddr.existsInRegistry || results.length === 0)) {
         const fastEl = document.createElement('div');
         fastEl.className = 'di di-fast';
@@ -717,9 +1385,7 @@ function showStreetSuggestions(val) {
             <span class="di-tag">${st.houseCount} буд.</span>
         `;
 
-        const pick = () => {
-            pickStreetFromDropdown(st);
-        };
+        const pick = () => pickStreetFromDropdown(st);
         el.pickAction = pick;
         el.onmousedown = e => { e.preventDefault(); pick(); };
         el.onkeydown = e => {
@@ -745,6 +1411,7 @@ function selectStreetObject(st) {
     } else {
         elements.streetRenameBadge.hidden = true;
     }
+    refreshPurpleDotsLayer();
 }
 
 function pickStreetFromDropdown(st) {
@@ -757,7 +1424,6 @@ function pickStreetFromDropdown(st) {
         elements.clearHouse.hidden = true;
     }
 
-    // Center map on street bounds or resolve immediately if street has 0 numbered buildings
     const b = st.map_bounds;
     if (st.houseCount === 0 && b && b.top_lat && b.bottom_lat) {
         const cLat = (b.top_lat + b.bottom_lat) / 2;
@@ -771,8 +1437,12 @@ function pickStreetFromDropdown(st) {
         return;
     }
 
-    if (b && b.top_lat && b.bottom_lat) {
-        map.setView([(b.top_lat + b.bottom_lat) / 2, (b.top_lon + b.bottom_lon) / 2], 15);
+    if (map && b && b.top_lat && b.bottom_lat) {
+        map.flyTo({
+            center: [(b.top_lon + b.bottom_lon) / 2, (b.top_lat + b.bottom_lat) / 2],
+            zoom: 15,
+            duration: 550
+        });
     }
 
     elements.house.focus();
@@ -949,6 +1619,38 @@ function setupEventListeners() {
     elements.btnClear.addEventListener('click', clearEntireForm);
     elements.btnCopyAll.addEventListener('click', copyFullCard);
 
+    // Map Mode Switcher (Rieltor Map / Satellite) & JK Dots Toggle
+    const setMinorRoadOpacity = (op) => {
+        if (!map) return;
+        ['highway-minor', 'highway-minor-casing', 'bridge-minor', 'bridge-minor-casing'].forEach(id => {
+            if (map.getLayer(id)) map.setPaintProperty(id, 'line-opacity', op);
+        });
+    };
+
+    elements.btnModeMap?.addEventListener('click', () => {
+        elements.btnModeMap.classList.add('active');
+        elements.btnModeSat?.classList.remove('active');
+        if (map && map.getLayer('esri-sat-layer')) {
+            map.setLayoutProperty('esri-sat-layer', 'visibility', 'none');
+            setMinorRoadOpacity(1);
+        }
+    });
+
+    elements.btnModeSat?.addEventListener('click', () => {
+        elements.btnModeSat.classList.add('active');
+        elements.btnModeMap?.classList.remove('active');
+        if (map && map.getLayer('esri-sat-layer')) {
+            map.setLayoutProperty('esri-sat-layer', 'visibility', 'visible');
+            setMinorRoadOpacity(0.42);
+        }
+    });
+
+    elements.btnToggleJKs?.addEventListener('click', () => {
+        showJKDotsOnMap = !showJKDotsOnMap;
+        elements.btnToggleJKs.classList.toggle('active', showJKDotsOnMap);
+        refreshPurpleDotsLayer();
+    });
+
     document.querySelectorAll('[data-copy-target]').forEach(btn => {
         btn.addEventListener('click', () => {
             const target = document.getElementById(btn.dataset.copyTarget);
@@ -967,6 +1669,7 @@ function setupEventListeners() {
         elements.clearStreet.hidden = v.length === 0;
         if (v.length < 2) {
             closeStreetDropdown();
+            refreshPurpleDotsLayer();
             return;
         }
         showStreetSuggestions(v);
@@ -1018,6 +1721,7 @@ function setupEventListeners() {
         selectedStreetId = null;
         nearbyLandmarkPool = [];
         resetAutoComputedFields();
+        refreshPurpleDotsLayer();
         elements.street.focus();
     });
 
@@ -1104,18 +1808,31 @@ function setupEventListeners() {
         elements.jkHousesBar.hidden = true;
     });
 
-    // District Change
+    // District Change -> Rieltor.ua Spotlight Cutout + Filter JK Dots + Frame District
     elements.district.addEventListener('change', () => {
         if (silentState) return;
         const dist = elements.district.value;
         highlightDistrictPolygon(dist);
         syncHiddenComplexSelect(dist);
+        refreshPurpleDotsLayer();
+
+        if (map && dist && districtPolygons?.[dist] && window.turf) {
+            try {
+                const bbox = turf.bbox(districtPolygons[dist]);
+                map.fitBounds(
+                    [[bbox[0], bbox[1]], [bbox[2], bbox[3]]],
+                    { padding: 55, maxZoom: 13.5, duration: 650 }
+                );
+            } catch (err) {
+                console.error(err);
+            }
+        } else if (map && !dist) {
+            map.flyTo({ center: MAP_INITIAL_CENTER, zoom: MAP_INITIAL_ZOOM, duration: 550 });
+        }
     });
 
-    // Sync Landmark Chips when user manually edits textarea
     elements.landmark.addEventListener('input', syncLandmarkChipStates);
 
-    // Close dropdowns on outside click
     document.addEventListener('click', e => {
         if (!e.target.closest('#AW')) closeStreetDropdown();
         if (!e.target.closest('#H_AW')) closeHouseDropdown();
@@ -1136,8 +1853,12 @@ function applySelectedStreetAndHouse(stObj, houseVal = '', aptVal = '') {
         handleHouseSelection();
     } else {
         const b = stObj.map_bounds;
-        if (b && b.top_lat && b.bottom_lat) {
-            map.setView([(b.top_lat + b.bottom_lat) / 2, (b.top_lon + b.bottom_lon) / 2], 15);
+        if (map && b && b.top_lat && b.bottom_lat) {
+            map.flyTo({
+                center: [(b.top_lon + b.bottom_lon) / 2, (b.top_lat + b.bottom_lat) / 2],
+                zoom: 15,
+                duration: 550
+            });
         }
         elements.house.focus();
         showHouseSuggestions('');
@@ -1197,11 +1918,10 @@ function handleHouseSelection() {
     }
 
     activePostCode = postCode;
-    updateMapMarker(lat, lon, 17);
+    updateMapMarker(lat, lon, 16.5);
 
     const detectedDist = officialDist || detectDistrictPolygon(lat, lon) || '';
 
-    // Auto-detect JK
     const jkObj = !isApproximate ? detectResidentialComplex(selectedStreetId, exactHouseLabel) : null;
     if (jkObj) {
         setJKFields(jkObj, jkObj.district || detectedDist);
@@ -1244,7 +1964,8 @@ function handleMapClickOrDrag(lat, lon, sourceLabel) {
             elements.house.value = best.house;
             elements.clearHouse.hidden = false;
             activePostCode = best.postCode || 0;
-            updateMapMarker(best.lat, best.lon, Math.max(map.getZoom(), 16));
+            const targetZoom = map ? Math.max(map.getZoom(), 16) : 16;
+            updateMapMarker(best.lat, best.lon, targetZoom);
 
             const distName = (best.distId && DISTRICT_BY_ID[best.distId]) || detectDistrictPolygon(best.lat, best.lon) || '';
             const jkObj = detectResidentialComplex(best.stId, best.house);
@@ -1264,21 +1985,46 @@ function handleMapClickOrDrag(lat, lon, sourceLabel) {
     }
 
     activePostCode = 0;
-    updateMapMarker(lat, lon, Math.max(map.getZoom(), 15));
+    const targetZoom = map ? Math.max(map.getZoom(), 14.5) : 15;
+    updateMapMarker(lat, lon, targetZoom);
     const polyDist = detectDistrictPolygon(lat, lon) || 'Передмістя';
     setDistrictSilently(polyDist);
     computeLandmarksAndMetro(lat, lon);
     updateMapFooter(lat, lon, `${sourceLabel}: участок вне зданий реестра (${polyDist})`, 0);
 }
 
+function createRieltorPinElement() {
+    const wrap = document.createElement('div');
+    wrap.className = 'object-pin-wrap';
+    wrap.innerHTML = `
+        <div class="object-pin-pulse"></div>
+        <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 1.5C8.00 1.5 1.5 8.00 1.5 16C1.5 26.25 16 38.5 16 38.5C16 38.5 30.5 26.25 30.5 16C30.5 8.00 24.00 1.5 16 1.5Z"
+                  fill="#6d28d9" stroke="#ffffff" stroke-width="2.2"/>
+            <circle cx="16" cy="15.5" r="5.5" fill="#ffffff"/>
+        </svg>
+    `;
+    return wrap;
+}
+
 function updateMapMarker(lat, lon, zoom = 16) {
-    map.setView([lat, lon], zoom);
+    if (!map || !window.maplibregl) return;
+
+    map.flyTo({ center: [lon, lat], zoom, duration: 520 });
+
     if (marker) {
-        marker.setLatLng([lat, lon]);
+        marker.setLngLat([lon, lat]);
     } else {
-        marker = L.marker([lat, lon], { draggable: true }).addTo(map);
+        marker = new maplibregl.Marker({
+            element: createRieltorPinElement(),
+            anchor: 'bottom',
+            draggable: true
+        })
+            .setLngLat([lon, lat])
+            .addTo(map);
+
         marker.on('dragend', () => {
-            const pos = marker.getLatLng();
+            const pos = marker.getLngLat();
             handleMapClickOrDrag(pos.lat, pos.lng, 'Маркер');
         });
     }
@@ -1299,7 +2045,7 @@ function updateMapFooter(lat, lon, statusText, postCode = 0) {
 }
 
 // ==========================================
-// District & Residential Complex (ЖК) Logic
+// District Spotlight Mask & ЖК Logic
 // ==========================================
 function detectDistrictPolygon(lat, lon) {
     if (!districtPolygons || !window.turf) return null;
@@ -1319,22 +2065,27 @@ function detectDistrictPolygon(lat, lon) {
     return null;
 }
 
+// Rieltor.ua Spotlight Effect: dim everything outside selected district in periwinkle-indigo (#6974f7)
 function highlightDistrictPolygon(distName) {
-    if (activeDistrictLayer) {
-        map.removeLayer(activeDistrictLayer);
-        activeDistrictLayer = null;
+    activeDistrictMaskName = distName || '';
+    if (!customLayersReady || !map) return;
+
+    const maskSrc = map.getSource('district-mask-src');
+    const outSrc = map.getSource('district-outline-src');
+    if (!maskSrc || !outSrc) return;
+
+    if (!distName || !districtPolygons || !districtPolygons[distName]) {
+        maskSrc.setData({ type: 'FeatureCollection', features: [] });
+        outSrc.setData({ type: 'FeatureCollection', features: [] });
+        return;
     }
-    if (!distName || !districtPolygons || !districtPolygons[distName]) return;
-    activeDistrictLayer = L.geoJSON(districtPolygons[distName], {
-        style: {
-            color: '#2563eb',
-            weight: 1.5,
-            opacity: 0.45,
-            fillColor: '#3b82f6',
-            fillOpacity: 0.04,
-            interactive: false
-        }
-    }).addTo(map);
+
+    const geom = districtPolygons[distName];
+    maskSrc.setData(buildInvertedSpotlightMask(geom));
+    outSrc.setData({
+        type: 'FeatureCollection',
+        features: [{ type: 'Feature', geometry: geom, properties: { name: distName } }]
+    });
 }
 
 function setDistrictSilently(distName) {
@@ -1343,6 +2094,7 @@ function setDistrictSilently(distName) {
     silentState = false;
     highlightDistrictPolygon(distName);
     syncHiddenComplexSelect(distName);
+    refreshPurpleDotsLayer();
 }
 
 function detectResidentialComplex(stId, houseLabel) {
@@ -1444,7 +2196,6 @@ function renderJKHousesBar(jkObj, activeStId, activeHouse) {
 // Smart Landmarks & Metro Computation
 // ==========================================
 function computeLandmarksAndMetro(lat, lon) {
-    // 1. METRO
     if (metroData.length > 0) {
         const sortedMetros = metroData
             .map(m => ({ ...m, dist: getHaversineDistance(lat, lon, m.lat, m.lon) }))
@@ -1459,7 +2210,6 @@ function computeLandmarksAndMetro(lat, lon) {
             elements.metroHint.textContent = closest ? `Ближайшая ст. «${closest.name}» — ${formatDist(closest.dist)}` : 'Нет данных';
         }
 
-        // Show nearby alternative metro stations (within 2.2 km) as quick-pick chips
         const altMetros = sortedMetros.filter(m => m.dist <= 2200).slice(0, 3);
         elements.metroChips.innerHTML = '';
         if (altMetros.length > 1) {
@@ -1478,7 +2228,6 @@ function computeLandmarksAndMetro(lat, lon) {
         }
     }
 
-    // 2. LANDMARKS (1 Microdistrict/Area + up to 2 Notable Places)
     if (landmarksData.length > 0) {
         const withDist = landmarksData
             .map(l => ({ ...l, dist: getHaversineDistance(lat, lon, l.lat, l.lon) }))
@@ -1594,9 +2343,9 @@ function resetAutoComputedFields() {
     elements.landmarkChips.innerHTML = '';
     elements.jkHousesBar.hidden = true;
     elements.mapLinks.hidden = true;
-    elements.mapStatus.textContent = 'Кликните по карте или перетащите маркер для выбора ближайшего дома';
+    elements.mapStatus.textContent = 'Кликните по карте, станции метро, ЖК или перетащите маркер для выбора дома';
     if (marker) {
-        map.removeLayer(marker);
+        marker.remove();
         marker = null;
     }
 }
@@ -1611,7 +2360,10 @@ function clearEntireForm() {
     selectedStreetId = null;
     nearbyLandmarkPool = [];
     resetAutoComputedFields();
-    map.setView(MAP_INITIAL_COORDS, MAP_INITIAL_ZOOM);
+    refreshPurpleDotsLayer();
+    if (map) {
+        map.flyTo({ center: MAP_INITIAL_CENTER, zoom: MAP_INITIAL_ZOOM, duration: 550 });
+    }
     elements.street.focus();
     showToast('Форма очищена');
 }
