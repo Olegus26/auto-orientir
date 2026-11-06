@@ -1,6 +1,7 @@
 // ==========================================
 // Constants & Configuration
 // ==========================================
+const DATA_VERSION = '20261106_3';
 const MAP_INITIAL_COORDS = [49.9935, 36.2304];
 const MAP_INITIAL_ZOOM = 12;
 
@@ -29,23 +30,31 @@ const DISTRICTS = [
     "Передмістя"
 ];
 
-// Semantic RU -> UA translations for Kharkiv street roots
+// Semantic RU -> UA root & phrase translations for Kharkiv street search
 const RU_UA_ROOTS = [
     [/героев\s+труда/g, 'героїв праці'],
     [/героев\s+харькова/g, 'героїв харкова'],
     [/героев\s+сталинграда/g, 'героїв сталінграда'],
     [/дружбы\s+народов/g, 'дружби народів'],
-    [/50[-\s]*(?:лет|річчя|років)/g, 'пятдесятиріччя'],
-    [/60[-\s]*(?:лет|річчя|років)/g, 'шістдесятиріччя'],
-    [/(\d+)[-\s]*лет(?=\s|$)/g, '$1 річчя'],
-    [/23(?:-го)?\s+(?:августа|серпня)/g, '23 серпня двадцять третього серпня'],
+    [/веры\s+холодной/g, 'віри холодної'],
+    [/любови\s+малой/g, 'любові малої'],
+    [/(?:второй|2\s*й|2\s*ої|2)\s+пятилетк[иа]?/g, 'другої пятирічки'],
+    [/пятилетк/g, 'пятирічк'],
+    [/50\s*(?:лет|річчя|років)/g, 'пятдесятиріччя'],
+    [/60\s*(?:лет|річчя|років)/g, 'шістдесятиріччя'],
+    [/(\d+)\s*лет(?=\s|$)/g, '$1 річчя'],
+    [/23(?:\s*го)?\s+(?:августа|серпня)/g, '23 серпня двадцять третього серпня'],
     [/тракторостроителей/g, 'тракторобудівників'],
     [/машиностроителей/g, 'машинобудівників'],
     [/метростроителей/g, 'метробудівників'],
     [/станкостроителей/g, 'верстатобудівників'],
+    [/домостроител/g, 'домобудівельн'],
     [/строителей/g, 'будівельників'],
     [/тракторостроител/g, 'тракторобудівник'],
+    [/строительн/g, 'будівельн'],
     [/строител/g, 'будівельник'],
+    [/гимназическ/g, 'гімназійн'],
+    [/восстания/g, 'повстання'],
     [/гвардейц/g, 'гвардійц'],
     [/железнодорож/g, 'залізнич'],
     [/независимост/g, 'незалежност'],
@@ -54,9 +63,23 @@ const RU_UA_ROOTS = [
     [/возрожден/g, 'відроджен'],
     [/просвещен/g, 'просвіт'],
     [/побед[ыа](?=\s|$)/g, 'перемоги'],
+    [/победн/g, 'переможн'],
     [/труда(?=\s|$)/g, 'праці'],
     [/целиноград/g, 'цілиноград'],
     [/белгород/g, 'білгород'],
+    [/холодногор/g, 'холодногір'],
+    [/(?:лысогор|лисогор)/g, 'лисогір'],
+    [/высокогор/g, 'високогір'],
+    [/подгорн/g, 'підгірн'],
+    [/нагорн/g, 'нагірн'],
+    [/красногор/g, 'червоногір'],
+    [/школьн/g, 'шкільн'],
+    [/светл/g, 'світл'],
+    [/солнечн/g, 'сонячн'],
+    [/песчан/g, 'піщан'],
+    [/средн/g, 'середн'],
+    [/осенн/g, 'осінн'],
+    [/летн(яя|ей|юю|ий)/g, 'літн$1'],
     [/кольцев/g, 'кільцев'],
     [/северн/g, 'північн'],
     [/южн/g, 'південн'],
@@ -83,10 +106,16 @@ const RU_UA_ROOTS = [
     [/звездн/g, 'зорян'],
     [/радужн/g, 'райдужн'],
     [/весенн/g, 'веснян'],
-    [/лесн(ая|ой)/g, 'лісов'],
-    [/полев(ая|ой)/g, 'польов'],
-    [/речн(ая|ой)/g, 'річков']
+    [/лесн(ая|ой|ое)/g, 'лісов'],
+    [/полев(ая|ой|ое)/g, 'польов'],
+    [/речн(ая|ой|ое)/g, 'річков'],
+    [/степн(ая|ой|ое)/g, 'степов']
 ];
+
+const LAT_TO_CYR = {
+    a: 'а', b: 'в', c: 'с', e: 'е', h: 'н', k: 'к',
+    m: 'м', o: 'о', p: 'р', t: 'т', x: 'х', y: 'у', i: 'і'
+};
 
 const naturalCollator = new Intl.Collator(['uk', 'ru', 'en'], { numeric: true, sensitivity: 'base' });
 
@@ -111,23 +140,22 @@ let landmarksData = [];
 
 let selectedStreetId = null;
 let selectedJK = null;
+let activePostCode = 0;
 let nearbyLandmarkPool = [];
 let silentState = false;
 let houseInputTimer = null;
+let dataLoadFailed = false;
 
 // DOM Elements
 const elements = {
-    dbStats: document.getElementById('db_stats'),
-    quickAddress: document.getElementById('quick_address'),
-    btnQuickParse: document.getElementById('btn_quick_parse'),
     btnClear: document.getElementById('btn_clear'),
     btnCopyAll: document.getElementById('btn_copy_all'),
     street: document.getElementById('street'),
     clearStreet: document.getElementById('clear_street'),
     streetRenameBadge: document.getElementById('street_rename_badge'),
     house: document.getElementById('house_number'),
+    clearHouse: document.getElementById('clear_house'),
     apartment: document.getElementById('apartment_number'),
-    postalCode: document.getElementById('postal_code'),
     jkHousesBar: document.getElementById('jk_houses_bar'),
     district: document.getElementById('district'),
     complexSearch: document.getElementById('complex_search'),
@@ -144,13 +172,13 @@ const elements = {
     jkDrop: document.getElementById('JKD'),
     mapStatus: document.getElementById('map_status'),
     mapLinks: document.getElementById('map_links'),
-    coordsDisplay: document.getElementById('coords_display'),
+    postDisplay: document.getElementById('post_display'),
     gmapsLink: document.getElementById('gmaps_link'),
     toast: document.getElementById('toast')
 };
 
 // ==========================================
-// Normalization & Distance Helpers
+// Normalization, Phonetics & Fuzzy Helpers
 // ==========================================
 function getHaversineDistance(lat1, lon1, lat2, lon2) {
     const R = 6371000;
@@ -173,11 +201,11 @@ function normalizeStreetTypes(str) {
         .replace(/(^|\s)(проспект|просп\.?|пр-т|пр\.?)(?=\s|$)/g, '$1просп')
         .replace(/(^|\s)(переулок|пер\.?|провулок|пров\.?)(?=\s|$)/g, '$1пров')
         .replace(/(^|\s)(бульвар|бул\.?|б-р)(?=\s|$)/g, '$1бр')
-        .replace(/(^|\s)(въезд|в'їзд|в’їзд|в-д)(?=\s|$)/g, '$1вд')
+        .replace(/(^|\s)(въезд|вїзд|в-д)(?=\s|$)/g, '$1вд')
         .replace(/(^|\s)(проезд|проїзд|пр-д)(?=\s|$)/g, '$1прд')
         .replace(/(^|\s)(набережная|набережна|наб\.?)(?=\s|$)/g, '$1наб')
         .replace(/(^|\s)(спуск|узвіз|узв\.?)(?=\s|$)/g, '$1узв')
-        .replace(/(^|\s)(площадь|пл\.?|майдан|м-н)(?=\s|$)/g, '$1мн')
+        .replace(/(^|\s)(площадь|площа|пл\.?|майдан|м-н)(?=\s|$)/g, '$1мн')
         .replace(/(^|\s)(шоссе|шосе)(?=\s|$)/g, '$1шосе')
         .replace(/(^|\s)(тупик|туп\.?)(?=\s|$)/g, '$1туп')
         .replace(/(^|\s)(аллея|алея)(?=\s|$)/g, '$1алея');
@@ -186,31 +214,55 @@ function normalizeStreetTypes(str) {
 function normalizePhonetic(raw) {
     if (!raw) return '';
     let s = raw.toLowerCase().trim();
-    // Strip word-internal apostrophes (Дерев'янка -> деревянка, М'ясницька -> мясницька)
-    s = s.replace(/['’`ʼ]/g, '').replace(/["«»().,]/g, ' ').replace(/-/g, ' ');
+
+    // Fix accidental Latin lookalike letters inside Cyrillic words (e.g. "cумская", "воробйовi")
+    s = s.replace(/\S+/g, w => (
+        /[а-яіїєґёъыэ]/.test(w)
+            ? w.replace(/[abcehkmoptxyi]/g, ch => LAT_TO_CYR[ch] || ch)
+            : w
+    ));
+
+    // Strip apostrophes BEFORE street-type normalization (Дерев'янка -> деревянка, в'їзд -> вїзд)
+    s = s.replace(/['’`ʼ]/g, '').replace(/["«»(),]/g, ' ');
+
+    // Normalize hyphenated street types (м-н, б-р, в-д, пр-д) BEFORE splitting hyphens
+    s = normalizeStreetTypes(s);
+    s = s.replace(/[.\-/]/g, ' ').replace(/\s+/g, ' ').trim();
     s = normalizeStreetTypes(s);
 
     for (const [rx, rep] of RU_UA_ROOTS) {
         s = s.replace(rx, rep);
     }
 
-    // Unify UA/RU adjective & surname endings (note: use (?=\s|$) instead of \b for Cyrillic!)
+    // Unify UA/RU morphological suffixes & adjective endings (note: use (?=\s|$) for Cyrillic word ends)
     s = s
-        .replace(/(?:овская|евская|івська|ївська|ьовська)(?=\s|$)/g, 'овска')
-        .replace(/(?:овский|евский|івський|ївський|ьовський)(?=\s|$)/g, 'овски')
+        .replace(/ционн/g, 'цийн')
+        .replace(/(?:овская|евская|овська|евська|євська|івська|ївська|ьовська)(?=\s|$)/g, 'овска')
+        .replace(/(?:овский|евский|овський|евський|євський|івський|ївський|ьовський)(?=\s|$)/g, 'овски')
+        .replace(/(?:овское|евское|овське|евське|євське|івське|ївське|ьовське)(?=\s|$)/g, 'овске')
+        .replace(/(?:овских|евских|овських|евських|євських|івських|ївських|ьовських)(?=\s|$)/g, 'овских')
+        .replace(/(?:овского|евского|овського|евського|євського|івського|ївського|ьовського)(?=\s|$)/g, 'овского')
+        .replace(/(?:овцев|евцев|івців|ївців)(?=\s|$)/g, 'овцив')
         .replace(/(?:ческая|чна)(?=\s|$)/g, 'чна')
         .replace(/(?:ческий|чний)(?=\s|$)/g, 'чни')
+        .replace(/(?:ческое|чне)(?=\s|$)/g, 'чне')
         .replace(/(?:цкая|цька)(?=\s|$)/g, 'цка')
         .replace(/(?:цкий|цький)(?=\s|$)/g, 'цки')
+        .replace(/(?:цкое|цьке)(?=\s|$)/g, 'цке')
         .replace(/(?:цкого|цького)(?=\s|$)/g, 'цкого')
         .replace(/(?:ская|ська)(?=\s|$)/g, 'ска')
         .replace(/(?:ский|ський)(?=\s|$)/g, 'ски')
+        .replace(/(?:ское|ське)(?=\s|$)/g, 'ске')
         .replace(/(?:ских|ських)(?=\s|$)/g, 'ских')
         .replace(/(?:ского|ського)(?=\s|$)/g, 'ского')
         .replace(/цев(?=\s|$)/g, 'цив')
-        .replace(/нко(?=\s|$)/g, 'нка');
+        .replace(/нко(?=\s|$)/g, 'нка')
+        .replace(/([а-яіїєґ]{2,})ої(?=\s|$)/g, '$1ой')
+        .replace(/([а-яіїєґ]{2,})ая(?=\s|$)/g, '$1а')
+        .replace(/([а-яіїєґ]{2,})яя(?=\s|$)/g, '$1я')
+        .replace(/([а-яіїєґ]{2,})(?:ое|ее|єє)(?=\s|$)/g, '$1е');
 
-    // Fold vowels/consonants
+    // Fold vowels & soft/hard signs
     s = s
         .replace(/ії/g, 'и')
         .replace(/[іїы]/g, 'и')
@@ -218,19 +270,56 @@ function normalizePhonetic(raw) {
         .replace(/ґ/g, 'г')
         .replace(/[ьъ]/g, '');
 
-    // Collapse double letters ("мангеттен" == "мангетен", "філіппова" == "филипова")
-    s = s.replace(/([а-яіїєґa-z])\1+/g, '$1');
+    // Collapse double letters ("мангеттен" == "мангетен", "пассіонарії" == "пасионари")
+    s = s.replace(/([а-яa-z])\1+/g, '$1');
     return s.replace(/\s+/g, ' ').trim();
+}
+
+// Akan'ye / Ikan'ye skeleton ("холоднаярская" == "Холодноярська", "алексеевская" == "Олексіївська")
+function toAkanje(phoneticStr) {
+    return phoneticStr
+        .replace(/о/g, 'а')
+        .replace(/е/g, 'и')
+        .replace(/([а-яa-z])\1+/g, '$1');
+}
+
+// Fast bounded Damerau-Levenshtein distance for typo resilience ("гагарна", "сумскя", "пушкнская")
+function editDistanceBounded(a, b, maxDist = 2) {
+    const la = a.length;
+    const lb = b.length;
+    if (Math.abs(la - lb) > maxDist) return maxDist + 1;
+
+    const prev2 = new Array(lb + 1);
+    const prev = new Array(lb + 1);
+    const curr = new Array(lb + 1);
+    for (let j = 0; j <= lb; j++) prev[j] = j;
+
+    for (let i = 1; i <= la; i++) {
+        curr[0] = i;
+        let rowMin = curr[0];
+        for (let j = 1; j <= lb; j++) {
+            const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+            let val = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost);
+            if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) {
+                val = Math.min(val, prev2[j - 2] + 1);
+            }
+            curr[j] = val;
+            if (val < rowMin) rowMin = val;
+        }
+        if (rowMin > maxDist) return maxDist + 1;
+        for (let j = 0; j <= lb; j++) {
+            prev2[j] = prev[j];
+            prev[j] = curr[j];
+        }
+    }
+    return prev[lb];
 }
 
 function normHouseKey(raw) {
     if (!raw) return '';
     let s = String(raw).toLowerCase().trim();
     s = s.replace(/корпус|корп\.?|к\./g, 'к').replace(/№/g, '');
-    // Convert Latin lookalike letters to Ukrainian/Cyrillic
-    const latToCyr = { a: 'а', b: 'в', c: 'с', e: 'е', h: 'н', k: 'к', m: 'м', o: 'о', p: 'р', t: 'т', x: 'х', y: 'у', i: 'і' };
-    s = s.replace(/[abcehkmoptxyi]/g, ch => latToCyr[ch] || ch);
-    // Allow "165 к 1" == "165, корп. 1"
+    s = s.replace(/[abcehkmoptxyi]/g, ch => LAT_TO_CYR[ch] || ch);
     s = s.replace(/(\d|[а-яіїєґ])\s+к\s*(\d)/g, '$1к$2');
     return s.replace(/[\s,\-.]/g, '');
 }
@@ -239,7 +328,7 @@ function showToast(msg) {
     elements.toast.textContent = msg;
     elements.toast.hidden = false;
     clearTimeout(showToast._t);
-    showToast._t = setTimeout(() => { elements.toast.hidden = true; }, 2400);
+    showToast._t = setTimeout(() => { elements.toast.hidden = true; }, 2300);
 }
 
 // ==========================================
@@ -270,7 +359,7 @@ function initMap() {
     });
 
     L.control.layers(
-        { 'Схема (OSM)': osmLayer, 'Спутник (Esri)': satLayer },
+        { 'Схема': osmLayer, 'Спутник': satLayer },
         null,
         { position: 'topright' }
     ).addTo(map);
@@ -284,13 +373,14 @@ function initDistrictDropdown() {
 
 async function loadAllData() {
     try {
+        const q = `?v=${DATA_VERSION}`;
         const [streets, houses, polygons, jks, metro, landmarks] = await Promise.all([
-            fetch('data/streets.json').then(r => r.json()),
-            fetch('data/houses.json').then(r => r.json()),
-            fetch('data/districts.json').then(r => r.json()),
-            fetch('data/complexes.json').then(r => r.json()),
-            fetch('data/metro.json').then(r => r.ok ? r.json() : []).catch(() => []),
-            fetch('data/landmarks.json').then(r => r.ok ? r.json() : []).catch(() => [])
+            fetch('data/streets.json' + q).then(r => r.json()),
+            fetch('data/houses.json' + q).then(r => r.json()),
+            fetch('data/districts.json' + q).then(r => r.json()),
+            fetch('data/complexes.json' + q).then(r => r.json()),
+            fetch('data/metro.json' + q).then(r => r.ok ? r.json() : []).catch(() => []),
+            fetch('data/landmarks.json' + q).then(r => r.ok ? r.json() : []).catch(() => [])
         ]);
 
         housesData = houses;
@@ -298,7 +388,7 @@ async function loadAllData() {
         metroData = metro;
         landmarksData = landmarks;
 
-        // Index houses for instant normalized lookup & reverse geocoding
+        // Index houses for instant normalized lookup & map reverse geocoding
         flatHouses = [];
         streetNormHouses.clear();
         for (const [stIdStr, hMap] of Object.entries(houses)) {
@@ -320,7 +410,7 @@ async function loadAllData() {
             streetNormHouses.set(stId, nMap);
         }
 
-        // Index streets with phonetic & old-name search keys
+        // Index streets with phonetic, Akan'ye & fuzzy word tokens
         streetById.clear();
         streetsData = streets.map(s => {
             const typePart = s.short_type ? ` ${s.short_type}` : '';
@@ -336,6 +426,8 @@ async function loadAllData() {
             const normOldList = (s.old_names || []).map(normalizePhonetic).filter(Boolean);
             const normAliasList = (s.aliases || []).map(normalizePhonetic).filter(Boolean);
             const combinedPhonetic = [normCurrent, normType, ...normOldList, ...normAliasList].join(' ');
+            const combinedAkanje = toAkanje(combinedPhonetic);
+            const akanjeWords = Array.from(new Set(combinedAkanje.split(' ').filter(w => w.length >= 3)));
 
             const obj = {
                 ...s,
@@ -344,22 +436,30 @@ async function loadAllData() {
                 houseCount,
                 distNames,
                 _normCurrent: normCurrent,
+                _akanjeCurrent: toAkanje(normCurrent),
                 _normType: normType,
                 _normOldList: normOldList,
+                _akanjeOldList: normOldList.map(toAkanje),
                 _normAliasList: normAliasList,
-                _phoneticAll: combinedPhonetic
+                _phoneticAll: combinedPhonetic,
+                _akanjeAll: combinedAkanje,
+                _akanjeWords: akanjeWords
             };
             streetById.set(s.street_id, obj);
             return obj;
         });
 
-        // Index residential complexes
+        // Index residential complexes (ЖК)
         houseToJKMap.clear();
         jkList = jks.map(jk => {
+            const normName = normalizePhonetic(jk.jk_name);
+            const normAddr = normalizePhonetic((jk.address || '') + ' ' + (jk.raw_address || ''));
             const enriched = {
                 ...jk,
-                _normName: normalizePhonetic(jk.jk_name),
-                _normAddr: normalizePhonetic((jk.address || '') + ' ' + (jk.raw_address || ''))
+                _normName: normName,
+                _akanjeName: toAkanje(normName),
+                _normAddr: normAddr,
+                _akanjeAddr: toAkanje(normAddr)
             };
             if (Array.isArray(jk.houses)) {
                 for (const [stId, hLabel] of jk.houses) {
@@ -371,11 +471,14 @@ async function loadAllData() {
         });
 
         syncHiddenComplexSelect();
-
-        elements.dbStats.textContent = `${streetsData.length.toLocaleString('ru-RU')} улиц • ${flatHouses.length.toLocaleString('ru-RU')} домов • ${jkList.length} ЖК`;
     } catch (e) {
+        dataLoadFailed = true;
         console.error('Ошибка загрузки базы данных:', e);
-        elements.dbStats.textContent = 'Ошибка загрузки базы';
+        if (typeof window !== 'undefined' && window.location?.protocol === 'file:') {
+            elements.mapStatus.textContent = '⚠️ Откройте проект через локальный сервер (например Live Server или python -m http.server), т.к. браузер блокирует загрузку JSON по file://';
+        } else {
+            elements.mapStatus.textContent = '⚠️ Ошибка загрузки базы адресов. Обновите страницу (Ctrl+F5).';
+        }
     }
 }
 
@@ -389,7 +492,7 @@ function syncHiddenComplexSelect(districtFilter = '') {
 }
 
 // ==========================================
-// Smart Street Search & Quick Address Parser
+// 3-Tier Street Search (Phonetic + Akan'ye + Fuzzy Typo)
 // ==========================================
 function searchStreetsRanked(query, limit = 12) {
     const qNorm = normalizePhonetic(query);
@@ -397,76 +500,117 @@ function searchStreetsRanked(query, limit = 12) {
     const tokens = qNorm.split(' ').filter(Boolean);
     if (!tokens.length) return [];
 
-    // Separate street-type tokens from name tokens if user typed e.g. "просп гагарина"
     const typeSet = new Set(['вул', 'просп', 'пров', 'бр', 'вд', 'прд', 'наб', 'узв', 'мн', 'шосе', 'туп', 'алея']);
     const typeTokens = tokens.filter(t => typeSet.has(t));
     const nameTokens = tokens.filter(t => !typeSet.has(t));
-    const effectiveTokens = nameTokens.length > 0 ? tokens : typeTokens;
-    const mainQuery = (nameTokens.length > 0 ? nameTokens : tokens).join(' ');
+
+    // Match against name tokens (street type acts as a ranking boost/penalty, not a hard blocker)
+    const effectiveTokens = nameTokens.length > 0 ? nameTokens : typeTokens;
+    const mainQuery = effectiveTokens.join(' ');
+    const mainAkanje = toAkanje(mainQuery);
+    const effectiveAkanje = effectiveTokens.map(toAkanje);
 
     const scored = [];
     for (const st of streetsData) {
-        let allMatch = true;
+        // Tier 1: Exact phonetic token match
+        let exactMatch = true;
         for (const tk of effectiveTokens) {
             if (!st._phoneticAll.includes(tk)) {
-                allMatch = false;
+                exactMatch = false;
                 break;
             }
         }
-        if (!allMatch) continue;
 
-        let score = 10;
+        // Tier 2: Akan'ye / Ikan'ye vowel-tolerant match ("холоднаярская" -> "Холодноярська")
+        let akanjeMatch = false;
+        if (!exactMatch) {
+            akanjeMatch = true;
+            for (const atk of effectiveAkanje) {
+                if (!st._akanjeAll.includes(atk)) {
+                    akanjeMatch = false;
+                    break;
+                }
+            }
+        }
+
+        if (!exactMatch && !akanjeMatch) continue;
+
+        let score = exactMatch ? 20 : 8;
         if (st._normCurrent === mainQuery) score += 120;
         else if (st._normCurrent.startsWith(mainQuery)) score += 90;
         else if ((' ' + st._normCurrent).includes(' ' + mainQuery)) score += 65;
+        else if (st._akanjeCurrent === mainAkanje) score += 105;
+        else if (st._akanjeCurrent.startsWith(mainAkanje)) score += 78;
+        else if ((' ' + st._akanjeCurrent).includes(' ' + mainAkanje)) score += 55;
 
-        let matchedOld = null;
         for (let i = 0; i < st._normOldList.length; i++) {
             const oldN = st._normOldList[i];
-            if (oldN === mainQuery) {
-                score = Math.max(score, 105);
-                matchedOld = st.old_names[i];
-                break;
-            } else if (oldN.startsWith(mainQuery)) {
-                score = Math.max(score, 80);
-                matchedOld = st.old_names[i];
-            } else if ((' ' + oldN).includes(' ' + mainQuery)) {
-                score = Math.max(score, 55);
-                matchedOld = st.old_names[i];
-            }
+            const oldA = st._akanjeOldList[i];
+            if (oldN === mainQuery) { score = Math.max(score, 110); break; }
+            if (oldN.startsWith(mainQuery)) score = Math.max(score, 85);
+            else if ((' ' + oldN).includes(' ' + mainQuery)) score = Math.max(score, 60);
+            else if (oldA === mainAkanje) score = Math.max(score, 95);
+            else if (oldA.startsWith(mainAkanje)) score = Math.max(score, 72);
         }
 
         for (const al of st._normAliasList) {
-            if (al === mainQuery) score = Math.max(score, 100);
-            else if (al.startsWith(mainQuery)) score = Math.max(score, 75);
+            if (al === mainQuery) score = Math.max(score, 105);
+            else if (al.startsWith(mainQuery)) score = Math.max(score, 78);
         }
 
-        // Boost if user explicitly specified matching street type (e.g. "просп" vs "пров")
         if (typeTokens.length > 0) {
             if (typeTokens.includes(st._normType)) score += 35;
-            else score -= 20;
+            else score -= 15;
         }
 
-        // Tie-break by number of registered buildings so major streets rank above tiny lanes
         score += Math.min(st.houseCount, 300) / 25;
+        scored.push({ st, score });
+    }
 
-        scored.push({ st, score, matchedOld });
+    // Tier 3: Bounded Damerau-Levenshtein fuzzy fallback for keyboard typos ("гагарна", "сумскя")
+    const fuzzyTokens = effectiveAkanje.filter(t => t.length >= 4);
+    if (scored.length < 3 && fuzzyTokens.length > 0) {
+        const alreadyIds = new Set(scored.map(x => x.st.street_id));
+        for (const st of streetsData) {
+            if (alreadyIds.has(st.street_id)) continue;
+
+            let totalDist = 0;
+            let ok = true;
+            for (const qTk of fuzzyTokens) {
+                const maxD = qTk.length >= 7 ? 2 : 1;
+                let bestD = maxD + 1;
+                for (const w of st._akanjeWords) {
+                    const target = w.length > qTk.length + 1 ? w.slice(0, qTk.length) : w;
+                    const d = editDistanceBounded(qTk, target, maxD);
+                    if (d < bestD) bestD = d;
+                    if (bestD === 0) break;
+                }
+                if (bestD > maxD) { ok = false; break; }
+                totalDist += bestD;
+            }
+            if (!ok) continue;
+
+            let fuzzyScore = 40 - totalDist * 12 + Math.min(st.houseCount, 300) / 30;
+            if (typeTokens.length > 0) {
+                fuzzyScore += typeTokens.includes(st._normType) ? 15 : -10;
+            }
+            scored.push({ st, score: fuzzyScore });
+        }
     }
 
     scored.sort((a, b) => b.score - a.score || naturalCollator.compare(a.st.current_name, b.st.current_name));
     return scored.slice(0, limit);
 }
 
-function parseQuickAddress(rawInput) {
-    if (!rawInput || rawInput.trim().length < 3) return null;
+// Parse full pasted address directly inside #street (e.g. "пр. Гагарина 174 корп 3 кв 45" or "Холоднаярская 5")
+function parseFullAddressString(rawInput) {
+    if (!rawInput || rawInput.trim().length < 4) return null;
     let s = rawInput.trim();
 
-    // Strip city/country/postal prefixes
     s = s.replace(/\b61\d{3}\b/g, ' ');
     s = s.replace(/^(?:україна|украина|харківська\s+обл\.?|харьковская\s+обл\.?|м\.\s*харків|г\.\s*харьков|харків|харьков)[\s,]+/gi, '');
     s = s.replace(/^(?:м\.\s*харків|г\.\s*харьков|харків|харьков)[\s,]+/gi, '');
 
-    // Extract apartment/office at end
     let apartment = '';
     const aptMatch = s.match(/(?:,|\s)+(?:кв\.?|квартира|оф\.?|офіс|офис|кімн\.?)\s*№?\s*([0-9а-яa-zіїєґ-]+)\s*$/i);
     if (aptMatch) {
@@ -474,39 +618,30 @@ function parseQuickAddress(rawInput) {
         s = s.slice(0, aptMatch.index).trim();
     }
 
-    // Extract house (+ optional block/korpus) at end
-    // Be careful not to eat street numbers like "вул. 23 Серпня" or "вул. 92-ї бригади" when no house is given
-    let houseCandidate = '';
-    let streetCandidate = s;
-
     const houseRegex = /^(.*?)(?:,|\s+)(?:буд\.?|будинок|дом|д\.?)?\s*№?\s*(\d+\s*(?:[-/]\s*[0-9а-яa-zіїєґ]+|[а-яa-zіїєґ])?(?:\s*,?\s*(?:корп(?:ус|\.)?|к\.?)\s*№?\s*[0-9а-яa-zіїєґ-]+)?)\s*$/i;
     const hm = s.match(houseRegex);
-    if (hm && hm[1].trim().length >= 2) {
-        streetCandidate = hm[1].replace(/[,\s]+$/, '').trim();
-        houseCandidate = hm[2].trim();
-    }
+    if (!hm || hm[1].trim().length < 2) return null;
 
-    // Remove parenthetical old-name hints if user pasted e.g. "Нескорених (Героїв Праці)"
-    const streetClean = streetCandidate.replace(/\(([^)]*)\)/g, ' $1 ').replace(/\s+/g, ' ').trim();
-    const ranked = searchStreetsRanked(streetClean, 5);
-    if (!ranked.length) {
-        // Fallback: try whole string as street without splitting house (e.g. "23 Серпня")
-        const wholeRanked = searchStreetsRanked(s, 3);
-        if (!wholeRanked.length) return null;
-        return { street: wholeRanked[0].st, house: '', apartment };
-    }
+    const streetCandidate = hm[1].replace(/[,\s]+$/, '').replace(/\(([^)]*)\)/g, ' $1 ').replace(/\s+/g, ' ').trim();
+    const houseCandidate = hm[2].trim();
+    if (!houseCandidate) return null;
+
+    // Avoid misinterpreting pure numbered streets like "23 Серпня" or "12 Квітня" when no house follows
+    if (/^\d+$/.test(streetCandidate)) return null;
+
+    const ranked = searchStreetsRanked(streetCandidate, 3);
+    if (!ranked.length) return null;
 
     const bestStreet = ranked[0].st;
     let resolvedHouse = houseCandidate;
-    if (houseCandidate) {
-        const nMap = streetNormHouses.get(bestStreet.street_id);
-        const nk = normHouseKey(houseCandidate);
-        if (nMap && nMap.has(nk)) {
-            resolvedHouse = nMap.get(nk);
-        }
+    const nMap = streetNormHouses.get(bestStreet.street_id);
+    const nk = normHouseKey(houseCandidate);
+    const existsInRegistry = Boolean(nMap && nMap.has(nk));
+    if (existsInRegistry) {
+        resolvedHouse = nMap.get(nk);
     }
 
-    return { street: bestStreet, house: resolvedHouse, apartment };
+    return { street: bestStreet, house: resolvedHouse, apartment, existsInRegistry };
 }
 
 // ==========================================
@@ -517,35 +652,47 @@ function closeHouseDropdown() { elements.houseDrop.classList.remove('open'); }
 function closeJKDropdown() { elements.jkDrop.classList.remove('open'); }
 
 function showStreetSuggestions(val) {
+    if (dataLoadFailed) {
+        elements.streetDrop.classList.add('open');
+        elements.streetDrop.innerHTML = '<div class="dmsg">⚠️ База адресов не загружена (откройте проект через HTTP-сервер или обновите страницу Ctrl+F5)</div>';
+        return;
+    }
+
     const results = searchStreetsRanked(val, 12);
+    const parsedAddr = parseFullAddressString(val);
+
     elements.streetDrop.classList.add('open');
     elements.streetDrop.innerHTML = '';
 
-    // Check if user typed "Street + House" directly in the street field (e.g. "Сумская 25")
-    if (results.length === 0) {
-        const parsed = parseQuickAddress(val);
-        if (parsed && parsed.street && parsed.house) {
-            const el = document.createElement('div');
-            el.className = 'di';
-            el.tabIndex = 0;
-            el.innerHTML = `
-                <div class="di-main">
-                    <div class="di-n">⚡ ${parsed.street.shortDisplay}, буд. ${parsed.house}</div>
-                    <div class="di-s">Быстрый переход к адресу${parsed.street.old_names?.length ? ' (колиш. ' + parsed.street.old_names.join(', ') + ')' : ''}</div>
-                </div>
-                <span class="di-tag">Адрес</span>
-            `;
-            const pickParsed = () => {
-                closeStreetDropdown();
-                applySelectedStreetAndHouse(parsed.street, parsed.house, parsed.apartment);
-            };
-            el.onmousedown = e => { e.preventDefault(); pickParsed(); };
-            el.onkeydown = e => { if (e.key === 'Enter') pickParsed(); };
-            elements.streetDrop.appendChild(el);
-            return;
-        }
+    // If user typed/pasted "Street + House" (e.g. "Сумская 25" or "Холоднаярская 5"), offer 1-click full fill at top
+    if (parsedAddr && (parsedAddr.existsInRegistry || results.length === 0)) {
+        const fastEl = document.createElement('div');
+        fastEl.className = 'di di-fast';
+        fastEl.tabIndex = 0;
+        const aptText = parsedAddr.apartment ? `, кв. ${parsedAddr.apartment}` : '';
+        fastEl.innerHTML = `
+            <div class="di-main">
+                <div class="di-n">⚡ ${parsedAddr.street.shortDisplay}, буд. ${parsedAddr.house}${aptText}</div>
+                <div class="di-s">Заполнить адрес целиком${parsedAddr.street.old_names?.length ? ' • колиш. ' + parsedAddr.street.old_names.join(', ') : ''}</div>
+            </div>
+            <span class="di-tag">Полный адрес</span>
+        `;
+        const pickFast = () => {
+            closeStreetDropdown();
+            applySelectedStreetAndHouse(parsedAddr.street, parsedAddr.house, parsedAddr.apartment);
+        };
+        fastEl.pickAction = pickFast;
+        fastEl.onmousedown = e => { e.preventDefault(); pickFast(); };
+        fastEl.onkeydown = e => {
+            if (e.key === 'Enter') { e.preventDefault(); pickFast(); }
+            if (e.key === 'ArrowDown') { e.preventDefault(); fastEl.nextElementSibling?.focus(); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); elements.street.focus(); }
+        };
+        elements.streetDrop.appendChild(fastEl);
+    }
 
-        elements.streetDrop.innerHTML = '<div class="dmsg">😕 Улица не найдена в реестре Харькова</div>';
+    if (results.length === 0 && !elements.streetDrop.children.length) {
+        elements.streetDrop.innerHTML = '<div class="dmsg">Улица не найдена в реестре г. Харькова</div>';
         return;
     }
 
@@ -571,16 +718,17 @@ function showStreetSuggestions(val) {
         `;
 
         const pick = () => {
-            selectStreetObject(st);
-            closeStreetDropdown();
-            elements.house.focus();
+            pickStreetFromDropdown(st);
         };
-
+        el.pickAction = pick;
         el.onmousedown = e => { e.preventDefault(); pick(); };
         el.onkeydown = e => {
-            if (e.key === 'Enter') pick();
+            if (e.key === 'Enter') { e.preventDefault(); pick(); }
             if (e.key === 'ArrowDown') { e.preventDefault(); el.nextElementSibling?.focus(); }
-            if (e.key === 'ArrowUp') { e.preventDefault(); el.previousElementSibling ? el.previousElementSibling.focus() : elements.street.focus(); }
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                el.previousElementSibling ? el.previousElementSibling.focus() : elements.street.focus();
+            }
         };
         elements.streetDrop.appendChild(el);
     });
@@ -599,11 +747,46 @@ function selectStreetObject(st) {
     }
 }
 
+function pickStreetFromDropdown(st) {
+    const streetChanged = selectedStreetId !== st.street_id;
+    selectStreetObject(st);
+    closeStreetDropdown();
+
+    if (streetChanged) {
+        elements.house.value = '';
+        elements.clearHouse.hidden = true;
+    }
+
+    // Center map on street bounds or resolve immediately if street has 0 numbered buildings
+    const b = st.map_bounds;
+    if (st.houseCount === 0 && b && b.top_lat && b.bottom_lat) {
+        const cLat = (b.top_lat + b.bottom_lat) / 2;
+        const cLon = (b.top_lon + b.bottom_lon) / 2;
+        updateMapMarker(cLat, cLon, 16);
+        const dist = (st.districts?.[0] && DISTRICT_BY_ID[st.districts[0]]) || detectDistrictPolygon(cLat, cLon) || '';
+        setDistrictSilently(dist);
+        computeLandmarksAndMetro(cLat, cLon);
+        updateMapFooter(cLat, cLon, `${st.shortDisplay} (без отдельных номеров домов в реестре)`, 0);
+        elements.house.focus();
+        return;
+    }
+
+    if (b && b.top_lat && b.bottom_lat) {
+        map.setView([(b.top_lat + b.bottom_lat) / 2, (b.top_lon + b.bottom_lon) / 2], 15);
+    }
+
+    elements.house.focus();
+    showHouseSuggestions(elements.house.value.trim());
+}
+
 function showHouseSuggestions(val) {
     if (!selectedStreetId) {
         const typedSt = elements.street.value.trim();
         if (typedSt.length >= 2) {
-            const exact = streetsData.find(s => s.full.toLowerCase() === typedSt.toLowerCase() || s.shortDisplay.toLowerCase() === typedSt.toLowerCase());
+            const exact = streetsData.find(s =>
+                s.full.toLowerCase() === typedSt.toLowerCase() ||
+                s.shortDisplay.toLowerCase() === typedSt.toLowerCase()
+            );
             if (exact) selectStreetObject(exact);
         }
     }
@@ -626,21 +809,23 @@ function showHouseSuggestions(val) {
 
     let matches;
     if (!qNorm) {
-        matches = allHouses.slice(0, 30);
+        matches = allHouses.slice(0, 35);
     } else {
+        const exact = [];
         const starts = [];
         const contains = [];
         for (const h of allHouses) {
             const hk = normHouseKey(h);
-            if (hk.startsWith(qNorm)) starts.push(h);
+            if (hk === qNorm) exact.push(h);
+            else if (hk.startsWith(qNorm)) starts.push(h);
             else if (hk.includes(qNorm)) contains.push(h);
         }
-        matches = [...starts, ...contains].slice(0, 25);
+        matches = [...exact, ...starts, ...contains].slice(0, 30);
     }
 
     elements.houseDrop.classList.add('open');
     if (!matches.length) {
-        elements.houseDrop.innerHTML = '<div class="dmsg">Нет точного номера в реестре (при вводе определим по улице)</div>';
+        elements.houseDrop.innerHTML = '<div class="dmsg">Точного номера нет в реестре — ориентиры определятся по улице</div>';
         return;
     }
 
@@ -656,22 +841,26 @@ function showHouseSuggestions(val) {
         el.innerHTML = `
             <div class="di-main">
                 <div class="di-n">${h}</div>
-                ${jkMatch ? `<div class="di-s">${jkMatch.jk_name}</div>` : ''}
+                ${jkMatch ? `<div class="di-s">${jkMatch.jk_name}${jkMatch.class ? ' (' + jkMatch.class + ')' : ''}</div>` : ''}
             </div>
             ${distName ? `<span class="di-tag">${distName}</span>` : ''}
         `;
 
         const pick = () => {
             elements.house.value = h;
+            elements.clearHouse.hidden = false;
             closeHouseDropdown();
             handleHouseSelection();
         };
-
+        el.pickAction = pick;
         el.onmousedown = e => { e.preventDefault(); pick(); };
         el.onkeydown = e => {
-            if (e.key === 'Enter') pick();
+            if (e.key === 'Enter') { e.preventDefault(); pick(); }
             if (e.key === 'ArrowDown') { e.preventDefault(); el.nextElementSibling?.focus(); }
-            if (e.key === 'ArrowUp') { e.preventDefault(); el.previousElementSibling ? el.previousElementSibling.focus() : elements.house.focus(); }
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                el.previousElementSibling ? el.previousElementSibling.focus() : elements.house.focus();
+            }
         };
         elements.houseDrop.appendChild(el);
     });
@@ -680,20 +869,20 @@ function showHouseSuggestions(val) {
 function showJKSuggestions(val) {
     const distFilter = elements.district.value;
     const qNorm = normalizePhonetic(val);
+    const qAkanje = toAkanje(qNorm);
 
-    let pool = jkList;
+    let matches = jkList;
     if (distFilter && !qNorm) {
-        pool = jkList.filter(j => j.district === distFilter);
-    }
-
-    let matches = pool;
-    if (qNorm) {
-        const tokens = qNorm.split(' ').filter(Boolean);
-        matches = jkList.filter(j => tokens.every(tk => j._normName.includes(tk) || j._normAddr.includes(tk)));
+        matches = jkList.filter(j => j.district === distFilter);
+    } else if (qNorm) {
+        const tokens = qAkanje.split(' ').filter(Boolean);
+        matches = jkList.filter(j =>
+            tokens.every(tk => j._akanjeName.includes(tk) || j._akanjeAddr.includes(tk))
+        );
         matches.sort((a, b) => {
-            const aStarts = a._normName.includes(qNorm) ? 1 : 0;
-            const bStarts = b._normName.includes(qNorm) ? 1 : 0;
-            if (aStarts !== bStarts) return bStarts - aStarts;
+            const aInName = a._akanjeName.includes(qAkanje) ? 1 : 0;
+            const bInName = b._akanjeName.includes(qAkanje) ? 1 : 0;
+            if (aInName !== bInName) return bInName - aInName;
             return naturalCollator.compare(a.jk_name, b.jk_name);
         });
     }
@@ -701,19 +890,23 @@ function showJKSuggestions(val) {
     elements.jkDrop.classList.add('open');
     elements.jkDrop.innerHTML = '';
 
-    // Option "Нет (без ЖК)"
     if (!qNorm) {
         const noneEl = document.createElement('div');
         noneEl.className = 'di';
         noneEl.tabIndex = 0;
-        noneEl.innerHTML = '<div class="di-main"><div class="di-n" style="color:#64748b;">— Нет (вторичный фонд / частный сектор)</div></div>';
-        noneEl.onmousedown = e => { e.preventDefault(); clearSelectedJK(); closeJKDropdown(); };
+        noneEl.innerHTML = '<div class="di-main"><div class="di-n" style="color:#64748b;">Нет (вторичный фонд / частный сектор)</div></div>';
+        noneEl.onmousedown = e => {
+            e.preventDefault();
+            clearSelectedJK();
+            elements.jkHousesBar.hidden = true;
+            closeJKDropdown();
+        };
         elements.jkDrop.appendChild(noneEl);
     }
 
-    const shown = matches.slice(0, 30);
+    const shown = matches.slice(0, 35);
     if (!shown.length) {
-        elements.jkDrop.innerHTML = '<div class="dmsg">😕 ЖК не найден</div>';
+        elements.jkDrop.innerHTML = '<div class="dmsg">ЖК не найден</div>';
         return;
     }
 
@@ -721,7 +914,8 @@ function showJKSuggestions(val) {
         const el = document.createElement('div');
         el.className = 'di';
         el.tabIndex = 0;
-        const sub = [jk.district, jk.address ? jk.address.split(';')[0] : ''].filter(Boolean).join(' • ');
+        const firstAddr = jk.address ? jk.address.split(';')[0] : '';
+        const sub = [jk.district?.replace(' р-н', ''), firstAddr].filter(Boolean).join(' • ');
         el.innerHTML = `
             <div class="di-main">
                 <div class="di-n">${jk.jk_name}</div>
@@ -734,11 +928,15 @@ function showJKSuggestions(val) {
             closeJKDropdown();
             applyManualJKSelection(jk);
         };
+        el.pickAction = pick;
         el.onmousedown = e => { e.preventDefault(); pick(); };
         el.onkeydown = e => {
-            if (e.key === 'Enter') pick();
+            if (e.key === 'Enter') { e.preventDefault(); pick(); }
             if (e.key === 'ArrowDown') { e.preventDefault(); el.nextElementSibling?.focus(); }
-            if (e.key === 'ArrowUp') { e.preventDefault(); el.previousElementSibling ? el.previousElementSibling.focus() : elements.complexSearch.focus(); }
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                el.previousElementSibling ? el.previousElementSibling.focus() : elements.complexSearch.focus();
+            }
         };
         elements.jkDrop.appendChild(el);
     });
@@ -748,28 +946,10 @@ function showJKSuggestions(val) {
 // Event Listeners
 // ==========================================
 function setupEventListeners() {
-    // Quick Parse Bar
-    const triggerQuickParse = () => {
-        const raw = elements.quickAddress.value.trim();
-        if (!raw) return;
-        const parsed = parseQuickAddress(raw);
-        if (!parsed) {
-            showToast('Не удалось распознать улицу Харькова в строке');
-            return;
-        }
-        applySelectedStreetAndHouse(parsed.street, parsed.house, parsed.apartment);
-        showToast(`Распознано: ${parsed.street.shortDisplay}${parsed.house ? ', ' + parsed.house : ''}`);
-    };
-    elements.btnQuickParse.addEventListener('click', triggerQuickParse);
-    elements.quickAddress.addEventListener('keydown', e => {
-        if (e.key === 'Enter') { e.preventDefault(); triggerQuickParse(); }
-    });
-
-    // Clear & Copy buttons
     elements.btnClear.addEventListener('click', clearEntireForm);
     elements.btnCopyAll.addEventListener('click', copyFullCard);
 
-    document.querySelectorAll('.mini-copy').forEach(btn => {
+    document.querySelectorAll('[data-copy-target]').forEach(btn => {
         btn.addEventListener('click', () => {
             const target = document.getElementById(btn.dataset.copyTarget);
             if (target && target.value.trim()) {
@@ -779,20 +959,16 @@ function setupEventListeners() {
         });
     });
 
-    elements.coordsDisplay.addEventListener('click', () => {
-        if (elements.coordsDisplay.textContent) {
-            navigator.clipboard.writeText(elements.coordsDisplay.textContent);
-            showToast('Координаты скопированы');
-        }
-    });
-
     // Street Input
     elements.street.addEventListener('input', e => {
         selectedStreetId = null;
         elements.streetRenameBadge.hidden = true;
         const v = e.target.value.trim();
         elements.clearStreet.hidden = v.length === 0;
-        if (v.length < 2) { closeStreetDropdown(); return; }
+        if (v.length < 2) {
+            closeStreetDropdown();
+            return;
+        }
         showStreetSuggestions(v);
     });
 
@@ -805,22 +981,42 @@ function setupEventListeners() {
         if (e.key === 'Escape') closeStreetDropdown();
         if (e.key === 'Enter') {
             e.preventDefault();
-            const firstMatch = searchStreetsRanked(elements.street.value.trim(), 1);
-            if (!selectedStreetId && firstMatch.length) {
-                selectStreetObject(firstMatch[0].st);
+            const firstItem = elements.streetDrop.classList.contains('open')
+                ? elements.streetDrop.querySelector('.di')
+                : null;
+            if (firstItem && typeof firstItem.pickAction === 'function') {
+                firstItem.pickAction();
+                return;
             }
-            closeStreetDropdown();
-            elements.house.focus();
+            const raw = elements.street.value.trim();
+            const parsed = parseFullAddressString(raw);
+            if (parsed) {
+                closeStreetDropdown();
+                applySelectedStreetAndHouse(parsed.street, parsed.house, parsed.apartment);
+                return;
+            }
+            const firstMatch = searchStreetsRanked(raw, 1);
+            if (!selectedStreetId && firstMatch.length) {
+                pickStreetFromDropdown(firstMatch[0].st);
+            }
         }
-        if (e.key === 'ArrowDown') { e.preventDefault(); elements.streetDrop.querySelector('.di')?.focus(); }
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (!elements.streetDrop.classList.contains('open') && elements.street.value.trim().length >= 2) {
+                showStreetSuggestions(elements.street.value.trim());
+            }
+            elements.streetDrop.querySelector('.di')?.focus();
+        }
     });
 
     elements.clearStreet.addEventListener('click', () => {
         elements.street.value = '';
         elements.house.value = '';
         elements.clearStreet.hidden = true;
+        elements.clearHouse.hidden = true;
         elements.streetRenameBadge.hidden = true;
         selectedStreetId = null;
+        nearbyLandmarkPool = [];
         resetAutoComputedFields();
         elements.street.focus();
     });
@@ -828,12 +1024,13 @@ function setupEventListeners() {
     // House Input
     elements.house.addEventListener('input', e => {
         const v = e.target.value.trim();
+        elements.clearHouse.hidden = v.length === 0;
         showHouseSuggestions(v);
         clearTimeout(houseInputTimer);
         if (selectedStreetId && v.length > 0) {
             const nMap = streetNormHouses.get(selectedStreetId);
             if (nMap && nMap.has(normHouseKey(v))) {
-                houseInputTimer = setTimeout(() => handleHouseSelection(), 380);
+                houseInputTimer = setTimeout(() => handleHouseSelection(), 340);
             }
         }
     });
@@ -849,18 +1046,28 @@ function setupEventListeners() {
             closeHouseDropdown();
             handleHouseSelection();
         }
-        if (e.key === 'ArrowDown') { e.preventDefault(); elements.houseDrop.querySelector('.di')?.focus(); }
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            elements.houseDrop.querySelector('.di')?.focus();
+        }
     });
 
     elements.house.addEventListener('blur', () => {
         clearTimeout(houseInputTimer);
         setTimeout(() => {
             if (document.activeElement?.closest('#HD')) return;
-            handleHouseSelection();
+            if (elements.house.value.trim()) handleHouseSelection();
         }, 120);
     });
 
-    // JK Search Input
+    elements.clearHouse.addEventListener('click', () => {
+        elements.house.value = '';
+        elements.clearHouse.hidden = true;
+        elements.house.focus();
+        showHouseSuggestions('');
+    });
+
+    // JK Combobox Input
     elements.complexSearch.addEventListener('focus', () => {
         showJKSuggestions(selectedJK ? '' : elements.complexSearch.value.trim());
     });
@@ -868,13 +1075,28 @@ function setupEventListeners() {
     elements.complexSearch.addEventListener('input', e => {
         const v = e.target.value.trim();
         elements.clearJK.hidden = v.length === 0;
-        if (!v) selectedJK = null;
+        if (!v) {
+            selectedJK = null;
+            elements.jkClass.value = '';
+        }
         showJKSuggestions(v);
     });
 
     elements.complexSearch.addEventListener('keydown', e => {
         if (e.key === 'Escape') closeJKDropdown();
-        if (e.key === 'ArrowDown') { e.preventDefault(); elements.jkDrop.querySelector('.di')?.focus(); }
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const firstItem = elements.jkDrop.classList.contains('open')
+                ? elements.jkDrop.querySelector('.di')
+                : null;
+            if (firstItem && typeof firstItem.pickAction === 'function') {
+                firstItem.pickAction();
+            }
+        }
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            elements.jkDrop.querySelector('.di')?.focus();
+        }
     });
 
     elements.clearJK.addEventListener('click', () => {
@@ -907,18 +1129,18 @@ function setupEventListeners() {
 function applySelectedStreetAndHouse(stObj, houseVal = '', aptVal = '') {
     selectStreetObject(stObj);
     elements.house.value = houseVal || '';
-    elements.apartment.value = aptVal || '';
+    elements.clearHouse.hidden = !houseVal;
+    if (aptVal) elements.apartment.value = aptVal;
+
     if (houseVal) {
         handleHouseSelection();
     } else {
-        // Center on street bounds even before house is entered
         const b = stObj.map_bounds;
         if (b && b.top_lat && b.bottom_lat) {
-            const cLat = (b.top_lat + b.bottom_lat) / 2;
-            const cLon = (b.top_lon + b.bottom_lon) / 2;
-            map.setView([cLat, cLon], 15);
+            map.setView([(b.top_lat + b.bottom_lat) / 2, (b.top_lon + b.bottom_lon) / 2], 15);
         }
         elements.house.focus();
+        showHouseSuggestions('');
     }
 }
 
@@ -927,12 +1149,15 @@ function handleHouseSelection() {
     const rawHouse = elements.house.value.trim();
 
     if (!selectedStreetId && streetVal.length >= 2) {
-        const exact = streetsData.find(x => x.full.toLowerCase() === streetVal.toLowerCase() || x.shortDisplay.toLowerCase() === streetVal.toLowerCase());
+        const exact = streetsData.find(x =>
+            x.full.toLowerCase() === streetVal.toLowerCase() ||
+            x.shortDisplay.toLowerCase() === streetVal.toLowerCase()
+        );
         if (exact) {
             selectStreetObject(exact);
         } else {
             const top = searchStreetsRanked(streetVal, 1);
-            if (top.length && top[0].score >= 85) selectStreetObject(top[0].st);
+            if (top.length && top[0].score >= 80) selectStreetObject(top[0].st);
         }
     }
 
@@ -948,13 +1173,13 @@ function handleHouseSelection() {
     if (streetHouses && nMap && nMap.has(nk)) {
         exactHouseLabel = nMap.get(nk);
         elements.house.value = exactHouseLabel;
+        elements.clearHouse.hidden = false;
         const arr = streetHouses[exactHouseLabel];
         lat = arr[0];
         lon = arr[1];
         officialDist = arr[2] ? DISTRICT_BY_ID[arr[2]] : null;
         postCode = arr[3] || 0;
     } else {
-        // Graceful fallback to street center if house is brand new / not in registry
         isApproximate = true;
         if (streetHouses && Object.keys(streetHouses).length > 0) {
             const vals = Object.values(streetHouses);
@@ -971,7 +1196,7 @@ function handleHouseSelection() {
         }
     }
 
-    elements.postalCode.value = postCode ? String(postCode) : '';
+    activePostCode = postCode;
     updateMapMarker(lat, lon, 17);
 
     const detectedDist = officialDist || detectDistrictPolygon(lat, lon) || '';
@@ -989,23 +1214,22 @@ function handleHouseSelection() {
 
     computeLandmarksAndMetro(lat, lon);
 
-    const statusPrefix = isApproximate
-        ? `⚠️ Дом «${rawHouse}» отсутствует в реестре — показан центр улицы ${stObj.shortDisplay}`
-        : `✅ Точный адрес из реестра: ${stObj.shortDisplay}, ${exactHouseLabel}`;
-    updateMapFooter(lat, lon, statusPrefix);
+    const statusText = isApproximate
+        ? `Дом «${rawHouse}» не числится в реестре — показан центр ${stObj.shortDisplay}`
+        : `📍 ${stObj.shortDisplay}, ${exactHouseLabel}`;
+    updateMapFooter(lat, lon, statusText, postCode);
 }
 
 // ==========================================
 // Reverse Geocoding (Click on Map / Drag Pin)
 // ==========================================
 function handleMapClickOrDrag(lat, lon, sourceLabel) {
-    // Find nearest registered building within 85 meters
     let best = null;
-    let bestDist = 85;
+    let bestDist = 130;
 
     for (let i = 0; i < flatHouses.length; i++) {
         const h = flatHouses[i];
-        if (Math.abs(h.lat - lat) > 0.001 || Math.abs(h.lon - lon) > 0.0015) continue;
+        if (Math.abs(h.lat - lat) > 0.0014 || Math.abs(h.lon - lon) > 0.002) continue;
         const d = getHaversineDistance(lat, lon, h.lat, h.lon);
         if (d < bestDist) {
             bestDist = d;
@@ -1018,7 +1242,8 @@ function handleMapClickOrDrag(lat, lon, sourceLabel) {
         if (stObj) {
             selectStreetObject(stObj);
             elements.house.value = best.house;
-            elements.postalCode.value = best.postCode ? String(best.postCode) : '';
+            elements.clearHouse.hidden = false;
+            activePostCode = best.postCode || 0;
             updateMapMarker(best.lat, best.lon, Math.max(map.getZoom(), 16));
 
             const distName = (best.distId && DISTRICT_BY_ID[best.distId]) || detectDistrictPolygon(best.lat, best.lon) || '';
@@ -1033,18 +1258,17 @@ function handleMapClickOrDrag(lat, lon, sourceLabel) {
             }
 
             computeLandmarksAndMetro(best.lat, best.lon);
-            updateMapFooter(best.lat, best.lon, `🏠 ${sourceLabel}: выбран дом ${stObj.shortDisplay}, ${best.house} (${bestDist} м)`);
+            updateMapFooter(best.lat, best.lon, `📍 ${stObj.shortDisplay}, ${best.house}`, activePostCode);
             return;
         }
     }
 
-    // Clicked outside any building (open plot / cottage / park)
+    activePostCode = 0;
     updateMapMarker(lat, lon, Math.max(map.getZoom(), 15));
     const polyDist = detectDistrictPolygon(lat, lon) || 'Передмістя';
     setDistrictSilently(polyDist);
-    elements.postalCode.value = '';
     computeLandmarksAndMetro(lat, lon);
-    updateMapFooter(lat, lon, `📍 ${sourceLabel}: точка вне зданий реестра (${polyDist})`);
+    updateMapFooter(lat, lon, `${sourceLabel}: участок вне зданий реестра (${polyDist})`, 0);
 }
 
 function updateMapMarker(lat, lon, zoom = 16) {
@@ -1055,16 +1279,21 @@ function updateMapMarker(lat, lon, zoom = 16) {
         marker = L.marker([lat, lon], { draggable: true }).addTo(map);
         marker.on('dragend', () => {
             const pos = marker.getLatLng();
-            handleMapClickOrDrag(pos.lat, pos.lng, 'Перемещение маркера');
+            handleMapClickOrDrag(pos.lat, pos.lng, 'Маркер');
         });
     }
 }
 
-function updateMapFooter(lat, lon, statusText) {
+function updateMapFooter(lat, lon, statusText, postCode = 0) {
     const latStr = lat.toFixed(6);
     const lonStr = lon.toFixed(6);
     elements.mapStatus.textContent = statusText;
-    elements.coordsDisplay.textContent = `${latStr}, ${lonStr}`;
+    if (postCode) {
+        elements.postDisplay.textContent = `Индекс ${postCode}`;
+        elements.postDisplay.hidden = false;
+    } else {
+        elements.postDisplay.hidden = true;
+    }
     elements.gmapsLink.href = `https://www.google.com/maps/search/?api=1&query=${latStr},${lonStr}`;
     elements.mapLinks.hidden = false;
 }
@@ -1121,7 +1350,6 @@ function detectResidentialComplex(stId, houseLabel) {
     const direct = houseToJKMap.get(`${stId}:${nk}`);
     if (direct) return direct;
 
-    // Fallback string check for complexes without pre-matched house IDs
     const stObj = streetById.get(stId);
     if (!stObj) return null;
     const numMatch = nk.match(/^\d+/);
@@ -1170,6 +1398,7 @@ function applyManualJKSelection(jkObj) {
         if (stObj) {
             selectStreetObject(stObj);
             elements.house.value = firstHouse;
+            elements.clearHouse.hidden = false;
             handleHouseSelection();
             renderJKHousesBar(jkObj, firstStId, firstHouse);
             return;
@@ -1180,7 +1409,7 @@ function applyManualJKSelection(jkObj) {
     if (jkObj.lat && jkObj.lon) {
         updateMapMarker(jkObj.lat, jkObj.lon, 16);
         computeLandmarksAndMetro(jkObj.lat, jkObj.lon);
-        updateMapFooter(jkObj.lat, jkObj.lon, `🏢 Выбран комплекс: ${jkObj.jk_name}${jkObj.address ? ' (' + jkObj.address + ')' : ''}`);
+        updateMapFooter(jkObj.lat, jkObj.lon, `🏢 ${jkObj.jk_name}${jkObj.address ? ' (' + jkObj.address + ')' : ''}`, 0);
     }
 }
 
@@ -1190,7 +1419,7 @@ function renderJKHousesBar(jkObj, activeStId, activeHouse) {
         return;
     }
 
-    elements.jkHousesBar.innerHTML = `<strong>Корпуса / дома ${jkObj.jk_name}:</strong>`;
+    elements.jkHousesBar.innerHTML = `<strong>Дома ${jkObj.jk_name}:</strong>`;
     jkObj.houses.forEach(([stId, hLabel]) => {
         const stObj = streetById.get(stId);
         const chip = document.createElement('span');
@@ -1202,6 +1431,7 @@ function renderJKHousesBar(jkObj, activeStId, activeHouse) {
             if (stObj) {
                 selectStreetObject(stObj);
                 elements.house.value = hLabel;
+                elements.clearHouse.hidden = false;
                 handleHouseSelection();
             }
         };
@@ -1221,16 +1451,16 @@ function computeLandmarksAndMetro(lat, lon) {
             .sort((a, b) => a.dist - b.dist);
 
         const closest = sortedMetros[0];
-        if (closest && closest.dist <= 6000) {
+        if (closest && closest.dist <= 5800) {
             elements.metro.value = closest.name;
             updateMetroHint(closest);
         } else {
-            elements.metro.value = 'Немає поруч';
-            elements.metroHint.textContent = closest ? `Ближайшая ст. «${closest.name}» в ${formatDist(closest.dist)}` : 'Нет данных';
+            elements.metro.value = 'Нет';
+            elements.metroHint.textContent = closest ? `Ближайшая ст. «${closest.name}» — ${formatDist(closest.dist)}` : 'Нет данных';
         }
 
         // Show nearby alternative metro stations (within 2.2 km) as quick-pick chips
-        const altMetros = sortedMetros.filter(m => m.dist <= 2200).slice(0, 4);
+        const altMetros = sortedMetros.filter(m => m.dist <= 2200).slice(0, 3);
         elements.metroChips.innerHTML = '';
         if (altMetros.length > 1) {
             altMetros.forEach(m => {
@@ -1248,15 +1478,15 @@ function computeLandmarksAndMetro(lat, lon) {
         }
     }
 
-    // 2. LANDMARKS (Balanced Realtor Selection: 1 Area/Microdistrict + up to 2 Notable Places)
+    // 2. LANDMARKS (1 Microdistrict/Area + up to 2 Notable Places)
     if (landmarksData.length > 0) {
         const withDist = landmarksData
             .map(l => ({ ...l, dist: getHaversineDistance(lat, lon, l.lat, l.lon) }))
             .filter(l => l.dist <= 2800)
             .sort((a, b) => a.dist - b.dist);
 
-        const areas = withDist.filter(l => l.type === 'area' && l.dist <= 2200);
-        const pois = withDist.filter(l => l.type !== 'area' && l.dist <= 1900);
+        const areas = withDist.filter(l => l.type === 'area' && l.dist <= 2000);
+        const pois = withDist.filter(l => l.type !== 'area' && l.dist <= 1800);
 
         const autoPicked = [];
         const pickedNames = new Set();
@@ -1266,7 +1496,6 @@ function computeLandmarksAndMetro(lat, lon) {
             pickedNames.add(areas[0].name.toLowerCase());
         }
 
-        // Prefer diverse POI types (e.g. mall + park rather than 2 parks right next to each other)
         const usedTypes = new Set();
         for (const p of pois) {
             if (autoPicked.length >= 3) break;
@@ -1278,7 +1507,6 @@ function computeLandmarksAndMetro(lat, lon) {
             }
         }
 
-        // Fill remaining slot if needed
         for (const item of [...pois, ...areas]) {
             if (autoPicked.length >= 3) break;
             if (!pickedNames.has(item.name.toLowerCase())) {
@@ -1289,17 +1517,16 @@ function computeLandmarksAndMetro(lat, lon) {
 
         elements.landmark.value = autoPicked.length > 0
             ? autoPicked.map(x => x.name).join(', ')
-            : 'Немає';
+            : '';
 
-        // Build clickable chip pool of top nearby options (up to 9)
         const chipCandidates = [];
         const seenChip = new Set();
-        for (const item of [...autoPicked, ...areas.slice(0, 3), ...pois.slice(0, 7)]) {
+        for (const item of [...autoPicked, ...areas.slice(0, 3), ...pois.slice(0, 6)]) {
             const k = item.name.toLowerCase();
             if (seenChip.has(k)) continue;
             seenChip.add(k);
             chipCandidates.push(item);
-            if (chipCandidates.length >= 9) break;
+            if (chipCandidates.length >= 8) break;
         }
         nearbyLandmarkPool = chipCandidates;
         renderLandmarkChips();
@@ -1307,8 +1534,8 @@ function computeLandmarksAndMetro(lat, lon) {
 }
 
 function updateMetroHint(m) {
-    const walkMin = Math.max(1, Math.round(m.dist / 72)); // ~72m/min realistic city walk
-    const travelStr = m.dist <= 2200
+    const walkMin = Math.max(1, Math.round(m.dist / 72));
+    const travelStr = m.dist <= 2000
         ? `🚶 ~${formatDist(m.dist)} (~${walkMin} мин пешком)`
         : `🚌 ~${formatDist(m.dist)} (на транспорте)`;
     const parts = [travelStr];
@@ -1319,7 +1546,7 @@ function updateMetroHint(m) {
 
 function getCurrentLandmarkList() {
     const raw = elements.landmark.value.trim();
-    if (!raw || raw === 'Немає') return [];
+    if (!raw || raw === 'Нет' || raw === 'Немає') return [];
     return raw.split(',').map(s => s.trim()).filter(Boolean);
 }
 
@@ -1354,20 +1581,20 @@ function toggleLandmarkInTextarea(name) {
 }
 
 // ==========================================
-// Form Reset & Copy Summary
+// Form Reset & Copy Card
 // ==========================================
 function resetAutoComputedFields() {
     clearSelectedJK();
     setDistrictSilently('');
-    elements.postalCode.value = '';
+    activePostCode = 0;
     elements.metro.value = '';
-    elements.metroHint.textContent = 'Определяется автоматически по координатам дома';
+    elements.metroHint.textContent = 'Подтянется автоматически по координатам дома';
     elements.metroChips.innerHTML = '';
     elements.landmark.value = '';
     elements.landmarkChips.innerHTML = '';
     elements.jkHousesBar.hidden = true;
     elements.mapLinks.hidden = true;
-    elements.mapStatus.textContent = '💡 Совет: можно кликнуть в любую точку карты или перетащить маркер для определения ближайшего дома и ориентиров.';
+    elements.mapStatus.textContent = 'Кликните по карте или перетащите маркер для выбора ближайшего дома';
     if (marker) {
         map.removeLayer(marker);
         marker = null;
@@ -1375,11 +1602,11 @@ function resetAutoComputedFields() {
 }
 
 function clearEntireForm() {
-    elements.quickAddress.value = '';
     elements.street.value = '';
     elements.clearStreet.hidden = true;
     elements.streetRenameBadge.hidden = true;
     elements.house.value = '';
+    elements.clearHouse.hidden = true;
     elements.apartment.value = '';
     selectedStreetId = null;
     nearbyLandmarkPool = [];
@@ -1406,14 +1633,14 @@ function copyFullCard() {
     if (selectedJK) {
         lines.push(`ЖК: ${selectedJK.jk_name}${elements.jkClass.value ? ' (' + elements.jkClass.value + ')' : ''}`);
     }
-    if (elements.metro.value && elements.metro.value !== 'Немає поруч') {
+    if (elements.metro.value && elements.metro.value !== 'Нет') {
         lines.push(`Метро: ${elements.metro.value}`);
     }
-    if (elements.landmark.value && elements.landmark.value !== 'Немає') {
+    if (elements.landmark.value) {
         lines.push(`Орієнтир: ${elements.landmark.value}`);
     }
-    if (elements.postalCode.value) {
-        lines.push(`Індекс: ${elements.postalCode.value}`);
+    if (activePostCode) {
+        lines.push(`Індекс: ${activePostCode}`);
     }
 
     if (!lines.length) {
@@ -1422,5 +1649,5 @@ function copyFullCard() {
     }
 
     navigator.clipboard.writeText(lines.join('\n'));
-    showToast('📋 Карточка объекта скопирована в буфер обмена!');
+    showToast('Карточка объекта скопирована');
 }

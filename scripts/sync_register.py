@@ -129,8 +129,11 @@ def build_datasets(raw: dict):
             visited.add(cid)
             cs = by_id[cid]
             nm = clean_historical_name(cs.get("name", ""))
-            # Also extract clean version without "(сел. ...)" as alias if present
-            nm_no_paren = re.sub(r"\s*\([^)]*\)\s*", " ", nm).strip()
+            # Also extract clean version without nested "(сел. ...)" / "(Затишшя (БМП-166))"
+            nm_no_paren = nm
+            while "(" in nm_no_paren and ")" in nm_no_paren:
+                nm_no_paren = re.sub(r"\s*\([^()]*\)\s*", " ", nm_no_paren)
+            nm_no_paren = re.sub(r"\s+", " ", re.sub(r"[()]", "", nm_no_paren)).strip()
             if nm and nm.lower() not in seen_names:
                 old_names.append(nm_no_paren if nm_no_paren else nm)
                 seen_names.add((nm_no_paren if nm_no_paren else nm).lower())

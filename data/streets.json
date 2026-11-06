@@ -6198,7 +6198,7 @@
     "short_type": "вул.",
     "current_name": "Венгеровського",
     "old_names": [
-      "Олімпійська )"
+      "Олімпійська"
     ],
     "map_bounds": {
       "top_lat": 49.930012,
@@ -9802,7 +9802,7 @@
     "short_type": "вул.",
     "current_name": "Гороховської",
     "old_names": [
-      "Садова )"
+      "Садова"
     ],
     "map_bounds": {
       "top_lat": 49.930768,
@@ -12551,7 +12551,7 @@
     "short_type": "вул.",
     "current_name": "Дробицька",
     "old_names": [
-      "Світла )"
+      "Світла"
     ],
     "map_bounds": {
       "top_lat": 49.939956,
@@ -12569,7 +12569,7 @@
     "short_type": "пров.",
     "current_name": "Дробицький",
     "old_names": [
-      "Комунальна )"
+      "Комунальна"
     ],
     "map_bounds": {
       "top_lat": 49.940515,
@@ -17606,7 +17606,7 @@
     "short_type": "пров.",
     "current_name": "Ков'язький",
     "old_names": [
-      "Науковий )"
+      "Науковий"
     ],
     "map_bounds": {
       "top_lat": 49.926928,
@@ -28271,7 +28271,7 @@
     "short_type": "вул.",
     "current_name": "Новицька",
     "old_names": [
-      "Армійська )"
+      "Армійська"
     ],
     "map_bounds": {
       "top_lat": 49.937901,
@@ -28289,7 +28289,7 @@
     "short_type": "пров.",
     "current_name": "Новицький",
     "old_names": [
-      "Сонячна )"
+      "Сонячна"
     ],
     "map_bounds": {
       "top_lat": 49.937217,
@@ -36299,7 +36299,7 @@
     "short_type": "вул.",
     "current_name": "Саблєва",
     "old_names": [
-      "Затишна )"
+      "Затишна"
     ],
     "map_bounds": {
       "top_lat": 49.939359,
@@ -36317,7 +36317,7 @@
     "short_type": "пров.",
     "current_name": "Саблєва",
     "old_names": [
-      "Комунальна )"
+      "Комунальна"
     ],
     "map_bounds": {
       "top_lat": 49.940651,
@@ -41977,7 +41977,9 @@
     "type_name": "вулиця",
     "short_type": "вул.",
     "current_name": "Тиха",
-    "old_names": [],
+    "old_names": [
+      "Тиха сел. Затишшя"
+    ],
     "map_bounds": {
       "top_lat": 49.938951,
       "top_lon": 36.433015,
@@ -44732,7 +44734,7 @@
     "current_name": "Хотомлянська",
     "old_names": [
       "БМП-166 сел.",
-      "Комунальна )"
+      "Комунальна"
     ],
     "map_bounds": {
       "top_lat": 49.949385,
@@ -49028,7 +49030,7 @@
     "short_type": "вул.",
     "current_name": "Єрмілова",
     "old_names": [
-      "Лермонтова )"
+      "Лермонтова"
     ],
     "map_bounds": {
       "top_lat": 49.927687,
@@ -50051,8 +50053,7 @@
     "short_type": "вул.",
     "current_name": "Іспанська",
     "old_names": [
-      "Зеленодільська",
-      "Зеленодільська )"
+      "Зеленодільська"
     ],
     "map_bounds": {
       "top_lat": 49.924776,
