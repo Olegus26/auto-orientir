@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Форма Объекта</title>
+    <title>Авто-Ориентир Харьков — Форма Объекта (АН)</title>
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <link rel="stylesheet" href="style.css">
@@ -11,52 +11,35 @@
 <body>
 
 <div class="form-container">
-    
-    <!-- Ориентир и Метро -->
-    <div class="form-row">
-        <div class="form-group half-width">
-            <label for="landmark">Ориентир</label>
-            <!-- Поле для ориентиров (может быть несколько через запятую) -->
-            <textarea id="landmark" name="landmark" placeholder="Например: Аэропорт, Парк" readonly class="readonly-input" rows="2" style="resize: none; font-family: Arial, sans-serif;"></textarea>
-            <div class="hint">Подтянется автоматически (через запятую)</div>
+    <!-- Шапка для агента -->
+    <div class="header-bar">
+        <div class="header-title-wrap">
+            <h1 class="header-title">Форма объекта недвижимости</h1>
+            <span class="db-badge" id="db_stats" title="Официальный Адресный реестр г. Харькова">Загрузка базы...</span>
         </div>
-
-        <div class="form-group half-width">
-            <label for="metro">Метро</label>
-            <!-- Поле для метро (только одно) -->
-            <input type="text" id="metro" name="metro" placeholder="Например: Гагарина" readonly class="readonly-input">
-            <div class="hint">Подтянется автоматически (только одно)</div>
+        <div class="header-actions">
+            <button type="button" class="btn btn-secondary" id="btn_clear" title="Очистить все поля формы">Очистить</button>
+            <button type="button" class="btn btn-primary" id="btn_copy_all" title="Скопировать заполненные данные объекта в буфер обмена">📋 Скопировать карточку</button>
         </div>
     </div>
 
-    <!-- Район, ЖК и Класс -->
-    <div class="form-row">
-        <div class="form-group" style="flex: 1 1 35%;">
-            <label for="district"><span class="required">*</span> Админ. район</label>
-            <select id="district" name="district" disabled>
-                <option value="" disabled selected>Выберите район</option>
-            </select>
-        </div>
-
-        <div class="form-group" style="flex: 1 1 40%;">
-            <label for="complex">ЖК</label>
-            <select id="complex" name="complex" disabled>
-                <option value="all">Все</option>
-                <option value="none">Нет</option>
-            </select>
-        </div>
-
-        <div class="form-group" style="flex: 0 1 20%;">
-            <label for="jk_class">Класс</label>
-            <input type="text" id="jk_class" name="jk_class" readonly class="readonly-input" placeholder="—">
-        </div>
+    <!-- Быстрая вставка полного адреса из объявления / мессенджера -->
+    <div class="quick-parse-bar">
+        <input type="text" id="quick_address" placeholder="⚡ Быстрый разбор адреса: вставьте напр. «пр. Гагарина 174 корп 3 кв 45» или «Героев Труда 9» и нажмите Enter" autocomplete="off">
+        <button type="button" class="btn btn-accent" id="btn_quick_parse">Разобрать</button>
     </div>
-    
-    <!-- Улица, Номер дома, Номер кв. -->
+
+    <!-- Улица, Номер дома, Номер кв., Индекс -->
     <div class="form-row">
         <div class="form-group street-width aw" id="AW">
-            <label for="street"><span class="required">*</span> Улица</label>
-            <input type="text" id="street" name="street" placeholder="Например: Аерокосмічний (Гагарина) просп." autocomplete="off">
+            <div class="label-row">
+                <label for="street"><span class="required">*</span> Улица (укр / рус / старое название)</label>
+                <span class="field-badge" id="street_rename_badge" hidden></span>
+            </div>
+            <div class="input-with-clear">
+                <input type="text" id="street" name="street" placeholder="Напр.: Аерокосмічний, Гагарина, Сумская, Героев Труда..." autocomplete="off">
+                <button type="button" class="clear-x" id="clear_street" title="Очистить улицу" hidden>&times;</button>
+            </div>
             <div class="drop" id="SD"></div>
         </div>
 
@@ -66,9 +49,78 @@
             <div class="drop" id="HD"></div>
         </div>
 
-        <div class="form-group small-width">
-            <label for="apartment_number">Номер кв.</label>
-            <input type="text" id="apartment_number" name="apartment_number" placeholder="">
+        <div class="form-group tiny-width">
+            <label for="apartment_number">Кв. / Офис</label>
+            <input type="text" id="apartment_number" name="apartment_number" placeholder="—">
+        </div>
+
+        <div class="form-group tiny-width">
+            <label for="postal_code">Индекс</label>
+            <input type="text" id="postal_code" name="postal_code" placeholder="61000" readonly class="readonly-input">
+        </div>
+    </div>
+
+    <!-- Подсказка домов выбранного ЖК (если в ЖК несколько домов) -->
+    <div class="jk-houses-bar" id="jk_houses_bar" hidden></div>
+
+    <!-- Район, ЖК и Класс -->
+    <div class="form-row">
+        <div class="form-group" style="flex: 1 1 32%;">
+            <label for="district"><span class="required">*</span> Админ. район</label>
+            <select id="district" name="district">
+                <option value="">Выберите район</option>
+            </select>
+        </div>
+
+        <div class="form-group aw" id="JK_AW" style="flex: 1 1 44%;">
+            <label for="complex_search">ЖК / Коттеджный городок</label>
+            <div class="input-with-clear">
+                <input type="text" id="complex_search" placeholder="Нет (начните вводить название ЖК для поиска...)" autocomplete="off">
+                <button type="button" class="clear-x" id="clear_jk" title="Сбросить ЖК" hidden>&times;</button>
+            </div>
+            <div class="drop" id="JKD"></div>
+            <!-- Скрытый select для полной совместимости с CRM-формами -->
+            <select id="complex" name="complex" hidden>
+                <option value="all">Все</option>
+                <option value="none" selected>Нет</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="flex: 0 1 18%;">
+            <label for="jk_class">Класс ЖК</label>
+            <input type="text" id="jk_class" name="jk_class" placeholder="—">
+        </div>
+    </div>
+
+    <!-- Ориентир и Метро -->
+    <div class="form-row">
+        <div class="form-group half-width">
+            <div class="label-row">
+                <label for="landmark">Ориентир</label>
+                <button type="button" class="mini-copy" data-copy-target="landmark" title="Скопировать ориентиры">Копировать</button>
+            </div>
+            <textarea id="landmark" name="landmark" placeholder="Подтянется автоматически (можно редактировать или выбирать чипсы ниже)" rows="2"></textarea>
+            <div class="hint" id="landmark_hint">Автоподбор района и ближайших значимых мест (нажмите на ориентир ниже, чтобы добавить/убрать):</div>
+            <div class="chips-wrap" id="landmark_chips"></div>
+        </div>
+
+        <div class="form-group half-width">
+            <div class="label-row">
+                <label for="metro">Метро</label>
+                <button type="button" class="mini-copy" data-copy-target="metro" title="Скопировать метро">Копировать</button>
+            </div>
+            <input type="text" id="metro" name="metro" placeholder="Подтянется автоматически">
+            <div class="hint" id="metro_hint">Определяется автоматически по координатам дома</div>
+            <div class="chips-wrap" id="metro_chips"></div>
+        </div>
+    </div>
+
+    <!-- Инфо-панель над картой -->
+    <div class="map-toolbar">
+        <div class="map-status" id="map_status">💡 Совет: можно кликнуть в любую точку карты или перетащить маркер для определения ближайшего дома и ориентиров.</div>
+        <div class="map-links" id="map_links" hidden>
+            <span class="coords-pill" id="coords_display" title="Нажмите, чтобы скопировать координаты"></span>
+            <a id="gmaps_link" href="#" target="_blank" rel="noopener noreferrer" class="ext-link">Google Карты ↗</a>
         </div>
     </div>
 
@@ -76,6 +128,8 @@
     <div id="map"></div>
 
 </div>
+
+<div class="toast" id="toast" hidden></div>
 
 <!-- Leaflet & Turf JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
