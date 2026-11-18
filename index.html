@@ -7,20 +7,51 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%236d28d9'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23ffffff'/%3E%3C/svg%3E">
     <!-- MapLibre GL CSS -->
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" crossorigin=""/>
-    <link rel="stylesheet" href="style.css?v=20261107_1">
+    <link rel="stylesheet" href="style.css?v=20261118_3">
 </head>
 <body>
 
 <div class="form-container">
 
-    <!-- Строка 1: Ориентир и Метро -->
+    <!-- Строка 1: Админ. район и Массив -->
+    <div class="form-row">
+        <div class="form-group half-width">
+            <div class="label-row">
+                <label for="district"><span class="required">*</span> Админ. район</label>
+                <button type="button" class="action-link" data-copy-target="district" title="Скопировать район">Копировать</button>
+            </div>
+            <select id="district" name="district">
+                <option value="">Выберите район</option>
+            </select>
+            <div class="hint" id="district_hint">Определяется автоматически по адресу или точке на карте</div>
+        </div>
+
+        <div class="form-group half-width aw" id="M_AW">
+            <div class="label-row">
+                <label for="massif"><span class="required">*</span> Массив</label>
+                <button type="button" class="action-link" data-copy-target="massif" title="Скопировать массив">Копировать</button>
+            </div>
+            <div class="input-wrap">
+                <input type="text" id="massif" name="massif" placeholder="Подтянется автоматически (напр.: Павлове поле, 524 м.р.)" autocomplete="off">
+                <button type="button" class="clear-btn" id="clear_massif" title="Очистить массив" hidden>&times;</button>
+            </div>
+            <div class="drop" id="MD"></div>
+            <select id="massif_select" name="massif_select" hidden>
+                <option value="">Не выбран</option>
+            </select>
+            <div class="hint" id="massif_hint">Подтянется автоматически по району и координатам дома</div>
+            <div class="chips-wrap" id="massif_chips"></div>
+        </div>
+    </div>
+
+    <!-- Строка 2: Ориентир и Метро -->
     <div class="form-row">
         <div class="form-group half-width">
             <div class="label-row">
                 <label for="landmark">Ориентир</label>
                 <button type="button" class="action-link" data-copy-target="landmark" title="Скопировать ориентиры">Копировать</button>
             </div>
-            <textarea id="landmark" name="landmark" placeholder="Например: Павлове Поле, Саржин Яр" rows="2"></textarea>
+            <textarea id="landmark" name="landmark" placeholder="Например: Саржин Яр, ТРЦ Дафі" rows="2"></textarea>
             <div class="hint" id="landmark_hint">Подтянется автоматически (можно редактировать или кликать по подсказкам)</div>
             <div class="chips-wrap" id="landmark_chips"></div>
         </div>
@@ -30,25 +61,18 @@
                 <label for="metro">Метро</label>
                 <button type="button" class="action-link" data-copy-target="metro" title="Скопировать станцию метро">Копировать</button>
             </div>
-            <input type="text" id="metro" name="metro" placeholder="Например: Ботанічний сад">
-            <div class="hint" id="metro_hint">Подтянется автоматически по координатам дома</div>
+            <input type="text" id="metro" name="metro" placeholder="Ближайшая станция в радиусе 1.8 км (или Нет)">
+            <div class="hint" id="metro_hint">Определяется автоматически, если станция есть в радиусе 1.8 км</div>
             <div class="chips-wrap" id="metro_chips"></div>
         </div>
     </div>
 
-    <!-- Строка 2: Админ. район, ЖК и Класс -->
+    <!-- Строка 3: ЖК и Класс -->
     <div class="form-row">
-        <div class="form-group" style="flex: 1 1 33%;">
-            <label for="district"><span class="required">*</span> Админ. район</label>
-            <select id="district" name="district">
-                <option value="">Выберите район</option>
-            </select>
-        </div>
-
-        <div class="form-group aw" id="JK_AW" style="flex: 1 1 43%;">
-            <label for="complex_search">ЖК</label>
+        <div class="form-group aw" id="JK_AW" style="flex: 1 1 74%;">
+            <label for="complex_search">ЖК / Коттеджный городок</label>
             <div class="input-wrap">
-                <input type="text" id="complex_search" placeholder="Нет" autocomplete="off">
+                <input type="text" id="complex_search" placeholder="Нет (начните вводить название, адрес или застройщика)" autocomplete="off">
                 <button type="button" class="clear-btn" id="clear_jk" title="Сбросить ЖК" hidden>&times;</button>
             </div>
             <div class="drop" id="JKD"></div>
@@ -59,8 +83,8 @@
             </select>
         </div>
 
-        <div class="form-group" style="flex: 0 1 18%;">
-            <label for="jk_class">Класс</label>
+        <div class="form-group" style="flex: 0 1 22%;">
+            <label for="jk_class">Класс ЖК</label>
             <input type="text" id="jk_class" name="jk_class" placeholder="—" readonly class="readonly-input">
         </div>
     </div>
@@ -134,6 +158,6 @@
 <!-- MapLibre GL & Turf JS -->
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
-<script src="script.js?v=20261107_1"></script>
+<script src="script.js?v=20261118_4"></script>
 </body>
 </html>

@@ -1,10 +1,11 @@
 // ==========================================
 // Constants & Configuration
 // ==========================================
-const DATA_VERSION = '20261107_1';
+const DATA_VERSION = '20261118_4';
 const MAP_INITIAL_CENTER = [36.2720, 50.0010]; // [lon, lat] Kharkiv overview
 const MAP_INITIAL_ZOOM = 10.65;
 const OPENFREEMAP_BRIGHT_URL = 'https://tiles.openfreemap.org/styles/bright';
+const METRO_AUTO_RADIUS_M = 1800; // 1.8 km radius for automatic metro assignment
 
 const DISTRICT_BY_ID = {
     1: "Немишлянський р-н",
@@ -19,6 +20,7 @@ const DISTRICT_BY_ID = {
 };
 
 const DISTRICTS = [
+    "Центр",
     "Індустріальний р-н",
     "Київський р-н",
     "Немишлянський р-н",
@@ -174,6 +176,7 @@ let allDataLoaded = false;
 let customLayersReady = false;
 let showJKDotsOnMap = true;
 let activeDistrictMaskName = '';
+let activeMassifName = '';
 
 let streetsData = [];
 let streetById = new Map();
@@ -187,11 +190,13 @@ let jkByName = new Map();
 let houseToJKMap = new Map();
 let metroData = [];
 let landmarksData = [];
+let massifsData = [];
 
 let selectedStreetId = null;
 let selectedJK = null;
 let activePostCode = 0;
 let nearbyLandmarkPool = [];
+let nearbyMassifPool = [];
 let silentState = false;
 let houseInputTimer = null;
 let dataLoadFailed = false;
@@ -212,6 +217,13 @@ const elements = {
     apartment: document.getElementById('apartment_number'),
     jkHousesBar: document.getElementById('jk_houses_bar'),
     district: document.getElementById('district'),
+    districtHint: document.getElementById('district_hint'),
+    massif: document.getElementById('massif'),
+    clearMassif: document.getElementById('clear_massif'),
+    massifDrop: document.getElementById('MD'),
+    massifSelect: document.getElementById('massif_select'),
+    massifHint: document.getElementById('massif_hint'),
+    massifChips: document.getElementById('massif_chips'),
     complexSearch: document.getElementById('complex_search'),
     clearJK: document.getElementById('clear_jk'),
     complexSelect: document.getElementById('complex'),
@@ -839,6 +851,40 @@ function ensureCustomMapLayers() {
         beforeLabelLayerId
     );
 
+    // 1b. Active Massif Polygon Boundary (Кордон масиву)
+    map.addSource('massif-outline-src', {
+        type: 'geojson',
+        data: { type: 'FeatureCollection', features: [] }
+    });
+
+    map.addLayer(
+        {
+            id: 'massif-fill-layer',
+            type: 'fill',
+            source: 'massif-outline-src',
+            paint: {
+                'fill-color': '#8b5cf6',
+                'fill-opacity': 0.09
+            }
+        },
+        beforeMajorRoadLayerId
+    );
+
+    map.addLayer(
+        {
+            id: 'massif-outline-layer',
+            type: 'line',
+            source: 'massif-outline-src',
+            paint: {
+                'line-color': '#7c3aed',
+                'line-width': 2.2,
+                'line-dasharray': [3, 2],
+                'line-opacity': 0.85
+            }
+        },
+        beforeLabelLayerId
+    );
+
     // 2. Rieltor.ua Purple Dots Layer (JK buildings & active street buildings)
     map.addSource('rieltor-dots-src', {
         type: 'geojson',
@@ -890,10 +936,13 @@ function ensureCustomMapLayers() {
     // 3. Render 30 Kharkiv Metro Stations with curved 'M' + Line Colors
     renderMetroMarkersOnMap();
 
-    // 4. Refresh initial purple dots & any pending district mask
+    // 4. Refresh initial purple dots & any pending district/massif mask
     refreshPurpleDotsLayer();
     if (activeDistrictMaskName) {
         highlightDistrictPolygon(activeDistrictMaskName);
+    }
+    if (activeMassifName) {
+        highlightMassifPolygon(activeMassifName);
     }
 }
 
@@ -1061,19 +1110,37 @@ function buildInvertedSpotlightMask(geom) {
 async function loadAllData() {
     try {
         const q = `?v=${DATA_VERSION}`;
-        const [streets, houses, polygons, jks, metro, landmarks] = await Promise.all([
+        const [streets, houses, polygons, jks, metro, landmarks, massifs] = await Promise.all([
             fetch('data/streets.json' + q).then(r => r.json()),
             fetch('data/houses.json' + q).then(r => r.json()),
             fetch('data/districts.json' + q).then(r => r.json()),
             fetch('data/complexes.json' + q).then(r => r.json()),
             fetch('data/metro.json' + q).then(r => r.ok ? r.json() : []).catch(() => []),
-            fetch('data/landmarks.json' + q).then(r => r.ok ? r.json() : []).catch(() => [])
+            fetch('data/landmarks.json' + q).then(r => r.ok ? r.json() : []).catch(() => []),
+            fetch('data/massifs.json' + q).then(r => r.ok ? r.json() : []).catch(() => [])
         ]);
 
         housesData = houses;
         districtPolygons = polygons;
         metroData = metro;
         landmarksData = landmarks;
+
+        massifsData = (massifs || []).map(m => {
+            const normName = normalizePhonetic(m.name);
+            const normGroup = normalizePhonetic(m.group || '');
+            const normAliases = (m.aliases || []).map(normalizePhonetic).filter(Boolean);
+            const phoneticAll = [normName, normGroup, ...normAliases].filter(Boolean).join(' ');
+            const akanjeAll = toAkanje(phoneticAll);
+            return {
+                ...m,
+                _normName: normName,
+                _akanjeName: toAkanje(normName),
+                _normAliases: normAliases,
+                _akanjeAliases: normAliases.map(toAkanje),
+                _phoneticAll: phoneticAll,
+                _akanjeAll: akanjeAll
+            };
+        });
 
         flatHouses = [];
         streetNormHouses.clear();
@@ -1185,6 +1252,7 @@ async function loadAllData() {
         });
 
         syncHiddenComplexSelect();
+        syncHiddenMassifSelect();
         allDataLoaded = true;
     } catch (e) {
         dataLoadFailed = true;
@@ -1204,6 +1272,22 @@ function syncHiddenComplexSelect(districtFilter = '') {
     const list = districtFilter ? jkList.filter(j => j.district === districtFilter) : jkList;
     list.forEach(j => elements.complexSelect.append(new Option(j.jk_name, j.jk_name)));
     elements.complexSelect.value = selectedJK ? selectedJK.jk_name : 'none';
+}
+
+function syncHiddenMassifSelect(districtFilter = '') {
+    if (!elements.massifSelect) return;
+    elements.massifSelect.innerHTML = '';
+    elements.massifSelect.append(new Option('Не выбран', ''));
+    const list = districtFilter
+        ? massifsData.filter(m => m.group === districtFilter || (m.districts || []).includes(districtFilter))
+        : massifsData;
+    const seen = new Set();
+    list.forEach(m => {
+        if (seen.has(m.name)) return;
+        seen.add(m.name);
+        elements.massifSelect.append(new Option(m.name, m.name));
+    });
+    elements.massifSelect.value = elements.massif?.value || '';
 }
 
 // ==========================================
@@ -1357,6 +1441,7 @@ function parseFullAddressString(rawInput) {
 function closeStreetDropdown() { elements.streetDrop.classList.remove('open'); }
 function closeHouseDropdown() { elements.houseDrop.classList.remove('open'); }
 function closeJKDropdown() { elements.jkDrop.classList.remove('open'); }
+function closeMassifDropdown() { elements.massifDrop?.classList.remove('open'); }
 
 function showStreetSuggestions(val) {
     if (dataLoadFailed) {
@@ -1741,6 +1826,204 @@ function showJKSuggestions(val) {
     });
 }
 
+function searchMassifsRanked(query, distFilter = '', limit = 60) {
+    const qNorm = normalizePhonetic(query);
+    if (!qNorm) {
+        const filtered = distFilter
+            ? massifsData.filter(m => m.group === distFilter || (m.districts || []).includes(distFilter))
+            : massifsData;
+        // Sort so massifs whose primary group === distFilter come first
+        const sorted = [...filtered].sort((a, b) => {
+            const aPrimary = a.group === distFilter ? 0 : 1;
+            const bPrimary = b.group === distFilter ? 0 : 1;
+            return aPrimary - bPrimary;
+        });
+        const seen = new Set();
+        const out = [];
+        for (const m of sorted) {
+            const key = distFilter ? m.name : `${m.name}|${m.group}`;
+            if (seen.has(key)) continue;
+            seen.add(key);
+            out.push(m);
+            if (out.length >= limit) break;
+        }
+        return out;
+    }
+
+    const tokens = qNorm.split(' ').filter(Boolean);
+    const mainAkanje = toAkanje(qNorm);
+    const akanjeTokens = tokens.map(toAkanje);
+
+    const scored = [];
+    for (const m of massifsData) {
+        let exact = true;
+        for (const t of tokens) {
+            if (!m._phoneticAll.includes(t)) { exact = false; break; }
+        }
+        let akanje = false;
+        if (!exact) {
+            akanje = true;
+            for (const at of akanjeTokens) {
+                if (!m._akanjeAll.includes(at)) { akanje = false; break; }
+            }
+        }
+        if (!exact && !akanje) continue;
+
+        let score = exact ? 40 : 25;
+        if (m._normName === qNorm) score += 120;
+        else if (m._normName.startsWith(qNorm)) score += 90;
+        else if (m._normName.includes(qNorm)) score += 65;
+        else if (m._akanjeName.includes(mainAkanje)) score += 50;
+
+        for (let i = 0; i < m._normAliases.length; i++) {
+            if (m._normAliases[i] === qNorm) { score = Math.max(score, 130); break; }
+            if (m._akanjeAliases[i].includes(mainAkanje)) score = Math.max(score, 85);
+        }
+
+        if (distFilter && (m.group === distFilter || (m.districts || []).includes(distFilter))) {
+            score += m.group === distFilter ? 25 : 15;
+        }
+        scored.push({ m, score });
+    }
+
+    scored.sort((a, b) => b.score - a.score || naturalCollator.compare(a.m.name, b.m.name));
+    const seen = new Set();
+    const out = [];
+    for (const { m } of scored) {
+        if (seen.has(m.name)) continue;
+        seen.add(m.name);
+        out.push(m);
+        if (out.length >= limit) break;
+    }
+    return out;
+}
+
+function showMassifSuggestions(val) {
+    if (!elements.massifDrop) return;
+    const distFilter = elements.district.value;
+    const matches = searchMassifsRanked(val, distFilter, 60);
+
+    elements.massifDrop.classList.add('open');
+    elements.massifDrop.innerHTML = '';
+
+    if (!matches.length) {
+        elements.massifDrop.innerHTML = '<div class="dmsg">Массив не найден</div>';
+        return;
+    }
+
+    matches.forEach(m => {
+        const el = document.createElement('div');
+        el.className = 'di';
+        el.tabIndex = 0;
+        const groupLabel = (m.group || '').replace(' р-н', '');
+        const aliasSub = (m.aliases || []).find(a => !m.name.toLowerCase().includes(a.toLowerCase())) || '';
+        el.innerHTML = `
+            <div class="di-main">
+                <div class="di-n">${m.name}</div>
+                ${aliasSub ? `<div class="di-s">${aliasSub}</div>` : ''}
+            </div>
+            ${groupLabel ? `<span class="di-tag">${groupLabel}</span>` : ''}
+        `;
+
+        const pick = () => {
+            closeMassifDropdown();
+            applyManualMassifSelection(m);
+        };
+        el.pickAction = pick;
+        el.onmousedown = e => { e.preventDefault(); pick(); };
+        el.onkeydown = e => {
+            if (e.key === 'Enter') { e.preventDefault(); pick(); }
+            if (e.key === 'ArrowDown') { e.preventDefault(); el.nextElementSibling?.focus(); }
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                el.previousElementSibling ? el.previousElementSibling.focus() : elements.massif.focus();
+            }
+        };
+        elements.massifDrop.appendChild(el);
+    });
+}
+
+function highlightMassifPolygon(massifName) {
+    activeMassifName = massifName || '';
+    if (!customLayersReady || !map) return;
+    const src = map.getSource('massif-outline-src');
+    if (!src) return;
+
+    if (!massifName) {
+        src.setData({ type: 'FeatureCollection', features: [] });
+        return;
+    }
+
+    const mObj = massifsData.find(m => m.name.toLowerCase() === massifName.toLowerCase());
+    if (!mObj || !Array.isArray(mObj.polygon) || mObj.polygon.length < 4) {
+        src.setData({ type: 'FeatureCollection', features: [] });
+        return;
+    }
+
+    src.setData({
+        type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            geometry: {
+                type: 'Polygon',
+                coordinates: [mObj.polygon]
+            },
+            properties: { name: mObj.name }
+        }]
+    });
+}
+
+function setMassifField(name, group = '', distMeters = null, insidePoly = false) {
+    if (!elements.massif) return;
+    elements.massif.value = name || '';
+    if (elements.clearMassif) elements.clearMassif.hidden = !name;
+    if (elements.massifSelect) elements.massifSelect.value = name || '';
+    highlightMassifPolygon(name);
+    if (elements.massifHint) {
+        if (name && group) {
+            const gShort = group.replace(' р-н', '');
+            const distPart = insidePoly
+                ? ' • в межах кордону масиву'
+                : (distMeters !== null ? ` • ~${formatDist(distMeters)}` : '');
+            elements.massifHint.textContent = `Масив району «${gShort}»${distPart}`;
+        } else {
+            elements.massifHint.textContent = 'Подтянется автоматически по кордону массива и координатам дома';
+        }
+    }
+    renderMassifChips();
+}
+
+function applyManualMassifSelection(mObj) {
+    if (!mObj) return;
+    setMassifField(mObj.name, mObj.group);
+
+    // Align administrative district if empty or incompatible (when no specific house locks the district)
+    const hasSpecificHouse = Boolean(selectedStreetId && elements.house.value.trim());
+    const curDist = elements.district.value;
+    const distCompatible = curDist && (mObj.group === curDist || (mObj.districts || []).includes(curDist));
+    if (!curDist || (!hasSpecificHouse && !distCompatible)) {
+        const targetDist = mObj.group && mObj.group !== 'Центр' ? mObj.group : (mObj.districts?.[0] || 'Центр');
+        setDistrictSilently(targetDist);
+    }
+
+    if (!hasSpecificHouse && mObj.lat && mObj.lon) {
+        if (map && Array.isArray(mObj.polygon) && mObj.polygon.length >= 4 && window.turf) {
+            try {
+                const bbox = turf.bbox(turf.polygon([mObj.polygon]));
+                map.fitBounds(
+                    [[bbox[0], bbox[1]], [bbox[2], bbox[3]]],
+                    { padding: 55, maxZoom: 15.2, duration: 550 }
+                );
+            } catch (_) {
+                map.flyTo({ center: [mObj.lon, mObj.lat], zoom: 14.6, duration: 550 });
+            }
+        } else if (map) {
+            map.flyTo({ center: [mObj.lon, mObj.lat], zoom: 14.6, duration: 550 });
+        }
+        computeLandmarksAndMetro(mObj.lat, mObj.lon, elements.district.value, null, true);
+    }
+}
+
 // ==========================================
 // Event Listeners
 // ==========================================
@@ -1937,12 +2220,50 @@ function setupEventListeners() {
         elements.jkHousesBar.hidden = true;
     });
 
+    // Massif Combobox Input
+    elements.massif?.addEventListener('focus', () => {
+        showMassifSuggestions('');
+    });
+
+    elements.massif?.addEventListener('input', e => {
+        const v = e.target.value.trim();
+        if (elements.clearMassif) elements.clearMassif.hidden = v.length === 0;
+        if (elements.massifSelect) elements.massifSelect.value = v;
+        if (!v) highlightMassifPolygon('');
+        renderMassifChips();
+        showMassifSuggestions(v);
+    });
+
+    elements.massif?.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeMassifDropdown();
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const firstItem = elements.massifDrop?.classList.contains('open')
+                ? elements.massifDrop.querySelector('.di')
+                : null;
+            if (firstItem && typeof firstItem.pickAction === 'function') {
+                firstItem.pickAction();
+            }
+        }
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            elements.massifDrop?.querySelector('.di')?.focus();
+        }
+    });
+
+    elements.clearMassif?.addEventListener('click', () => {
+        setMassifField('');
+        elements.massif?.focus();
+        showMassifSuggestions('');
+    });
+
     // District Change -> Rieltor.ua Spotlight Cutout + Filter JK Dots + Frame District
     elements.district.addEventListener('change', () => {
         if (silentState) return;
         const dist = elements.district.value;
         highlightDistrictPolygon(dist);
         syncHiddenComplexSelect(dist);
+        syncHiddenMassifSelect(dist);
         refreshPurpleDotsLayer();
 
         if (map && dist && districtPolygons?.[dist] && window.turf) {
@@ -1966,6 +2287,7 @@ function setupEventListeners() {
         if (!e.target.closest('#AW')) closeStreetDropdown();
         if (!e.target.closest('#H_AW')) closeHouseDropdown();
         if (!e.target.closest('#JK_AW')) closeJKDropdown();
+        if (!e.target.closest('#M_AW')) closeMassifDropdown();
     });
 }
 
@@ -2223,6 +2545,7 @@ function setDistrictSilently(distName) {
     silentState = false;
     highlightDistrictPolygon(distName);
     syncHiddenComplexSelect(distName);
+    syncHiddenMassifSelect(distName);
     refreshPurpleDotsLayer();
 }
 
@@ -2322,70 +2645,206 @@ function renderJKHousesBar(jkObj, activeStId, activeHouse) {
 }
 
 // ==========================================
-// Smart Landmarks & Metro Computation
+// Smart Massif (Polygon Boundary / Кордони), Landmarks & Metro Computation
 // ==========================================
-function computeLandmarksAndMetro(lat, lon) {
+function pointInPolygonRing(lon, lat, ring) {
+    if (!Array.isArray(ring) || ring.length < 4) return false;
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const xi = ring[i][0], yi = ring[i][1];
+        const xj = ring[j][0], yj = ring[j][1];
+        const intersect = ((yi > lat) !== (yj > lat)) &&
+            (lon < (xj - xi) * (lat - yi) / ((yj - yi) || 1e-15) + xi);
+        if (intersect) inside = !inside;
+    }
+    return inside;
+}
+
+function distanceToPolygonRingM(lat, lon, ring) {
+    if (!Array.isArray(ring) || ring.length < 2) return Infinity;
+    const cosLat = Math.cos(lat * Math.PI / 180);
+    const px = lon * 111320 * cosLat;
+    const py = lat * 111320;
+    let minD2 = Infinity;
+    for (let i = 0; i < ring.length - 1; i++) {
+        const ax = ring[i][0] * 111320 * cosLat;
+        const ay = ring[i][1] * 111320;
+        const bx = ring[i + 1][0] * 111320 * cosLat;
+        const by = ring[i + 1][1] * 111320;
+        const dx = bx - ax;
+        const dy = by - ay;
+        const len2 = dx * dx + dy * dy;
+        let t = len2 > 0 ? ((px - ax) * dx + (py - ay) * dy) / len2 : 0;
+        if (t < 0) t = 0;
+        else if (t > 1) t = 1;
+        const cx = ax + t * dx;
+        const cy = ay + t * dy;
+        const d2 = (px - cx) * (px - cx) + (py - cy) * (py - cy);
+        if (d2 < minD2) minD2 = d2;
+    }
+    return Math.round(Math.sqrt(minD2));
+}
+
+function detectMassifsForPoint(lat, lon, distName = '', stId = null) {
+    if (!massifsData.length) return [];
+
+    const scored = [];
+    for (const m of massifsData) {
+        const hasPoly = Array.isArray(m.polygon) && m.polygon.length >= 4;
+        const inside = hasPoly && pointInPolygonRing(lon, lat, m.polygon);
+        const matchesDist = !distName ||
+            distName === 'Передмістя' ||
+            m.group === distName ||
+            (m.districts || []).includes(distName);
+
+        // Always consider massifs whose polygon boundary contains the point; otherwise filter by district
+        if (!inside && !matchesDist) continue;
+
+        const centerDist = getHaversineDistance(lat, lon, m.lat, m.lon);
+        const edgeDist = inside
+            ? 0
+            : (hasPoly ? distanceToPolygonRingM(lat, lon, m.polygon) : centerDist);
+
+        const areaKm2 = m.area_km2 || 0.8;
+        let eff;
+        if (inside) {
+            // Point is strictly inside this massif's polygon contour (кордон):
+            // Rank more specific microdistricts/quarters (smaller area_km2) ahead of giant macro-massifs (like Салтівка)
+            eff = -6000 + Math.min(areaKm2, 30) * 200 + centerDist * 0.06;
+        } else if (edgeDist <= 90 && areaKm2 < 4.5) {
+            // Avenue/red-line building just across the curb from a specific microdistrict snaps to it over macro-polygons
+            eff = -4950 + edgeDist * 5 + areaKm2 * 100 + centerDist * 0.06;
+        } else {
+            // Point is outside polygon contour: rank by distance to polygon border + centroid
+            eff = edgeDist + centerDist * 0.22;
+        }
+
+        const groupBonus = matchesDist ? -15 : 150;
+        scored.push({
+            m,
+            inside,
+            dist: inside ? centerDist : edgeDist,
+            edgeDist,
+            eff: eff + groupBonus
+        });
+    }
+
+    scored.sort((a, b) => a.eff - b.eff);
+    const seen = new Set();
+    const unique = [];
+    for (const item of scored) {
+        if (seen.has(item.m.name)) continue;
+        seen.add(item.m.name);
+        unique.push({
+            ...item.m,
+            inside: item.inside,
+            dist: item.dist,
+            edgeDist: item.edgeDist,
+            eff: Math.round(item.eff)
+        });
+        if (unique.length >= 5) break;
+    }
+    return unique;
+}
+
+function renderMassifChips() {
+    if (!elements.massifChips) return;
+    elements.massifChips.innerHTML = '';
+    const activeVal = (elements.massif?.value || '').trim().toLowerCase();
+
+    nearbyMassifPool.forEach(m => {
+        const isSelected = m.name.toLowerCase() === activeVal;
+        const chip = document.createElement('span');
+        chip.className = 'chip' + (isSelected ? ' active' : '');
+        const badgeText = m.inside ? 'в межах' : formatDist(m.dist);
+        chip.innerHTML = `${isSelected ? '✓' : ''} ${m.name} <span class="chip-dist">${badgeText}</span>`;
+        chip.onclick = () => {
+            setMassifField(m.name, m.group, m.dist, m.inside);
+        };
+        elements.massifChips.appendChild(chip);
+    });
+}
+
+function computeLandmarksAndMetro(lat, lon, distOverride = '', stIdOverride = null, preserveManualMassif = false) {
+    // 1. Auto-detect Massif (Масив) based on District, Street & Coordinates
+    const activeDist = distOverride || elements.district.value || '';
+    const activeStId = stIdOverride ?? selectedStreetId;
+    if (massifsData.length > 0) {
+        const topMassifs = detectMassifsForPoint(lat, lon, activeDist, activeStId);
+        nearbyMassifPool = topMassifs;
+        if (!preserveManualMassif && topMassifs.length > 0) {
+            setMassifField(topMassifs[0].name, topMassifs[0].group, topMassifs[0].dist, topMassifs[0].inside);
+        } else {
+            renderMassifChips();
+        }
+    }
+
+    // 2. Auto-detect Nearest Metro Station ONLY if within METRO_AUTO_RADIUS_M (1.8 km)
     if (metroData.length > 0) {
         const sortedMetros = metroData
             .map(m => ({ ...m, dist: getHaversineDistance(lat, lon, m.lat, m.lon) }))
             .sort((a, b) => a.dist - b.dist);
 
         const closest = sortedMetros[0];
-        if (closest && closest.dist <= 5800) {
+        if (closest && closest.dist <= METRO_AUTO_RADIUS_M) {
             elements.metro.value = closest.name;
             updateMetroHint(closest);
         } else {
             elements.metro.value = 'Нет';
-            elements.metroHint.textContent = closest ? `Ближайшая ст. «${closest.name}» — ${formatDist(closest.dist)}` : 'Нет данных';
+            elements.metroHint.textContent = closest
+                ? `В радиусе ${(METRO_AUTO_RADIUS_M / 1000).toFixed(1)} км метро нет • ближайшая ст. «${closest.name}» (${formatDist(closest.dist)})`
+                : 'Нет данных';
         }
 
-        const altMetros = sortedMetros.filter(m => m.dist <= 2200).slice(0, 3);
+        const inRadiusMetros = sortedMetros.filter(m => m.dist <= 2000).slice(0, 3);
+        const chipMetros = inRadiusMetros.length > 0 ? inRadiusMetros : (closest ? [closest] : []);
         elements.metroChips.innerHTML = '';
-        if (altMetros.length > 1) {
-            altMetros.forEach(m => {
+        if (chipMetros.length > 1 || (closest && closest.dist > METRO_AUTO_RADIUS_M)) {
+            chipMetros.forEach(m => {
                 const chip = document.createElement('span');
                 chip.className = 'chip' + (elements.metro.value === m.name ? ' active' : '');
                 chip.innerHTML = `🚇 ${m.name} <span class="chip-dist">${formatDist(m.dist)}</span>`;
                 chip.onclick = () => {
-                    elements.metro.value = m.name;
-                    updateMetroHint(m);
-                    Array.from(elements.metroChips.children).forEach(c => c.classList.remove('active'));
-                    chip.classList.add('active');
+                    if (elements.metro.value === m.name && m.dist > METRO_AUTO_RADIUS_M) {
+                        elements.metro.value = 'Нет';
+                        elements.metroHint.textContent = `В радиусе ${(METRO_AUTO_RADIUS_M / 1000).toFixed(1)} км метро нет • ближайшая ст. «${m.name}» (${formatDist(m.dist)})`;
+                        chip.classList.remove('active');
+                    } else {
+                        elements.metro.value = m.name;
+                        updateMetroHint(m);
+                        Array.from(elements.metroChips.children).forEach(c => c.classList.remove('active'));
+                        chip.classList.add('active');
+                    }
                 };
                 elements.metroChips.appendChild(chip);
             });
         }
     }
 
+    // 3. Auto-detect Landmarks (Ориентир) — concrete POIs (parks, malls, markets, landmarks) without repeating Massifs
     if (landmarksData.length > 0) {
-        const withDist = landmarksData
+        const activeMassifLower = (elements.massif?.value || '').trim().toLowerCase();
+        const pois = landmarksData
+            .filter(l => l.type !== 'area' && l.name.toLowerCase() !== activeMassifLower)
             .map(l => ({ ...l, dist: getHaversineDistance(lat, lon, l.lat, l.lon) }))
-            .filter(l => l.dist <= 2800)
+            .filter(l => l.dist <= 2400)
             .sort((a, b) => a.dist - b.dist);
-
-        const areas = withDist.filter(l => l.type === 'area' && l.dist <= 2000);
-        const pois = withDist.filter(l => l.type !== 'area' && l.dist <= 1800);
 
         const autoPicked = [];
         const pickedNames = new Set();
-
-        if (areas.length > 0) {
-            autoPicked.push(areas[0]);
-            pickedNames.add(areas[0].name.toLowerCase());
-        }
-
         const usedTypes = new Set();
+
         for (const p of pois) {
             if (autoPicked.length >= 3) break;
             if (pickedNames.has(p.name.toLowerCase())) continue;
-            if (!usedTypes.has(p.type) || p.dist <= 450) {
+            if (!usedTypes.has(p.type) || p.dist <= 180) {
                 autoPicked.push(p);
                 pickedNames.add(p.name.toLowerCase());
                 usedTypes.add(p.type);
             }
         }
 
-        for (const item of [...pois, ...areas]) {
+        for (const item of pois) {
             if (autoPicked.length >= 3) break;
             if (!pickedNames.has(item.name.toLowerCase())) {
                 autoPicked.push(item);
@@ -2399,12 +2858,12 @@ function computeLandmarksAndMetro(lat, lon) {
 
         const chipCandidates = [];
         const seenChip = new Set();
-        for (const item of [...autoPicked, ...areas.slice(0, 3), ...pois.slice(0, 6)]) {
+        for (const item of [...autoPicked, ...pois.slice(0, 8)]) {
             const k = item.name.toLowerCase();
             if (seenChip.has(k)) continue;
             seenChip.add(k);
             chipCandidates.push(item);
-            if (chipCandidates.length >= 8) break;
+            if (chipCandidates.length >= 7) break;
         }
         nearbyLandmarkPool = chipCandidates;
         renderLandmarkChips();
@@ -2464,9 +2923,11 @@ function toggleLandmarkInTextarea(name) {
 function resetAutoComputedFields() {
     clearSelectedJK();
     setDistrictSilently('');
+    nearbyMassifPool = [];
+    setMassifField('');
     activePostCode = 0;
     elements.metro.value = '';
-    elements.metroHint.textContent = 'Подтянется автоматически по координатам дома';
+    elements.metroHint.textContent = 'Определяется автоматически, если станция есть в радиусе 1.8 км';
     elements.metroChips.innerHTML = '';
     elements.landmark.value = '';
     elements.landmarkChips.innerHTML = '';
@@ -2488,6 +2949,7 @@ function clearEntireForm() {
     elements.apartment.value = '';
     selectedStreetId = null;
     nearbyLandmarkPool = [];
+    nearbyMassifPool = [];
     resetAutoComputedFields();
     refreshPurpleDotsLayer();
     if (map) {
@@ -2511,6 +2973,7 @@ function copyFullCard() {
         lines.push(`Адреса: ${addrLine}`);
     }
     if (elements.district.value) lines.push(`Район: ${elements.district.value}`);
+    if (elements.massif?.value) lines.push(`Масив: ${elements.massif.value}`);
     if (selectedJK) {
         lines.push(`ЖК: ${selectedJK.jk_name}${elements.jkClass.value ? ' (' + elements.jkClass.value + ')' : ''}`);
     }

@@ -144,303 +144,190 @@ FALLBACK_CLASS_BY_NAME = {
     "ЖК Науковий": "Бізнес",
 }
 
-# Exact house overrides (replaces auto-bound list when phases share a marketing streetAddress)
+# Exact house overrides ONLY where registry uses a different street ID or corpus format than LUN's text
 SLUG_EXACT_HOUSES = {
-    "svoboda": [(2763, "30")],
-    "svoboda-2": [(2763, "32")],
     "cheremushky": [(3547, "65-Г, корп. 1")],
     "cheremushky-2": [(3547, "65-Г, корп. 2")],
-    "molodizhnyi": [(200040, "48"), (200040, "48-Б")],
-    "molodizhnyi-2": [(200040, "48-В"), (200040, "46")],
-    "balakirieva": [(200070, "19-А"), (200070, "21-А"), (200070, "23-А")],
-}
-
-# Extra verified registry bindings appended to LUN projects
-SLUG_EXTRA_HOUSES = {
+    "molodizhnyi": [(200040, "48")],
+    "molodizhnyi-2": [(200040, "48-В")],
     "budynok-na-sumskii": [(4058, "77/1")],
     "monte-plaza": [(3107, "45/1"), (3107, "45/2"), (3107, "45/3")],
-    "zhuravli": [(2027, "158")],
     "kaskad": [(3060, "20")],
-    "luxemburg": [(2564, "3"), (2564, "15-А")],
-    "nimetskyi-proekt-hryhorivske-shose": [(2937, "28"), (2937, "30")],
-    "now": [(3070, "20-Б")],
-    "iskrynskyi": [(2791, "19-А"), (2791, "19-Б"), (2791, "19-В"), (2791, "19-Г"), (2791, "19-Д"), (2791, "19-Ж")],
-    "biblyka-st-4": [(2615, "4, корп. 3")],
-    "sofiivskyi": [(3147, "35")],
-    "sadovyi": [(3845, "13")],
-    "velozavodska-st": [(2297, "37"), (2297, "37-А"), (2297, "35"), (2297, "38")],
+    "luxemburg": [(2564, "3")],
+    "iskrynskyi": [(2791, "19-В"), (2791, "19-Б"), (2791, "19-Г"), (2791, "19-Ж")],
     "valentynivska-st-haribaldi-st": [(2206, "55")],
-    "komfort-na-saltivtsi": [(2632, "5-А")],
-    "dmytrivska-st-19": [(2573, "19"), (2573, "19, корп. 2")],
-    "levada": [(3119, "1"), (3119, "1-Б"), (3119, "3-Б"), (3119, "3-Г")],
-    "oleksiivski-akvareli": [(200040, "54"), (200040, "54-А")],
-    "plekhanivska": [(200032, "18-Б"), (200032, "18-В")],
-    "poltavskyi-shliakh": [(3651, "28/19"), (3651, "28/19-Д")],
-    "promin": [(200006, "193-А"), (200006, "193-Б")],
-    "zhuravlevskaia-sloboda-townhouse": [(3094, "8")],
-    "perspektyva-raduzhnaia": [(200049, "163"), (200049, "165"), (200049, "167")],
-    "myru-3": [(3265, "41"), (3265, "43"), (3265, "47"), (3265, "49"), (3265, "51"), (3265, "53")],
-    "myru-4": [(3265, "55"), (3265, "57"), (3265, "59"), (3265, "61")],
-    "klemenova-dacha": [(4895, "11, корп. 1"), (4895, "11, корп. 2"), (4895, "11, корп. 3"), (4895, "12"), (4895, "14")],
+    "klemenova-dacha": [(4895, "11"), (4895, "12"), (4895, "14"), (4896, "15")],
+    "concept-house-futurium": [(4349, "81"), (4349, "83")],
+    "bonaparte": [(3152, "4-Б")],
+    "kontorskyi": [(4327, "15")],
+    "kontorskyi-2": [(4327, "10")],
 }
 
-SLUG_TITLE_OVERRIDE = {
-    "biblyka-st-4": ("ЖК Олівія (вул. Біблика, 4)", ["ЖК Олівія", "ЖК Оливия", "ЖК вул. Біблика, 4", "Другої П'ятирічки 4", "Второй Пятилетки 4"]),
-    "valentynivska-st-haribaldi-st": ("ЖК вул. Валентинівська, 55", ["ЖК по вул. Валентинівській", "вул. Валентинівська / вул. Гарібальді"]),
-    "perspektyva-raduzhnaia": ("ЖК Перспектива Радужна (просп. Байрона, 163)", ["ЖК на просп. Байрона", "ЖК Перспектива Радужная", "Героїв Сталінграда 163"]),
-    "velozavodska-st": ("ЖК вул. Велозаводська, 37", ["ЖК вул. Велозаводська", "ЖК по ул. Велозаводская", "ЖК по вул. Велозаводська", "Велозаводская 37"]),
-    "vremena-hoda": ("ЖК Пори року", ["ЖК Дача 55", "Дача 55", "ЖК Времена года"]),
+# Extra registry bindings ONLY for houses listed in LUN's mailing_addresses that failed automatic regex due to street rename/typo on LUN
+SLUG_EXTRA_HOUSES = {
+    "kazka": [(3651, "184-А, корп. 10"), (3651, "184-А, корп. 21")],
+    "mriia": [(200438, "5")],
+    "myru-2": [(200006, "268-Г"), (200006, "268-Д")],
+    "seminarskyi": [(2937, "63")],
 }
 
-CLASSIC_KHARKIV_COMPLEXES = [
-    {
-        "jk_name": "ЖК Олімп",
-        "class": "Преміум",
-        "developer": "Авантаж",
-        "houses": [(3070, "20-В")],
-        "aliases": ["ЖК Олимп", "Культуры 20в", "Авантаж на Культури 20в"],
+RIELTOR_ALPHABET_PATHS = [
+    "/novostroyki/a-z/",
+    "/novostroyki/%D0%90/",
+    "/novostroyki/%D0%91/",
+    "/novostroyki/%D0%B2/",
+    "/novostroyki/%D0%93/",
+    "/novostroyki/%D0%94/",
+    "/novostroyki/%D0%95/",
+    "/novostroyki/%D0%96/",
+    "/novostroyki/%D0%97/",
+    "/novostroyki/%D0%86/",
+    "/novostroyki/%D0%9A/",
+    "/novostroyki/%D0%9B/",
+    "/novostroyki/%D0%9C/",
+    "/novostroyki/%D0%9D/",
+    "/novostroyki/%D0%9E/",
+    "/novostroyki/%D0%9F/",
+    "/novostroyki/%D0%A0/",
+    "/novostroyki/%D0%A1/",
+    "/novostroyki/%D0%A2/",
+    "/novostroyki/%D0%A3/",
+    "/novostroyki/%D0%A4/",
+    "/novostroyki/%D0%A7/",
+    "/novostroyki/%D0%AE/",
+    "/novostroyki/%D0%AF/",
+]
+
+# Explicit Rieltor ID -> LUN slug mapping for disambiguation
+RIELTOR_ID_TO_LUN_SLUG = {
+    15416: "raiduzhnyi",        # ЖК Райдужний (вул. Зубарєва, 34)
+    18075: "raiduzhnyi-zhb1",   # ЖК Райдужний (просп. Льва Ландау, 52)
+    14279: "yuvileinyi",        # ЖК Ювілейний (просп. Ювілейний, 67-Б)
+}
+
+# The 16 Rieltor.ua complexes (n21xxx) that are 2000s secondary-market buildings without a dedicated LUN /new/ page
+RIELTOR_CLASSIC_BY_ID = {
+    21183: {
+        "jk_name": "ЖК Атолл",
+        "class": "Бізнес",
+        "developer": "Житлобуд-2",
+        "houses": [(2886, "52")],
+        "aliases": ["ЖК Атол", "Клапцова 52", "Петра Болбочана 52"],
     },
-    {
-        "jk_name": "ЖК Піонер",
-        "class": "Преміум",
-        "developer": "Авантаж",
-        "houses": [(4158, "9")],
-        "aliases": ["ЖК Пионер", "Тринклера 9", "Будинок на Трінклера 9"],
+    21193: {
+        "jk_name": "ЖК Адмірал",
+        "class": "Бізнес",
+        "developer": "Констракшн Груп",
+        "houses": [(2893, "258")],
+        "aliases": ["ЖК Адмирал", "Клочковская 258"],
     },
-    {
-        "jk_name": "ЖК Ковчег",
+    21203: {
+        "jk_name": "ЖК Атлант",
         "class": "Бізнес",
         "developer": "МКДУ",
-        "houses": [(2974, "20")],
-        "aliases": ["Космическая 20", "ЖК на Космічній 20"],
+        "houses": [(2937, "57")],
+        "aliases": ["Комсомольське шосе 57", "Григорівське шосе 57"],
     },
-    {
-        "jk_name": "ЖК Слобідська Садиба",
-        "class": "Преміум",
-        "developer": "Моноліт",
-        "houses": [(2505, "26")],
-        "aliases": ["ЖК Слободская Усадьба", "Данилевского 26"],
-    },
-    {
-        "jk_name": "ЖК Світлий Дім",
+    21209: {
+        "jk_name": "ЖК Будинок на Петровського",
         "class": "Бізнес",
-        "developer": "МКДУ",
-        "houses": [(2522, "33-Г")],
-        "aliases": ["ЖК Светлый Дом", "23 Августа 33г", "23 Серпня 33г"],
+        "developer": "Житлобуд-2",
+        "houses": [(3577, "35-А")],
+        "aliases": ["ЖК Дом на Петровского", "Ярослава Мудрого 35а", "Петровского 35а"],
     },
-    {
-        "jk_name": "ЖК Парус",
-        "class": "Бізнес",
-        "developer": "Моноліт",
-        "houses": [(2147, "36-А")],
-        "aliases": ["Парус на Песках", "Барабашова 36а", "ЖК Парус на Салтівці"],
-    },
-    {
+    21207: {
         "jk_name": "ЖК Гвардійський",
         "class": "Бізнес",
         "developer": "Житлобуд-2",
         "houses": [(2418, "33")],
         "aliases": ["ЖК Гвардейский", "Гвардейцев Широнинцев 33"],
     },
-    {
-        "jk_name": "ЖК Союз",
+    21162: {
+        "jk_name": "ЖК Джерело",
+        "class": "Бізнес",
+        "developer": "Консоль",
+        "houses": [(200056, "49")],
+        "aliases": ["Мінська 49", "Дмитра Антоненка 49", "ЖК Родник"],
+    },
+    21233: {
+        "jk_name": "ЖК Дружба",
+        "class": "Комфорт",
+        "developer": "ТММ",
+        "houses": [(200627, "228-А"), (200627, "228-Б")],
+        "aliases": ["Дружбы Народов 228а", "Дружбы Народов 238а", "Соборності України 228-А"],
+    },
+    21212: {
+        "jk_name": "ЖК Зелена шапочка",
+        "class": "Комфорт",
+        "developer": "Житлобуд-2",
+        "houses": [(2045, "144")],
+        "aliases": ["ЖК Зеленая шапочка", "Академика Павлова 144"],
+    },
+    21190: {
+        "jk_name": "ЖК Олімп",
+        "class": "Преміум",
+        "developer": "Авантаж",
+        "houses": [(3070, "20-В")],
+        "aliases": ["ЖК Олимп", "Культуры 20в", "Авантаж на Культури 20в"],
+    },
+    21200: {
+        "jk_name": "ЖК Острів",
+        "class": "Преміум",
+        "developer": "МКДУ",
+        "houses": [(3786, "25")],
+        "aliases": ["ЖК Остров", "Римарська 25", "Рымарская 25"],
+    },
+    21185: {
+        "jk_name": "ЖК Павлово Поле",
+        "class": "Бізнес",
+        "developer": "МКДУ",
+        "houses": [(3107, "77")],
+        "aliases": ["ЖК Павлове Поле", "просп. Науки 77", "Ленина 77"],
+    },
+    21188: {
+        "jk_name": "ЖК Парус",
         "class": "Бізнес",
         "developer": "Моноліт",
-        "houses": [(3547, "61-Ж")],
-        "aliases": ["ЖК Моноліт на Перемоги", "просп. Перемоги, 61-Ж", "Победы 61ж"],
+        "houses": [(2147, "36-А")],
+        "aliases": ["Парус на Песках", "Барабашова 36а", "ЖК Парус на Салтівці"],
     },
-    {
-        "jk_name": "ЖК Форпост",
-        "class": "Комфорт",
-        "developer": "Форпост",
-        "houses": [(200040, "42")],
-        "aliases": ["ЖК Целіноградська, 42", "ЖК по ул. Целиноградская, 42", "Мирослава Мисли 42"],
+    21202: {
+        "jk_name": "ЖК Піонер",
+        "class": "Преміум",
+        "developer": "Авантаж",
+        "houses": [(4158, "9")],
+        "aliases": ["ЖК Пионер", "Тринклера 9", "Будинок на Трінклера 9"],
     },
-    {
-        "jk_name": "ЖК Садова Гірка",
+    21163: {
+        "jk_name": "ЖК Садова гірка",
         "class": "Бізнес",
         "developer": "Авантаж",
         "houses": [(2505, "40"), (2505, "42")],
-        "aliases": ["ЖК Садовая Горка", "Данилевского 40", "Данилевского 42"],
+        "aliases": ["ЖК Садова Гірка", "ЖК Садовая Горка", "Данилевского 40", "Данилевского 42"],
     },
-    {
-        "jk_name": "ЖК Адмірал",
-        "class": "Бізнес",
-        "developer": "Констракшн Груп",
-        "houses": [(2893, "258")],
-        "aliases": ["ЖК Адмирал", "Клочковская 258"],
-        "url": "https://lun.ua/sale/kharkiv/admiral",
-    },
-    {
-        "jk_name": "ЖК Моноліт на Чернишевській",
-        "class": "Бізнес",
+    21197: {
+        "jk_name": "ЖК Слобідська садиба",
+        "class": "Преміум",
         "developer": "Моноліт",
-        "houses": [(4349, "31-А")],
-        "aliases": ["ЖК Моноліт", "ЖК Монолит", "Чернышевская 31а"],
+        "houses": [(2505, "26")],
+        "aliases": ["ЖК Слобідська Садиба", "ЖК Слободская Усадьба", "Данилевского 26"],
     },
-    {
-        "jk_name": "ЖК Джокер",
+    21201: {
+        "jk_name": "ЖК Світлий дім",
         "class": "Бізнес",
         "developer": "МКДУ",
-        "houses": [(200624, "14")],
-        "aliases": ["Героев Труда 14", "Нескорених 14"],
+        "houses": [(2522, "33-Г")],
+        "aliases": ["ЖК Світлий Дім", "ЖК Светлый Дом", "23 Августа 33г", "23 Серпня 33г"],
     },
-    {
-        "jk_name": "ЖК Садиба на Дерев'янка",
-        "class": "Бізнес",
-        "developer": "Консоль",
-        "houses": [(2546, "16-А")],
-        "aliases": ["ЖК Садиба", "ЖК Консоль на Балакірєва", "Деревянко 16а"],
-    },
-    {
-        "jk_name": "ЖК Джерело",
-        "class": "Комфорт",
-        "developer": "Флас",
-        "houses": [(3519, "24-Б")],
-        "aliases": ["Отакара Яроша 24б", "ЖК Родник на Отакара Яроша"],
-    },
-    {
-        "jk_name": "ЖК Авеню 5",
-        "class": "Бізнес",
-        "developer": "Global Development",
-        "houses": [(3519, "1"), (3519, "3")],
-        "aliases": ["ЖК Авеню5", "ЖК 5th Avenue", "Отакара Яроша 1"],
-    },
-    {
-        "jk_name": "ЖК Епоха",
-        "class": "Комфорт",
-        "developer": "",
-        "houses": [(2869, "19-В")],
-        "aliases": ["ЖК Эпоха", "Киргизская 19в"],
-    },
-    {
-        "jk_name": "ЖК Золочівський",
-        "class": "Економ",
-        "developer": "Мегаінвестбуд",
-        "houses": [(2752, "22")],
-        "aliases": ["ЖК Золочевский", "2-й Золочевский пер. 22"],
-    },
-    {
-        "jk_name": "ЖК Меркурій",
-        "class": "Комфорт",
-        "developer": "",
-        "houses": [(200484, "9-А")],
-        "aliases": ["ЖК Меркурий", "Родниковая 9а", "Яни Червоної 9а"],
-    },
-    {
-        "jk_name": "ЖК Олексіївські Акварелі-2",
-        "class": "Комфорт",
-        "developer": "Воробйові гори",
-        "houses": [(2005, "18/31")],
-        "aliases": ["ЖК Алексеевские Акварели-2", "Авиахимическая 18/31"],
-    },
-    {
-        "jk_name": "ЖК Левада-2",
-        "class": "Комфорт",
-        "developer": "Трест Житлобуд-1",
-        "houses": [(2696, "8-Б"), (3119, "2-Б")],
-        "aliases": ["ЖК Левада 2", "Заливная 8б", "Елизаветинская 2б"],
-    },
-    {
-        "jk_name": "МЖК Інтернаціоналіст",
-        "class": "Комфорт",
-        "developer": "МЖК Інтернаціоналіст",
-        "houses": [(2932, "45-Б"), (4716, "38"), (4716, "39"), (4716, "40"), (4716, "41")],
-        "aliases": ["МЖК Интернационалист", "Кричевского", "Леся Сердюка 45б"],
-    },
-    {
-        "jk_name": "Таунхаус Гармонія",
-        "class": "Комфорт",
-        "developer": "",
-        "houses": [(200056, "79")],
-        "aliases": ["Таунхаус Гармония", "Минская 79", "Дмитра Антоненка 79"],
-    },
-    {
-        "jk_name": "ЖК вул. Сухумська, 24",
-        "class": "Бізнес",
-        "developer": "Житлобуд-2",
-        "houses": [(4064, "24")],
-        "aliases": ["ЖК по ул. Сухумская, 24", "ЖК Сухумська 24", "Жилстрой-2 на Сухумской"],
-    },
-    {
-        "jk_name": "ЖК вул. Культури, 22-В",
-        "class": "Бізнес",
-        "developer": "Житлобуд-2",
-        "houses": [(3070, "22-В")],
-        "aliases": ["ЖК по ул. Культуры, 22в", "Культури 22в"],
-    },
-    {
-        "jk_name": "ЖК вул. Біблика, 25-А",
-        "class": "Комфорт",
-        "developer": "Авантаж",
-        "houses": [(2615, "25-А")],
-        "aliases": ["ЖК по ул. Второй Пятилетки, 25а", "ЖК Другої П'ятирічки, 25-А", "Авантаж на Пятилетки"],
-    },
-    {
-        "jk_name": "ЖК вул. Северина Потоцького, 26",
-        "class": "Економ",
-        "developer": "Авантаж",
-        "houses": [(3935, "26")],
-        "aliases": ["ЖК по ул. 17-го Партсъезда, 26", "Сімнадцятого Партз'їзду, 26", "Авантаж на Потоцького"],
-    },
-    {
-        "jk_name": "ЖК вул. Греківська, 5",
-        "class": "Комфорт",
-        "developer": "Трест Житлобуд-1",
-        "houses": [(2475, "5")],
-        "aliases": ["ЖК по ул. Грековская, 5", "Греківська 5"],
-    },
-    {
-        "jk_name": "ЖК вул. Клочківська, 197",
-        "class": "Комфорт",
-        "developer": "Трест Житлобуд-1",
-        "houses": [(2893, "197-Б"), (2893, "197-В"), (2893, "197-Г")],
-        "aliases": ["ЖК по ул. Клочковская, 197", "Клочковская 197б", "Клочковская 197в"],
-    },
-    {
-        "jk_name": "ЖК вул. Соборності України, 238-А",
-        "class": "Бізнес",
-        "developer": "ТММ",
-        "houses": [(200627, "238-А")],
-        "aliases": ["ЖК по ул. Дружбы Народов, 238а", "ЖК Дружби Народів, 238-А", "ТММ на Дружбы Народов"],
-    },
-    {
-        "jk_name": "ЖК вул. Ахсарова, 3-В",
-        "class": "Бізнес",
-        "developer": "ТММ",
-        "houses": [(2107, "3-В")],
-        "aliases": ["ЖК по ул. Ахсарова, 3в", "ТММ на Ахсарова"],
-    },
-    {
-        "jk_name": "ЖК вул. Старицького, 13",
-        "class": "Бізнес",
-        "developer": "С-Інвест",
-        "houses": [(4020, "13")],
-        "aliases": ["ЖК по ул. Старицкого, 13", "Старицького 13"],
-    },
-    {
-        "jk_name": "ЖК просп. Героїв Харкова, 131",
-        "class": "Комфорт",
-        "developer": "Трест Житлобуд-1",
-        "houses": [(3307, "131"), (3307, "131-А"), (3307, "131-В")],
-        "aliases": ["ЖК Героїв Харкова, 131", "ЖК по пр. Московский, 131"],
-    },
-    {
-        "jk_name": "ЖК просп. Тракторобудівників, 2-Г",
-        "class": "Економ",
-        "developer": "Трест Житлобуд-1",
-        "houses": [(4149, "2-Г")],
-        "aliases": ["ЖК Тракторобудівників", "ЖК по пр. Тракторостроителей, 2г"],
-    },
-    {
-        "jk_name": "ЖК вул. Полтавський Шлях, 177-Б",
-        "class": "Економ",
-        "developer": "",
-        "houses": [(3651, "177-А")],
-        "address_override": "вул. Полтавський Шлях, 177-Б",
-        "aliases": ["ЖК Дім на Полтавському 177б", "Полтавский Шлях 177б"],
-    },
-]
+}
+
+SLUG_EXTRA_ALIASES = {
+    "biblyka-st-4": ["ЖК Олівія", "ЖК Оливия", "Другої П'ятирічки 4", "Второй Пятилетки 4"],
+    "valentynivska-st-haribaldi-st": ["ЖК вул. Валентинівська, 55", "ЖК по вул. Валентинівській"],
+    "velozavodska-st": ["ЖК вул. Велозаводська, 37", "ЖК по ул. Велозаводская", "Велозаводская 37"],
+    "vremena-hoda": ["ЖК Пори року", "ЖК Дача 55", "Дача 55"],
+    "oleksandrivskyi-ave-69e": ["ЖК просп. Олександрівський, 69-Д", "Косиора 69д", "Косиора 69е"],
+}
 
 
 def http_get(url: str, timeout: int = 20):
@@ -1041,27 +928,117 @@ def norm_dedup_key(name: str) -> str:
     return s
 
 
-def build_complexes(lun_raw, so_raw, dr_raw, streets_list, houses_db, districts_geo):
+def download_rieltor_jks():
+    all_items = []
+    seen_hrefs = set()
+    for path in RIELTOR_ALPHABET_PATHS:
+        url = "https://rieltor.ua/harkov" + path
+        status, _, html = http_get(url)
+        if status == 404 and "%D0%92" in url:
+            status, _, html = http_get(url.replace("%D0%92", "%D0%B2"))
+        if status != 200 or not html:
+            continue
+        items = re.findall(
+            r'<div class="entity-hub_list-entity-hub-item">\s*<a href="([^"]+)">([^<]+)</a>',
+            html,
+        )
+        for href, name in items:
+            name_clean = name.strip()
+            href_clean = href.strip()
+            if href_clean not in seen_hrefs:
+                seen_hrefs.add(href_clean)
+                m_id = re.search(r"-n(\d+)/?$", href_clean)
+                all_items.append({
+                    "name": name_clean,
+                    "href": "https://rieltor.ua" + href_clean if href_clean.startswith("/") else href_clean,
+                    "rieltor_id": int(m_id.group(1)) if m_id else None,
+                    "tab": path,
+                })
+    return all_items
+
+
+def norm_rieltor_match_key(s: str) -> str:
+    s = fix_mixed_cyrillic(s or "").lower().strip()
+    s = re.sub(r"^(?:жк|жб|жд|жбк|км|кг|мжк|кжк|кб|клубний\s+будинок)\s+", "", s)
+    s = re.sub(r"^(?:жк|жб|жд|жбк|км|кг|мжк|кжк|кб|клубний\s+будинок)\s+", "", s)
+    s = re.sub(r"['’`ʼ\"«».,\-/()]", " ", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def build_complexes(rieltor_list, lun_raw, streets_list, houses_db, districts_geo):
     binder = AddressBinder(streets_list, houses_db)
     streets_by_id = binder.streets_by_id
-    projects = []
 
-    # 1. Process all valid LUN complexes
+    # Index LUN records by slug, exact normalized title, and synonyms
+    lun_by_slug = {item["slug"]: item for item in lun_raw if item.get("slug")}
+    lun_by_exact_norm = defaultdict(list)
+    lun_by_syn_norm = defaultdict(list)
     for item in lun_raw:
-        raw_name = (item.get("name") or "").strip()
-        slug = item.get("slug", "")
-        if not raw_name or slug in SKIP_LUN_SLUGS:
+        if not item.get("name"):
             continue
+        nk = norm_rieltor_match_key(item["name"])
+        if nk:
+            lun_by_exact_norm[nk].append(item)
+        for syn in [item.get("project_synonym", "")] + (item.get("synonyms") or "").split(","):
+            snk = norm_rieltor_match_key(syn)
+            if snk:
+                lun_by_syn_norm[snk].append(item)
+
+    projects = []
+    for r_entry in rieltor_list:
+        rid = r_entry.get("rieltor_id")
+        r_name = fix_mixed_cyrillic(r_entry["name"]).strip()
+        r_url = r_entry.get("href", "")
+
+        # 1. Check if this Rieltor JK is one of the 16 classic 2000s complexes (n21xxx)
+        if rid in RIELTOR_CLASSIC_BY_ID:
+            ex = RIELTOR_CLASSIC_BY_ID[rid]
+            valid_houses = [[sid, hl] for sid, hl in ex["houses"] if str(sid) in houses_db and hl in houses_db[str(sid)]]
+            sid0, hl0 = valid_houses[0]
+            h0 = houses_db[str(sid0)][hl0]
+            dist = DISTRICT_BY_ID.get(h0[2], detect_district_by_coords(h0[0], h0[1], districts_geo))
+            addr_parts = [f"{streets_by_id[sid]['short_type']} {streets_by_id[sid]['current_name']}, {hl}" for sid, hl in valid_houses]
+            projects.append({
+                "jk_name": r_name,
+                "address": "; ".join(addr_parts),
+                "class": ex["class"],
+                "district": dist,
+                "houses": valid_houses,
+                "aliases": [a for a in ex.get("aliases", []) if a.lower() != r_name.lower()],
+                "developer": ex.get("developer", ""),
+                "lat": round(h0[0], 6),
+                "lon": round(h0[1], 6),
+                "url": r_url,
+                "rieltor_id": rid,
+            })
+            continue
+
+        # 2. Match to LUN complex
+        item = None
+        if rid in RIELTOR_ID_TO_LUN_SLUG:
+            slug = RIELTOR_ID_TO_LUN_SLUG[rid]
+            item = lun_by_slug.get(slug)
+        if not item:
+            nk = norm_rieltor_match_key(r_name)
+            if nk in lun_by_exact_norm:
+                item = lun_by_exact_norm[nk][0]
+            elif nk in lun_by_syn_norm:
+                item = lun_by_syn_norm[nk][0]
+
+        if not item:
+            continue
+
+        slug = item.get("slug", "")
         locality = (item.get("locality") or "").strip()
         lat, lon = item.get("lat"), item.get("lon")
 
         if slug in SLUG_EXACT_HOUSES:
             bound = [[sid, hl] for sid, hl in SLUG_EXACT_HOUSES[slug] if str(sid) in houses_db and hl in houses_db[str(sid)]]
         else:
+            # Strictly use LUN's commissioned "Статус будівництва" mailing_addresses if present;
+            # only fall back to header street_address when mailing_addresses is empty!
             addr_candidates = list(item.get("mailing_addresses") or [])
-            if item.get("street_address") and not item.get("mailing_addresses"):
-                addr_candidates.append(item["street_address"])
-            elif item.get("street_address"):
+            if not addr_candidates and item.get("street_address"):
                 addr_candidates.append(item["street_address"])
             bound = binder.bind_addresses(addr_candidates, lat, lon, locality)
 
@@ -1072,26 +1049,24 @@ def build_complexes(lun_raw, so_raw, dr_raw, streets_list, houses_db, districts_
                     bound.append([sid, hl])
                     seen.add((sid, hl))
 
-        if slug in SLUG_TITLE_OVERRIDE:
-            jk_name, extra_al = SLUG_TITLE_OVERRIDE[slug]
-            extra_al = list(extra_al)
-        else:
-            jk_name, extra_al = format_canonical_jk_name(raw_name, bound, streets_by_id, locality)
+        extra_al = list(SLUG_EXTRA_ALIASES.get(slug, []))
+        _, fmt_al = format_canonical_jk_name(item.get("name", ""), bound, streets_by_id, locality)
+        extra_al.extend(fmt_al)
 
         aliases = []
-        for src_syn in [item.get("project_synonym", "")] + (item.get("synonyms") or "").split(",") + extra_al:
+        for src_syn in [item.get("name", ""), item.get("project_synonym", "")] + (item.get("synonyms") or "").split(",") + extra_al:
             s_clean = fix_mixed_cyrillic(src_syn).strip().strip("\\").strip()
             if s_clean.count('"') == 1:
                 s_clean = s_clean.replace('"', "").strip()
-            if s_clean and s_clean.lower() != jk_name.lower() and s_clean not in aliases:
+            if s_clean and s_clean.lower() != r_name.lower() and s_clean not in aliases:
                 aliases.append(s_clean)
 
         cls = CLASS_NORM.get((item.get("class_raw") or "").lower(), "")
         if not cls:
-            cls = FALLBACK_CLASS_BY_NAME.get(jk_name, "")
+            cls = FALLBACK_CLASS_BY_NAME.get(r_name, "")
         if not cls:
             dev_low = (item.get("developer") or "").lower()
-            if item.get("is_cottage") or jk_name.startswith("КМ ") or "Таунхаус" in jk_name:
+            if item.get("is_cottage") or r_name.startswith("КМ ") or "Таунхаус" in r_name:
                 cls = "Комфорт"
             elif any(k in dev_low for k in ["авантаж", "тмм", "моноліт", "мкду", "альянс"]):
                 cls = "Бізнес"
@@ -1137,7 +1112,7 @@ def build_complexes(lun_raw, so_raw, dr_raw, streets_list, houses_db, districts_
                 address_str = raw_st_addr
 
         projects.append({
-            "jk_name": jk_name,
+            "jk_name": r_name,
             "address": address_str,
             "class": cls,
             "district": district,
@@ -1146,146 +1121,12 @@ def build_complexes(lun_raw, so_raw, dr_raw, streets_list, houses_db, districts_
             "developer": (item.get("developer") or "").strip(),
             "lat": round(float(lat), 6) if lat else None,
             "lon": round(float(lon), 6) if lon else None,
-            "url": item.get("url") or "",
+            "url": item.get("url") or r_url,
+            "rieltor_url": r_url,
+            "rieltor_id": rid,
         })
 
-    by_house = {}
-    by_norm = defaultdict(list)
-    for p in projects:
-        by_norm[norm_dedup_key(p["jk_name"])].append(p)
-        for al in p["aliases"]:
-            by_norm[norm_dedup_key(al)].append(p)
-        for sid, hl in p["houses"]:
-            by_house[(sid, hl)] = p
-
-    # 2. Add Classic 2000–2012 Kharkiv Secondary-Market Complexes & Address-Named Houses
-    for ex in CLASSIC_KHARKIV_COMPLEXES:
-        valid_houses = [[sid, hl] for sid, hl in ex["houses"] if str(sid) in houses_db and hl in houses_db[str(sid)]]
-        if not valid_houses:
-            continue
-        sid0, hl0 = valid_houses[0]
-        h0 = houses_db[str(sid0)][hl0]
-
-        nk = norm_dedup_key(ex["jk_name"])
-        existing = None
-        for sid, hl in valid_houses:
-            if (sid, hl) in by_house:
-                existing = by_house[(sid, hl)]
-                break
-        if not existing and nk in by_norm:
-            for cand in by_norm[nk]:
-                if cand.get("lat") and cand.get("lon") and haversine_m(h0[0], h0[1], cand["lat"], cand["lon"]) <= 800:
-                    existing = cand
-                    break
-
-        if existing:
-            seen_h = {tuple(h) for h in existing["houses"]}
-            for sid, hl in valid_houses:
-                if (sid, hl) not in seen_h:
-                    existing["houses"].append([sid, hl])
-                    seen_h.add((sid, hl))
-                    by_house[(sid, hl)] = existing
-            for al in ex.get("aliases", []):
-                if al not in existing["aliases"] and al.lower() != existing["jk_name"].lower():
-                    existing["aliases"].append(al)
-            if not existing.get("developer") and ex.get("developer"):
-                existing["developer"] = ex["developer"]
-            if existing["houses"]:
-                parts = []
-                for sid, hl in existing["houses"]:
-                    st = streets_by_id.get(sid)
-                    if st:
-                        s_p = f"{st['short_type']} {st['current_name']}, {hl}"
-                        if s_p not in parts:
-                            parts.append(s_p)
-                existing["address"] = "; ".join(parts)
-            continue
-
-        dist = DISTRICT_BY_ID.get(h0[2], detect_district_by_coords(h0[0], h0[1], districts_geo))
-        addr_parts = [f"{streets_by_id[sid]['short_type']} {streets_by_id[sid]['current_name']}, {hl}" for sid, hl in valid_houses]
-        rec = {
-            "jk_name": ex["jk_name"],
-            "address": ex.get("address_override") or "; ".join(addr_parts),
-            "class": ex["class"],
-            "district": dist,
-            "houses": valid_houses,
-            "aliases": list(ex.get("aliases", [])),
-            "developer": ex.get("developer", ""),
-            "lat": round(h0[0], 6),
-            "lon": round(h0[1], 6),
-            "url": ex.get("url", ""),
-        }
-        projects.append(rec)
-        by_norm[nk].append(rec)
-        for sid, hl in valid_houses:
-            by_house[(sid, hl)] = rec
-
-    # 3. Enrich from StroyObzor & DOM.RIA
-    for sec in list(so_raw) + list(dr_raw):
-        nm_raw = fix_mixed_cyrillic(sec.get("name") or "").strip()
-        if not nm_raw or re.match(r"^(?:БЦ|ТЦ|ТРЦ)\b", nm_raw, re.I):
-            continue
-        nk = norm_dedup_key(nm_raw)
-        if nk in by_norm:
-            matched_cand = None
-            for cand in by_norm[nk]:
-                if not sec.get("lat") or not cand.get("lat") or haversine_m(sec["lat"], sec["lon"], cand["lat"], cand["lon"]) <= 1500:
-                    matched_cand = cand
-                    break
-            if matched_cand:
-                if not matched_cand.get("developer") and sec.get("developer"):
-                    matched_cand["developer"] = sec["developer"]
-                continue
-
-        addr_raw = sec.get("address") or ""
-        is_suburb = any(sub in addr_raw.lower() for sub in ["песочин", "пісочин", "подворки", "подвірки", "циркун", "солониців", "мала данилівка"])
-        bound = [] if is_suburb else binder.bind_addresses([addr_raw], sec.get("lat"), sec.get("lon"), "Харків")
-        if bound and any((sid, hl) in by_house for sid, hl in bound):
-            target = next(by_house[(sid, hl)] for sid, hl in bound if (sid, hl) in by_house)
-            if nm_raw not in target["aliases"] and nm_raw.lower() != target["jk_name"].lower():
-                target["aliases"].append(nm_raw)
-            continue
-
-        # Only add secondary-source complex if it has an explicit address or bound houses
-        if not bound and not addr_raw:
-            continue
-        if not bound and not sec.get("lat"):
-            continue
-
-        jk_name, extra_al = format_canonical_jk_name(nm_raw, bound, streets_by_id, "Передмістя" if is_suburb else "Харків")
-        if not re.match(r"^(ЖК|КМ|МЖК|КЖК|Таунхаус|Клубний)", jk_name, re.I):
-            jk_name = f"ЖК {jk_name}"
-
-        cls = CLASS_NORM.get((sec.get("class_raw") or "").lower(), "") or "Комфорт"
-        lat, lon = sec.get("lat"), sec.get("lon")
-        if bound:
-            sid0, hl0 = bound[0]
-            h0 = houses_db[str(sid0)][hl0]
-            lat, lon = h0[0], h0[1]
-            dist = DISTRICT_BY_ID.get(h0[2], "Шевченківський р-н")
-            addr_str = "; ".join(f"{streets_by_id[s]['short_type']} {streets_by_id[s]['current_name']}, {h}" for s, h in bound)
-        else:
-            dist = "Передмістя" if is_suburb else detect_district_by_coords(lat, lon, districts_geo)
-            addr_str = addr_raw
-
-        rec = {
-            "jk_name": jk_name,
-            "address": addr_str,
-            "class": cls,
-            "district": dist,
-            "houses": bound,
-            "aliases": extra_al,
-            "developer": (sec.get("developer") or "").strip(),
-            "lat": round(float(lat), 6) if lat else None,
-            "lon": round(float(lon), 6) if lon else None,
-            "url": sec.get("url") or "",
-        }
-        projects.append(rec)
-        by_norm[nk].append(rec)
-        for sid, hl in bound:
-            by_house[(sid, hl)] = rec
-
-    # 4. Disambiguate distinct complexes sharing identical jk_name
+    # Disambiguate distinct complexes sharing identical jk_name (e.g. the two ЖК Райдужний on Rieltor.ua)
     name_groups = defaultdict(list)
     for p in projects:
         name_groups[p["jk_name"].lower()].append(p)
@@ -1319,6 +1160,10 @@ def build_complexes(lun_raw, so_raw, dr_raw, streets_list, houses_db, districts_
             item["lon"] = p["lon"]
         if p.get("url"):
             item["url"] = p["url"]
+        if p.get("rieltor_url"):
+            item["rieltor_url"] = p["rieltor_url"]
+        if p.get("rieltor_id"):
+            item["rieltor_id"] = p["rieltor_id"]
         final_out.append(item)
 
     final_out.sort(key=lambda x: x["jk_name"].lower())
@@ -1326,29 +1171,34 @@ def build_complexes(lun_raw, so_raw, dr_raw, streets_list, houses_db, districts_
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Build comprehensive Kharkiv residential complexes database")
-    parser.add_argument("--cache-dir", default="", help="Optional directory with cached raw_*.json files")
-    parser.add_argument("--refresh", action="store_true", help="Download fresh complex data from LUN, StroyObzor, and DIM.RIA")
+    parser = argparse.ArgumentParser(description="Build Kharkiv residential complexes database from Rieltor.ua 24-tab catalog + LUN metadata")
+    parser.add_argument("--cache-dir", default="", help="Optional directory with cached rieltor_jks_list.json and raw_lun_kharkiv.json")
+    parser.add_argument("--refresh", action="store_true", help="Download fresh complex list from Rieltor.ua and LUN")
     parser.add_argument("--out", default="data/complexes.json", help="Output JSON path (default: data/complexes.json)")
     args = parser.parse_args()
 
-    if args.cache_dir and not args.refresh and os.path.exists(os.path.join(args.cache_dir, "raw_lun_kharkiv.json")):
-        with open(os.path.join(args.cache_dir, "raw_lun_kharkiv.json"), encoding="utf-8") as f:
-            lun_raw = json.load(f)
-        with open(os.path.join(args.cache_dir, "raw_stroyobzor_kharkiv.json"), encoding="utf-8") as f:
-            so_raw = json.load(f)
-        with open(os.path.join(args.cache_dir, "raw_domria_kharkiv.json"), encoding="utf-8") as f:
-            dr_raw = json.load(f)
+    rieltor_cache = os.path.join(args.cache_dir, "rieltor_jks_list.json") if args.cache_dir else ""
+    lun_cache = os.path.join(args.cache_dir, "raw_lun_kharkiv.json") if args.cache_dir else ""
+
+    if rieltor_cache and not args.refresh and os.path.exists(rieltor_cache):
+        with open(rieltor_cache, encoding="utf-8") as f:
+            rieltor_list = json.load(f)
     else:
-        lun_raw, so_raw, dr_raw = download_all_sources()
-        if args.cache_dir:
+        rieltor_list = download_rieltor_jks()
+        if rieltor_cache:
             os.makedirs(args.cache_dir, exist_ok=True)
-            with open(os.path.join(args.cache_dir, "raw_lun_kharkiv.json"), "w", encoding="utf-8") as f:
+            with open(rieltor_cache, "w", encoding="utf-8") as f:
+                json.dump(rieltor_list, f, ensure_ascii=False, indent=2)
+
+    if lun_cache and not args.refresh and os.path.exists(lun_cache):
+        with open(lun_cache, encoding="utf-8") as f:
+            lun_raw = json.load(f)
+    else:
+        lun_raw, _, _ = download_all_sources()
+        if lun_cache:
+            os.makedirs(args.cache_dir, exist_ok=True)
+            with open(lun_cache, "w", encoding="utf-8") as f:
                 json.dump(lun_raw, f, ensure_ascii=False, indent=2)
-            with open(os.path.join(args.cache_dir, "raw_stroyobzor_kharkiv.json"), "w", encoding="utf-8") as f:
-                json.dump(so_raw, f, ensure_ascii=False, indent=2)
-            with open(os.path.join(args.cache_dir, "raw_domria_kharkiv.json"), "w", encoding="utf-8") as f:
-                json.dump(dr_raw, f, ensure_ascii=False, indent=2)
 
     with open("data/streets.json", encoding="utf-8") as f:
         streets_list = json.load(f)
@@ -1357,7 +1207,7 @@ def main():
     with open("data/districts.json", encoding="utf-8") as f:
         districts_geo = json.load(f)
 
-    out = build_complexes(lun_raw, so_raw, dr_raw, streets_list, houses_db, districts_geo)
+    out = build_complexes(rieltor_list, lun_raw, streets_list, houses_db, districts_geo)
 
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
@@ -1369,11 +1219,11 @@ def main():
     with_aliases = sum(1 for x in out if x.get("aliases"))
     addr_named = [x for x in out if re.search(r"^ЖК\s+(?:вул\.|просп\.|пров\.|шосе|наб\.|б-р|пр-д|в-д)", x["jk_name"])]
 
-    print(f"Успішно збережено {len(out)} ЖК у {args.out}:")
+    print(f"Успішно збережено {len(out)} ЖК (рівно за списком Rieltor.ua) у {args.out}:")
     print(f"  - Місто Харків: {len(kharkiv_city)} ЖК | Передмістя: {len(suburbs)} ЖК")
     print(f"  - Прив'язано до будинків реєстру: {len(with_houses)} ЖК ({total_houses} корпусів/адрес)")
-    print(f"  - ЖК без комерційної назви (за адресою вулиці): {len(addr_named)}")
-    print(f"  - ЖК із народними назвами / синонімами (aliases): {with_aliases}")
+    print(f"  - ЖК за адресою вулиці: {len(addr_named)}")
+    print(f"  - ЖК із синонімами (aliases): {with_aliases}")
     print(f"  - Із заповненим класом: {sum(1 for x in out if x.get('class'))}/{len(out)}")
 
 

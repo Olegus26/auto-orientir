@@ -16,101 +16,56 @@
     "developer": "ЖИТЛОБУД-3",
     "lat": 50.028079,
     "lon": 36.258012,
-    "url": "https://lun.ua/new/kharkiv/bauhaus"
-  },
-  {
-    "jk_name": "ЖК Belobrovski",
-    "address": "пров. Білобровський, 5",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2185,
-        "5"
-      ]
-    ],
-    "aliases": [
-      "ЖК Білобрівський"
-    ],
-    "lat": 50.001587,
-    "lon": 36.216646,
-    "url": "https://lun.ua/new/kharkiv/belobrovski"
-  },
-  {
-    "jk_name": "ЖК Berlin House",
-    "address": "вул. Деркачівська, 4",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2548,
-        "4"
-      ]
-    ],
-    "aliases": [
-      "ЖК Берлін Хаус",
-      "ЖК Берлін Хауз",
-      "ЖК Університетський"
-    ],
-    "developer": "С-Інвест",
-    "lat": 50.003612,
-    "lon": 36.215725,
-    "url": "https://lun.ua/new/kharkiv/berlin-house"
+    "url": "https://lun.ua/new/kharkiv/bauhaus",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/Bauhaus-n18678/",
+    "rieltor_id": 18678
   },
   {
     "jk_name": "ЖК BonAparte",
-    "address": "пров. Лосівський",
+    "address": "пров. Лосівський, 4-Б",
     "class": "Бізнес",
     "district": "Холодногірський р-н",
-    "houses": [],
+    "houses": [
+      [
+        3152,
+        "4-Б"
+      ]
+    ],
     "aliases": [
       "ЖК Бон Апарт"
     ],
     "developer": "ЖИТЛОБУД-3",
-    "lat": 49.995858,
-    "lon": 36.217699,
-    "url": "https://lun.ua/new/kharkiv/bonaparte"
-  },
-  {
-    "jk_name": "ЖК Comfort House Pesochin",
-    "address": "Пісочин, вул. Комарова, 27",
-    "class": "Економ",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "ЖК Комфорт Хауз Песочин"
-    ],
-    "lat": 49.961373,
-    "lon": 36.092693,
-    "url": "https://lun.ua/new/kharkiv/pisochyn-comfort-house-pesochin"
+    "lat": 49.996415,
+    "lon": 36.2148,
+    "url": "https://lun.ua/new/kharkiv/bonaparte",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/BonAparte-n18896/",
+    "rieltor_id": 18896
   },
   {
     "jk_name": "ЖК Concept House Futurium",
-    "address": "вул.Чернишевська, 81-83",
+    "address": "вул. Чернишевська, 81; вул. Чернишевська, 83",
     "class": "Преміум",
     "district": "Київський р-н",
-    "houses": [],
+    "houses": [
+      [
+        4349,
+        "81"
+      ],
+      [
+        4349,
+        "83"
+      ]
+    ],
     "aliases": [
       "ЖК Концепт Хаус Футуріум",
       "Концепт Хауз Футуріум"
     ],
     "developer": "Альянс-Девелопмент",
-    "lat": 50.008638,
-    "lon": 36.242744,
-    "url": "https://lun.ua/new/kharkiv/concept-house-futurium"
-  },
-  {
-    "jk_name": "ЖК Consol City",
-    "address": "вул. Самарська / вул. Мирна",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "aliases": [
-      "Консоль Сіті"
-    ],
-    "lat": 50.014017,
-    "lon": 36.209852,
-    "url": "https://lun.ua/new/kharkiv/consol-city"
+    "lat": 50.008471,
+    "lon": 36.242517,
+    "url": "https://lun.ua/new/kharkiv/concept-house-futurium",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/Concept+House+Futurium-n19795/",
+    "rieltor_id": 19795
   },
   {
     "jk_name": "ЖК Dixie",
@@ -129,21 +84,9 @@
     "developer": "Строй Сіті Development",
     "lat": 50.014766,
     "lon": 36.231965,
-    "url": "https://lun.ua/new/kharkiv/dixie"
-  },
-  {
-    "jk_name": "ЖК Dominant",
-    "address": "Пісочин, вул. Технологічна",
-    "class": "Економ",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "ЖК Домінант"
-    ],
-    "developer": "КДБК",
-    "lat": 49.959983,
-    "lon": 36.092527,
-    "url": "https://lun.ua/new/kharkiv/pisochyn-dominant"
+    "url": "https://lun.ua/new/kharkiv/dixie",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/Dixie-n18852/",
+    "rieltor_id": 18852
   },
   {
     "jk_name": "ЖК Gaudi Hall",
@@ -163,7 +106,9 @@
     "developer": "Мегаінвестбуд",
     "lat": 49.980943,
     "lon": 36.234868,
-    "url": "https://lun.ua/new/kharkiv/gaudi-hall"
+    "url": "https://lun.ua/new/kharkiv/gaudi-hall",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/Gaudi+Hall-n17060/",
+    "rieltor_id": 17060
   },
   {
     "jk_name": "ЖК Green park",
@@ -181,7 +126,9 @@
     ],
     "lat": 49.982814,
     "lon": 36.277775,
-    "url": "https://lun.ua/new/kharkiv/green-park"
+    "url": "https://lun.ua/new/kharkiv/green-park",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/Green+park-n18480/",
+    "rieltor_id": 18480
   },
   {
     "jk_name": "ЖК Green Town",
@@ -208,7 +155,9 @@
     "developer": "ТММ",
     "lat": 50.052713,
     "lon": 36.212165,
-    "url": "https://lun.ua/new/kharkiv/green-town"
+    "url": "https://lun.ua/new/kharkiv/green-town",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/Green+Town-n14175/",
+    "rieltor_id": 14175
   },
   {
     "jk_name": "ЖК Happy House",
@@ -227,53 +176,9 @@
     "developer": "Marshal Development",
     "lat": 49.977235,
     "lon": 36.267024,
-    "url": "https://lun.ua/new/kharkiv/happy-house"
-  },
-  {
-    "jk_name": "ЖК High Hills",
-    "address": "вул. Спецпідрозділу Кракен, 4",
-    "class": "Преміум",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200663,
-        "4"
-      ]
-    ],
-    "aliases": [
-      "ЖК Хай Хілс"
-    ],
-    "developer": "Строй Сіті Development",
-    "lat": 50.014044,
-    "lon": 36.229692,
-    "url": "https://lun.ua/new/kharkiv/high-hills"
-  },
-  {
-    "jk_name": "ЖК Liberty Gardens",
-    "address": "вул. Клочківська / вул. Отакара Яроша",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "aliases": [
-      "ЖК Ліберті Гарденс",
-      "ЖК П'ята Авеню"
-    ],
-    "developer": "КБК Девелопмент",
-    "lat": 50.024618,
-    "lon": 36.211737,
-    "url": "https://lun.ua/new/kharkiv/liberty-gardens"
-  },
-  {
-    "jk_name": "ЖК NewTown",
-    "address": "",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "aliases": [
-      "НьюТаун"
-    ],
-    "developer": "Строй Сіті Development",
-    "url": "https://lun.ua/new/kharkiv/newtown"
+    "url": "https://lun.ua/new/kharkiv/happy-house",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/Happy+House-n16843/",
+    "rieltor_id": 16843
   },
   {
     "jk_name": "ЖК Nodus",
@@ -292,55 +197,9 @@
     "developer": "Житлобуд-2",
     "lat": 50.010228,
     "lon": 36.239563,
-    "url": "https://lun.ua/new/kharkiv/nodus"
-  },
-  {
-    "jk_name": "ЖК NOW",
-    "address": "просп. Науки, 14; просп. Науки, 20-Б; вул. Культури, 20-Б",
-    "class": "Преміум",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        3107,
-        "14"
-      ],
-      [
-        3107,
-        "20-Б"
-      ],
-      [
-        3070,
-        "20-Б"
-      ]
-    ],
-    "aliases": [
-      "НАУ"
-    ],
-    "developer": "Авантаж",
-    "lat": 50.015277,
-    "lon": 36.228089,
-    "url": "https://lun.ua/new/kharkiv/now"
-  },
-  {
-    "jk_name": "ЖК OASIS",
-    "address": "вул. Лозівська, 5",
-    "class": "Комфорт",
-    "district": "Холодногірський р-н",
-    "houses": [
-      [
-        3142,
-        "5"
-      ]
-    ],
-    "aliases": [
-      "ЖК Оазис",
-      "ЖК Оазіс",
-      "Оаза"
-    ],
-    "developer": "XISK Development",
-    "lat": 50.013493,
-    "lon": 36.197083,
-    "url": "https://lun.ua/new/kharkiv/oasis"
+    "url": "https://lun.ua/new/kharkiv/nodus",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/Nodus-n17990/",
+    "rieltor_id": 17990
   },
   {
     "jk_name": "ЖК ParkVille",
@@ -358,24 +217,11 @@
       "Парк Вілль",
       "Лазурный"
     ],
-    "developer": "PARKVILLE",
     "lat": 50.054013,
     "lon": 36.268142,
-    "url": "https://lun.ua/new/kharkiv/parkville"
-  },
-  {
-    "jk_name": "ЖК PesochinSky",
-    "address": "Пісочин, вул. Кушнарьова, 3а",
-    "class": "Економ",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "ПесочінСкай"
-    ],
-    "developer": "КДБК",
-    "lat": 49.965408,
-    "lon": 36.093073,
-    "url": "https://lun.ua/new/kharkiv/pisochyn-pesochinsky"
+    "url": "https://lun.ua/new/kharkiv/parkville",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/ParkVille-n19396/",
+    "rieltor_id": 19396
   },
   {
     "jk_name": "ЖК River Town",
@@ -394,49 +240,13 @@
     "developer": "МБМ",
     "lat": 50.016888,
     "lon": 36.206043,
-    "url": "https://lun.ua/new/kharkiv/river-town"
-  },
-  {
-    "jk_name": "ЖК Royal Residence",
-    "address": "пров. Партизанський, 8",
-    "class": "Преміум",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        2129,
-        "8"
-      ]
-    ],
-    "aliases": [
-      "Роял Резіденс"
-    ],
-    "developer": "Bee Construction",
-    "lat": 50.017201,
-    "lon": 36.323578,
-    "url": "https://lun.ua/new/kharkiv/royal-residence"
-  },
-  {
-    "jk_name": "ЖК Shatilov Park",
-    "address": "вул. Європейська, 87",
-    "class": "Преміум",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200514,
-        "87"
-      ]
-    ],
-    "aliases": [
-      "ЖК Шатілов Парк"
-    ],
-    "developer": "Експерт Девелопмент",
-    "lat": 50.025356,
-    "lon": 36.243264,
-    "url": "https://lun.ua/new/kharkiv/shatilov-park"
+    "url": "https://lun.ua/new/kharkiv/river-town",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/River+Town-n15908/",
+    "rieltor_id": 15908
   },
   {
     "jk_name": "ЖК Shatilovka Hillside",
-    "address": "вул. Липова, 8; вул. Липова, 14; вул. Європейська, 85; вул. Липова, 2",
+    "address": "вул. Липова, 8; вул. Липова, 14; вул. Європейська, 85",
     "class": "Преміум",
     "district": "Шевченківський р-н",
     "houses": [
@@ -451,10 +261,6 @@
       [
         200514,
         "85"
-      ],
-      [
-        3923,
-        "2"
       ]
     ],
     "aliases": [
@@ -464,65 +270,9 @@
     "developer": "Мегаінвестбуд",
     "lat": 50.025343,
     "lon": 36.240411,
-    "url": "https://lun.ua/new/kharkiv/shatilovka-hillside"
-  },
-  {
-    "jk_name": "ЖК Space house",
-    "address": "вул. Богдана Хмельницького, 12-А",
-    "class": "Економ",
-    "district": "Основ'янський р-н",
-    "houses": [
-      [
-        2209,
-        "12-А"
-      ]
-    ],
-    "aliases": [
-      "ЖК Спейс Хаус"
-    ],
-    "lat": 49.986963,
-    "lon": 36.253092,
-    "url": "https://lun.ua/new/kharkiv/space-house"
-  },
-  {
-    "jk_name": "ЖК The First Capital Residence",
-    "address": "вул. Свободи, 35",
-    "class": "Преміум",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        2763,
-        "35"
-      ]
-    ],
-    "aliases": [
-      "ЖК Зе Фьорст Кепітал Резіденс",
-      "ЖК Зе Фйорст Капітал Резіденс",
-      "ЖК First Capital"
-    ],
-    "developer": "Мегаінвестбуд",
-    "lat": 50.002444,
-    "lon": 36.243218,
-    "url": "https://lun.ua/new/kharkiv/the-first-capital-residence"
-  },
-  {
-    "jk_name": "ЖК Twenty two",
-    "address": "просп. Аерокосмічний, 39-А",
-    "class": "Бізнес",
-    "district": "Слобідський р-н",
-    "houses": [
-      [
-        200631,
-        "39-А"
-      ]
-    ],
-    "aliases": [
-      "ЖК Твенті ту"
-    ],
-    "developer": "Житлобуд-2",
-    "lat": 49.978219,
-    "lon": 36.252384,
-    "url": "https://lun.ua/new/kharkiv/twenty-two"
+    "url": "https://lun.ua/new/kharkiv/shatilovka-hillside",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/Shatilovka+Hillside-n15409/",
+    "rieltor_id": 15409
   },
   {
     "jk_name": "ЖК Urban City",
@@ -536,108 +286,14 @@
       ]
     ],
     "aliases": [
-      "ЖК Урбан Сіті",
-      "ЖК Green Раrk"
+      "ЖК Урбан Сіті"
     ],
     "developer": "Строй Сіті Development",
     "lat": 49.982814,
     "lon": 36.277775,
-    "url": "https://lun.ua/new/kharkiv/urban-city"
-  },
-  {
-    "jk_name": "ЖК Urban One Klochkivska",
-    "address": "вул. Клочківська, 148б",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "aliases": [
-      "ЖК Клочківська",
-      "Урбан Ван Клочківська",
-      "Urban One Klochkivska"
-    ],
-    "developer": "Строй Сіті Development",
-    "lat": 50.014096,
-    "lon": 36.217667,
-    "url": "https://lun.ua/new/kharkiv/urban-one-klochkivska"
-  },
-  {
-    "jk_name": "ЖК Urban One Naukova Apartments",
-    "address": "вул. Спецпідрозділу Кракен, 4",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200663,
-        "4"
-      ]
-    ],
-    "aliases": [
-      "ЖК Урбан ван наукова апартментс",
-      "Urban One Naukova"
-    ],
-    "developer": "Строй Сіті Development",
-    "lat": 50.014044,
-    "lon": 36.229692,
-    "url": "https://lun.ua/new/kharkiv/urban-one-naukova-apartments"
-  },
-  {
-    "jk_name": "ЖК Urban One Sumskaya",
-    "address": "вул. Сумська, 130",
-    "class": "Бізнес",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        4058,
-        "130"
-      ]
-    ],
-    "aliases": [
-      "Урбан Ван Сумська",
-      "Сумськая апартменс",
-      "Urban One Sumskaya"
-    ],
-    "developer": "Строй Сіті Development",
-    "lat": 50.018764,
-    "lon": 36.251197,
-    "url": "https://lun.ua/new/kharkiv/urban-one-sumskaya"
-  },
-  {
-    "jk_name": "ЖК YARD",
-    "address": "вул. Данилевського, 28",
-    "class": "Преміум",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2505,
-        "28"
-      ]
-    ],
-    "aliases": [
-      "ЖК Ярд"
-    ],
-    "developer": "Авантаж",
-    "lat": 50.009842,
-    "lon": 36.223233,
-    "url": "https://lun.ua/new/kharkiv/yard"
-  },
-  {
-    "jk_name": "ЖК ZerNova",
-    "address": "вул. Зернова, 55",
-    "class": "Бізнес",
-    "district": "Слобідський р-н",
-    "houses": [
-      [
-        2734,
-        "55"
-      ]
-    ],
-    "aliases": [
-      "ЖК Зернова"
-    ],
-    "developer": "Мегаінвестбуд",
-    "lat": 49.952099,
-    "lon": 36.263586,
-    "url": "https://lun.ua/new/kharkiv/zernova"
+    "url": "https://lun.ua/new/kharkiv/urban-city",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/Urban+City-n19357/",
+    "rieltor_id": 19357
   },
   {
     "jk_name": "ЖК Авантаж",
@@ -656,27 +312,9 @@
     "developer": "Авантаж",
     "lat": 50.012854,
     "lon": 36.231584,
-    "url": "https://lun.ua/new/kharkiv/avantazh"
-  },
-  {
-    "jk_name": "ЖК Авеню 5",
-    "address": "вул. Отакара Яроша, 1",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        3519,
-        "1"
-      ]
-    ],
-    "aliases": [
-      "ЖК Авеню5",
-      "ЖК 5th Avenue",
-      "Отакара Яроша 1"
-    ],
-    "developer": "Global Development",
-    "lat": 50.024333,
-    "lon": 36.210416
+    "url": "https://lun.ua/new/kharkiv/avantazh",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%90%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6-n14182/",
+    "rieltor_id": 14182
   },
   {
     "jk_name": "ЖК Аврамівська",
@@ -695,7 +333,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 49.983865,
     "lon": 36.189575,
-    "url": "https://lun.ua/new/kharkiv/avramivska"
+    "url": "https://lun.ua/new/kharkiv/avramivska",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%90%D0%B2%D1%80%D0%B0%D0%BC%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0-n15958/",
+    "rieltor_id": 15958
   },
   {
     "jk_name": "ЖК Авіаційний",
@@ -711,7 +351,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 50.020598,
     "lon": 36.233414,
-    "url": "https://lun.ua/new/kharkiv/aviatsiinyi"
+    "url": "https://lun.ua/new/kharkiv/aviatsiinyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%90%D0%B2%D1%96%D0%B0%D1%86%D1%96%D0%B9%D0%BD%D0%B8%D0%B9-n19380/",
+    "rieltor_id": 19380
   },
   {
     "jk_name": "ЖК Адмірал",
@@ -731,18 +373,8 @@
     "developer": "Констракшн Груп",
     "lat": 50.036522,
     "lon": 36.199352,
-    "url": "https://lun.ua/sale/kharkiv/admiral"
-  },
-  {
-    "jk_name": "ЖК Аквамарин",
-    "address": "пров. Буковий, 4",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "developer": "Житлобуд-2",
-    "lat": 50.038804,
-    "lon": 36.19033,
-    "url": "https://lun.ua/new/kharkiv/akvamaryn"
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%90%D0%B4%D0%BC%D1%96%D1%80%D0%B0%D0%BB-n21193/",
+    "rieltor_id": 21193
   },
   {
     "jk_name": "ЖК Аксіома",
@@ -761,11 +393,13 @@
     "developer": "Альянс-Девелопмент",
     "lat": 50.014955,
     "lon": 36.225626,
-    "url": "https://lun.ua/new/kharkiv/aksioma"
+    "url": "https://lun.ua/new/kharkiv/aksioma",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%90%D0%BA%D1%81%D1%96%D0%BE%D0%BC%D0%B0-n14190/",
+    "rieltor_id": 14190
   },
   {
     "jk_name": "ЖК Архітекторів",
-    "address": "вул. Домобудівельна, 5; вул. Домобудівельна, 13; вул. Домобудівельна, 9; вул. Домобудівельна, 7; вул. Домобудівельна, 11; вул. Домобудівельна, 3; вул. Архітекторів, 34",
+    "address": "вул. Домобудівельна, 5; вул. Домобудівельна, 13; вул. Домобудівельна, 9; вул. Домобудівельна, 7; вул. Домобудівельна, 11; вул. Домобудівельна, 3",
     "class": "Економ",
     "district": "Шевченківський р-н",
     "houses": [
@@ -792,60 +426,79 @@
       [
         4883,
         "3"
-      ],
-      [
-        2098,
-        "34"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 50.071213,
     "lon": 36.208872,
-    "url": "https://lun.ua/new/kharkiv/arkhitektoriv"
+    "url": "https://lun.ua/new/kharkiv/arkhitektoriv",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%90%D1%80%D1%85%D1%96%D1%82%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D1%96%D0%B2-n17976/",
+    "rieltor_id": 17976
+  },
+  {
+    "jk_name": "ЖК Атлант",
+    "address": "шосе Григорівське, 57",
+    "class": "Бізнес",
+    "district": "Новобаварський р-н",
+    "houses": [
+      [
+        2937,
+        "57"
+      ]
+    ],
+    "aliases": [
+      "Комсомольське шосе 57",
+      "Григорівське шосе 57"
+    ],
+    "developer": "МКДУ",
+    "lat": 49.979996,
+    "lon": 36.184376,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%90%D1%82%D0%BB%D0%B0%D0%BD%D1%82-n21203/",
+    "rieltor_id": 21203
+  },
+  {
+    "jk_name": "ЖК Атолл",
+    "address": "вул. Петра Болбочана, 52",
+    "class": "Бізнес",
+    "district": "Холодногірський р-н",
+    "houses": [
+      [
+        2886,
+        "52"
+      ]
+    ],
+    "aliases": [
+      "ЖК Атол",
+      "Клапцова 52",
+      "Петра Болбочана 52"
+    ],
+    "developer": "Житлобуд-2",
+    "lat": 49.98835,
+    "lon": 36.188958,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%90%D1%82%D0%BE%D0%BB%D0%BB-n21183/",
+    "rieltor_id": 21183
   },
   {
     "jk_name": "ЖК Балакірєва",
-    "address": "вул. Станіслава Партали, 19-А; вул. Станіслава Партали, 21-А; вул. Станіслава Партали, 23-А",
+    "address": "вул. Станіслава Партали, 19-А",
     "class": "Комфорт",
     "district": "Шевченківський р-н",
     "houses": [
       [
         200070,
         "19-А"
-      ],
-      [
-        200070,
-        "21-А"
-      ],
-      [
-        200070,
-        "23-А"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 50.036692,
     "lon": 36.245046,
-    "url": "https://lun.ua/new/kharkiv/balakirieva"
-  },
-  {
-    "jk_name": "ЖК Безлюдівський",
-    "address": "Безлюдівка, вул. Перемоги, 160",
-    "class": "Економ",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Безлюдовський",
-      "Безлюдівський",
-      "ЖК Безлюдовский"
-    ],
-    "developer": "Рестріелт",
-    "lat": 49.868938,
-    "lon": 36.286847,
-    "url": "https://lun.ua/new/kharkiv/bezliudivka-bezliudovskyi"
+    "url": "https://lun.ua/new/kharkiv/balakirieva",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%91%D0%B0%D0%BB%D0%B0%D0%BA%D1%96%D1%80%D1%94%D0%B2%D0%B0-n17048/",
+    "rieltor_id": 17048
   },
   {
     "jk_name": "ЖК Бестужевські сади",
-    "address": "вул. Ковалівська, 11-Б; вул. Ковалівська, 11-В; вул. Ковалівська, 11",
+    "address": "вул. Ковалівська, 11-Б; вул. Ковалівська, 11-В",
     "class": "Комфорт",
     "district": "Салтівський р-н",
     "houses": [
@@ -856,10 +509,6 @@
       [
         200509,
         "11-В"
-      ],
-      [
-        200509,
-        "11"
       ]
     ],
     "aliases": [
@@ -868,59 +517,9 @@
     "developer": "Воробйовi гори",
     "lat": 49.992509,
     "lon": 36.282875,
-    "url": "https://lun.ua/new/kharkiv/bestuzhevski-sady"
-  },
-  {
-    "jk_name": "ЖК Благовіст",
-    "address": "вул. Ярославська, 21-В",
-    "class": "Комфорт",
-    "district": "Новобаварський р-н",
-    "houses": [
-      [
-        4474,
-        "21-В"
-      ]
-    ],
-    "aliases": [
-      "ЖК Благовість",
-      "ЖК Благовест"
-    ],
-    "developer": "Turkish Development Ukraine",
-    "lat": 49.987201,
-    "lon": 36.219389,
-    "url": "https://lun.ua/new/kharkiv/blahovest"
-  },
-  {
-    "jk_name": "ЖК Британський дім",
-    "address": "вул. Богдана Хмельницького, 10",
-    "class": "Бізнес",
-    "district": "Основ'янський р-н",
-    "houses": [
-      [
-        2209,
-        "10"
-      ]
-    ],
-    "developer": "Британський дім",
-    "lat": 49.987923,
-    "lon": 36.252569,
-    "url": "https://lun.ua/new/kharkiv/brytanskyi-dim"
-  },
-  {
-    "jk_name": "ЖК Брюссель",
-    "address": "вул. Чорноглазівська, 11",
-    "class": "Бізнес",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        200037,
-        "11"
-      ]
-    ],
-    "developer": "Marshal Development",
-    "lat": 49.996074,
-    "lon": 36.242044,
-    "url": "https://lun.ua/new/kharkiv/briussel"
+    "url": "https://lun.ua/new/kharkiv/bestuzhevski-sady",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%91%D0%B5%D1%81%D1%82%D1%83%D0%B6%D0%B5%D0%B2%D1%81%D1%8C%D0%BA%D1%96+%D1%81%D0%B0%D0%B4%D0%B8-n16743/",
+    "rieltor_id": 16743
   },
   {
     "jk_name": "ЖК Будинок Академіка",
@@ -933,12 +532,11 @@
         "283"
       ]
     ],
-    "aliases": [
-      "ЖК Дім Академіка"
-    ],
     "lat": 50.012765,
     "lon": 36.32203,
-    "url": "https://lun.ua/new/kharkiv/budynok-akademika"
+    "url": "https://lun.ua/new/kharkiv/budynok-akademika",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%91%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%BA+%D0%90%D0%BA%D0%B0%D0%B4%D0%B5%D0%BC%D1%96%D0%BA%D0%B0-n18471/",
+    "rieltor_id": 18471
   },
   {
     "jk_name": "ЖК Будинок на Зерновій",
@@ -957,7 +555,9 @@
     "developer": "Житлобуд-2",
     "lat": 49.951865,
     "lon": 36.267708,
-    "url": "https://lun.ua/new/kharkiv/budynok-na-zernovii"
+    "url": "https://lun.ua/new/kharkiv/budynok-na-zernovii",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%91%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%BA+%D0%BD%D0%B0+%D0%97%D0%B5%D1%80%D0%BD%D0%BE%D0%B2%D1%96%D0%B9-n18933/",
+    "rieltor_id": 18933
   },
   {
     "jk_name": "ЖК Будинок на Набережній",
@@ -973,7 +573,9 @@
     "developer": "Альянс-Девелопмент",
     "lat": 49.985813,
     "lon": 36.228461,
-    "url": "https://lun.ua/new/kharkiv/budynok-na-naberezhnii"
+    "url": "https://lun.ua/new/kharkiv/budynok-na-naberezhnii",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%91%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%BA+%D0%BD%D0%B0+%D0%9D%D0%B0%D0%B1%D0%B5%D1%80%D0%B5%D0%B6%D0%BD%D1%96%D0%B9-n14170/",
+    "rieltor_id": 14170
   },
   {
     "jk_name": "ЖК Будинок на Озерянській",
@@ -987,13 +589,36 @@
       ]
     ],
     "aliases": [
-      "Дім на Озерянській",
-      "ЖБ на Озерянській"
+      "Дім на Озерянській"
     ],
     "developer": "XISK Development",
     "lat": 49.989534,
     "lon": 36.192612,
-    "url": "https://lun.ua/new/kharkiv/budynok-na-ozerianskii"
+    "url": "https://lun.ua/new/kharkiv/budynok-na-ozerianskii",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%91%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%BA+%D0%BD%D0%B0+%D0%9E%D0%B7%D0%B5%D1%80%D1%8F%D0%BD%D1%81%D1%8C%D0%BA%D1%96%D0%B9-n18213/",
+    "rieltor_id": 18213
+  },
+  {
+    "jk_name": "ЖК Будинок на Петровського",
+    "address": "вул. Ярослава Мудрого, 35-А",
+    "class": "Бізнес",
+    "district": "Київський р-н",
+    "houses": [
+      [
+        3577,
+        "35-А"
+      ]
+    ],
+    "aliases": [
+      "ЖК Дом на Петровского",
+      "Ярослава Мудрого 35а",
+      "Петровского 35а"
+    ],
+    "developer": "Житлобуд-2",
+    "lat": 50.004768,
+    "lon": 36.245564,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%91%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%BA+%D0%BD%D0%B0+%D0%9F%D0%B5%D1%82%D1%80%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE-n21209/",
+    "rieltor_id": 21209
   },
   {
     "jk_name": "ЖК Будинок на Сумській",
@@ -1012,7 +637,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 50.012632,
     "lon": 36.243008,
-    "url": "https://lun.ua/new/kharkiv/budynok-na-sumskii"
+    "url": "https://lun.ua/new/kharkiv/budynok-na-sumskii",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%91%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%BA+%D0%BD%D0%B0+%D0%A1%D1%83%D0%BC%D1%81%D1%8C%D0%BA%D1%96%D0%B9-n17987/",
+    "rieltor_id": 17987
   },
   {
     "jk_name": "ЖК Будинок із Ротондами",
@@ -1034,25 +661,9 @@
     "developer": "Житлобуд-2",
     "lat": 50.008792,
     "lon": 36.215782,
-    "url": "https://lun.ua/new/kharkiv/budynok-iz-rotondamy"
-  },
-  {
-    "jk_name": "ЖК Бузок",
-    "address": "вул. Киргизька, 5-Б",
-    "class": "Економ",
-    "district": "Слобідський р-н",
-    "houses": [
-      [
-        2869,
-        "5-Б"
-      ]
-    ],
-    "aliases": [
-      "ЖК Сирень"
-    ],
-    "lat": 49.946814,
-    "lon": 36.272355,
-    "url": "https://lun.ua/new/kharkiv/syren"
+    "url": "https://lun.ua/new/kharkiv/budynok-iz-rotondamy",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%91%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%BA+%D1%96%D0%B7+%D0%A0%D0%BE%D1%82%D0%BE%D0%BD%D0%B4%D0%B0%D0%BC%D0%B8-n14208/",
+    "rieltor_id": 14208
   },
   {
     "jk_name": "ЖК Бурштиновий",
@@ -1071,23 +682,9 @@
     "developer": "Житлобуд-2",
     "lat": 49.992999,
     "lon": 36.344672,
-    "url": "https://lun.ua/new/kharkiv/yantarnyi"
-  },
-  {
-    "jk_name": "ЖК Вектор",
-    "address": "вул. Спецпідрозділу Кракен, 4-А",
-    "class": "Преміум",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200663,
-        "4-А"
-      ]
-    ],
-    "developer": "ФЛАС",
-    "lat": 50.014766,
-    "lon": 36.231965,
-    "url": "https://lun.ua/new/kharkiv/vektor"
+    "url": "https://lun.ua/new/kharkiv/yantarnyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%91%D1%83%D1%80%D1%88%D1%82%D0%B8%D0%BD%D0%BE%D0%B2%D0%B8%D0%B9-n14169/",
+    "rieltor_id": 14169
   },
   {
     "jk_name": "ЖК Воробйові гори",
@@ -1139,22 +736,9 @@
     "developer": "Воробйовi гори",
     "lat": 50.012975,
     "lon": 36.31305,
-    "url": "https://lun.ua/new/kharkiv/vorobiovi-hory"
-  },
-  {
-    "jk_name": "ЖК Воробйові гори Family",
-    "address": "вул. Весела",
-    "class": "Економ",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "aliases": [
-      "ЖК Воробйові гори Фемілі",
-      "ЖК Воробьові гори Фемілі"
-    ],
-    "developer": "Воробйовi гори",
-    "lat": 50.018505,
-    "lon": 36.202006,
-    "url": "https://lun.ua/new/kharkiv/vorobiovi-hory-family"
+    "url": "https://lun.ua/new/kharkiv/vorobiovi-hory",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%92%D0%BE%D1%80%D0%BE%D0%B1%D0%B9%D0%BE%D0%B2%D1%96+%D0%B3%D0%BE%D1%80%D0%B8-n14793/",
+    "rieltor_id": 14793
   },
   {
     "jk_name": "ЖК Воробйові гори PRO",
@@ -1173,7 +757,9 @@
     "developer": "Воробйовi гори",
     "lat": 49.989336,
     "lon": 36.271172,
-    "url": "https://lun.ua/new/kharkiv/vorobiovi-hory-pro"
+    "url": "https://lun.ua/new/kharkiv/vorobiovi-hory-pro",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%92%D0%BE%D1%80%D0%BE%D0%B1%D0%B9%D0%BE%D0%B2%D1%96+%D0%B3%D0%BE%D1%80%D0%B8+PRO-n19670/",
+    "rieltor_id": 19670
   },
   {
     "jk_name": "ЖК Воробйові гори на Полях",
@@ -1198,41 +784,37 @@
     "developer": "Воробйовi гори",
     "lat": 50.018606,
     "lon": 36.204135,
-    "url": "https://lun.ua/new/kharkiv/vorobiovi-hory-na-poliakh"
+    "url": "https://lun.ua/new/kharkiv/vorobiovi-hory-na-poliakh",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%92%D0%BE%D1%80%D0%BE%D0%B1%D0%B9%D0%BE%D0%B2%D1%96+%D0%B3%D0%BE%D1%80%D0%B8+%D0%BD%D0%B0+%D0%9F%D0%BE%D0%BB%D1%8F%D1%85-n17007/",
+    "rieltor_id": 17007
   },
   {
-    "jk_name": "ЖК Воробйові гори на Полях-3",
-    "address": "вул. Весела",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "aliases": [
-      "ЖК Воробйові гори на полях - 3",
-      "Воробйові Гори на Полях -3"
-    ],
-    "developer": "Воробйовi гори",
-    "lat": 50.019244,
-    "lon": 36.2037,
-    "url": "https://lun.ua/new/kharkiv/vorobiovi-hory-na-poliakh-3"
-  },
-  {
-    "jk_name": "ЖК вул. Ахсарова, 3-В",
-    "address": "вул. Ахсарова, 3-В",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
+    "jk_name": "ЖК Времена года",
+    "address": "вул. Дача № 55, 9; вул. Дача № 55, 11",
+    "class": "Економ",
+    "district": "Київський р-н",
     "houses": [
       [
-        2107,
-        "3-В"
+        2517,
+        "9"
+      ],
+      [
+        2517,
+        "11"
       ]
     ],
     "aliases": [
-      "ЖК по ул. Ахсарова, 3в",
-      "ТММ на Ахсарова"
+      "Дача",
+      "ЖК Пори року",
+      "ЖК Дача 55",
+      "Дача 55"
     ],
-    "developer": "ТММ",
-    "lat": 50.05107,
-    "lon": 36.198644
+    "developer": "Трест Житлобуд-1",
+    "lat": 50.049189,
+    "lon": 36.277468,
+    "url": "https://lun.ua/new/kharkiv/vremena-hoda",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%92%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B0+%D0%B3%D0%BE%D0%B4%D0%B0-n14227/",
+    "rieltor_id": 14227
   },
   {
     "jk_name": "ЖК вул. Балакірєва, 3а, 17, 17а",
@@ -1261,7 +843,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 50.037322,
     "lon": 36.245744,
-    "url": "https://lun.ua/new/kharkiv/balakirieva-st-3a-17-17a"
+    "url": "https://lun.ua/new/kharkiv/balakirieva-st-3a-17-17a",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%B2%D1%83%D0%BB.+%D0%91%D0%B0%D0%BB%D0%B0%D0%BA%D1%96%D1%80%D1%94%D0%B2%D0%B0%2C+3%D0%B0%2C+17%2C+17%D0%B0-n15502/",
+    "rieltor_id": 15502
   },
   {
     "jk_name": "ЖК вул. Букова, 1а",
@@ -1289,30 +873,46 @@
     ],
     "lat": 50.041477,
     "lon": 36.189731,
-    "url": "https://lun.ua/new/kharkiv/bukova-st-1a"
+    "url": "https://lun.ua/new/kharkiv/bukova-st-1a",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%B2%D1%83%D0%BB.+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%2C+1%D0%B0-n20124/",
+    "rieltor_id": 20124
   },
   {
-    "jk_name": "ЖК вул. Біблика, 25-А",
-    "address": "вул. Біблика, 25-А",
-    "class": "Комфорт",
+    "jk_name": "ЖК вул. Біблика, 4",
+    "address": "вул. Біблика, 4; вул. Біблика, 4, корп. 1; вул. Біблика, 4, корп. 2",
+    "class": "Економ",
     "district": "Індустріальний р-н",
     "houses": [
       [
         2615,
-        "25-А"
+        "4"
+      ],
+      [
+        2615,
+        "4, корп. 1"
+      ],
+      [
+        2615,
+        "4, корп. 2"
       ]
     ],
     "aliases": [
-      "ЖК по ул. Второй Пятилетки, 25а",
-      "ЖК Другої П'ятирічки, 25-А",
-      "Авантаж на Пятилетки"
+      "вул. Біблика, 4",
+      "ЖК Олівія",
+      "ЖК Оливия",
+      "Другої П'ятирічки 4",
+      "Второй Пятилетки 4",
+      "ЖК по вул. Біблика",
+      "ЖК Другої П'ятирічки"
     ],
-    "developer": "Авантаж",
-    "lat": 49.947423,
-    "lon": 36.376755
+    "lat": 49.950251,
+    "lon": 36.362225,
+    "url": "https://lun.ua/new/kharkiv/biblyka-st-4",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%B2%D1%83%D0%BB.+%D0%91%D1%96%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%2C+4-n16640/",
+    "rieltor_id": 16640
   },
   {
-    "jk_name": "ЖК вул. Валентинівська, 55",
+    "jk_name": "ЖК вул. Валентинівська / вул. Гарібальді",
     "address": "вул. Валентинівська, 55",
     "class": "Економ",
     "district": "Салтівський р-н",
@@ -1323,209 +923,77 @@
       ]
     ],
     "aliases": [
+      "вул. Валентинівська / вул. Гарібальді",
+      "ЖК вул. Валентинівська, 55",
       "ЖК по вул. Валентинівській",
-      "вул. Валентинівська / вул. Гарібальді"
+      "ЖК по вул. Валентинівська",
+      "ЖК Блюхера"
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 50.006987,
     "lon": 36.362851,
-    "url": "https://lun.ua/new/kharkiv/valentynivska-st-haribaldi-st"
+    "url": "https://lun.ua/new/kharkiv/valentynivska-st-haribaldi-st",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%B2%D1%83%D0%BB.+%D0%92%D0%B0%D0%BB%D0%B5%D0%BD%D1%82%D0%B8%D0%BD%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%2F+%D0%B2%D1%83%D0%BB.+%D0%93%D0%B0%D1%80%D1%96%D0%B1%D0%B0%D0%BB%D1%8C%D0%B4%D1%96-n20155/",
+    "rieltor_id": 20155
   },
   {
-    "jk_name": "ЖК вул. Велика Кільцева, 4",
-    "address": "вул. Велика Кільцева, 4",
-    "class": "Економ",
-    "district": "Індустріальний р-н",
-    "houses": [
-      [
-        2295,
-        "4"
-      ]
-    ],
-    "aliases": [
-      "вул. Велика кільцева, 4",
-      "ЖК по вул. Велика Кільцева"
-    ],
-    "lat": 49.930637,
-    "lon": 36.438278,
-    "url": "https://lun.ua/new/kharkiv/velyka-kiltseva-st-4"
-  },
-  {
-    "jk_name": "ЖК вул. Велозаводська, 37",
-    "address": "вул. Велозаводська, 37; вул. Велозаводська, 37-А; вул. Велозаводська, 35; вул. Велозаводська, 38",
+    "jk_name": "ЖК вул. Велозаводська",
+    "address": "вул. Велозаводська, 37",
     "class": "Економ",
     "district": "Немишлянський р-н",
     "houses": [
       [
         2297,
         "37"
-      ],
-      [
-        2297,
-        "37-А"
-      ],
-      [
-        2297,
-        "35"
-      ],
-      [
-        2297,
-        "38"
       ]
     ],
     "aliases": [
-      "ЖК вул. Велозаводська",
+      "вул. Велозаводська",
+      "ЖК вул. Велозаводська, 37",
       "ЖК по ул. Велозаводская",
-      "ЖК по вул. Велозаводська",
-      "Велозаводская 37"
+      "Велозаводская 37",
+      "ЖК по вул. Велозаводська"
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.981694,
     "lon": 36.353626,
-    "url": "https://lun.ua/new/kharkiv/velozavodska-st"
+    "url": "https://lun.ua/new/kharkiv/velozavodska-st",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%B2%D1%83%D0%BB.+%D0%92%D0%B5%D0%BB%D0%BE%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D1%81%D1%8C%D0%BA%D0%B0-n15712/",
+    "rieltor_id": 15712
   },
   {
-    "jk_name": "ЖК вул. Вознесенська, 4-Д",
-    "address": "вул. Вознесенська, 4-Д",
+    "jk_name": "ЖК вул. Героїв Праці, 32г",
+    "address": "вул. Нескорених, 32-Г",
     "class": "Економ",
     "district": "Салтівський р-н",
     "houses": [
       [
-        200519,
-        "4-Д"
+        200624,
+        "32-Г"
       ]
     ],
     "aliases": [
-      "Дім по Фейербаха",
-      "Дім по вул. Фейербаха",
-      "вул. Фейєрбаха, 4д",
-      "ЖК по вул. Вознесенська",
-      "ЖК Фейербаха",
-      "ЖК Фейєрбаха"
+      "вул. Героїв Праці, 32г",
+      "ЖК по вул. Нескорених",
+      "ЖК Героїв Праці",
+      "ЖК Кутузівська"
     ],
-    "developer": "Мегаінвестбуд",
-    "lat": 49.990727,
-    "lon": 36.242486,
-    "url": "https://lun.ua/new/kharkiv/feiierbakha-st-4d"
-  },
-  {
-    "jk_name": "ЖК вул. Гвардійців-Широнінців, 28-А",
-    "address": "вул. Гвардійців-Широнінців, 28-А",
-    "class": "Комфорт",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        2418,
-        "28-А"
-      ]
-    ],
-    "aliases": [
-      "вул. Гвардійців-Широнінців, 28а",
-      "ЖК по вул. Гвардійців-Широнінців"
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 50.004958,
-    "lon": 36.332795,
-    "url": "https://lun.ua/new/kharkiv/hvardiitsiv-shyronintsiv-st-28a"
-  },
-  {
-    "jk_name": "ЖК вул. Гольдбергівська, 14-Б",
-    "address": "вул. Гольдбергівська, 14-Б; пров. Мовчанівський, 31",
-    "class": "Економ",
-    "district": "Основ'янський р-н",
-    "houses": [
-      [
-        3561,
-        "14-Б"
-      ],
-      [
-        3289,
-        "31"
-      ]
-    ],
-    "aliases": [
-      "пров. Мовчанівський, 31",
-      "ЖК по вул. Гольдбергівська",
-      "ЖК Першої Кінної Армії",
-      "ЖК Заїківська"
-    ],
-    "lat": 49.976458,
-    "lon": 36.246011,
-    "url": "https://lun.ua/new/kharkiv/movchanivskyi-ln-31"
-  },
-  {
-    "jk_name": "ЖК вул. Греківська, 5",
-    "address": "вул. Греківська, 5",
-    "class": "Комфорт",
-    "district": "Основ'янський р-н",
-    "houses": [
-      [
-        2475,
-        "5"
-      ]
-    ],
-    "aliases": [
-      "ЖК по ул. Грековская, 5",
-      "Греківська 5"
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 49.980503,
-    "lon": 36.231846
-  },
-  {
-    "jk_name": "ЖК вул. Дизельна, 14",
-    "address": "вул. Дизельна, 14",
-    "class": "Економ",
-    "district": "Слобідський р-н",
-    "houses": [
-      [
-        2562,
-        "14"
-      ]
-    ],
-    "aliases": [
-      "вул. Дизельна, 14",
-      "ЖК по вул. Дизельна"
-    ],
-    "developer": "Рестріелт",
-    "lat": 49.963105,
-    "lon": 36.293001,
-    "url": "https://lun.ua/new/kharkiv/dyzelna-st-14"
-  },
-  {
-    "jk_name": "ЖК вул. Дмитра Антоненка, 51",
-    "address": "вул. Дмитра Антоненка, 51",
-    "class": "Преміум",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200056,
-        "51"
-      ]
-    ],
-    "aliases": [
-      "вул. Мінська, 51",
-      "ЖК по вул. Дмитра Антоненка",
-      "ЖК Мінська"
-    ],
-    "developer": "С-Інвест",
-    "lat": 50.024422,
-    "lon": 36.227603,
-    "url": "https://lun.ua/new/kharkiv/minska-st-51"
+    "developer": "Новобуд М",
+    "lat": 50.020056,
+    "lon": 36.339257,
+    "url": "https://lun.ua/new/kharkiv/heroiv-pratsi-st-32h",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%B2%D1%83%D0%BB.+%D0%93%D0%B5%D1%80%D0%BE%D1%97%D0%B2+%D0%9F%D1%80%D0%B0%D1%86%D1%96%2C+32%D0%B3-n14232/",
+    "rieltor_id": 14232
   },
   {
     "jk_name": "ЖК вул. Дмитрівська, 19",
-    "address": "вул. Дмитрівська, 19; вул. Дмитрівська, 19, корп. 2",
+    "address": "вул. Дмитрівська, 19",
     "class": "Економ",
     "district": "Новобаварський р-н",
     "houses": [
       [
         2573,
         "19"
-      ],
-      [
-        2573,
-        "19, корп. 2"
       ]
     ],
     "aliases": [
@@ -1535,35 +1003,9 @@
     "developer": "Рестріелт",
     "lat": 49.986967,
     "lon": 36.216224,
-    "url": "https://lun.ua/new/kharkiv/dmytrivska-st-19"
-  },
-  {
-    "jk_name": "ЖК вул. Клочківська, 197",
-    "address": "вул. Клочківська, 197-Б; вул. Клочківська, 197-В; вул. Клочківська, 197-Г",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2893,
-        "197-Б"
-      ],
-      [
-        2893,
-        "197-В"
-      ],
-      [
-        2893,
-        "197-Г"
-      ]
-    ],
-    "aliases": [
-      "ЖК по ул. Клочковская, 197",
-      "Клочковская 197б",
-      "Клочковская 197в"
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 50.017317,
-    "lon": 36.210347
+    "url": "https://lun.ua/new/kharkiv/dmytrivska-st-19",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%B2%D1%83%D0%BB.+%D0%94%D0%BC%D0%B8%D1%82%D1%80%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0%2C+19-n16436/",
+    "rieltor_id": 16436
   },
   {
     "jk_name": "ЖК вул. Косарєва, 25",
@@ -1584,39 +1026,9 @@
     "developer": "Marshal Development",
     "lat": 49.94313,
     "lon": 36.376336,
-    "url": "https://lun.ua/new/kharkiv/kosarieva-st-25"
-  },
-  {
-    "jk_name": "ЖК вул. Кузнецька, 63/9",
-    "address": "вул. Кузнецька, 63/9",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "aliases": [
-      "вул. Кузнецька, 63/9"
-    ],
-    "lat": 50.033342,
-    "lon": 36.204669,
-    "url": "https://lun.ua/new/kharkiv/kuznetska-st-63-9"
-  },
-  {
-    "jk_name": "ЖК вул. Культури, 22-В",
-    "address": "вул. Культури, 22-В",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        3070,
-        "22-В"
-      ]
-    ],
-    "aliases": [
-      "ЖК по ул. Культуры, 22в",
-      "Культури 22в"
-    ],
-    "developer": "Житлобуд-2",
-    "lat": 50.01283,
-    "lon": 36.229269
+    "url": "https://lun.ua/new/kharkiv/kosarieva-st-25",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%B2%D1%83%D0%BB.+%D0%9A%D0%BE%D1%81%D0%B0%D1%80%D1%94%D0%B2%D0%B0%2C+25-n16601/",
+    "rieltor_id": 16601
   },
   {
     "jk_name": "ЖК вул. Михайлика, 4",
@@ -1636,87 +1048,9 @@
     ],
     "lat": 49.990451,
     "lon": 36.301137,
-    "url": "https://lun.ua/new/kharkiv/mykhailyka-st-4"
-  },
-  {
-    "jk_name": "ЖК вул. Молочна, 8-А",
-    "address": "вул. Молочна, 8-А",
-    "class": "Бізнес",
-    "district": "Основ'янський р-н",
-    "houses": [
-      [
-        2884,
-        "8-А"
-      ]
-    ],
-    "aliases": [
-      "вул. Молочна, 8а",
-      "ЖК по вул. Молочна",
-      "ЖК Кірова"
-    ],
-    "developer": "С-Інвест",
-    "lat": 49.984537,
-    "lon": 36.25683,
-    "url": "https://lun.ua/new/kharkiv/molochna-st-8a"
-  },
-  {
-    "jk_name": "ЖК вул. Нескорених, 32-Г",
-    "address": "вул. Нескорених, 32-Г",
-    "class": "Економ",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        200624,
-        "32-Г"
-      ]
-    ],
-    "aliases": [
-      "вул. Героїв Праці, 32г",
-      "ЖК по вул. Нескорених",
-      "ЖК Героїв Праці",
-      "ЖК Кутузівська"
-    ],
-    "developer": "Новобуд М",
-    "lat": 50.020056,
-    "lon": 36.339257,
-    "url": "https://lun.ua/new/kharkiv/heroiv-pratsi-st-32h"
-  },
-  {
-    "jk_name": "ЖК вул. Полтавський Шлях, 177-Б",
-    "address": "вул. Полтавський Шлях, 177-Б",
-    "class": "Економ",
-    "district": "Новобаварський р-н",
-    "houses": [
-      [
-        3651,
-        "177-А"
-      ]
-    ],
-    "aliases": [
-      "ЖК Дім на Полтавському 177б",
-      "Полтавский Шлях 177б"
-    ],
-    "lat": 49.976998,
-    "lon": 36.17016
-  },
-  {
-    "jk_name": "ЖК вул. Полтавський Шлях, 177-В",
-    "address": "вул. Полтавський Шлях, 177-В",
-    "class": "Економ",
-    "district": "Новобаварський р-н",
-    "houses": [
-      [
-        3651,
-        "177-В"
-      ]
-    ],
-    "aliases": [
-      "вул. Полтавський Шлях, 177в",
-      "ЖК по вул. Полтавський Шлях"
-    ],
-    "lat": 49.97695,
-    "lon": 36.17088,
-    "url": "https://lun.ua/new/kharkiv/poltavskyi-shliakh-st-177v"
+    "url": "https://lun.ua/new/kharkiv/mykhailyka-st-4",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%B2%D1%83%D0%BB.+%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%B8%D0%BA%D0%B0%2C+4-n20094/",
+    "rieltor_id": 20094
   },
   {
     "jk_name": "ЖК вул. Підлісна, 15",
@@ -1735,126 +1069,9 @@
     ],
     "lat": 49.990496,
     "lon": 36.184117,
-    "url": "https://lun.ua/new/kharkiv/pidlisna-st-15"
-  },
-  {
-    "jk_name": "ЖК вул. Саржинська, 2",
-    "address": "вул. Саржинська, 2",
-    "class": "Преміум",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        3869,
-        "2"
-      ]
-    ],
-    "aliases": [
-      "вул. Саржинська, 2",
-      "ЖК по вул. Саржинська"
-    ],
-    "developer": "С-Інвест",
-    "lat": 50.024745,
-    "lon": 36.227299,
-    "url": "https://lun.ua/new/kharkiv/sarzhynska-st-2"
-  },
-  {
-    "jk_name": "ЖК вул. Северина Потоцького, 26",
-    "address": "вул. Северина Потоцького, 26",
-    "class": "Економ",
-    "district": "Індустріальний р-н",
-    "houses": [
-      [
-        3935,
-        "26"
-      ]
-    ],
-    "aliases": [
-      "ЖК по ул. 17-го Партсъезда, 26",
-      "Сімнадцятого Партз'їзду, 26",
-      "Авантаж на Потоцького"
-    ],
-    "developer": "Авантаж",
-    "lat": 49.9468,
-    "lon": 36.36193
-  },
-  {
-    "jk_name": "ЖК вул. Семена Кузнеця, 42",
-    "address": "вул. Семена Кузнеця, 42",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        3761,
-        "42"
-      ]
-    ],
-    "aliases": [
-      "вул. Семена Кузнеця, 42",
-      "ЖК по вул. Семена Кузнеця",
-      "ЖК Ревкомівська"
-    ],
-    "lat": 50.022379,
-    "lon": 36.202892,
-    "url": "https://lun.ua/new/kharkiv/semena-kuznetsia-st-42"
-  },
-  {
-    "jk_name": "ЖК вул. Соборності України, 238-А",
-    "address": "вул. Соборності України, 238-А",
-    "class": "Бізнес",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        200627,
-        "238-А"
-      ]
-    ],
-    "aliases": [
-      "ЖК по ул. Дружбы Народов, 238а",
-      "ЖК Дружби Народів, 238-А",
-      "ТММ на Дружбы Народов"
-    ],
-    "developer": "ТММ",
-    "lat": 50.034557,
-    "lon": 36.35154
-  },
-  {
-    "jk_name": "ЖК вул. Старицького, 13",
-    "address": "вул. Старицького, 13",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        4020,
-        "13"
-      ]
-    ],
-    "aliases": [
-      "ЖК по ул. Старицкого, 13",
-      "Старицького 13"
-    ],
-    "developer": "С-Інвест",
-    "lat": 50.03517,
-    "lon": 36.235734
-  },
-  {
-    "jk_name": "ЖК вул. Сухумська, 24",
-    "address": "вул. Сухумська, 24",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        4064,
-        "24"
-      ]
-    ],
-    "aliases": [
-      "ЖК по ул. Сухумская, 24",
-      "ЖК Сухумська 24",
-      "Жилстрой-2 на Сухумской"
-    ],
-    "developer": "Житлобуд-2",
-    "lat": 50.009633,
-    "lon": 36.216462
+    "url": "https://lun.ua/new/kharkiv/pidlisna-st-15",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%B2%D1%83%D0%BB.+%D0%9F%D1%96%D0%B4%D0%BB%D1%96%D1%81%D0%BD%D0%B0%2C+15-n15146/",
+    "rieltor_id": 15146
   },
   {
     "jk_name": "ЖК вул. Чернишевська, 7",
@@ -1874,40 +1091,9 @@
     "developer": "Альянс-Девелопмент",
     "lat": 49.996392,
     "lon": 36.236073,
-    "url": "https://lun.ua/new/kharkiv/chernyshevska-st-7"
-  },
-  {
-    "jk_name": "ЖК вул. Чоботарська, 80",
-    "address": "вул. Чоботарська, 80",
-    "class": "Економ",
-    "district": "Холодногірський р-н",
-    "houses": [
-      [
-        4370,
-        "80"
-      ]
-    ],
-    "aliases": [
-      "вул. Чоботарська, 80",
-      "ЖК по вул. Чоботарська"
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 49.994405,
-    "lon": 36.206363,
-    "url": "https://lun.ua/new/kharkiv/chobotarska-st-80"
-  },
-  {
-    "jk_name": "ЖК вул. Шевченка, 331а",
-    "address": "вул. Шевченка, 331а",
-    "class": "Економ",
-    "district": "Київський р-н",
-    "houses": [],
-    "aliases": [
-      "вул. Шевченка, 331а"
-    ],
-    "lat": 50.027271,
-    "lon": 36.299566,
-    "url": "https://lun.ua/new/kharkiv/shevchenka-st-331a"
+    "url": "https://lun.ua/new/kharkiv/chernyshevska-st-7",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%B2%D1%83%D0%BB.+%D0%A7%D0%B5%D1%80%D0%BD%D0%B8%D1%88%D0%B5%D0%B2%D1%81%D1%8C%D0%BA%D0%B0%2C+7-n14185/",
+    "rieltor_id": 14185
   },
   {
     "jk_name": "ЖК Віденський будинок",
@@ -1926,7 +1112,9 @@
     "developer": "Строй Сіті Development",
     "lat": 50.041038,
     "lon": 36.342887,
-    "url": "https://lun.ua/new/kharkiv/videnskyi-budynok"
+    "url": "https://lun.ua/new/kharkiv/videnskyi-budynok",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%92%D1%96%D0%B4%D0%B5%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9+%D0%B1%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%BA-n17989/",
+    "rieltor_id": 17989
   },
   {
     "jk_name": "ЖК Вікторія",
@@ -1945,7 +1133,9 @@
     "developer": "Житлобуд-2",
     "lat": 49.964359,
     "lon": 36.318173,
-    "url": "https://lun.ua/new/kharkiv/viktoriia"
+    "url": "https://lun.ua/new/kharkiv/viktoriia",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%92%D1%96%D0%BA%D1%82%D0%BE%D1%80%D1%96%D1%8F-n17126/",
+    "rieltor_id": 17126
   },
   {
     "jk_name": "ЖК Гвардійський",
@@ -1964,7 +1154,9 @@
     ],
     "developer": "Житлобуд-2",
     "lat": 50.005029,
-    "lon": 36.331268
+    "lon": 36.331268,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%93%D0%B2%D0%B0%D1%80%D0%B4%D1%96%D0%B9%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n21207/",
+    "rieltor_id": 21207
   },
   {
     "jk_name": "ЖК Гранд",
@@ -1983,46 +1175,13 @@
     "developer": "Житлобуд-2",
     "lat": 50.023089,
     "lon": 36.216168,
-    "url": "https://lun.ua/new/kharkiv/grand"
-  },
-  {
-    "jk_name": "ЖК Графіка",
-    "address": "вул. Спецпідрозділу Кракен, 4",
-    "class": "Преміум",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200663,
-        "4"
-      ]
-    ],
-    "developer": "ФЛАС",
-    "lat": 50.014044,
-    "lon": 36.229692,
-    "url": "https://lun.ua/new/kharkiv/hrafika"
-  },
-  {
-    "jk_name": "ЖК Гринвіч",
-    "address": "вул. Малинівська, 19",
-    "class": "Комфорт",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        3198,
-        "19"
-      ]
-    ],
-    "aliases": [
-      "Грінвіч"
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 49.992265,
-    "lon": 36.270057,
-    "url": "https://lun.ua/new/kharkiv/greenwich"
+    "url": "https://lun.ua/new/kharkiv/grand",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%93%D1%80%D0%B0%D0%BD%D0%B4-n14181/",
+    "rieltor_id": 14181
   },
   {
     "jk_name": "ЖК Гідропарк",
-    "address": "вул. Борткевича, 1; вул. Борткевича, 3; вул. Борткевича, 5; вул. Борткевича, 9; вул. Борткевича, 7; вул. Борткевича, 11; вул. Борткевича, 13; вул. Борткевича, 15; вул. Шевченка, 327",
+    "address": "вул. Борткевича, 1; вул. Борткевича, 3; вул. Борткевича, 5; вул. Борткевича, 9; вул. Борткевича, 7; вул. Борткевича, 11; вул. Борткевича, 13; вул. Борткевича, 15",
     "class": "Економ",
     "district": "Київський р-н",
     "houses": [
@@ -2057,73 +1216,36 @@
       [
         4873,
         "15"
-      ],
-      [
-        4396,
-        "327"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 50.023447,
     "lon": 36.295895,
-    "url": "https://lun.ua/new/kharkiv/hidropark"
-  },
-  {
-    "jk_name": "ЖК Гідропарк Сіті",
-    "address": "пров. Шевченківський, 50",
-    "class": "Економ",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        4397,
-        "50"
-      ]
-    ],
-    "aliases": [
-      "ЖК Hydropark City"
-    ],
-    "developer": "Строй Сіті Development",
-    "lat": 50.011923,
-    "lon": 36.301554,
-    "url": "https://lun.ua/new/kharkiv/hidropark-city"
+    "url": "https://lun.ua/new/kharkiv/hidropark",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%93%D1%96%D0%B4%D1%80%D0%BE%D0%BF%D0%B0%D1%80%D0%BA-n18495/",
+    "rieltor_id": 18495
   },
   {
     "jk_name": "ЖК Джерело",
-    "address": "вул. Отакара Яроша, 24-Б",
-    "class": "Комфорт",
+    "address": "вул. Дмитра Антоненка, 49",
+    "class": "Бізнес",
     "district": "Шевченківський р-н",
     "houses": [
       [
-        3519,
-        "24-Б"
+        200056,
+        "49"
       ]
     ],
     "aliases": [
-      "Отакара Яроша 24б",
-      "ЖК Родник на Отакара Яроша"
+      "Мінська 49",
+      "Дмитра Антоненка 49",
+      "ЖК Родник"
     ],
-    "developer": "Флас",
-    "lat": 50.027209,
-    "lon": 36.225749
-  },
-  {
-    "jk_name": "ЖК Джокер",
-    "address": "вул. Нескорених, 14",
-    "class": "Бізнес",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        200624,
-        "14"
-      ]
-    ],
-    "aliases": [
-      "Героев Труда 14",
-      "Нескорених 14"
-    ],
-    "developer": "МКДУ",
-    "lat": 50.024976,
-    "lon": 36.330566
+    "developer": "Консоль",
+    "lat": 50.024281,
+    "lon": 36.225867,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%94%D0%B6%D0%B5%D1%80%D0%B5%D0%BB%D0%BE-n21162/",
+    "rieltor_id": 21162
   },
   {
     "jk_name": "ЖК Дипломат",
@@ -2139,57 +1261,35 @@
     "developer": "Констракшн Груп",
     "lat": 50.023925,
     "lon": 36.226956,
-    "url": "https://lun.ua/new/kharkiv/dyplomat"
+    "url": "https://lun.ua/new/kharkiv/dyplomat",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%94%D0%B8%D0%BF%D0%BB%D0%BE%D0%BC%D0%B0%D1%82-n18206/",
+    "rieltor_id": 18206
   },
   {
-    "jk_name": "ЖК Дипломат Клаб",
-    "address": "пров. Отакара Яроша",
-    "class": "Преміум",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "developer": "Констракшн Груп",
-    "lat": 50.025465,
-    "lon": 36.216598,
-    "url": "https://lun.ua/new/kharkiv/dyplomat-club"
-  },
-  {
-    "jk_name": "ЖК Добряночка",
-    "address": "просп. Любові Малої, 4-Б",
-    "class": "Економ",
-    "district": "Новобаварський р-н",
+    "jk_name": "ЖК Дружба",
+    "address": "вул. Соборності України, 228-А; вул. Соборності України, 228-Б",
+    "class": "Комфорт",
+    "district": "Салтівський р-н",
     "houses": [
       [
-        3671,
-        "4-Б"
-      ]
-    ],
-    "lat": 49.97317,
-    "lon": 36.19289,
-    "url": "https://lun.ua/new/kharkiv/dobrianochka"
-  },
-  {
-    "jk_name": "ЖК Домініон",
-    "address": "вул. Клочківська, 101-Ж; вул. Клочківська, 101",
-    "class": "Економ",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2893,
-        "101-Ж"
+        200627,
+        "228-А"
       ],
       [
-        2893,
-        "101"
+        200627,
+        "228-Б"
       ]
     ],
     "aliases": [
-      "Dominion",
-      "ЖБ Домініон"
+      "Дружбы Народов 228а",
+      "Дружбы Народов 238а",
+      "Соборності України 228-А"
     ],
-    "developer": "КДБК",
-    "lat": 50.005426,
-    "lon": 36.217097,
-    "url": "https://lun.ua/new/kharkiv/dominion"
+    "developer": "ТММ",
+    "lat": 50.03421,
+    "lon": 36.350266,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%94%D1%80%D1%83%D0%B6%D0%B1%D0%B0-n21233/",
+    "rieltor_id": 21233
   },
   {
     "jk_name": "ЖК Дует",
@@ -2212,7 +1312,9 @@
     "developer": "Житлобуд-2",
     "lat": 50.046582,
     "lon": 36.205791,
-    "url": "https://lun.ua/new/kharkiv/duet"
+    "url": "https://lun.ua/new/kharkiv/duet",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%94%D1%83%D0%B5%D1%82-n14687/",
+    "rieltor_id": 14687
   },
   {
     "jk_name": "ЖК Дім на Подолі",
@@ -2223,7 +1325,9 @@
     "developer": "Строй Сіті Development",
     "lat": 49.984991,
     "lon": 36.232218,
-    "url": "https://lun.ua/new/kharkiv/dim-na-podoli"
+    "url": "https://lun.ua/new/kharkiv/dim-na-podoli",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%94%D1%96%D0%BC+%D0%BD%D0%B0+%D0%9F%D0%BE%D0%B4%D0%BE%D0%BB%D1%96-n19744/",
+    "rieltor_id": 19744
   },
   {
     "jk_name": "ЖК Дім у Сокільниках",
@@ -2243,10 +1347,11 @@
       "Дім в Сокільниках",
       "Будинок в Сокільниках"
     ],
-    "developer": "Білий Слон",
     "lat": 50.032469,
     "lon": 36.254932,
-    "url": "https://lun.ua/new/kharkiv/dom-v-sokolnykakh"
+    "url": "https://lun.ua/new/kharkiv/dom-v-sokolnykakh",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%94%D1%96%D0%BC+%D1%83+%D0%A1%D0%BE%D0%BA%D1%96%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA%D0%B0%D1%85-n18907/",
+    "rieltor_id": 18907
   },
   {
     "jk_name": "ЖК Едельвейс",
@@ -2265,43 +1370,128 @@
     "developer": "ТММ",
     "lat": 49.960436,
     "lon": 36.312668,
-    "url": "https://lun.ua/new/kharkiv/edelveis"
+    "url": "https://lun.ua/new/kharkiv/edelveis",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%95%D0%B4%D0%B5%D0%BB%D1%8C%D0%B2%D0%B5%D0%B9%D1%81-n14176/",
+    "rieltor_id": 14176
   },
   {
-    "jk_name": "ЖК Епоха",
-    "address": "вул. Киргизька, 19-В",
-    "class": "Комфорт",
-    "district": "Слобідський р-н",
-    "houses": [
-      [
-        2869,
-        "19-В"
-      ]
-    ],
-    "aliases": [
-      "ЖК Эпоха",
-      "Киргизская 19в"
-    ],
-    "lat": 49.94731,
-    "lon": 36.28307
-  },
-  {
-    "jk_name": "ЖК Етюд",
-    "address": "вул. Косарєва, 19",
+    "jk_name": "ЖК ЖБ Домініон",
+    "address": "вул. Клочківська, 101-Ж",
     "class": "Економ",
-    "district": "Індустріальний р-н",
+    "district": "Шевченківський р-н",
     "houses": [
       [
-        3977,
-        "19"
+        2893,
+        "101-Ж"
       ]
     ],
     "aliases": [
-      "ЖБ Етюд"
+      "ЖБ Домініон",
+      "Dominion"
     ],
-    "lat": 49.94353,
-    "lon": 36.375164,
-    "url": "https://lun.ua/new/kharkiv/etiud"
+    "developer": "КДБК",
+    "lat": 50.005426,
+    "lon": 36.217097,
+    "url": "https://lun.ua/new/kharkiv/dominion",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%96%D0%91+%D0%94%D0%BE%D0%BC%D1%96%D0%BD%D1%96%D0%BE%D0%BD-n14686/",
+    "rieltor_id": 14686
+  },
+  {
+    "jk_name": "ЖК ЖБ Квітка",
+    "address": "вул. Квітки-Основ'яненка, 14",
+    "class": "Преміум",
+    "district": "Шевченківський р-н",
+    "houses": [
+      [
+        2850,
+        "14"
+      ]
+    ],
+    "aliases": [
+      "ЖБ Квітка"
+    ],
+    "developer": "Житлобуд-2",
+    "lat": 49.988496,
+    "lon": 36.231219,
+    "url": "https://lun.ua/new/kharkiv/kvitka",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%96%D0%91+%D0%9A%D0%B2%D1%96%D1%82%D0%BA%D0%B0-n15947/",
+    "rieltor_id": 15947
+  },
+  {
+    "jk_name": "ЖК ЖБ Подільський",
+    "address": "вул. Кузнечна, 22, секція 1; вул. Кузнечна, 22, секція 2; вул. Кузнечна, 22, секція 3",
+    "class": "Бізнес",
+    "district": "Основ'янський р-н",
+    "houses": [
+      [
+        3060,
+        "22, секція 1"
+      ],
+      [
+        3060,
+        "22, секція 2"
+      ],
+      [
+        3060,
+        "22, секція 3"
+      ]
+    ],
+    "aliases": [
+      "ЖБ Подільський",
+      "ЖБ Подольський"
+    ],
+    "developer": "Житлобуд-2",
+    "lat": 49.985193,
+    "lon": 36.235721,
+    "url": "https://lun.ua/new/kharkiv/podilskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%96%D0%91+%D0%9F%D0%BE%D0%B4%D1%96%D0%BB%D1%8C%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n16495/",
+    "rieltor_id": 16495
+  },
+  {
+    "jk_name": "ЖК ЖБК Новий дім Котлова",
+    "address": "вул. Велика Панасівська, 76-Б",
+    "class": "Комфорт",
+    "district": "Холодногірський р-н",
+    "houses": [
+      [
+        2988,
+        "76-Б"
+      ]
+    ],
+    "aliases": [
+      "ЖБК Новий дім Котлова",
+      "Південний",
+      "ЖК Новий дім Котлова"
+    ],
+    "developer": "Новий дім",
+    "lat": 49.998194,
+    "lon": 36.207638,
+    "url": "https://lun.ua/new/kharkiv/novyi-dim-kotlova",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%96%D0%91%D0%9A+%D0%9D%D0%BE%D0%B2%D0%B8%D0%B9+%D0%B4%D1%96%D0%BC+%D0%9A%D0%BE%D1%82%D0%BB%D0%BE%D0%B2%D0%B0-n14236/",
+    "rieltor_id": 14236
+  },
+  {
+    "jk_name": "ЖК ЖД Родніки",
+    "address": "вул. Яни Червоної, 11-А",
+    "class": "Економ",
+    "district": "Салтівський р-н",
+    "houses": [
+      [
+        200484,
+        "11-А"
+      ]
+    ],
+    "aliases": [
+      "ЖД Родніки",
+      "Джерела",
+      "Роднікі"
+    ],
+    "developer": "КДБК",
+    "lat": 50.030611,
+    "lon": 36.352776,
+    "url": "https://lun.ua/new/kharkiv/rodnyky",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%96%D0%94+%D0%A0%D0%BE%D0%B4%D0%BD%D1%96%D0%BA%D0%B8-n14210/",
+    "rieltor_id": 14210
   },
   {
     "jk_name": "ЖК Журавлевський",
@@ -2322,10 +1512,12 @@
     "developer": "Рестріелт",
     "lat": 50.012002,
     "lon": 36.278843,
-    "url": "https://lun.ua/new/kharkiv/zhuravlevskyi"
+    "url": "https://lun.ua/new/kharkiv/zhuravlevskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%96%D1%83%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n14167/",
+    "rieltor_id": 14167
   },
   {
-    "jk_name": "ЖК Журавлі",
+    "jk_name": "ЖК Журавли",
     "address": "вул. Академіка Павлова, 158, корп. 1; вул. Академіка Павлова, 158, корп. 2",
     "class": "Бізнес",
     "district": "Салтівський р-н",
@@ -2340,13 +1532,14 @@
       ]
     ],
     "aliases": [
-      "Журавлі",
-      "ЖК Журавли"
+      "Журавлі"
     ],
     "developer": "Авантаж",
     "lat": 50.026275,
     "lon": 36.340314,
-    "url": "https://lun.ua/new/kharkiv/zhuravly"
+    "url": "https://lun.ua/new/kharkiv/zhuravly",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%96%D1%83%D1%80%D0%B0%D0%B2%D0%BB%D0%B8-n15715/",
+    "rieltor_id": 15715
   },
   {
     "jk_name": "ЖК Зарічний",
@@ -2366,79 +1559,34 @@
     "developer": "Житлобуд-2",
     "lat": 49.988056,
     "lon": 36.244584,
-    "url": "https://lun.ua/new/kharkiv/zarichnyi"
+    "url": "https://lun.ua/new/kharkiv/zarichnyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%97%D0%B0%D1%80%D1%96%D1%87%D0%BD%D0%B8%D0%B9-n14203/",
+    "rieltor_id": 14203
   },
   {
-    "jk_name": "ЖК Затишний дворик",
-    "address": "пров. Вишневий, 14",
-    "class": "Економ",
-    "district": "Слобідський р-н",
-    "houses": [
-      [
-        2351,
-        "14"
-      ]
-    ],
-    "aliases": [
-      "Затишний Двір",
-      "Затишний Дворик"
-    ],
-    "lat": 49.959518,
-    "lon": 36.266737,
-    "url": "https://lun.ua/new/kharkiv/zatyshnyi-dvoryk"
-  },
-  {
-    "jk_name": "ЖК Захисник",
-    "address": "вул. Богдана Хмельницького, 32",
+    "jk_name": "ЖК Зелена шапочка",
+    "address": "вул. Академіка Павлова, 144",
     "class": "Комфорт",
-    "district": "Основ'янський р-н",
+    "district": "Салтівський р-н",
     "houses": [
       [
-        2209,
-        "32"
+        2045,
+        "144"
       ]
     ],
     "aliases": [
-      "ЖК Защитник"
+      "ЖК Зеленая шапочка",
+      "Академика Павлова 144"
     ],
-    "developer": "Turkish Development Ukraine",
-    "lat": 49.985817,
-    "lon": 36.257229,
-    "url": "https://lun.ua/new/kharkiv/zashchytnyk"
-  },
-  {
-    "jk_name": "ЖК Золочівський",
-    "address": "пров. Золочівський 2-й, 22",
-    "class": "Економ",
-    "district": "Холодногірський р-н",
-    "houses": [
-      [
-        2752,
-        "22"
-      ]
-    ],
-    "aliases": [
-      "ЖК Золочевский",
-      "2-й Золочевский пер. 22"
-    ],
-    "developer": "Мегаінвестбуд",
-    "lat": 49.987433,
-    "lon": 36.151245
-  },
-  {
-    "jk_name": "ЖК Кава з молоком",
-    "address": "вул. Шевченка / вул. Героїв Праці",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [],
-    "developer": "Авантаж",
-    "lat": 50.027102,
-    "lon": 36.303944,
-    "url": "https://lun.ua/new/kharkiv/kava-z-molokom"
+    "developer": "Житлобуд-2",
+    "lat": 50.021052,
+    "lon": 36.334021,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%97%D0%B5%D0%BB%D0%B5%D0%BD%D0%B0+%D1%88%D0%B0%D0%BF%D0%BE%D1%87%D0%BA%D0%B0-n21212/",
+    "rieltor_id": 21212
   },
   {
     "jk_name": "ЖК Казка",
-    "address": "вул. Полтавський Шлях, 184-Б; вул. Полтавський Шлях, 184-Г; вул. Полтавський Шлях, 184-В; вул. Полтавський Шлях, 184-А, корп. 9; вул. Полтавський Шлях, 184-А, корп. 18; вул. Полтавський Шлях, 184-А, корп. 22; вул. Полтавський Шлях, 184-А, корп. 16; вул. Полтавський Шлях, 184-А, корп. 19; вул. Полтавський Шлях, 184-А, корп. 17; вул. Полтавський Шлях, 186",
+    "address": "вул. Полтавський Шлях, 184-Б; вул. Полтавський Шлях, 184-Г; вул. Полтавський Шлях, 184-В; вул. Полтавський Шлях, 184-А, корп. 9; вул. Полтавський Шлях, 184-А, корп. 18; вул. Полтавський Шлях, 184-А, корп. 22; вул. Полтавський Шлях, 184-А, корп. 16; вул. Полтавський Шлях, 184-А, корп. 19; вул. Полтавський Шлях, 184-А, корп. 17; вул. Полтавський Шлях, 184-А, корп. 10; вул. Полтавський Шлях, 184-А, корп. 21",
     "class": "Економ",
     "district": "Холодногірський р-н",
     "houses": [
@@ -2480,13 +1628,19 @@
       ],
       [
         3651,
-        "186"
+        "184-А, корп. 10"
+      ],
+      [
+        3651,
+        "184-А, корп. 21"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.979274,
     "lon": 36.170891,
-    "url": "https://lun.ua/new/kharkiv/kazka"
+    "url": "https://lun.ua/new/kharkiv/kazka",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%B0%D0%B7%D0%BA%D0%B0-n19209/",
+    "rieltor_id": 19209
   },
   {
     "jk_name": "ЖК Карамель",
@@ -2506,7 +1660,9 @@
     "developer": "ЖИТЛОБУД-3",
     "lat": 49.996585,
     "lon": 36.213784,
-    "url": "https://lun.ua/new/kharkiv/caramel"
+    "url": "https://lun.ua/new/kharkiv/caramel",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D0%BB%D1%8C-n16602/",
+    "rieltor_id": 16602
   },
   {
     "jk_name": "ЖК Карат",
@@ -2525,7 +1681,9 @@
     "developer": "ТММ",
     "lat": 49.99415,
     "lon": 36.239451,
-    "url": "https://lun.ua/new/kharkiv/karat"
+    "url": "https://lun.ua/new/kharkiv/karat",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%B0%D1%80%D0%B0%D1%82-n14164/",
+    "rieltor_id": 14164
   },
   {
     "jk_name": "ЖК Каскад",
@@ -2546,45 +1704,19 @@
     "developer": "ТММ",
     "lat": 49.985379,
     "lon": 36.235244,
-    "url": "https://lun.ua/new/kharkiv/kaskad"
-  },
-  {
-    "jk_name": "ЖК Квант",
-    "address": "вул. Спецпідрозділу Кракен, 4-Б; вул. Спецпідрозділу Кракен, 4-В; вул. Спецпідрозділу Кракен, 4",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200663,
-        "4-Б"
-      ],
-      [
-        200663,
-        "4-В"
-      ],
-      [
-        200663,
-        "4"
-      ]
-    ],
-    "developer": "ФЛАС",
-    "lat": 50.014079,
-    "lon": 36.231699,
-    "url": "https://lun.ua/new/kharkiv/kvant"
+    "url": "https://lun.ua/new/kharkiv/kaskad",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%B0%D1%81%D0%BA%D0%B0%D0%B4-n14221/",
+    "rieltor_id": 14221
   },
   {
     "jk_name": "ЖК Квартет",
-    "address": "просп. Ювілейний, 61-Д; просп. Ювілейний, 61",
+    "address": "просп. Ювілейний, 61-Д",
     "class": "Економ",
     "district": "Салтівський р-н",
     "houses": [
       [
         3735,
         "61-Д"
-      ],
-      [
-        3735,
-        "61"
       ]
     ],
     "aliases": [
@@ -2593,48 +1725,20 @@
     "developer": "Житлобуд-2",
     "lat": 49.998913,
     "lon": 36.346268,
-    "url": "https://lun.ua/new/kharkiv/kvartet"
-  },
-  {
-    "jk_name": "ЖК Квітка",
-    "address": "вул. Квітки-Основ'яненка, 14",
-    "class": "Преміум",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2850,
-        "14"
-      ]
-    ],
-    "aliases": [
-      "ЖБ Квітка"
-    ],
-    "developer": "Житлобуд-2",
-    "lat": 49.988496,
-    "lon": 36.231219,
-    "url": "https://lun.ua/new/kharkiv/kvitka"
-  },
-  {
-    "jk_name": "ЖК Київський",
-    "address": "вул. Петропавліська, 1а",
-    "class": "Бізнес",
-    "district": "Київський р-н",
-    "houses": [],
-    "aliases": [
-      "Київський",
-      "Києвський"
-    ],
-    "developer": "Інтертрейд-Харків",
-    "lat": 50.002642,
-    "lon": 36.264098,
-    "url": "https://lun.ua/new/kharkiv/kyivskyi"
+    "url": "https://lun.ua/new/kharkiv/kvartet",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%B2%D0%B0%D1%80%D1%82%D0%B5%D1%82-n14222/",
+    "rieltor_id": 14222
   },
   {
     "jk_name": "ЖК Клеменова Дача",
-    "address": "вул. Клеменова Дача, 12; вул. Клеменова Дача, 14; пров. Клеменова Дача, 15; вул. Клеменова Дача, 11",
+    "address": "вул. Клеменова Дача, 11; вул. Клеменова Дача, 12; вул. Клеменова Дача, 14; пров. Клеменова Дача, 15",
     "class": "Бізнес",
     "district": "Київський р-н",
     "houses": [
+      [
+        4895,
+        "11"
+      ],
       [
         4895,
         "12"
@@ -2646,19 +1750,32 @@
       [
         4896,
         "15"
-      ],
-      [
-        4895,
-        "11"
       ]
     ],
     "aliases": [
       "Клеменовая Дача"
     ],
-    "developer": "Експерт Девелопмент",
-    "lat": 50.025469,
-    "lon": 36.303667,
-    "url": "https://lun.ua/new/kharkiv/klemenova-dacha"
+    "lat": 50.024806,
+    "lon": 36.30283,
+    "url": "https://lun.ua/new/kharkiv/klemenova-dacha",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D0%BE%D0%B2%D0%B0+%D0%94%D0%B0%D1%87%D0%B0-n17687/",
+    "rieltor_id": 17687
+  },
+  {
+    "jk_name": "ЖК Клубний будинок Міські сади",
+    "address": "просп. Тракторобудівників, 79б",
+    "class": "Економ",
+    "district": "Салтівський р-н",
+    "houses": [],
+    "aliases": [
+      "Клубний будинок Міські сади",
+      "Клубний будинок Городські сади"
+    ],
+    "lat": 50.010301,
+    "lon": 36.33805,
+    "url": "https://lun.ua/new/kharkiv/miski-sady",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%BB%D1%83%D0%B1%D0%BD%D0%B8%D0%B9+%D0%B1%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%BA+%D0%9C%D1%96%D1%81%D1%8C%D0%BA%D1%96+%D1%81%D0%B0%D0%B4%D0%B8-n18659/",
+    "rieltor_id": 18659
   },
   {
     "jk_name": "ЖК Ключ",
@@ -2677,42 +1794,9 @@
     "developer": "Авантаж",
     "lat": 50.024281,
     "lon": 36.225867,
-    "url": "https://lun.ua/new/kharkiv/kliuch"
-  },
-  {
-    "jk_name": "ЖК Ковчег",
-    "address": "вул. Космічна, 20",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2974,
-        "20"
-      ]
-    ],
-    "aliases": [
-      "Космическая 20",
-      "ЖК на Космічній 20"
-    ],
-    "developer": "МКДУ",
-    "lat": 50.016225,
-    "lon": 36.222473
-  },
-  {
-    "jk_name": "ЖК Комфорт на Салтівці",
-    "address": "вул. Руслана Плоходька, 5-А",
-    "class": "Комфорт",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        2632,
-        "5-А"
-      ]
-    ],
-    "developer": "Авантаж",
-    "lat": 49.991387,
-    "lon": 36.348388,
-    "url": "https://lun.ua/new/kharkiv/komfort-na-saltivtsi"
+    "url": "https://lun.ua/new/kharkiv/kliuch",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%BB%D1%8E%D1%87-n15461/",
+    "rieltor_id": 15461
   },
   {
     "jk_name": "ЖК Континенталь на Валентинівській",
@@ -2731,7 +1815,9 @@
     "developer": "Констракшн Груп",
     "lat": 50.018467,
     "lon": 36.325846,
-    "url": "https://lun.ua/new/kharkiv/kontynental-na-valentynivskii"
+    "url": "https://lun.ua/new/kharkiv/kontynental-na-valentynivskii",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%BE%D0%BD%D1%82%D0%B8%D0%BD%D0%B5%D0%BD%D1%82%D0%B0%D0%BB%D1%8C+%D0%BD%D0%B0+%D0%92%D0%B0%D0%BB%D0%B5%D0%BD%D1%82%D0%B8%D0%BD%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D1%96%D0%B9-n18074/",
+    "rieltor_id": 18074
   },
   {
     "jk_name": "ЖК Конторський",
@@ -2747,7 +1833,9 @@
     "developer": "СамсонГрад",
     "lat": 49.9864,
     "lon": 36.222101,
-    "url": "https://lun.ua/new/kharkiv/kontorskyi"
+    "url": "https://lun.ua/new/kharkiv/kontorskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%BE%D0%BD%D1%82%D0%BE%D1%80%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n17983/",
+    "rieltor_id": 17983
   },
   {
     "jk_name": "ЖК Конторський-2",
@@ -2763,7 +1851,9 @@
     "developer": "СамсонГрад",
     "lat": 49.986878,
     "lon": 36.222286,
-    "url": "https://lun.ua/new/kharkiv/kontorskyi-2"
+    "url": "https://lun.ua/new/kharkiv/kontorskyi-2",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%BE%D0%BD%D1%82%D0%BE%D1%80%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-2-n17985/",
+    "rieltor_id": 17985
   },
   {
     "jk_name": "ЖК Короховський",
@@ -2778,7 +1868,9 @@
     ],
     "lat": 49.986787,
     "lon": 36.223034,
-    "url": "https://lun.ua/new/kharkiv/korokhovskyi"
+    "url": "https://lun.ua/new/kharkiv/korokhovskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%BE%D1%80%D0%BE%D1%85%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n18473/",
+    "rieltor_id": 18473
   },
   {
     "jk_name": "ЖК Котловський",
@@ -2793,27 +1885,27 @@
     ],
     "lat": 49.997193,
     "lon": 36.211094,
-    "url": "https://lun.ua/new/kharkiv/kotlovskyi"
+    "url": "https://lun.ua/new/kharkiv/kotlovskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D0%BE%D1%82%D0%BB%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n19763/",
+    "rieltor_id": 19763
   },
   {
     "jk_name": "ЖК Кристал",
-    "address": "вул. Молочна, 52; вул. Молочна, 56",
+    "address": "вул. Молочна, 52",
     "class": "Комфорт",
     "district": "Основ'янський р-н",
     "houses": [
       [
         2884,
         "52"
-      ],
-      [
-        2884,
-        "56"
       ]
     ],
     "developer": "Житлобуд-2",
     "lat": 49.977251,
     "lon": 36.249105,
-    "url": "https://lun.ua/new/kharkiv/krystal"
+    "url": "https://lun.ua/new/kharkiv/krystal",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB-n17980/",
+    "rieltor_id": 17980
   },
   {
     "jk_name": "ЖК Крокус",
@@ -2829,21 +1921,12 @@
     "developer": "Авантаж",
     "lat": 49.987203,
     "lon": 36.176081,
-    "url": "https://lun.ua/new/kharkiv/krokus"
+    "url": "https://lun.ua/new/kharkiv/krokus",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D1%80%D0%BE%D0%BA%D1%83%D1%81-n18477/",
+    "rieltor_id": 18477
   },
   {
-    "jk_name": "ЖК Кріптон",
-    "address": "пров. Санжарівський",
-    "class": "Бізнес",
-    "district": "Салтівський р-н",
-    "houses": [],
-    "developer": "ФЛАС",
-    "lat": 49.993746,
-    "lon": 36.259552,
-    "url": "https://lun.ua/new/kharkiv/kripton"
-  },
-  {
-    "jk_name": "ЖК Куликівський",
+    "jk_name": "ЖК Куликовський",
     "address": "вул. Куликівська, 32",
     "class": "Бізнес",
     "district": "Київський р-н",
@@ -2853,13 +1936,41 @@
         "32"
       ]
     ],
-    "aliases": [
-      "ЖК Куликовський"
-    ],
     "developer": "Turkish Development Ukraine",
     "lat": 49.994312,
     "lon": 36.244323,
-    "url": "https://lun.ua/new/kharkiv/kulykovskyi"
+    "url": "https://lun.ua/new/kharkiv/kulykovskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9A%D1%83%D0%BB%D0%B8%D0%BA%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n19375/",
+    "rieltor_id": 19375
+  },
+  {
+    "jk_name": "ЖК Л. Малої",
+    "address": "просп. Любові Малої, 34; просп. Любові Малої, 34-А; просп. Любові Малої, 34-Б",
+    "class": "Економ",
+    "district": "Новобаварський р-н",
+    "houses": [
+      [
+        3671,
+        "34"
+      ],
+      [
+        3671,
+        "34-А"
+      ],
+      [
+        3671,
+        "34-Б"
+      ]
+    ],
+    "aliases": [
+      "Постишева"
+    ],
+    "developer": "Трест Житлобуд-1",
+    "lat": 49.95788,
+    "lon": 36.168777,
+    "url": "https://lun.ua/new/kharkiv/l-maloi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9B.+%D0%9C%D0%B0%D0%BB%D0%BE%D1%97-n14688/",
+    "rieltor_id": 14688
   },
   {
     "jk_name": "ЖК Лазурний",
@@ -2879,7 +1990,9 @@
     "developer": "ГрадСтрой",
     "lat": 49.995762,
     "lon": 36.21522,
-    "url": "https://lun.ua/new/kharkiv/lazurnyi"
+    "url": "https://lun.ua/new/kharkiv/lazurnyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9B%D0%B0%D0%B7%D1%83%D1%80%D0%BD%D0%B8%D0%B9-n16876/",
+    "rieltor_id": 16876
   },
   {
     "jk_name": "ЖК Лайнер",
@@ -2898,21 +2011,13 @@
     "developer": "Трест Житлобуд-1",
     "lat": 49.997877,
     "lon": 36.227506,
-    "url": "https://lun.ua/new/kharkiv/lainer"
-  },
-  {
-    "jk_name": "ЖК Ластівчине гніздо",
-    "address": "Пісочин, вул. Транспортна, 116а",
-    "class": "Економ",
-    "district": "Передмістя",
-    "houses": [],
-    "lat": 49.957191,
-    "lon": 36.116553,
-    "url": "https://lun.ua/new/kharkiv/pisochyn-lastivchyne-hnizdo"
+    "url": "https://lun.ua/new/kharkiv/lainer",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9B%D0%B0%D0%B9%D0%BD%D0%B5%D1%80-n15748/",
+    "rieltor_id": 15748
   },
   {
     "jk_name": "ЖК Левада",
-    "address": "вул. Лисаветинська, 1; вул. Лисаветинська, 1-Б; вул. Лисаветинська, 3-Б; вул. Лисаветинська, 3-В; вул. Лисаветинська, 5-Б; вул. Лисаветинська, 5-В; вул. Лисаветинська, 3; вул. Лисаветинська, 5-А; вул. Лисаветинська, 3-А; вул. Лисаветинська, 5; вул. Лисаветинська, 7; вул. Лисаветинська, 7-А; вул. Лисаветинська, 7-Б; вул. Лисаветинська, 1-А; вул. Лисаветинська, 7-В; вул. Заливна, 2; вул. Заливна, 4; вул. Заливна, 6; вул. Заливна, 8-А; вул. Лисаветинська, 7-Д; вул. Заливна, 10; вул. Заливна, 12; вул. Лисаветинська, 3-Г",
+    "address": "вул. Лисаветинська, 1; вул. Лисаветинська, 1-Б; вул. Лисаветинська, 3-Б; вул. Лисаветинська, 3-В; вул. Лисаветинська, 5-Б; вул. Лисаветинська, 5-В; вул. Лисаветинська, 3; вул. Лисаветинська, 5-А; вул. Лисаветинська, 3-А; вул. Лисаветинська, 5; вул. Лисаветинська, 7; вул. Лисаветинська, 7-А; вул. Лисаветинська, 7-Б; вул. Лисаветинська, 1-А; вул. Лисаветинська, 7-В; вул. Заливна, 2; вул. Заливна, 4; вул. Заливна, 6; вул. Заливна, 8-А; вул. Лисаветинська, 7-Д; вул. Заливна, 10; вул. Заливна, 12",
     "class": "Комфорт",
     "district": "Основ'янський р-н",
     "houses": [
@@ -3003,56 +2108,32 @@
       [
         2696,
         "12"
-      ],
-      [
-        3119,
-        "3-Г"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.980631,
     "lon": 36.240903,
-    "url": "https://lun.ua/new/kharkiv/levada"
-  },
-  {
-    "jk_name": "ЖК Левада-2",
-    "address": "вул. Заливна, 8-Б",
-    "class": "Комфорт",
-    "district": "Основ'янський р-н",
-    "houses": [
-      [
-        2696,
-        "8-Б"
-      ]
-    ],
-    "aliases": [
-      "ЖК Левада 2",
-      "Заливная 8б",
-      "Елизаветинская 2б"
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 49.977915,
-    "lon": 36.236741
+    "url": "https://lun.ua/new/kharkiv/levada",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9B%D0%B5%D0%B2%D0%B0%D0%B4%D0%B0-n20034/",
+    "rieltor_id": 20034
   },
   {
     "jk_name": "ЖК Люксембург",
-    "address": "вул. Динамівська, 3; вул. Динамівська, 15-А",
+    "address": "вул. Динамівська, 3",
     "class": "Преміум",
     "district": "Шевченківський р-н",
     "houses": [
       [
         2564,
         "3"
-      ],
-      [
-        2564,
-        "15-А"
       ]
     ],
     "developer": "Авантаж",
     "lat": 50.013324,
     "lon": 36.241507,
-    "url": "https://lun.ua/new/kharkiv/luxemburg"
+    "url": "https://lun.ua/new/kharkiv/luxemburg",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9B%D1%8E%D0%BA%D1%81%D0%B5%D0%BC%D0%B1%D1%83%D1%80%D0%B3-n17515/",
+    "rieltor_id": 17515
   },
   {
     "jk_name": "ЖК Магістр",
@@ -3068,7 +2149,9 @@
     "developer": "Turkish Development Ukraine",
     "lat": 50.015579,
     "lon": 36.231512,
-    "url": "https://lun.ua/new/kharkiv/mahistr"
+    "url": "https://lun.ua/new/kharkiv/mahistr",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%B0%D0%B3%D1%96%D1%81%D1%82%D1%80-n19329/",
+    "rieltor_id": 19329
   },
   {
     "jk_name": "ЖК Макіївська",
@@ -3088,61 +2171,27 @@
     "developer": "Трест Житлобуд-1",
     "lat": 49.952839,
     "lon": 36.256573,
-    "url": "https://lun.ua/new/kharkiv/makiivska"
-  },
-  {
-    "jk_name": "ЖК Мангеттен",
-    "address": "просп. Героїв Харкова, 97",
-    "class": "Бізнес",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        200006,
-        "97"
-      ]
-    ],
-    "aliases": [
-      "Манхетен"
-    ],
-    "developer": "Житлобуд-2",
-    "lat": 49.991613,
-    "lon": 36.260827,
-    "url": "https://lun.ua/new/kharkiv/manhattan"
+    "url": "https://lun.ua/new/kharkiv/makiivska",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%B0%D0%BA%D1%96%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B0-n16838/",
+    "rieltor_id": 16838
   },
   {
     "jk_name": "ЖК Маршал",
-    "address": "просп. Героїв Харкова, 144-К; просп. Героїв Харкова, 144/2",
+    "address": "просп. Героїв Харкова, 144-К",
     "class": "Комфорт",
     "district": "Немишлянський р-н",
     "houses": [
       [
         200006,
         "144-К"
-      ],
-      [
-        200006,
-        "144/2"
       ]
     ],
     "developer": "Marshal Development",
     "lat": 49.965719,
     "lon": 36.317626,
-    "url": "https://lun.ua/new/kharkiv/marshal"
-  },
-  {
-    "jk_name": "ЖК Маяк",
-    "address": "Пісочин, вул. Кушнарьова, 1а",
-    "class": "Економ",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Маяк",
-      "ЖБ Маяк"
-    ],
-    "developer": "КДБК",
-    "lat": 49.965512,
-    "lon": 36.092189,
-    "url": "https://lun.ua/new/kharkiv/pisochyn-maiak"
+    "url": "https://lun.ua/new/kharkiv/marshal",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%B0%D1%80%D1%88%D0%B0%D0%BB-n19019/",
+    "rieltor_id": 19019
   },
   {
     "jk_name": "ЖК Меридіан",
@@ -3182,26 +2231,9 @@
     "developer": "Житлобуд-2",
     "lat": 50.030848,
     "lon": 36.358873,
-    "url": "https://lun.ua/new/kharkiv/merydian"
-  },
-  {
-    "jk_name": "ЖК Меркурій",
-    "address": "вул. Яни Червоної, 9-А",
-    "class": "Комфорт",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        200484,
-        "9-А"
-      ]
-    ],
-    "aliases": [
-      "ЖК Меркурий",
-      "Родниковая 9а",
-      "Яни Червоної 9а"
-    ],
-    "lat": 50.031567,
-    "lon": 36.352013
+    "url": "https://lun.ua/new/kharkiv/merydian",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%B5%D1%80%D0%B8%D0%B4%D1%96%D0%B0%D0%BD-n16975/",
+    "rieltor_id": 16975
   },
   {
     "jk_name": "ЖК Металіст",
@@ -3214,10 +2246,11 @@
         "92-А"
       ]
     ],
-    "developer": "Daytona Development Company Дніпро",
     "lat": 49.977693,
     "lon": 36.26455,
-    "url": "https://lun.ua/new/kharkiv/metalist"
+    "url": "https://lun.ua/new/kharkiv/metalist",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%B5%D1%82%D0%B0%D0%BB%D1%96%D1%81%D1%82-n17982/",
+    "rieltor_id": 17982
   },
   {
     "jk_name": "ЖК Мир",
@@ -3235,26 +2268,12 @@
     ],
     "lat": 50.025311,
     "lon": 36.215079,
-    "url": "https://lun.ua/new/kharkiv/myr"
+    "url": "https://lun.ua/new/kharkiv/myr",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%B8%D1%80-n14215/",
+    "rieltor_id": 14215
   },
   {
-    "jk_name": "ЖК Мирний",
-    "address": "вул. Мирна, 19",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        3261,
-        "19"
-      ]
-    ],
-    "developer": "Всесвіт",
-    "lat": 50.016888,
-    "lon": 36.206043,
-    "url": "https://lun.ua/new/kharkiv/myrnyi"
-  },
-  {
-    "jk_name": "ЖК Мироносицька",
+    "jk_name": "ЖК Мироносицка",
     "address": "вул. Мироносицька, 74",
     "class": "Бізнес",
     "district": "Київський р-н",
@@ -3264,13 +2283,12 @@
         "74"
       ]
     ],
-    "aliases": [
-      "ЖК Мироносицка"
-    ],
     "developer": "Трест Житлобуд-1",
     "lat": 50.009927,
     "lon": 36.242823,
-    "url": "https://lun.ua/new/kharkiv/myronosytska"
+    "url": "https://lun.ua/new/kharkiv/myronosytska",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%B8%D1%80%D0%BE%D0%BD%D0%BE%D1%81%D0%B8%D1%86%D0%BA%D0%B0-n17973/",
+    "rieltor_id": 17973
   },
   {
     "jk_name": "ЖК Миру-1",
@@ -3318,11 +2336,13 @@
     "developer": "Трест Житлобуд-1",
     "lat": 49.95494,
     "lon": 36.364836,
-    "url": "https://lun.ua/new/kharkiv/myru-1"
+    "url": "https://lun.ua/new/kharkiv/myru-1",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%B8%D1%80%D1%83-1-n17972/",
+    "rieltor_id": 17972
   },
   {
     "jk_name": "ЖК Миру-2",
-    "address": "вул. Миру, 25; вул. Миру, 27; просп. Героїв Харкова, 268-Б; просп. Героїв Харкова, 268-В; вул. Миру, 29; вул. Миру, 31; вул. Миру, 21; вул. Миру, 23; просп. Героїв Харкова, 268; просп. Героїв Харкова, 268-А; просп. Героїв Харкова, 268-Ж",
+    "address": "вул. Миру, 25; вул. Миру, 27; просп. Героїв Харкова, 268-Б; просп. Героїв Харкова, 268-В; вул. Миру, 29; вул. Миру, 31; вул. Миру, 21; вул. Миру, 23; просп. Героїв Харкова, 268; просп. Героїв Харкова, 268-А; просп. Героїв Харкова, 268-Ж; просп. Героїв Харкова, 268-Г; просп. Героїв Харкова, 268-Д",
     "class": "Економ",
     "district": "Індустріальний р-н",
     "houses": [
@@ -3369,12 +2389,22 @@
       [
         200006,
         "268-Ж"
+      ],
+      [
+        200006,
+        "268-Г"
+      ],
+      [
+        200006,
+        "268-Д"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.950168,
     "lon": 36.378322,
-    "url": "https://lun.ua/new/kharkiv/myru-2"
+    "url": "https://lun.ua/new/kharkiv/myru-2",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%B8%D1%80%D1%83-2-n17988/",
+    "rieltor_id": 17988
   },
   {
     "jk_name": "ЖК Миру-3",
@@ -3430,7 +2460,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 49.946606,
     "lon": 36.388788,
-    "url": "https://lun.ua/new/kharkiv/myru-3"
+    "url": "https://lun.ua/new/kharkiv/myru-3",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%B8%D1%80%D1%83-3-n18490/",
+    "rieltor_id": 18490
   },
   {
     "jk_name": "ЖК Миру-4",
@@ -3474,7 +2506,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 49.945892,
     "lon": 36.390986,
-    "url": "https://lun.ua/new/kharkiv/myru-4"
+    "url": "https://lun.ua/new/kharkiv/myru-4",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%B8%D1%80%D1%83-4-n17042/",
+    "rieltor_id": 17042
   },
   {
     "jk_name": "ЖК Молодіжне містечко",
@@ -3493,21 +2527,19 @@
     "developer": "Трест Житлобуд-1",
     "lat": 50.057415,
     "lon": 36.193551,
-    "url": "https://lun.ua/new/kharkiv/molodizhne-mistechko"
+    "url": "https://lun.ua/new/kharkiv/molodizhne-mistechko",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%BE%D0%BB%D0%BE%D0%B4%D1%96%D0%B6%D0%BD%D0%B5+%D0%BC%D1%96%D1%81%D1%82%D0%B5%D1%87%D0%BA%D0%BE-n14172/",
+    "rieltor_id": 14172
   },
   {
     "jk_name": "ЖК Молодіжний",
-    "address": "вул. Мирослава Мисли, 48; вул. Мирослава Мисли, 48-Б",
+    "address": "вул. Мирослава Мисли, 48",
     "class": "Економ",
     "district": "Шевченківський р-н",
     "houses": [
       [
         200040,
         "48"
-      ],
-      [
-        200040,
-        "48-Б"
       ]
     ],
     "aliases": [
@@ -3518,21 +2550,19 @@
     "developer": "Респект Будінвест, Форт-Пост",
     "lat": 50.047353,
     "lon": 36.204611,
-    "url": "https://lun.ua/new/kharkiv/molodizhnyi"
+    "url": "https://lun.ua/new/kharkiv/molodizhnyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%BE%D0%BB%D0%BE%D0%B4%D1%96%D0%B6%D0%BD%D0%B8%D0%B9-n14179/",
+    "rieltor_id": 14179
   },
   {
     "jk_name": "ЖК Молодіжний-2",
-    "address": "вул. Мирослава Мисли, 48-В; вул. Мирослава Мисли, 46",
+    "address": "вул. Мирослава Мисли, 48-В",
     "class": "Економ",
     "district": "Шевченківський р-н",
     "houses": [
       [
         200040,
         "48-В"
-      ],
-      [
-        200040,
-        "46"
       ]
     ],
     "aliases": [
@@ -3541,38 +2571,16 @@
     "developer": "Респект Будінвест",
     "lat": 50.046776,
     "lon": 36.204271,
-    "url": "https://lun.ua/new/kharkiv/molodizhnyi-2"
-  },
-  {
-    "jk_name": "ЖК Моноліт на Чернишевській",
-    "address": "вул. Чернишевська, 31-А",
-    "class": "Бізнес",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        4349,
-        "31-А"
-      ]
-    ],
-    "aliases": [
-      "ЖК Моноліт",
-      "ЖК Монолит",
-      "Чернышевская 31а"
-    ],
-    "developer": "Моноліт",
-    "lat": 50.001916,
-    "lon": 36.238086
+    "url": "https://lun.ua/new/kharkiv/molodizhnyi-2",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%BE%D0%BB%D0%BE%D0%B4%D1%96%D0%B6%D0%BD%D0%B8%D0%B9-2-n15937/",
+    "rieltor_id": 15937
   },
   {
     "jk_name": "ЖК Монте-Плаза",
-    "address": "просп. Науки, 45/3; просп. Науки, 45/1; просп. Науки, 45/2",
+    "address": "просп. Науки, 45/1; просп. Науки, 45/2; просп. Науки, 45/3",
     "class": "Бізнес",
     "district": "Шевченківський р-н",
     "houses": [
-      [
-        3107,
-        "45/3"
-      ],
       [
         3107,
         "45/1"
@@ -3580,6 +2588,10 @@
       [
         3107,
         "45/2"
+      ],
+      [
+        3107,
+        "45/3"
       ]
     ],
     "aliases": [
@@ -3588,36 +2600,33 @@
       "Monte Plaza"
     ],
     "developer": "ЖитлоБудІнвест",
-    "lat": 50.038785,
-    "lon": 36.218508,
-    "url": "https://lun.ua/new/kharkiv/monte-plaza"
+    "lat": 50.038687,
+    "lon": 36.219325,
+    "url": "https://lun.ua/new/kharkiv/monte-plaza",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%BE%D0%BD%D1%82%D0%B5-%D0%9F%D0%BB%D0%B0%D0%B7%D0%B0-n14161/",
+    "rieltor_id": 14161
   },
   {
     "jk_name": "ЖК Московський",
-    "address": "просп. Героїв Харкова, 131-Г; просп. Героїв Харкова, 131",
+    "address": "просп. Героїв Харкова, 131-Г",
     "class": "Комфорт",
     "district": "Салтівський р-н",
     "houses": [
       [
         200006,
         "131-Г"
-      ],
-      [
-        200006,
-        "131"
       ]
-    ],
-    "aliases": [
-      "ЖК Героїв Харкова, 131"
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.990284,
     "lon": 36.267692,
-    "url": "https://lun.ua/new/kharkiv/moskovskyi"
+    "url": "https://lun.ua/new/kharkiv/moskovskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D0%BE%D1%81%D0%BA%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n17045/",
+    "rieltor_id": 17045
   },
   {
     "jk_name": "ЖК Мрія",
-    "address": "вул. Ахієзерів, 6; вул. Ахієзерів, 6-А; вул. Ахієзерів, 5",
+    "address": "вул. Ахієзерів, 6; вул. Ахієзерів, 6-А; вул. Глобинська, 5",
     "class": "Комфорт",
     "district": "Салтівський р-н",
     "houses": [
@@ -3630,7 +2639,7 @@
         "6-А"
       ],
       [
-        8281,
+        200438,
         "5"
       ]
     ],
@@ -3639,7 +2648,9 @@
     ],
     "lat": 49.988246,
     "lon": 36.297557,
-    "url": "https://lun.ua/new/kharkiv/mriia"
+    "url": "https://lun.ua/new/kharkiv/mriia",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D1%80%D1%96%D1%8F-n16576/",
+    "rieltor_id": 16576
   },
   {
     "jk_name": "ЖК Муромець",
@@ -3658,7 +2669,9 @@
     ],
     "lat": 50.010306,
     "lon": 36.312841,
-    "url": "https://lun.ua/new/kharkiv/muromets"
+    "url": "https://lun.ua/new/kharkiv/muromets",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9C%D1%83%D1%80%D0%BE%D0%BC%D0%B5%D1%86%D1%8C-n19488/",
+    "rieltor_id": 19488
   },
   {
     "jk_name": "ЖК На Бакуліна",
@@ -3677,7 +2690,9 @@
     "developer": "Житлобуд-2",
     "lat": 50.017668,
     "lon": 36.234506,
-    "url": "https://lun.ua/new/kharkiv/na-bakulina"
+    "url": "https://lun.ua/new/kharkiv/na-bakulina",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9D%D0%B0+%D0%91%D0%B0%D0%BA%D1%83%D0%BB%D1%96%D0%BD%D0%B0-n14209/",
+    "rieltor_id": 14209
   },
   {
     "jk_name": "ЖК На Холодній горі",
@@ -3696,7 +2711,9 @@
     "developer": "Мегаінвестбуд",
     "lat": 49.99117,
     "lon": 36.170341,
-    "url": "https://lun.ua/new/kharkiv/na-kholodnii-hori"
+    "url": "https://lun.ua/new/kharkiv/na-kholodnii-hori",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9D%D0%B0+%D0%A5%D0%BE%D0%BB%D0%BE%D0%B4%D0%BD%D1%96%D0%B9+%D0%B3%D0%BE%D1%80%D1%96-n14157/",
+    "rieltor_id": 14157
   },
   {
     "jk_name": "ЖК НАДІЯ",
@@ -3715,7 +2732,9 @@
     ],
     "lat": 49.98649,
     "lon": 36.219769,
-    "url": "https://lun.ua/new/kharkiv/nadiya"
+    "url": "https://lun.ua/new/kharkiv/nadiya",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9D%D0%90%D0%94%D0%86%D0%AF-n19258/",
+    "rieltor_id": 19258
   },
   {
     "jk_name": "ЖК Науковий",
@@ -3734,7 +2753,9 @@
     "developer": "ФЛАС",
     "lat": 50.014766,
     "lon": 36.231965,
-    "url": "https://lun.ua/new/kharkiv/naukovyi"
+    "url": "https://lun.ua/new/kharkiv/naukovyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9D%D0%B0%D1%83%D0%BA%D0%BE%D0%B2%D0%B8%D0%B9-n14152/",
+    "rieltor_id": 14152
   },
   {
     "jk_name": "ЖК Нетеченський",
@@ -3749,72 +2770,13 @@
     ],
     "lat": 49.983727,
     "lon": 36.220501,
-    "url": "https://lun.ua/new/kharkiv/netechenskyi"
-  },
-  {
-    "jk_name": "ЖК Нова Шатилівка",
-    "address": "вул. Шатилівська, 1а",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "aliases": [
-      "Нова Шатилівка"
-    ],
-    "developer": "Макрокап Груп",
-    "lat": 50.013434,
-    "lon": 36.233172,
-    "url": "https://lun.ua/new/kharkiv/nova-shatylivka"
-  },
-  {
-    "jk_name": "ЖК Новий Дім на Котлова",
-    "address": "вул. Велика Панасівська, 76-Б; вул. Велика Панасівська, 76",
-    "class": "Комфорт",
-    "district": "Холодногірський р-н",
-    "houses": [
-      [
-        2988,
-        "76-Б"
-      ],
-      [
-        2988,
-        "76"
-      ]
-    ],
-    "aliases": [
-      "Південний",
-      "ЖБК Новий дім Котлова",
-      "ЖК Новий дім Котлова",
-      "ЖК Велика Панасівська"
-    ],
-    "developer": "Новий дім",
-    "lat": 49.998194,
-    "lon": 36.207638,
-    "url": "https://lun.ua/new/kharkiv/novyi-dim-kotlova"
-  },
-  {
-    "jk_name": "ЖК Новий дім Ньютона",
-    "address": "вул. Ньютона, 115",
-    "class": "Економ",
-    "district": "Слобідський р-н",
-    "houses": [
-      [
-        3451,
-        "115"
-      ]
-    ],
-    "aliases": [
-      "ЖК Новий Будинок Ньютона",
-      "ЖК Ньютона",
-      "Новий дім на Ньютона"
-    ],
-    "developer": "Новий дім",
-    "lat": 49.938852,
-    "lon": 36.301821,
-    "url": "https://lun.ua/new/kharkiv/novyi-dim-niutona"
+    "url": "https://lun.ua/new/kharkiv/netechenskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9D%D0%B5%D1%82%D0%B5%D1%87%D0%B5%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n18502/",
+    "rieltor_id": 18502
   },
   {
     "jk_name": "ЖК Ньютона",
-    "address": "вул. Сергія Барсукова, 16; вул. Сергія Барсукова, 23; вул. Ньютона, 110; вул. Ньютона, 108; вул. Ньютона, 106; вул. Сергія Барсукова, 12; вул. Ньютона, 104; вул. Ньютона, 102; вул. Ньютона, 100-А; вул. Ньютона, 98; вул. Ньютона, 100; в-д Ньютона, 1",
+    "address": "вул. Сергія Барсукова, 16; вул. Сергія Барсукова, 23; вул. Ньютона, 110; вул. Ньютона, 108; вул. Ньютона, 106; вул. Сергія Барсукова, 12; вул. Ньютона, 104; вул. Ньютона, 102; вул. Ньютона, 100-А; вул. Ньютона, 98; вул. Ньютона, 100",
     "class": "Економ",
     "district": "Слобідський р-н",
     "houses": [
@@ -3861,19 +2823,14 @@
       [
         3451,
         "100"
-      ],
-      [
-        3450,
-        "1"
       ]
-    ],
-    "aliases": [
-      "ЖД Ньютона"
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.936622,
     "lon": 36.302075,
-    "url": "https://lun.ua/new/kharkiv/niutona"
+    "url": "https://lun.ua/new/kharkiv/niutona",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9D%D1%8C%D1%8E%D1%82%D0%BE%D0%BD%D0%B0-n15945/",
+    "rieltor_id": 15945
   },
   {
     "jk_name": "ЖК Ньютона-2",
@@ -3889,7 +2846,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 49.939148,
     "lon": 36.295708,
-    "url": "https://lun.ua/new/kharkiv/niutona-2"
+    "url": "https://lun.ua/new/kharkiv/niutona-2",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9D%D1%8C%D1%8E%D1%82%D0%BE%D0%BD%D0%B0-2-n19854/",
+    "rieltor_id": 19854
   },
   {
     "jk_name": "ЖК Німецький проект",
@@ -3905,27 +2864,9 @@
     "developer": "Констракшн Груп",
     "lat": 50.001472,
     "lon": 36.218334,
-    "url": "https://lun.ua/new/kharkiv/nimetskyi-proekt"
-  },
-  {
-    "jk_name": "ЖК Німецький проект (Григорівське шосе)",
-    "address": "шосе Григорівське, 28; шосе Григорівське, 30",
-    "class": "Комфорт",
-    "district": "Новобаварський р-н",
-    "houses": [
-      [
-        2937,
-        "28"
-      ],
-      [
-        2937,
-        "30"
-      ]
-    ],
-    "developer": "Констракшн Груп",
-    "lat": 49.981841,
-    "lon": 36.186556,
-    "url": "https://lun.ua/new/kharkiv/nimetskyi-proekt-hryhorivske-shose"
+    "url": "https://lun.ua/new/kharkiv/nimetskyi-proekt",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9D%D1%96%D0%BC%D0%B5%D1%86%D1%8C%D0%BA%D0%B8%D0%B9+%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82-n17274/",
+    "rieltor_id": 17274
   },
   {
     "jk_name": "ЖК Німецький проект на Холодній Горі",
@@ -3941,7 +2882,9 @@
     "developer": "Констракшн Груп",
     "lat": 49.982323,
     "lon": 36.187242,
-    "url": "https://lun.ua/new/kharkiv/nimetskyi-proekt-na-kholodnii-hori"
+    "url": "https://lun.ua/new/kharkiv/nimetskyi-proekt-na-kholodnii-hori",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9D%D1%96%D0%BC%D0%B5%D1%86%D1%8C%D0%BA%D0%B8%D0%B9+%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82+%D0%BD%D0%B0+%D0%A5%D0%BE%D0%BB%D0%BE%D0%B4%D0%BD%D1%96%D0%B9+%D0%93%D0%BE%D1%80%D1%96-n19800/",
+    "rieltor_id": 19800
   },
   {
     "jk_name": "ЖК Оазис",
@@ -3961,42 +2904,31 @@
     "developer": "Трест Житлобуд-1",
     "lat": 50.029907,
     "lon": 36.314368,
-    "url": "https://lun.ua/new/kharkiv/oazys"
-  },
-  {
-    "jk_name": "ЖК Обсидіан",
-    "address": "просп. Перемоги",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "developer": "Житлобуд-2",
-    "lat": 50.06529,
-    "lon": 36.206792,
-    "url": "https://lun.ua/new/kharkiv/obsydian"
+    "url": "https://lun.ua/new/kharkiv/oazys",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9E%D0%B0%D0%B7%D0%B8%D1%81-n19467/",
+    "rieltor_id": 19467
   },
   {
     "jk_name": "ЖК Овис",
-    "address": "вул. Клочківська, 108, корп. 1; вул. Клочківська, 98-А",
+    "address": "вул. Клочківська, 108, корп. 1",
     "class": "Бізнес",
     "district": "Шевченківський р-н",
     "houses": [
       [
         2893,
         "108, корп. 1"
-      ],
-      [
-        2893,
-        "98-А"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 50.006201,
     "lon": 36.219314,
-    "url": "https://lun.ua/new/kharkiv/ovys"
+    "url": "https://lun.ua/new/kharkiv/ovys",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9E%D0%B2%D0%B8%D1%81-n19145/",
+    "rieltor_id": 19145
   },
   {
     "jk_name": "ЖК Одеський",
-    "address": "вул. Качанівська, 19; вул. Качанівська, 21; просп. Аерокосмічний, 170, корп. 1",
+    "address": "вул. Качанівська, 19; вул. Качанівська, 21",
     "class": "Економ",
     "district": "Основ'янський р-н",
     "houses": [
@@ -4007,16 +2939,14 @@
       [
         2845,
         "21"
-      ],
-      [
-        200631,
-        "170, корп. 1"
       ]
     ],
     "developer": "Житлобуд-2",
     "lat": 49.953124,
     "lon": 36.254534,
-    "url": "https://lun.ua/new/kharkiv/odeskyi"
+    "url": "https://lun.ua/new/kharkiv/odeskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9E%D0%B4%D0%B5%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n17081/",
+    "rieltor_id": 17081
   },
   {
     "jk_name": "ЖК Одеський дворик",
@@ -4032,27 +2962,13 @@
     "developer": "СамсонГрад",
     "lat": 49.992989,
     "lon": 36.21045,
-    "url": "https://lun.ua/new/kharkiv/odeskyi-dvoryk"
-  },
-  {
-    "jk_name": "ЖК Одеський дворик на Гагаріна",
-    "address": "вул. Миколи Міхновського, 21",
-    "class": "Економ",
-    "district": "Основ'янський р-н",
-    "houses": [
-      [
-        2407,
-        "21"
-      ]
-    ],
-    "developer": "СамсонГрад",
-    "lat": 49.980956,
-    "lon": 36.249825,
-    "url": "https://lun.ua/new/kharkiv/odeskyi-dvoryk-na-haharina"
+    "url": "https://lun.ua/new/kharkiv/odeskyi-dvoryk",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9E%D0%B4%D0%B5%D1%81%D1%8C%D0%BA%D0%B8%D0%B9+%D0%B4%D0%B2%D0%BE%D1%80%D0%B8%D0%BA-n16982/",
+    "rieltor_id": 16982
   },
   {
     "jk_name": "ЖК Околиця",
-    "address": "вул. Переяславська, 23, корп. 1; вул. Переяславська, 23, корп. 2; вул. Переяславська, 23, корп. 3; вул. Переяславська, 23, корп. 4; вул. Переяславська, 23",
+    "address": "вул. Переяславська, 23, корп. 1; вул. Переяславська, 23, корп. 2; вул. Переяславська, 23, корп. 3; вул. Переяславська, 23, корп. 4",
     "class": "Економ",
     "district": "Холодногірський р-н",
     "houses": [
@@ -4071,10 +2987,6 @@
       [
         3553,
         "23, корп. 4"
-      ],
-      [
-        3553,
-        "23"
       ]
     ],
     "aliases": [
@@ -4083,59 +2995,13 @@
     "developer": "Рестріелт",
     "lat": 50.000759,
     "lon": 36.166305,
-    "url": "https://lun.ua/new/kharkiv/okolytsia"
-  },
-  {
-    "jk_name": "ЖК Октава",
-    "address": "вул. Садова, 9",
-    "class": "Преміум",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        4376,
-        "9"
-      ]
-    ],
-    "developer": "Житлобуд-2",
-    "lat": 49.995461,
-    "lon": 36.238738,
-    "url": "https://lun.ua/new/kharkiv/oktava"
-  },
-  {
-    "jk_name": "ЖК Олександрівський",
-    "address": "просп. Олександрівський, 67",
-    "class": "Економ",
-    "district": "Індустріальний р-н",
-    "houses": [
-      [
-        2973,
-        "67"
-      ]
-    ],
-    "developer": "Авантаж",
-    "lat": 49.948086,
-    "lon": 36.358033,
-    "url": "https://lun.ua/new/kharkiv/oleksandrivskyi"
-  },
-  {
-    "jk_name": "ЖК Олексіївська рів'єра",
-    "address": "вул. Букова, 20-Г",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2689,
-        "20-Г"
-      ]
-    ],
-    "developer": "Мегаінвестбуд",
-    "lat": 50.044538,
-    "lon": 36.18233,
-    "url": "https://lun.ua/new/kharkiv/oleksiivska-riviera"
+    "url": "https://lun.ua/new/kharkiv/okolytsia",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9E%D0%BA%D0%BE%D0%BB%D0%B8%D1%86%D1%8F-n15681/",
+    "rieltor_id": 15681
   },
   {
     "jk_name": "ЖК Олексіївський",
-    "address": "просп. Перемоги, 66-М; просп. Перемоги, 66-Н; просп. Перемоги, 66-Р; просп. Перемоги, 66-О; просп. Перемоги, 66-П; просп. Перемоги, 66-Д",
+    "address": "просп. Перемоги, 66-М; просп. Перемоги, 66-Н; просп. Перемоги, 66-Р; просп. Перемоги, 66-О; просп. Перемоги, 66-П",
     "class": "Економ",
     "district": "Шевченківський р-н",
     "houses": [
@@ -4158,10 +3024,6 @@
       [
         3547,
         "66-П"
-      ],
-      [
-        3547,
-        "66-Д"
       ]
     ],
     "aliases": [
@@ -4170,36 +3032,19 @@
     "developer": "Трест Житлобуд-1",
     "lat": 50.059598,
     "lon": 36.213178,
-    "url": "https://lun.ua/new/kharkiv/oleksiivskyi"
-  },
-  {
-    "jk_name": "ЖК Олексіївський дворик",
-    "address": "вул. Клочківська, 368",
-    "class": "Економ",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2893,
-        "368"
-      ]
-    ],
-    "lat": 50.052683,
-    "lon": 36.187068,
-    "url": "https://lun.ua/new/kharkiv/oleksiivskyi-dvoryk"
+    "url": "https://lun.ua/new/kharkiv/oleksiivskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D1%96%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n14891/",
+    "rieltor_id": 14891
   },
   {
     "jk_name": "ЖК Олексіївські Акварелі",
-    "address": "вул. Мирослава Мисли, 54; вул. Мирослава Мисли, 54-А",
+    "address": "вул. Мирослава Мисли, 54",
     "class": "Економ",
     "district": "Шевченківський р-н",
     "houses": [
       [
         200040,
         "54"
-      ],
-      [
-        200040,
-        "54-А"
       ]
     ],
     "aliases": [
@@ -4208,60 +3053,9 @@
     "developer": "Воробйовi гори",
     "lat": 50.047077,
     "lon": 36.206355,
-    "url": "https://lun.ua/new/kharkiv/oleksiivski-akvareli"
-  },
-  {
-    "jk_name": "ЖК Олексіївські Акварелі-2",
-    "address": "вул. Авіахімічна, 18/31",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2005,
-        "18/31"
-      ]
-    ],
-    "aliases": [
-      "ЖК Алексеевские Акварели-2",
-      "Авиахимическая 18/31"
-    ],
-    "developer": "Воробйові гори",
-    "lat": 50.018963,
-    "lon": 36.207596
-  },
-  {
-    "jk_name": "ЖК Олівія (вул. Біблика, 4)",
-    "address": "вул. Біблика, 4; вул. Біблика, 4, корп. 1; вул. Біблика, 4, корп. 2; вул. Біблика, 4, корп. 3",
-    "class": "Економ",
-    "district": "Індустріальний р-н",
-    "houses": [
-      [
-        2615,
-        "4"
-      ],
-      [
-        2615,
-        "4, корп. 1"
-      ],
-      [
-        2615,
-        "4, корп. 2"
-      ],
-      [
-        2615,
-        "4, корп. 3"
-      ]
-    ],
-    "aliases": [
-      "ЖК Олівія",
-      "ЖК Оливия",
-      "ЖК вул. Біблика, 4",
-      "Другої П'ятирічки 4",
-      "Второй Пятилетки 4"
-    ],
-    "lat": 49.950251,
-    "lon": 36.362225,
-    "url": "https://lun.ua/new/kharkiv/biblyka-st-4"
+    "url": "https://lun.ua/new/kharkiv/oleksiivski-akvareli",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D1%96%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D1%96+%D0%90%D0%BA%D0%B2%D0%B0%D1%80%D0%B5%D0%BB%D1%96-n14799/",
+    "rieltor_id": 14799
   },
   {
     "jk_name": "ЖК Олімп",
@@ -4281,41 +3075,19 @@
     ],
     "developer": "Авантаж",
     "lat": 50.013067,
-    "lon": 36.23501
-  },
-  {
-    "jk_name": "ЖК Олімпійський",
-    "address": "вул. Олімпійська, 6",
-    "class": "Комфорт",
-    "district": "Немишлянський р-н",
-    "houses": [
-      [
-        3474,
-        "6"
-      ]
-    ],
-    "aliases": [
-      "ЖК Еллада",
-      "ЖК Олімп"
-    ],
-    "developer": "ІБК Груп 2014 Київ",
-    "lat": 49.961689,
-    "lon": 36.308706,
-    "url": "https://lun.ua/new/kharkiv/olimpiiskyi"
+    "lon": 36.23501,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%9E%D0%BB%D1%96%D0%BC%D0%BF-n21190/",
+    "rieltor_id": 21190
   },
   {
     "jk_name": "ЖК Оптима",
-    "address": "пров. Отакара Яроша, 22; вул. Отакара Яроша, 18",
+    "address": "пров. Отакара Яроша, 22",
     "class": "Бізнес",
     "district": "Шевченківський р-н",
     "houses": [
       [
         3518,
         "22"
-      ],
-      [
-        3519,
-        "18"
       ]
     ],
     "aliases": [
@@ -4324,7 +3096,53 @@
     "developer": "Житлобуд-2",
     "lat": 50.025039,
     "lon": 36.217497,
-    "url": "https://lun.ua/new/kharkiv/optyma"
+    "url": "https://lun.ua/new/kharkiv/optyma",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9E%D0%BF%D1%82%D0%B8%D0%BC%D0%B0-n15372/",
+    "rieltor_id": 15372
+  },
+  {
+    "jk_name": "ЖК Острів",
+    "address": "вул. Римарська, 25",
+    "class": "Преміум",
+    "district": "Шевченківський р-н",
+    "houses": [
+      [
+        3786,
+        "25"
+      ]
+    ],
+    "aliases": [
+      "ЖК Остров",
+      "Римарська 25",
+      "Рымарская 25"
+    ],
+    "developer": "МКДУ",
+    "lat": 49.997713,
+    "lon": 36.229165,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%9E%D1%81%D1%82%D1%80%D1%96%D0%B2-n21200/",
+    "rieltor_id": 21200
+  },
+  {
+    "jk_name": "ЖК Павлово Поле",
+    "address": "просп. Науки, 77",
+    "class": "Бізнес",
+    "district": "Шевченківський р-н",
+    "houses": [
+      [
+        3107,
+        "77"
+      ]
+    ],
+    "aliases": [
+      "ЖК Павлове Поле",
+      "просп. Науки 77",
+      "Ленина 77"
+    ],
+    "developer": "МКДУ",
+    "lat": 50.037426,
+    "lon": 36.220089,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D0%B0%D0%B2%D0%BB%D0%BE%D0%B2%D0%BE+%D0%9F%D0%BE%D0%BB%D0%B5-n21185/",
+    "rieltor_id": 21185
   },
   {
     "jk_name": "ЖК Павловський квартал",
@@ -4348,7 +3166,9 @@
     "developer": "Житлобуд-2",
     "lat": 50.009106,
     "lon": 36.217903,
-    "url": "https://lun.ua/new/kharkiv/pavlovskyi-kvartal"
+    "url": "https://lun.ua/new/kharkiv/pavlovskyi-kvartal",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D0%B0%D0%B2%D0%BB%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9+%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B0%D0%BB-n14742/",
+    "rieltor_id": 14742
   },
   {
     "jk_name": "ЖК Панорама",
@@ -4361,10 +3181,11 @@
         "115"
       ]
     ],
-    "developer": "Панорама",
     "lat": 50.007527,
     "lon": 36.198393,
-    "url": "https://lun.ua/new/kharkiv/panorama"
+    "url": "https://lun.ua/new/kharkiv/panorama",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0-n18675/",
+    "rieltor_id": 18675
   },
   {
     "jk_name": "ЖК Париж",
@@ -4380,10 +3201,11 @@
     "aliases": [
       "ЖК Paris"
     ],
-    "developer": "Париж",
     "lat": 49.989725,
     "lon": 36.291845,
-    "url": "https://lun.ua/new/kharkiv/paryzh"
+    "url": "https://lun.ua/new/kharkiv/paryzh",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D0%B0%D1%80%D0%B8%D0%B6-n19224/",
+    "rieltor_id": 19224
   },
   {
     "jk_name": "ЖК Парковий квартал",
@@ -4403,7 +3225,9 @@
     "developer": "Строй Сіті Development",
     "lat": 49.982814,
     "lon": 36.277775,
-    "url": "https://lun.ua/new/kharkiv/parkovyi-kvartal"
+    "url": "https://lun.ua/new/kharkiv/parkovyi-kvartal",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D0%B0%D1%80%D0%BA%D0%BE%D0%B2%D0%B8%D0%B9+%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B0%D0%BB-n16947/",
+    "rieltor_id": 16947
   },
   {
     "jk_name": "ЖК Парус",
@@ -4423,11 +3247,13 @@
     ],
     "developer": "Моноліт",
     "lat": 50.022054,
-    "lon": 36.319085
+    "lon": 36.319085,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D0%B0%D1%80%D1%83%D1%81-n21188/",
+    "rieltor_id": 21188
   },
   {
     "jk_name": "ЖК Перемоги",
-    "address": "просп. Перемоги, 85; просп. Перемоги, 87; просп. Перемоги, 89; просп. Перемоги, 83",
+    "address": "просп. Перемоги, 85; просп. Перемоги, 87; просп. Перемоги, 89",
     "class": "Економ",
     "district": "Шевченківський р-н",
     "houses": [
@@ -4442,16 +3268,14 @@
       [
         3547,
         "89"
-      ],
-      [
-        3547,
-        "83"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 50.070081,
     "lon": 36.211326,
-    "url": "https://lun.ua/new/kharkiv/peremohy"
+    "url": "https://lun.ua/new/kharkiv/peremohy",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D0%B5%D1%80%D0%B5%D0%BC%D0%BE%D0%B3%D0%B8-n15944/",
+    "rieltor_id": 15944
   },
   {
     "jk_name": "ЖК Перемоги 2",
@@ -4475,40 +3299,13 @@
     "developer": "Трест Житлобуд-1",
     "lat": 50.069788,
     "lon": 36.216294,
-    "url": "https://lun.ua/new/kharkiv/peremohy-2"
-  },
-  {
-    "jk_name": "ЖК Перспектива Радужна (просп. Байрона, 163)",
-    "address": "просп. Байрона, 163; просп. Байрона, 165; просп. Байрона, 167",
-    "class": "Бізнес",
-    "district": "Слобідський р-н",
-    "houses": [
-      [
-        200049,
-        "163"
-      ],
-      [
-        200049,
-        "165"
-      ],
-      [
-        200049,
-        "167"
-      ]
-    ],
-    "aliases": [
-      "ЖК на просп. Байрона",
-      "ЖК Перспектива Радужная",
-      "Героїв Сталінграда 163"
-    ],
-    "developer": "Перспектива",
-    "lat": 49.944609,
-    "lon": 36.306633,
-    "url": "https://lun.ua/new/kharkiv/perspektyva-raduzhnaia"
+    "url": "https://lun.ua/new/kharkiv/peremohy-2",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D0%B5%D1%80%D0%B5%D0%BC%D0%BE%D0%B3%D0%B8+2-n19176/",
+    "rieltor_id": 19176
   },
   {
     "jk_name": "ЖК Плеханівська",
-    "address": "вул. Георгія Тарасенка, 18-Б; вул. Молочна, 34; вул. Молочна, 30; вул. Молочна, 32; вул. Георгія Тарасенка, 18-А; вул. Георгія Тарасенка, 18-В",
+    "address": "вул. Георгія Тарасенка, 18-Б; вул. Молочна, 34; вул. Молочна, 30; вул. Молочна, 32",
     "class": "Комфорт",
     "district": "Основ'янський р-н",
     "houses": [
@@ -4527,100 +3324,14 @@
       [
         2884,
         "32"
-      ],
-      [
-        200032,
-        "18-А"
-      ],
-      [
-        200032,
-        "18-В"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.981758,
     "lon": 36.252639,
-    "url": "https://lun.ua/new/kharkiv/plekhanivska"
-  },
-  {
-    "jk_name": "ЖК Победа",
-    "address": "просп. Перемоги, 61-А",
-    "class": "Економ",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        3547,
-        "61-А"
-      ]
-    ],
-    "aliases": [
-      "Перемога"
-    ],
-    "developer": "Будівельний Альянс Моноліт",
-    "lat": 50.062041,
-    "lon": 36.201022,
-    "url": "https://lun.ua/new/kharkiv/pobeda"
-  },
-  {
-    "jk_name": "ЖК Подвір'я",
-    "address": "Подвірки, вул. Курязька, 16",
-    "class": "Економ",
-    "district": "Передмістя",
-    "houses": [],
-    "developer": "Фінансова Будівельна Група, Житлобуд-2",
-    "lat": 49.979735,
-    "lon": 36.104539,
-    "url": "https://lun.ua/new/kharkiv/podvirky-podviria"
-  },
-  {
-    "jk_name": "ЖК Подільський",
-    "address": "вул. Кузнечна, 22, секція 1; вул. Кузнечна, 22, секція 2; вул. Кузнечна, 22, секція 3",
-    "class": "Бізнес",
-    "district": "Основ'янський р-н",
-    "houses": [
-      [
-        3060,
-        "22, секція 1"
-      ],
-      [
-        3060,
-        "22, секція 2"
-      ],
-      [
-        3060,
-        "22, секція 3"
-      ]
-    ],
-    "aliases": [
-      "ЖБ Подольський",
-      "ЖБ Подільський"
-    ],
-    "developer": "Житлобуд-2",
-    "lat": 49.985193,
-    "lon": 36.235721,
-    "url": "https://lun.ua/new/kharkiv/podilskyi"
-  },
-  {
-    "jk_name": "ЖК Полтавський Шлях",
-    "address": "вул. Полтавський Шлях, 28/19; вул. Полтавський Шлях, 28/19-Д",
-    "class": "Економ",
-    "district": "Холодногірський р-н",
-    "houses": [
-      [
-        3651,
-        "28/19"
-      ],
-      [
-        3651,
-        "28/19-Д"
-      ]
-    ],
-    "aliases": [
-      "ЖК Полтавский Путь"
-    ],
-    "lat": 49.988041,
-    "lon": 36.21921,
-    "url": "https://lun.ua/new/kharkiv/poltavskyi-shliakh"
+    "url": "https://lun.ua/new/kharkiv/plekhanivska",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D0%BB%D0%B5%D1%85%D0%B0%D0%BD%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0-n14766/",
+    "rieltor_id": 14766
   },
   {
     "jk_name": "ЖК Полтавський Шлях 144",
@@ -4640,79 +3351,19 @@
     "developer": "ФЛАС",
     "lat": 49.984164,
     "lon": 36.183344,
-    "url": "https://lun.ua/new/kharkiv/poltavskyi-shliakh-144"
-  },
-  {
-    "jk_name": "ЖК Пори року",
-    "address": "вул. Дача № 55, 9; вул. Дача № 55, 11",
-    "class": "Економ",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        2517,
-        "9"
-      ],
-      [
-        2517,
-        "11"
-      ]
-    ],
-    "aliases": [
-      "Дача",
-      "ЖК Дача 55",
-      "Дача 55",
-      "ЖК Времена года"
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 50.049189,
-    "lon": 36.277468,
-    "url": "https://lun.ua/new/kharkiv/vremena-hoda"
-  },
-  {
-    "jk_name": "ЖК Постишева (просп. Любові Малої)",
-    "address": "просп. Любові Малої, 34; просп. Любові Малої, 34-А; просп. Любові Малої, 34-Б; просп. Любові Малої, 36",
-    "class": "Економ",
-    "district": "Новобаварський р-н",
-    "houses": [
-      [
-        3671,
-        "34"
-      ],
-      [
-        3671,
-        "34-А"
-      ],
-      [
-        3671,
-        "34-Б"
-      ],
-      [
-        3671,
-        "36"
-      ]
-    ],
-    "aliases": [
-      "Постишева",
-      "ЖК Л. Малої"
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 49.95788,
-    "lon": 36.168777,
-    "url": "https://lun.ua/new/kharkiv/l-maloi"
+    "url": "https://lun.ua/new/kharkiv/poltavskyi-shliakh-144",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D0%BE%D0%BB%D1%82%D0%B0%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9+%D0%A8%D0%BB%D1%8F%D1%85+144-n18906/",
+    "rieltor_id": 18906
   },
   {
     "jk_name": "ЖК Примерівське",
-    "address": "вул. Примерівська, 22-А; вул. Примерівська, 26",
+    "address": "вул. Примерівська, 22-А",
     "class": "Бізнес",
     "district": "Салтівський р-н",
     "houses": [
       [
         3690,
         "22-А"
-      ],
-      [
-        3690,
-        "26"
       ]
     ],
     "aliases": [
@@ -4720,27 +3371,9 @@
     ],
     "lat": 49.990996,
     "lon": 36.25197,
-    "url": "https://lun.ua/new/kharkiv/prymerovskoe"
-  },
-  {
-    "jk_name": "ЖК пров. Ігоря Остаповича, 9",
-    "address": "пров. Ігоря Остаповича, 9",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200176,
-        "9"
-      ]
-    ],
-    "aliases": [
-      "вул. Балакірєва, 9",
-      "ЖК по пров. Ігоря Остаповича",
-      "ЖК Балакірєва"
-    ],
-    "lat": 50.039136,
-    "lon": 36.243651,
-    "url": "https://lun.ua/new/kharkiv/balakirieva-st-9"
+    "url": "https://lun.ua/new/kharkiv/prymerovskoe",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B5-n14228/",
+    "rieltor_id": 14228
   },
   {
     "jk_name": "ЖК Пролісок",
@@ -4768,31 +3401,27 @@
     "developer": "Житлобуд-2",
     "lat": 49.964445,
     "lon": 36.316705,
-    "url": "https://lun.ua/new/kharkiv/prolisok"
+    "url": "https://lun.ua/new/kharkiv/prolisok",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D1%80%D0%BE%D0%BB%D1%96%D1%81%D0%BE%D0%BA-n17686/",
+    "rieltor_id": 17686
   },
   {
     "jk_name": "ЖК Промінь",
-    "address": "просп. Героїв Харкова, 193-А; просп. Героїв Харкова, 195; просп. Героїв Харкова, 193-Б",
+    "address": "просп. Героїв Харкова, 193-А",
     "class": "Комфорт",
     "district": "Салтівський р-н",
     "houses": [
       [
         200006,
         "193-А"
-      ],
-      [
-        200006,
-        "195"
-      ],
-      [
-        200006,
-        "193-Б"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.979099,
     "lon": 36.28721,
-    "url": "https://lun.ua/new/kharkiv/promin"
+    "url": "https://lun.ua/new/kharkiv/promin",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D1%80%D0%BE%D0%BC%D1%96%D0%BD%D1%8C-n18499/",
+    "rieltor_id": 18499
   },
   {
     "jk_name": "ЖК просп. Архітектора Альошина, 5",
@@ -4813,70 +3442,12 @@
     "developer": "Авантаж",
     "lat": 49.948725,
     "lon": 36.375054,
-    "url": "https://lun.ua/new/kharkiv/arkhitektora-aloshyna-ave-5"
+    "url": "https://lun.ua/new/kharkiv/arkhitektora-aloshyna-ave-5",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%BF%D1%80%D0%BE%D1%81%D0%BF.+%D0%90%D1%80%D1%85%D1%96%D1%82%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0+%D0%90%D0%BB%D1%8C%D0%BE%D1%88%D0%B8%D0%BD%D0%B0%2C+5-n15095/",
+    "rieltor_id": 15095
   },
   {
-    "jk_name": "ЖК просп. Героїв Харкова, 124/7",
-    "address": "просп. Героїв Харкова, 124/7",
-    "class": "Комфорт",
-    "district": "Слобідський р-н",
-    "houses": [
-      [
-        200006,
-        "124/7"
-      ]
-    ],
-    "aliases": [
-      "просп. Героїв Харкова, 124/7",
-      "ЖК по просп. Героїв Харкова",
-      "ЖК Московський",
-      "ЖК Ростовське"
-    ],
-    "developer": "Новобуд М",
-    "lat": 49.977632,
-    "lon": 36.287434,
-    "url": "https://lun.ua/new/kharkiv/heroiv-kharkova-ave-124-7"
-  },
-  {
-    "jk_name": "ЖК просп. Жуковського, 7",
-    "address": "просп. Жуковського, 7",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        2677,
-        "7"
-      ]
-    ],
-    "aliases": [
-      "просп. Жуковського, 7",
-      "ЖК по просп. Жуковського"
-    ],
-    "lat": 50.05643,
-    "lon": 36.294019,
-    "url": "https://lun.ua/new/kharkiv/zhukovskoho-ave-7"
-  },
-  {
-    "jk_name": "ЖК просп. Людвіга Свободи, 20-А",
-    "address": "просп. Людвіга Свободи, 20-А",
-    "class": "Економ",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        3175,
-        "20-А"
-      ]
-    ],
-    "aliases": [
-      "просп. Людвіга Свободи",
-      "ЖК по просп. Людвіга Свободи"
-    ],
-    "lat": 50.043463,
-    "lon": 36.210015,
-    "url": "https://lun.ua/new/kharkiv/liudviha-svobody-ave"
-  },
-  {
-    "jk_name": "ЖК просп. Олександрівський, 69-Д",
+    "jk_name": "ЖК просп. Олександрівський, 69е",
     "address": "просп. Олександрівський, 69-Д",
     "class": "Економ",
     "district": "Індустріальний р-н",
@@ -4888,13 +3459,18 @@
     ],
     "aliases": [
       "просп. Олександрівський, 69е",
+      "ЖК просп. Олександрівський, 69-Д",
+      "Косиора 69д",
+      "Косиора 69е",
       "ЖК по просп. Олександрівський",
       "ЖК Косіора"
     ],
     "developer": "Авантаж",
     "lat": 49.948312,
     "lon": 36.358996,
-    "url": "https://lun.ua/new/kharkiv/oleksandrivskyi-ave-69e"
+    "url": "https://lun.ua/new/kharkiv/oleksandrivskyi-ave-69e",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%BF%D1%80%D0%BE%D1%81%D0%BF.+%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9%2C+69%D0%B5-n14186/",
+    "rieltor_id": 14186
   },
   {
     "jk_name": "ЖК просп. Перемоги, 59",
@@ -4914,21 +3490,19 @@
     "developer": "КДБК",
     "lat": 50.059755,
     "lon": 36.199222,
-    "url": "https://lun.ua/new/kharkiv/peremohy-ave-59"
+    "url": "https://lun.ua/new/kharkiv/peremohy-ave-59",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%BF%D1%80%D0%BE%D1%81%D0%BF.+%D0%9F%D0%B5%D1%80%D0%B5%D0%BC%D0%BE%D0%B3%D0%B8%2C+59-n14230/",
+    "rieltor_id": 14230
   },
   {
     "jk_name": "ЖК просп. Петра Григоренка, 18а",
-    "address": "просп. Петра Григоренка, 16; просп. Петра Григоренка, 18-А",
+    "address": "просп. Петра Григоренка, 16",
     "class": "Економ",
     "district": "Слобідський р-н",
     "houses": [
       [
         1113,
         "16"
-      ],
-      [
-        1113,
-        "18-А"
       ]
     ],
     "aliases": [
@@ -4939,10 +3513,12 @@
     "developer": "Житлобуд-2",
     "lat": 49.94735,
     "lon": 36.31291,
-    "url": "https://lun.ua/new/kharkiv/petra-hryhorenka-ave-18a"
+    "url": "https://lun.ua/new/kharkiv/petra-hryhorenka-ave-18a",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%BF%D1%80%D0%BE%D1%81%D0%BF.+%D0%9F%D0%B5%D1%82%D1%80%D0%B0+%D0%93%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%B5%D0%BD%D0%BA%D0%B0%2C+18%D0%B0-n14202/",
+    "rieltor_id": 14202
   },
   {
-    "jk_name": "ЖК просп. Тракторобудівників, 103-Г",
+    "jk_name": "ЖК просп. Тракторобудівників, 103г",
     "address": "просп. Тракторобудівників, 103-Г",
     "class": "Економ",
     "district": "Салтівський р-н",
@@ -4959,45 +3535,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 50.023226,
     "lon": 36.359499,
-    "url": "https://lun.ua/new/kharkiv/traktorobudivnykiv-ave-103h"
-  },
-  {
-    "jk_name": "ЖК просп. Тракторобудівників, 2-А",
-    "address": "просп. Тракторобудівників, 2-А",
-    "class": "Комфорт",
-    "district": "Немишлянський р-н",
-    "houses": [
-      [
-        4149,
-        "2-А"
-      ]
-    ],
-    "aliases": [
-      "просп. Тракторобудівників, 2а",
-      "ЖК по просп. Тракторобудівників"
-    ],
-    "lat": 49.979113,
-    "lon": 36.343745,
-    "url": "https://lun.ua/new/kharkiv/traktorobudivnykiv-st-2a"
-  },
-  {
-    "jk_name": "ЖК просп. Тракторобудівників, 2-Г",
-    "address": "просп. Тракторобудівників, 2-Г",
-    "class": "Економ",
-    "district": "Немишлянський р-н",
-    "houses": [
-      [
-        4149,
-        "2-Г"
-      ]
-    ],
-    "aliases": [
-      "ЖК Тракторобудівників",
-      "ЖК по пр. Тракторостроителей, 2г"
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 49.977289,
-    "lon": 36.343639
+    "url": "https://lun.ua/new/kharkiv/traktorobudivnykiv-ave-103h",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%BF%D1%80%D0%BE%D1%81%D0%BF.+%D0%A2%D1%80%D0%B0%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B1%D1%83%D0%B4%D1%96%D0%B2%D0%BD%D0%B8%D0%BA%D1%96%D0%B2%2C+103%D0%B3-n14200/",
+    "rieltor_id": 14200
   },
   {
     "jk_name": "ЖК Пташка",
@@ -5072,7 +3612,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 50.012633,
     "lon": 36.307699,
-    "url": "https://lun.ua/new/kharkiv/ptashka"
+    "url": "https://lun.ua/new/kharkiv/ptashka",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D1%82%D0%B0%D1%88%D0%BA%D0%B0-n18489/",
+    "rieltor_id": 18489
   },
   {
     "jk_name": "ЖК Пурпурові вітрила",
@@ -5100,38 +3642,9 @@
     "developer": "Інтернаціоналіст",
     "lat": 50.041887,
     "lon": 36.341487,
-    "url": "https://lun.ua/new/kharkiv/purpurovi-vitryla"
-  },
-  {
-    "jk_name": "ЖК Пушкін",
-    "address": "вул. Воробйова, 10",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        2392,
-        "10"
-      ]
-    ],
-    "lat": 49.993035,
-    "lon": 36.236615,
-    "url": "https://lun.ua/new/kharkiv/pushkin"
-  },
-  {
-    "jk_name": "ЖК Південний Горизонт",
-    "address": "вул. Велика Кільцева",
-    "class": "Економ",
-    "district": "Індустріальний р-н",
-    "houses": [],
-    "aliases": [
-      "ЮГ",
-      "Південь",
-      "Південний Горизонт"
-    ],
-    "developer": "ФЛАС",
-    "lat": 49.923054,
-    "lon": 36.434283,
-    "url": "https://lun.ua/new/kharkiv/pivdennyi-horyzont"
+    "url": "https://lun.ua/new/kharkiv/purpurovi-vitryla",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D1%83%D1%80%D0%BF%D1%83%D1%80%D0%BE%D0%B2%D1%96+%D0%B2%D1%96%D1%82%D1%80%D0%B8%D0%BB%D0%B0-n14155/",
+    "rieltor_id": 14155
   },
   {
     "jk_name": "ЖК Піонер",
@@ -5151,64 +3664,9 @@
     ],
     "developer": "Авантаж",
     "lat": 50.012712,
-    "lon": 36.238986
-  },
-  {
-    "jk_name": "ЖК Пісочин, вул. Дагаєва, 3",
-    "address": "Пісочин, вул. Дагаєва, 3",
-    "class": "Економ",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "вул. Дагаєва, 3"
-    ],
-    "developer": "КДБК",
-    "lat": 49.961004,
-    "lon": 36.092217,
-    "url": "https://lun.ua/new/kharkiv/pisochyn-dahaieva-st-3"
-  },
-  {
-    "jk_name": "ЖК Пісочин, вул. Дагаєва, 5",
-    "address": "Пісочин, вул. Дагаєва, 5",
-    "class": "Економ",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "вул. Дагаєва, 5"
-    ],
-    "developer": "КДБК",
-    "lat": 49.962192,
-    "lon": 36.09135,
-    "url": "https://lun.ua/new/kharkiv/pisochyn-dahaieva-st-5"
-  },
-  {
-    "jk_name": "ЖК Пісочин, вул. Комарова",
-    "address": "Пісочин, вул. Комарова",
-    "class": "Економ",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "вул. Комарова"
-    ],
-    "developer": "КДБК",
-    "lat": 49.962001,
-    "lon": 36.094005,
-    "url": "https://lun.ua/new/kharkiv/pisochyn-komarova-st"
-  },
-  {
-    "jk_name": "ЖК Пісочин, вул. Кушнарьова, 5",
-    "address": "Пісочин, вул. Кушнарьова, 5",
-    "class": "Економ",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Куряжський",
-      "вул. Кушнарьова, 5"
-    ],
-    "developer": "КДБК",
-    "lat": 49.96386,
-    "lon": 36.091635,
-    "url": "https://lun.ua/new/kharkiv/pisochyn-kushnarova-st-5"
+    "lon": 36.238986,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%9F%D1%96%D0%BE%D0%BD%D0%B5%D1%80-n21202/",
+    "rieltor_id": 21202
   },
   {
     "jk_name": "ЖК Райдужний (вул. Зубарєва, 34)",
@@ -5226,14 +3684,14 @@
       ]
     ],
     "aliases": [
-      "ЖК Радужний-1",
-      "ЖК Райдужний — 3 черга",
       "ЖК Райдужний"
     ],
     "developer": "Мегаінвестбуд",
     "lat": 49.910594,
     "lon": 36.409867,
-    "url": "https://lun.ua/new/kharkiv/raiduzhnyi"
+    "url": "https://lun.ua/new/kharkiv/raiduzhnyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A0%D0%B0%D0%B9%D0%B4%D1%83%D0%B6%D0%BD%D0%B8%D0%B9-n15416/",
+    "rieltor_id": 15416
   },
   {
     "jk_name": "ЖК Райдужний (просп. Льва Ландау, 52-Б)",
@@ -5263,30 +3721,14 @@
       ]
     ],
     "aliases": [
-      "ЖК Радужний ділянка 2",
-      "ЖК Радужний у Харкові",
       "ЖК Райдужний"
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.964666,
     "lon": 36.307851,
-    "url": "https://lun.ua/new/kharkiv/lva-landau-st-52"
-  },
-  {
-    "jk_name": "ЖК Райдужний-3",
-    "address": "просп. Льва Ландау, 52-А",
-    "class": "Економ",
-    "district": "Немишлянський р-н",
-    "houses": [
-      [
-        3733,
-        "52-А"
-      ]
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 49.964022,
-    "lon": 36.307614,
-    "url": "https://lun.ua/new/kharkiv/raiduzhnyi-3"
+    "url": "https://lun.ua/new/kharkiv/lva-landau-st-52",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A0%D0%B0%D0%B9%D0%B4%D1%83%D0%B6%D0%BD%D0%B8%D0%B9-n18075/",
+    "rieltor_id": 18075
   },
   {
     "jk_name": "ЖК Резиденція",
@@ -5302,7 +3744,9 @@
     "developer": "Авантаж",
     "lat": 50.021565,
     "lon": 36.228457,
-    "url": "https://lun.ua/new/kharkiv/rezydentsiia"
+    "url": "https://lun.ua/new/kharkiv/rezydentsiia",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A0%D0%B5%D0%B7%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D1%96%D1%8F-n16607/",
+    "rieltor_id": 16607
   },
   {
     "jk_name": "ЖК Роганський",
@@ -5330,11 +3774,13 @@
     "developer": "Трест Житлобуд-1",
     "lat": 49.921904,
     "lon": 36.414219,
-    "url": "https://lun.ua/new/kharkiv/rohanskyi"
+    "url": "https://lun.ua/new/kharkiv/rohanskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A0%D0%BE%D0%B3%D0%B0%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n14198/",
+    "rieltor_id": 14198
   },
   {
     "jk_name": "ЖК Рогатинський",
-    "address": "вул. Рогатинська Левада, 10; вул. Рогатинська Левада, 8; вул. Рогатинська Левада, 6; вул. Рогатинська Левада, 12; вул. Рогатинська Левада, 18; вул. Рогатинська Левада, 16; вул. Рогатинська Левада, 14; вул. Рогатинська Левада, 22; пр-д Рогатинський, 4",
+    "address": "вул. Рогатинська Левада, 10; вул. Рогатинська Левада, 8; вул. Рогатинська Левада, 6; вул. Рогатинська Левада, 12; вул. Рогатинська Левада, 18; вул. Рогатинська Левада, 16; вул. Рогатинська Левада, 14; вул. Рогатинська Левада, 22",
     "class": "Комфорт",
     "district": "Шевченківський р-н",
     "houses": [
@@ -5369,41 +3815,14 @@
       [
         3800,
         "22"
-      ],
-      [
-        3802,
-        "4"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.998726,
     "lon": 36.218622,
-    "url": "https://lun.ua/new/kharkiv/rohatynskyi"
-  },
-  {
-    "jk_name": "ЖК Родніки",
-    "address": "вул. Яни Червоної, 11-А; вул. Яни Червоної, 11",
-    "class": "Економ",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        200484,
-        "11-А"
-      ],
-      [
-        200484,
-        "11"
-      ]
-    ],
-    "aliases": [
-      "Джерела",
-      "Роднікі",
-      "ЖД Родніки"
-    ],
-    "developer": "КДБК",
-    "lat": 50.030611,
-    "lon": 36.352776,
-    "url": "https://lun.ua/new/kharkiv/rodnyky"
+    "url": "https://lun.ua/new/kharkiv/rohatynskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A0%D0%BE%D0%B3%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n17974/",
+    "rieltor_id": 17974
   },
   {
     "jk_name": "ЖК Річковий квартал",
@@ -5424,63 +3843,21 @@
         "10-Б"
       ]
     ],
-    "developer": "Річковий квартал",
     "lat": 49.993304,
     "lon": 36.25208,
-    "url": "https://lun.ua/new/kharkiv/richkovyi-kvartal"
-  },
-  {
-    "jk_name": "ЖК Сабурівський",
-    "address": "вул. Сабурівська, 10; пров. Сабурівський, 12",
-    "class": "Комфорт",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        3908,
-        "10"
-      ],
-      [
-        3909,
-        "12"
-      ]
-    ],
-    "lat": 49.985514,
-    "lon": 36.281452,
-    "url": "https://lun.ua/new/kharkiv/saburivskyi"
-  },
-  {
-    "jk_name": "ЖК Садиба на Дерев'янка",
-    "address": "вул. Дерев'янка, 16-А",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2546,
-        "16-А"
-      ]
-    ],
-    "aliases": [
-      "ЖК Садиба",
-      "ЖК Консоль на Балакірєва",
-      "Деревянко 16а"
-    ],
-    "developer": "Консоль",
-    "lat": 50.038823,
-    "lon": 36.227365
+    "url": "https://lun.ua/new/kharkiv/richkovyi-kvartal",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A0%D1%96%D1%87%D0%BA%D0%BE%D0%B2%D0%B8%D0%B9+%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B0%D0%BB-n17271/",
+    "rieltor_id": 17271
   },
   {
     "jk_name": "ЖК Садиба Чернишевського",
-    "address": "вул. Чернишевська, 50; вул. Чернишевська, 58",
+    "address": "вул. Чернишевська, 50",
     "class": "Преміум",
     "district": "Київський р-н",
     "houses": [
       [
         4349,
         "50"
-      ],
-      [
-        4349,
-        "58"
       ]
     ],
     "aliases": [
@@ -5488,10 +3865,12 @@
     ],
     "lat": 50.004639,
     "lon": 36.240449,
-    "url": "https://lun.ua/new/kharkiv/sadyba-chernyshevskoho"
+    "url": "https://lun.ua/new/kharkiv/sadyba-chernyshevskoho",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%B0%D0%B4%D0%B8%D0%B1%D0%B0+%D0%A7%D0%B5%D1%80%D0%BD%D0%B8%D1%88%D0%B5%D0%B2%D1%81%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE-n14216/",
+    "rieltor_id": 14216
   },
   {
-    "jk_name": "ЖК Садова Гірка",
+    "jk_name": "ЖК Садова гірка",
     "address": "вул. Данилевського, 40; вул. Данилевського, 42",
     "class": "Бізнес",
     "district": "Шевченківський р-н",
@@ -5512,7 +3891,9 @@
     ],
     "developer": "Авантаж",
     "lat": 50.005692,
-    "lon": 36.220353
+    "lon": 36.220353,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%B0%D0%B4%D0%BE%D0%B2%D0%B0+%D0%B3%D1%96%D1%80%D0%BA%D0%B0-n21163/",
+    "rieltor_id": 21163
   },
   {
     "jk_name": "ЖК Садове місто",
@@ -5527,11 +3908,13 @@
     ],
     "lat": 49.953663,
     "lon": 36.360792,
-    "url": "https://lun.ua/new/kharkiv/sadove-misto"
+    "url": "https://lun.ua/new/kharkiv/sadove-misto",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%B0%D0%B4%D0%BE%D0%B2%D0%B5+%D0%BC%D1%96%D1%81%D1%82%D0%BE-n17277/",
+    "rieltor_id": 17277
   },
   {
     "jk_name": "ЖК Садовий",
-    "address": "пр-д Садовий, 15, корп. 1; пр-д Садовий, 15, корп. 2; пр-д Садовий, 15, корп. 3; пр-д Садовий, 13",
+    "address": "пр-д Садовий, 15, корп. 1; пр-д Садовий, 15, корп. 2; пр-д Садовий, 15, корп. 3",
     "class": "Економ",
     "district": "Слобідський р-н",
     "houses": [
@@ -5546,30 +3929,24 @@
       [
         3845,
         "15, корп. 3"
-      ],
-      [
-        3845,
-        "13"
       ]
     ],
     "developer": "Житлобуд-2",
     "lat": 49.951904,
     "lon": 36.309427,
-    "url": "https://lun.ua/new/kharkiv/sadovyi"
+    "url": "https://lun.ua/new/kharkiv/sadovyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%B0%D0%B4%D0%BE%D0%B2%D0%B8%D0%B9-n15744/",
+    "rieltor_id": 15744
   },
   {
     "jk_name": "ЖК Салтівське шосе",
-    "address": "шосе Салтівське, 73-Г; шосе Салтівське, 73-В",
+    "address": "шосе Салтівське, 73-Г",
     "class": "Економ",
     "district": "Салтівський р-н",
     "houses": [
       [
         3852,
         "73-Г"
-      ],
-      [
-        3852,
-        "73-В"
       ]
     ],
     "aliases": [
@@ -5578,7 +3955,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 49.990233,
     "lon": 36.30773,
-    "url": "https://lun.ua/new/kharkiv/saltivske-shose"
+    "url": "https://lun.ua/new/kharkiv/saltivske-shose",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%B0%D0%BB%D1%82%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B5+%D1%88%D0%BE%D1%81%D0%B5-n14894/",
+    "rieltor_id": 14894
   },
   {
     "jk_name": "ЖК Салтівський",
@@ -5630,7 +4009,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 49.990063,
     "lon": 36.361489,
-    "url": "https://lun.ua/new/kharkiv/saltivskyi"
+    "url": "https://lun.ua/new/kharkiv/saltivskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%B0%D0%BB%D1%82%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n14160/",
+    "rieltor_id": 14160
   },
   {
     "jk_name": "ЖК Салтівський-1",
@@ -5665,23 +4046,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 49.987709,
     "lon": 36.362641,
-    "url": "https://lun.ua/new/kharkiv/saltivskyi-1"
-  },
-  {
-    "jk_name": "ЖК Свобода",
-    "address": "вул. Свободи, 30",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        2763,
-        "30"
-      ]
-    ],
-    "developer": "Turkish Development Ukraine",
-    "lat": 50.001991,
-    "lon": 36.242593,
-    "url": "https://lun.ua/new/kharkiv/svoboda"
+    "url": "https://lun.ua/new/kharkiv/saltivskyi-1",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%B0%D0%BB%D1%82%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-1-n17246/",
+    "rieltor_id": 17246
   },
   {
     "jk_name": "ЖК Свобода-2",
@@ -5697,10 +4064,12 @@
     "developer": "Turkish Development Ukraine",
     "lat": 50.001922,
     "lon": 36.242795,
-    "url": "https://lun.ua/new/kharkiv/svoboda-2"
+    "url": "https://lun.ua/new/kharkiv/svoboda-2",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%B0-2-n19330/",
+    "rieltor_id": 19330
   },
   {
-    "jk_name": "ЖК Світлий Дім",
+    "jk_name": "ЖК Світлий дім",
     "address": "вул. Двадцять Третього Серпня, 33-Г",
     "class": "Бізнес",
     "district": "Шевченківський р-н",
@@ -5717,11 +4086,13 @@
     ],
     "developer": "МКДУ",
     "lat": 50.037102,
-    "lon": 36.217894
+    "lon": 36.217894,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%B2%D1%96%D1%82%D0%BB%D0%B8%D0%B9+%D0%B4%D1%96%D0%BC-n21201/",
+    "rieltor_id": 21201
   },
   {
     "jk_name": "ЖК Семінарський",
-    "address": "пров. Черновський, 1-А; пров. Черновський, 1; вул. Семінарська, 46",
+    "address": "пров. Черновський, 1-А; пров. Черновський, 1; шосе Григорівське, 63",
     "class": "Економ",
     "district": "Новобаварський р-н",
     "houses": [
@@ -5734,52 +4105,19 @@
         "1"
       ],
       [
-        2383,
-        "46"
+        2937,
+        "63"
       ]
-    ],
-    "aliases": [
-      "ЖК Семінарська ділянка 2"
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.979321,
     "lon": 36.198213,
-    "url": "https://lun.ua/new/kharkiv/seminarskyi"
+    "url": "https://lun.ua/new/kharkiv/seminarskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%B5%D0%BC%D1%96%D0%BD%D0%B0%D1%80%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n17244/",
+    "rieltor_id": 17244
   },
   {
-    "jk_name": "ЖК Слобожанський квартал",
-    "address": "просп. Льва Ландау, 156-А",
-    "class": "Економ",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        3733,
-        "156-А"
-      ]
-    ],
-    "developer": "Респект Будінвест",
-    "lat": 49.996511,
-    "lon": 36.316468,
-    "url": "https://lun.ua/new/kharkiv/slobozhanskyi-kvartal"
-  },
-  {
-    "jk_name": "ЖК Слобожанський квартал-2",
-    "address": "просп. Льва Ландау, 180",
-    "class": "Економ",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        3733,
-        "180"
-      ]
-    ],
-    "developer": "Респект Будінвест",
-    "lat": 49.997201,
-    "lon": 36.316234,
-    "url": "https://lun.ua/new/kharkiv/slobozhanskyi-kvartal-2"
-  },
-  {
-    "jk_name": "ЖК Слобідська Садиба",
+    "jk_name": "ЖК Слобідська садиба",
     "address": "вул. Данилевського, 26",
     "class": "Преміум",
     "district": "Шевченківський р-н",
@@ -5795,7 +4133,9 @@
     ],
     "developer": "Моноліт",
     "lat": 50.010597,
-    "lon": 36.224148
+    "lon": 36.224148,
+    "url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%BB%D0%BE%D0%B1%D1%96%D0%B4%D1%81%D1%8C%D0%BA%D0%B0+%D1%81%D0%B0%D0%B4%D0%B8%D0%B1%D0%B0-n21197/",
+    "rieltor_id": 21197
   },
   {
     "jk_name": "ЖК Слов'янський",
@@ -5808,41 +4148,16 @@
         "7"
       ]
     ],
-    "aliases": [
-      "ЖК Славянский"
-    ],
     "developer": "Marshal Development",
     "lat": 49.990507,
     "lon": 36.21125,
-    "url": "https://lun.ua/new/kharkiv/slovianskyi"
-  },
-  {
-    "jk_name": "ЖК Смарагдове місто",
-    "address": "вул. Валерія Дейнека, 1, корп. 2; вул. Валерія Дейнека, 1, корп. 1",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200284,
-        "1, корп. 2"
-      ],
-      [
-        200284,
-        "1, корп. 1"
-      ]
-    ],
-    "aliases": [
-      "Ізумрудне місто",
-      "ЖК Ізумрудне місто"
-    ],
-    "developer": "Авантаж",
-    "lat": 50.022029,
-    "lon": 36.216107,
-    "url": "https://lun.ua/new/kharkiv/izumrudne-misto"
+    "url": "https://lun.ua/new/kharkiv/slovianskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%BB%D0%BE%D0%B2%27%D1%8F%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n16820/",
+    "rieltor_id": 16820
   },
   {
     "jk_name": "ЖК Сокільники",
-    "address": "вул. Професорська, 16; вул. Професорська, 14; вул. Професорська, 12; вул. Професорська, 18; вул. Професорська, 30",
+    "address": "вул. Професорська, 16; вул. Професорська, 14; вул. Професорська, 12; вул. Професорська, 18",
     "class": "Бізнес",
     "district": "Шевченківський р-н",
     "houses": [
@@ -5861,10 +4176,6 @@
       [
         3714,
         "18"
-      ],
-      [
-        3714,
-        "30"
       ]
     ],
     "aliases": [
@@ -5873,7 +4184,9 @@
     "developer": "Трест Житлобуд-1",
     "lat": 50.031933,
     "lon": 36.2537,
-    "url": "https://lun.ua/new/kharkiv/sokilnyky"
+    "url": "https://lun.ua/new/kharkiv/sokilnyky",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%BE%D0%BA%D1%96%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA%D0%B8-n17986/",
+    "rieltor_id": 17986
   },
   {
     "jk_name": "ЖК Сонячний квартал",
@@ -5894,32 +4207,12 @@
         "29-В"
       ]
     ],
-    "aliases": [
-      "ЖК Сонячний квартал 3"
-    ],
     "developer": "Мегаінвестбуд",
     "lat": 50.004214,
     "lon": 36.330505,
-    "url": "https://lun.ua/new/kharkiv/soniachnyi-kvartal"
-  },
-  {
-    "jk_name": "ЖК Сонячний квартал 4",
-    "address": "вул. Василя Стуса, 13/1",
-    "class": "Бізнес",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        3250,
-        "13/1"
-      ]
-    ],
-    "aliases": [
-      "Сонячний квартал чотири"
-    ],
-    "developer": "Мегаінвестбуд",
-    "lat": 50.007666,
-    "lon": 36.325892,
-    "url": "https://lun.ua/new/kharkiv/soniachnyi-kvartal-4"
+    "url": "https://lun.ua/new/kharkiv/soniachnyi-kvartal",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%BE%D0%BD%D1%8F%D1%87%D0%BD%D0%B8%D0%B9+%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B0%D0%BB-n15825/",
+    "rieltor_id": 15825
   },
   {
     "jk_name": "ЖК Софія",
@@ -5936,24 +4229,21 @@
       "КЖК Cофія",
       "Клубний житловий комплекс \"Софія\""
     ],
-    "developer": "PARKVILLE",
     "lat": 50.016893,
     "lon": 36.324196,
-    "url": "https://lun.ua/new/kharkiv/sofiia"
+    "url": "https://lun.ua/new/kharkiv/sofiia",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%BE%D1%84%D1%96%D1%8F-n18655/",
+    "rieltor_id": 18655
   },
   {
     "jk_name": "ЖК Софіївський",
-    "address": "вул. Лопанська, 31; вул. Лопанська, 35",
+    "address": "вул. Лопанська, 31",
     "class": "Економ",
     "district": "Шевченківський р-н",
     "houses": [
       [
         3147,
         "31"
-      ],
-      [
-        3147,
-        "35"
       ]
     ],
     "aliases": [
@@ -5963,47 +4253,27 @@
     "developer": "КДБК",
     "lat": 50.008693,
     "lon": 36.213558,
-    "url": "https://lun.ua/new/kharkiv/sofiivskyi"
-  },
-  {
-    "jk_name": "ЖК Союз",
-    "address": "просп. Перемоги, 61-Ж",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        3547,
-        "61-Ж"
-      ]
-    ],
-    "aliases": [
-      "ЖК Моноліт на Перемоги",
-      "просп. Перемоги, 61-Ж",
-      "Победы 61ж"
-    ],
-    "developer": "Моноліт",
-    "lat": 50.061092,
-    "lon": 36.202425
+    "url": "https://lun.ua/new/kharkiv/sofiivskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%BE%D1%84%D1%96%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n14211/",
+    "rieltor_id": 14211
   },
   {
     "jk_name": "ЖК Спортивний",
-    "address": "вул. Братів Гипиків, 1; вул. Братів Гипиків, 9",
+    "address": "вул. Братів Гипиків, 1",
     "class": "Комфорт",
     "district": "Слобідський р-н",
     "houses": [
       [
         200035,
         "1"
-      ],
-      [
-        200035,
-        "9"
       ]
     ],
     "developer": "Marshal Development",
     "lat": 49.97968,
     "lon": 36.263921,
-    "url": "https://lun.ua/new/kharkiv/sportyvnyi"
+    "url": "https://lun.ua/new/kharkiv/sportyvnyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D0%BF%D0%BE%D1%80%D1%82%D0%B8%D0%B2%D0%BD%D0%B8%D0%B9-n18141/",
+    "rieltor_id": 18141
   },
   {
     "jk_name": "ЖК Столичний",
@@ -6019,23 +4289,9 @@
     "developer": "ХарківБудСіті",
     "lat": 49.972487,
     "lon": 36.162002,
-    "url": "https://lun.ua/new/kharkiv/stolychnyi"
-  },
-  {
-    "jk_name": "ЖК Супутник",
-    "address": "вул. Василя Стуса, 21",
-    "class": "Бізнес",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        3250,
-        "21"
-      ]
-    ],
-    "developer": "Мегаінвестбуд",
-    "lat": 50.005743,
-    "lon": 36.328828,
-    "url": "https://lun.ua/new/kharkiv/suputnyk"
+    "url": "https://lun.ua/new/kharkiv/stolychnyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D1%82%D0%BE%D0%BB%D0%B8%D1%87%D0%BD%D0%B8%D0%B9-n18183/",
+    "rieltor_id": 18183
   },
   {
     "jk_name": "ЖК Схід-Захід",
@@ -6051,86 +4307,30 @@
     "developer": "С-Інвест",
     "lat": 50.009819,
     "lon": 36.230715,
-    "url": "https://lun.ua/new/kharkiv/skhid-zakhid"
+    "url": "https://lun.ua/new/kharkiv/skhid-zakhid",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A1%D1%85%D1%96%D0%B4-%D0%97%D0%B0%D1%85%D1%96%D0%B4-n19974/",
+    "rieltor_id": 19974
   },
   {
     "jk_name": "ЖК Театральний",
-    "address": "вул. Римарська, 27; вул. Сумська, 35",
+    "address": "вул. Римарська, 27",
     "class": "Преміум",
     "district": "Шевченківський р-н",
     "houses": [
       [
         3786,
         "27"
-      ],
-      [
-        4058,
-        "35"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.998432,
     "lon": 36.229106,
-    "url": "https://lun.ua/new/kharkiv/teatralnyi"
+    "url": "https://lun.ua/new/kharkiv/teatralnyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A2%D0%B5%D0%B0%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%B8%D0%B9-n18219/",
+    "rieltor_id": 18219
   },
   {
-    "jk_name": "ЖК Технопарк",
-    "address": "вул. Велика Панасівська, 29",
-    "class": "Бізнес",
-    "district": "Холодногірський р-н",
-    "houses": [
-      [
-        2988,
-        "29"
-      ]
-    ],
-    "developer": "Turkish Development Ukraine",
-    "lat": 49.996372,
-    "lon": 36.2122,
-    "url": "https://lun.ua/new/kharkiv/tekhnopark"
-  },
-  {
-    "jk_name": "ЖК Титаренківський",
-    "address": "пров. Титаренківський, 10-А; пров. Титаренківський, 10",
-    "class": "Економ",
-    "district": "Новобаварський р-н",
-    "houses": [
-      [
-        4120,
-        "10-А"
-      ],
-      [
-        4120,
-        "10"
-      ]
-    ],
-    "aliases": [
-      "Титаренковський",
-      "Титаренківський"
-    ],
-    "developer": "Рестріелт",
-    "lat": 49.979839,
-    "lon": 36.192749,
-    "url": "https://lun.ua/new/kharkiv/tytarenkivskyi"
-  },
-  {
-    "jk_name": "ЖК ТИТУЛ",
-    "address": "вул. Погорілка, 36",
-    "class": "Преміум",
-    "district": "Слобідський р-н",
-    "houses": [
-      [
-        4682,
-        "36"
-      ]
-    ],
-    "developer": "Альянс-Девелопмент",
-    "lat": 49.933854,
-    "lon": 36.314508,
-    "url": "https://stroyobzor.ua/ua/kharkov/estate/zhk-titul"
-  },
-  {
-    "jk_name": "ЖК Титул Будинок на Пушкінській",
+    "jk_name": "ЖК ТИТУЛ Будинок на Пушкінській",
     "address": "вул. Свободи, 36",
     "class": "Преміум",
     "district": "Київський р-н",
@@ -6143,7 +4343,9 @@
     "developer": "Альянс-Девелопмент",
     "lat": 50.001709,
     "lon": 36.243095,
-    "url": "https://lun.ua/new/kharkiv/tytul-budynok-na-pushkinskii"
+    "url": "https://lun.ua/new/kharkiv/tytul-budynok-na-pushkinskii",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A2%D0%98%D0%A2%D0%A3%D0%9B+%D0%91%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%BA+%D0%BD%D0%B0+%D0%9F%D1%83%D1%88%D0%BA%D1%96%D0%BD%D1%81%D1%8C%D0%BA%D1%96%D0%B9-n18768/",
+    "rieltor_id": 18768
   },
   {
     "jk_name": "ЖК Тріумф",
@@ -6162,11 +4364,13 @@
     "developer": "Констракшн Груп",
     "lat": 50.036732,
     "lon": 36.218012,
-    "url": "https://lun.ua/new/kharkiv/triumf"
+    "url": "https://lun.ua/new/kharkiv/triumf",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A2%D1%80%D1%96%D1%83%D0%BC%D1%84-n14177/",
+    "rieltor_id": 14177
   },
   {
     "jk_name": "ЖК Ультра",
-    "address": "пров. Отакара Яроша, 20, корп. 1; пров. Отакара Яроша, 20, корп. 2; пров. Отакара Яроша, 20",
+    "address": "пров. Отакара Яроша, 20, корп. 1; пров. Отакара Яроша, 20, корп. 2",
     "class": "Преміум",
     "district": "Шевченківський р-н",
     "houses": [
@@ -6177,30 +4381,24 @@
       [
         3518,
         "20, корп. 2"
-      ],
-      [
-        3518,
-        "20"
       ]
     ],
     "developer": "ТММ",
     "lat": 50.024592,
     "lon": 36.218095,
-    "url": "https://lun.ua/new/kharkiv/ultra"
+    "url": "https://lun.ua/new/kharkiv/ultra",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A3%D0%BB%D1%8C%D1%82%D1%80%D0%B0-n14173/",
+    "rieltor_id": 14173
   },
   {
     "jk_name": "ЖК Фаворит",
-    "address": "вул. Сумська, 130-Г; вул. Сумська, 130",
+    "address": "вул. Сумська, 130-Г",
     "class": "Преміум",
     "district": "Київський р-н",
     "houses": [
       [
         4058,
         "130-Г"
-      ],
-      [
-        4058,
-        "130"
       ]
     ],
     "aliases": [
@@ -6210,7 +4408,9 @@
     "developer": "Авантаж",
     "lat": 50.016554,
     "lon": 36.252054,
-    "url": "https://lun.ua/new/kharkiv/favoryt"
+    "url": "https://lun.ua/new/kharkiv/favoryt",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A4%D0%B0%D0%B2%D0%BE%D1%80%D0%B8%D1%82-n14189/",
+    "rieltor_id": 14189
   },
   {
     "jk_name": "ЖК Фелічіта",
@@ -6234,26 +4434,9 @@
     "developer": "ЖИТЛОБУД-3",
     "lat": 50.029444,
     "lon": 36.257174,
-    "url": "https://lun.ua/new/kharkiv/felichita"
-  },
-  {
-    "jk_name": "ЖК Фесенківський",
-    "address": "вул. Фесенківська, 15; вул. Холодноярська, 18",
-    "class": "Комфорт",
-    "district": "Слобідський р-н",
-    "houses": [
-      [
-        4231,
-        "15"
-      ],
-      [
-        200014,
-        "18"
-      ]
-    ],
-    "lat": 49.984052,
-    "lon": 36.269702,
-    "url": "https://lun.ua/new/kharkiv/fesenkivskyi"
+    "url": "https://lun.ua/new/kharkiv/felichita",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A4%D0%B5%D0%BB%D1%96%D1%87%D1%96%D1%82%D0%B0-n17978/",
+    "rieltor_id": 17978
   },
   {
     "jk_name": "ЖК Флагман",
@@ -6272,27 +4455,9 @@
     "developer": "Житлобуд-2",
     "lat": 50.006263,
     "lon": 36.217407,
-    "url": "https://lun.ua/new/kharkiv/flahman"
-  },
-  {
-    "jk_name": "ЖК Форпост",
-    "address": "вул. Мирослава Мисли, 42",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200040,
-        "42"
-      ]
-    ],
-    "aliases": [
-      "ЖК Целіноградська, 42",
-      "ЖК по ул. Целиноградская, 42",
-      "Мирослава Мисли 42"
-    ],
-    "developer": "Форпост",
-    "lat": 50.047276,
-    "lon": 36.202
+    "url": "https://lun.ua/new/kharkiv/flahman",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A4%D0%BB%D0%B0%D0%B3%D0%BC%D0%B0%D0%BD-n15629/",
+    "rieltor_id": 15629
   },
   {
     "jk_name": "ЖК Французький квартал",
@@ -6305,56 +4470,11 @@
         "43"
       ]
     ],
-    "developer": "Французький квартал",
     "lat": 49.989725,
     "lon": 36.291845,
-    "url": "https://lun.ua/new/kharkiv/frantsuzkyi-kvartal"
-  },
-  {
-    "jk_name": "ЖК Центр",
-    "address": "вул. Чернишевська, 39",
-    "class": "Преміум",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        4349,
-        "39"
-      ]
-    ],
-    "developer": "ХарківБудСіті",
-    "lat": 50.002606,
-    "lon": 36.238425,
-    "url": "https://lun.ua/new/kharkiv/tsentr"
-  },
-  {
-    "jk_name": "ЖК Циркуни, вул. Джерельна, 6",
-    "address": "Циркуни, вул. Джерельна, 6",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Грін Хілз",
-      "вул. Джерельна, 6"
-    ],
-    "developer": "DOMEXPERT",
-    "lat": 50.058216,
-    "lon": 36.321101,
-    "url": "https://lun.ua/new/kharkiv/tsyrkuny-dzherelna-st-6"
-  },
-  {
-    "jk_name": "ЖК Циркуни, вул. Нагорна, 11",
-    "address": "Циркуни, вул. Нагорна, 11",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Таунхаус Грін Хіллс",
-      "Таунхаус Грін Хілс",
-      "вул. Нагорна, 11"
-    ],
-    "lat": 50.055774,
-    "lon": 36.318198,
-    "url": "https://lun.ua/new/kharkiv/tsyrkuny-nagorna-st-11"
+    "url": "https://lun.ua/new/kharkiv/frantsuzkyi-kvartal",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A4%D1%80%D0%B0%D0%BD%D1%86%D1%83%D0%B7%D1%8C%D0%BA%D0%B8%D0%B9+%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B0%D0%BB-n17273/",
+    "rieltor_id": 17273
   },
   {
     "jk_name": "ЖК Черемушки",
@@ -6373,7 +4493,9 @@
     "developer": "Респект Будінвест, Форт-Пост",
     "lat": 50.06271,
     "lon": 36.204115,
-    "url": "https://lun.ua/new/kharkiv/cheremushky"
+    "url": "https://lun.ua/new/kharkiv/cheremushky",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A7%D0%B5%D1%80%D0%B5%D0%BC%D1%83%D1%88%D0%BA%D0%B8-n15419/",
+    "rieltor_id": 15419
   },
   {
     "jk_name": "ЖК Черемушки 2",
@@ -6392,67 +4514,12 @@
     "developer": "Респект Будінвест",
     "lat": 50.063082,
     "lon": 36.204548,
-    "url": "https://lun.ua/new/kharkiv/cheremushky-2"
+    "url": "https://lun.ua/new/kharkiv/cheremushky-2",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%A7%D0%B5%D1%80%D0%B5%D0%BC%D1%83%D1%88%D0%BA%D0%B8+2-n14690/",
+    "rieltor_id": 14690
   },
   {
-    "jk_name": "ЖК Чумацький шлях",
-    "address": "вул. Студентська, 22",
-    "class": "Бізнес",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        4053,
-        "22"
-      ]
-    ],
-    "aliases": [
-      "ЖК Студентська"
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 50.005898,
-    "lon": 36.257577,
-    "url": "https://lun.ua/new/kharkiv/chumatskyi-shliakh"
-  },
-  {
-    "jk_name": "ЖК Шекспіра",
-    "address": "вул. Клочківська, 228",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2893,
-        "228"
-      ]
-    ],
-    "developer": "Трест Житлобуд-1",
-    "lat": 50.027929,
-    "lon": 36.207423,
-    "url": "https://lun.ua/new/kharkiv/shekspira"
-  },
-  {
-    "jk_name": "ЖК Ювілейний (вул. Сомівська, 12-Б)",
-    "address": "вул. Сомівська, 12-Б",
-    "class": "Економ",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        3982,
-        "12-Б"
-      ]
-    ],
-    "aliases": [
-      "Ювілейний",
-      "Ювілейний 1",
-      "Ювілейний 2",
-      "ЖК Ювілейний"
-    ],
-    "developer": "ФЛАС",
-    "lat": 49.994632,
-    "lon": 36.257817,
-    "url": "https://lun.ua/new/kharkiv/sanzharivskyi-ln"
-  },
-  {
-    "jk_name": "ЖК Ювілейний (просп. Ювілейний, 67-Б)",
+    "jk_name": "ЖК Ювілейний",
     "address": "просп. Ювілейний, 67-Б",
     "class": "Бізнес",
     "district": "Салтівський р-н",
@@ -6464,13 +4531,14 @@
     ],
     "aliases": [
       "Сонячний дім",
-      "Сонячний будинок",
-      "ЖК Ювілейний"
+      "Сонячний будинок"
     ],
     "developer": "Мегаінвестбуд",
     "lat": 49.996359,
     "lon": 36.35768,
-    "url": "https://lun.ua/new/kharkiv/yuvileinyi"
+    "url": "https://lun.ua/new/kharkiv/yuvileinyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D0%B8%D0%B9-n14279/",
+    "rieltor_id": 14279
   },
   {
     "jk_name": "ЖК Ялинковий двір",
@@ -6485,7 +4553,9 @@
     ],
     "lat": 50.013493,
     "lon": 36.197083,
-    "url": "https://lun.ua/new/kharkiv/yalynkovyi-dvir"
+    "url": "https://lun.ua/new/kharkiv/yalynkovyi-dvir",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%AF%D0%BB%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B8%D0%B9+%D0%B4%D0%B2%D1%96%D1%80-n17118/",
+    "rieltor_id": 17118
   },
   {
     "jk_name": "ЖК Ярославський",
@@ -6501,27 +4571,9 @@
     "developer": "СамсонГрад",
     "lat": 49.987415,
     "lon": 36.219318,
-    "url": "https://lun.ua/new/kharkiv/yaroslavskyi"
-  },
-  {
-    "jk_name": "ЖК Європейський",
-    "address": "вул. Куликівська, 2; вул. Куликівська, 4",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        3238,
-        "2"
-      ],
-      [
-        3238,
-        "4"
-      ]
-    ],
-    "developer": "Marshal Development",
-    "lat": 49.992006,
-    "lon": 36.237934,
-    "url": "https://lun.ua/new/kharkiv/yevropeiskyi"
+    "url": "https://lun.ua/new/kharkiv/yaroslavskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%AF%D1%80%D0%BE%D1%81%D0%BB%D0%B0%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n16984/",
+    "rieltor_id": 16984
   },
   {
     "jk_name": "ЖК ІT-Парк Manufactura",
@@ -6541,7 +4593,34 @@
     "developer": "Строй Сіті Development",
     "lat": 49.991995,
     "lon": 36.245176,
-    "url": "https://lun.ua/new/kharkiv/it-park-manufactura"
+    "url": "https://lun.ua/new/kharkiv/it-park-manufactura",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/IT-%D0%9F%D0%B0%D1%80%D0%BA+Manufactura-n18504/",
+    "rieltor_id": 18504
+  },
+  {
+    "jk_name": "ЖК Ізумрудне місто",
+    "address": "вул. Валерія Дейнека, 1, корп. 2; вул. Валерія Дейнека, 1, корп. 1",
+    "class": "Бізнес",
+    "district": "Шевченківський р-н",
+    "houses": [
+      [
+        200284,
+        "1, корп. 2"
+      ],
+      [
+        200284,
+        "1, корп. 1"
+      ]
+    ],
+    "aliases": [
+      "Ізумрудне місто"
+    ],
+    "developer": "Авантаж",
+    "lat": 50.022029,
+    "lon": 36.216107,
+    "url": "https://lun.ua/new/kharkiv/izumrudne-misto",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%86%D0%B7%D1%83%D0%BC%D1%80%D1%83%D0%B4%D0%BD%D0%B5+%D0%BC%D1%96%D1%81%D1%82%D0%BE-n18979/",
+    "rieltor_id": 18979
   },
   {
     "jk_name": "ЖК Ізумрудний",
@@ -6559,7 +4638,9 @@
     ],
     "lat": 50.021365,
     "lon": 36.212601,
-    "url": "https://lun.ua/new/kharkiv/izumrudnyi"
+    "url": "https://lun.ua/new/kharkiv/izumrudnyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%86%D0%B7%D1%83%D0%BC%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%B9-n15216/",
+    "rieltor_id": 15216
   },
   {
     "jk_name": "ЖК Індустріальний",
@@ -6574,37 +4655,37 @@
     ],
     "lat": 49.946764,
     "lon": 36.380619,
-    "url": "https://lun.ua/new/kharkiv/industrialnyi"
+    "url": "https://lun.ua/new/kharkiv/industrialnyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%86%D0%BD%D0%B4%D1%83%D1%81%D1%82%D1%80%D1%96%D0%B0%D0%BB%D1%8C%D0%BD%D0%B8%D0%B9-n16991/",
+    "rieltor_id": 16991
   },
   {
     "jk_name": "ЖК Інфініті",
-    "address": "вул. Ботанічна, 2; пров. Ботанічний, 2",
+    "address": "вул. Ботанічна, 2",
     "class": "Бізнес",
     "district": "Шевченківський р-н",
     "houses": [
       [
         2233,
         "2"
-      ],
-      [
-        2235,
-        "2"
       ]
     ],
     "developer": "Трест Житлобуд-1",
     "lat": 49.997955,
     "lon": 36.22481,
-    "url": "https://lun.ua/new/kharkiv/infinity"
+    "url": "https://lun.ua/new/kharkiv/infinity",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%86%D0%BD%D1%84%D1%96%D0%BD%D1%96%D1%82%D1%96-n18479/",
+    "rieltor_id": 18479
   },
   {
     "jk_name": "ЖК Іскринський",
-    "address": "пров. Іскринський, 19-А; пров. Іскринський, 19-Б; пров. Іскринський, 19-В; пров. Іскринський, 19-Г; пров. Іскринський, 19-Д; пров. Іскринський, 19-Ж",
+    "address": "пров. Іскринський, 19-В; пров. Іскринський, 19-Б; пров. Іскринський, 19-Г; пров. Іскринський, 19-Ж",
     "class": "Економ",
     "district": "Салтівський р-н",
     "houses": [
       [
         2791,
-        "19-А"
+        "19-В"
       ],
       [
         2791,
@@ -6612,15 +4693,7 @@
       ],
       [
         2791,
-        "19-В"
-      ],
-      [
-        2791,
         "19-Г"
-      ],
-      [
-        2791,
-        "19-Д"
       ],
       [
         2791,
@@ -6628,588 +4701,10 @@
       ]
     ],
     "developer": "Трест Житлобуд-1",
-    "lat": 49.991738,
-    "lon": 36.265925,
-    "url": "https://lun.ua/new/kharkiv/iskrynskyi"
-  },
-  {
-    "jk_name": "Клубний будинок Leonardo town",
-    "address": "вул. Донця-Захаржевського, 6/8",
-    "class": "Преміум",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        2600,
-        "6/8"
-      ]
-    ],
-    "aliases": [
-      "Клубний будинок „Леонардо таун"
-    ],
-    "developer": "Мегаінвестбуд",
-    "lat": 49.994445,
-    "lon": 36.23399,
-    "url": "https://lun.ua/new/kharkiv/leonardo-town"
-  },
-  {
-    "jk_name": "Клубний будинок Міські сади",
-    "address": "просп. Тракторобудівників, 79б",
-    "class": "Економ",
-    "district": "Салтівський р-н",
-    "houses": [],
-    "aliases": [
-      "Клубний будинок Городські сади"
-    ],
-    "lat": 50.010301,
-    "lon": 36.33805,
-    "url": "https://lun.ua/new/kharkiv/miski-sady"
-  },
-  {
-    "jk_name": "Клубний будинок Статус",
-    "address": "вул. Доброчинців, 98",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200235,
-        "98"
-      ]
-    ],
-    "aliases": [
-      "КБ Статус"
-    ],
-    "lat": 50.033114,
-    "lon": 36.199241,
-    "url": "https://lun.ua/new/kharkiv/status"
-  },
-  {
-    "jk_name": "Клубний дім «Городські сади»",
-    "address": "вул. Гвардійців-Широнінців, 51",
-    "class": "Комфорт",
-    "district": "Салтівський р-н",
-    "houses": [
-      [
-        2418,
-        "51"
-      ]
-    ],
-    "lat": 50.011053,
-    "lon": 36.337248,
-    "url": "https://stroyobzor.ua/ua/kharkov/estate/klubniy-dim-gorodski-sadi"
-  },
-  {
-    "jk_name": "КМ Artvillage",
-    "address": "Артюхівка, вул. Харківська",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Артвіладж",
-      "Артвіледж"
-    ],
-    "lat": 49.710971,
-    "lon": 36.26491,
-    "url": "https://lun.ua/new/kharkiv/artiukhivka-artvillage-cottages"
-  },
-  {
-    "jk_name": "КМ Comfort Club",
-    "address": "Бабаї, пров. Соборний",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "КГ Комфорт Клаб"
-    ],
-    "lat": 49.910872,
-    "lon": 36.201351,
-    "url": "https://lun.ua/new/kharkiv/babai-comfort-club-cottages"
-  },
-  {
-    "jk_name": "КМ Country House",
-    "address": "Черкаська Лозова, вул. Межова",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "КМ Кантрі Хаус"
-    ],
-    "lat": 50.086272,
-    "lon": 36.208734,
-    "url": "https://lun.ua/new/kharkiv/cherkaska-lozova-country-house-cottages"
-  },
-  {
-    "jk_name": "КМ EVO country club",
-    "address": "Черкаські Тишки",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "КМ Єво Кантрі Клаб"
-    ],
-    "lat": 50.090832,
-    "lon": 36.430167,
-    "url": "https://lun.ua/new/kharkiv/cherkaski-tyshky-evo-country-club-cottages"
-  },
-  {
-    "jk_name": "КМ Forest Town",
-    "address": "Білгородське шосе",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [],
-    "aliases": [
-      "Форест Таун"
-    ],
-    "lat": 50.059628,
-    "lon": 36.270994,
-    "url": "https://lun.ua/new/kharkiv/forest-town-cottages"
-  },
-  {
-    "jk_name": "КМ GoodLife Park",
-    "address": "Циркуни, вул. Культури, 14",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "ГудЛайф Парк",
-      "Гуд Лайф Парк"
-    ],
-    "lat": 50.122382,
-    "lon": 36.420732,
-    "url": "https://lun.ua/new/kharkiv/tsyrkuny-goodlife-park-cottages"
-  },
-  {
-    "jk_name": "КМ INWHITE family park",
-    "address": "Мала Данилівка, вул. Зелена",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "INWITE family park",
-      "Інвайт Фемілі Парк"
-    ],
-    "developer": "STROIM group",
-    "lat": 50.0719,
-    "lon": 36.178674,
-    "url": "https://lun.ua/new/kharkiv/mala-danylivka-inwhite-family-park-cottages"
-  },
-  {
-    "jk_name": "КМ Park House",
-    "address": "вул. Батумська, 4",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        2158,
-        "4"
-      ]
-    ],
-    "aliases": [
-      "Парк Хаус",
-      "Парк Хауз"
-    ],
-    "lat": 50.050032,
-    "lon": 36.26192,
-    "url": "https://lun.ua/new/kharkiv/park-house-cottages"
-  },
-  {
-    "jk_name": "КМ RAY-ELENOVKA",
-    "address": "Рай-Оленівка, вул. Рай-Оленівська, 1а",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Рай-Оленівка",
-      "Рей-Оленівка",
-      "Рей Єленовка резорт енд спа котедж преміум"
-    ],
-    "developer": "XISK Development",
-    "lat": 49.945685,
-    "lon": 36.074084,
-    "url": "https://lun.ua/new/kharkiv/rai-olenivka-ray-elenovka-cottages"
-  },
-  {
-    "jk_name": "КМ River Park",
-    "address": "просп. Лозовеньківський",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Рівер Парк",
-      "Ріверпарк"
-    ],
-    "developer": "River Park",
-    "lat": 50.051214,
-    "lon": 36.15637,
-    "url": "https://lun.ua/new/kharkiv/river-park-cottages"
-  },
-  {
-    "jk_name": "КМ SKANDINAVSKY",
-    "address": "вул. Беркоса, 151",
-    "class": "Комфорт",
-    "district": "Холодногірський р-н",
-    "houses": [
-      [
-        2586,
-        "151"
-      ]
-    ],
-    "aliases": [
-      "КМ Скандинавський",
-      "КМ Еталон"
-    ],
-    "lat": 50.04427,
-    "lon": 36.160409,
-    "url": "https://lun.ua/new/kharkiv/skandinavsky-cottages"
-  },
-  {
-    "jk_name": "КМ WHITEWOOD",
-    "address": "",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Вайтвуд",
-      "Уайтвуд"
-    ],
-    "lat": 50.102712,
-    "lon": 36.251041,
-    "url": "https://lun.ua/new/kharkiv/whitewood-cottages"
-  },
-  {
-    "jk_name": "КМ Графський",
-    "address": "Циркуни, вул. Механізаторська, 2",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "lat": 50.080523,
-    "lon": 36.397773,
-    "url": "https://lun.ua/new/kharkiv/tsyrkuny-hrafskyi-cottages"
-  },
-  {
-    "jk_name": "КМ Данилівський",
-    "address": "Мала Данилівка, вул. Межова, 23",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "КМ Данілівський",
-      "Даніловський"
-    ],
-    "lat": 50.057252,
-    "lon": 36.181922,
-    "url": "https://lun.ua/new/kharkiv/mala-danylivka-danylivskyi-cottages"
-  },
-  {
-    "jk_name": "КМ Добрі сусіди",
-    "address": "вул. Підгірна, 87-А",
-    "class": "Комфорт",
-    "district": "Холодногірський р-н",
-    "houses": [
-      [
-        3599,
-        "87-А"
-      ]
-    ],
-    "aliases": [
-      "КМ Хороші сусіди"
-    ],
-    "lat": 50.042085,
-    "lon": 36.15613,
-    "url": "https://lun.ua/new/kharkiv/dobri-susidy-cottages"
-  },
-  {
-    "jk_name": "КМ Затишшя",
-    "address": "",
-    "class": "Комфорт",
-    "district": "Індустріальний р-н",
-    "houses": [],
-    "aliases": [
-      "Затишок",
-      "Затишьє"
-    ],
-    "lat": 49.939671,
-    "lon": 36.432839,
-    "url": "https://lun.ua/new/kharkiv/zatyshe-cottages"
-  },
-  {
-    "jk_name": "КМ Молодіжна резиденція",
-    "address": "Черкаська Лозова",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Молодіжна Резиденція"
-    ],
-    "lat": 50.079098,
-    "lon": 36.205288,
-    "url": "https://lun.ua/new/kharkiv/cherkaska-lozova-molodezhnaia-rezydentsyia-cottages"
-  },
-  {
-    "jk_name": "КМ Олешки",
-    "address": "Олешки",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Олешки"
-    ],
-    "lat": 49.933605,
-    "lon": 36.086952,
-    "url": "https://lun.ua/new/kharkiv/oleshky-oleshky-cottages"
-  },
-  {
-    "jk_name": "КМ Ренесанс парк",
-    "address": "вул. Балакірєва",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "developer": "Будівельний Альянс Моноліт",
-    "lat": 50.036003,
-    "lon": 36.247386,
-    "url": "https://lun.ua/new/kharkiv/renesans-park-cottages"
-  },
-  {
-    "jk_name": "КМ Сокольники",
-    "address": "вул. Сумська / вул. Дерев'янка",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "aliases": [
-      "Сокольники",
-      "Сокольнікі"
-    ],
-    "lat": 50.027187,
-    "lon": 36.249484,
-    "url": "https://lun.ua/new/kharkiv/sokolnyky-cottages"
-  },
-  {
-    "jk_name": "КМ Удачино",
-    "address": "Руські Тишки",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "developer": "STROIM group",
-    "lat": 50.139854,
-    "lon": 36.416017,
-    "url": "https://lun.ua/new/kharkiv/ruski-tyshky-udachyno-cottages"
-  },
-  {
-    "jk_name": "КМ Флоринка",
-    "address": "Мала Данилівка, вул. Райський куточок, 9",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "Флорінка",
-      "КП Флоринка"
-    ],
-    "lat": 50.062595,
-    "lon": 36.188966,
-    "url": "https://lun.ua/new/kharkiv/mala-danylivka-florynka-cottages"
-  },
-  {
-    "jk_name": "КМ Чайковка Hills",
-    "address": "Чайківка",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "aliases": [
-      "КМ Чайковка Хілс"
-    ],
-    "developer": "STROIM group",
-    "lat": 50.070133,
-    "lon": 36.181096,
-    "url": "https://lun.ua/new/kharkiv/chaikivka-chaikovka-hills-cottages"
-  },
-  {
-    "jk_name": "КМ Черкаські Тишки",
-    "address": "Черкаські Тишки, вул. Світла, 52",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "lat": 50.099466,
-    "lon": 36.397289,
-    "url": "https://lun.ua/new/kharkiv/cherkaski-tyshky-cherkaski-tyshky-cottages"
-  },
-  {
-    "jk_name": "КМ Шалє Грааль",
-    "address": "Мала Данилівка, вул. Зелена",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "lat": 50.07543,
-    "lon": 36.182356,
-    "url": "https://lun.ua/new/kharkiv/mala-danylivka-shalie-hraal-cottages"
-  },
-  {
-    "jk_name": "КМ Європейський квартал",
-    "address": "Велика Данилівка, вул. Білецького",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [],
-    "aliases": [
-      "КМ Європейський квартал \"Forest\""
-    ],
-    "lat": 50.055087,
-    "lon": 36.332396,
-    "url": "https://lun.ua/new/kharkiv/yevropeiskyi-kvartal-cottages"
-  },
-  {
-    "jk_name": "МЖК Інтернаціоналіст",
-    "address": "вул. Леся Сердюка, 45-Б; вул. Кричевського, 38; вул. Кричевського, 39; вул. Кричевського, 40; вул. Кричевського, 41",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        2932,
-        "45-Б"
-      ],
-      [
-        4716,
-        "38"
-      ],
-      [
-        4716,
-        "39"
-      ],
-      [
-        4716,
-        "40"
-      ],
-      [
-        4716,
-        "41"
-      ]
-    ],
-    "aliases": [
-      "МЖК Интернационалист",
-      "Кричевского",
-      "Леся Сердюка 45б"
-    ],
-    "developer": "МЖК Інтернаціоналіст",
-    "lat": 50.03862,
-    "lon": 36.347269
-  },
-  {
-    "jk_name": "Резиденція Парк-Хаус",
-    "address": "вул. Батумська",
-    "class": "Бізнес",
-    "district": "Шевченківський р-н",
-    "houses": [],
-    "developer": "С-Інвест",
-    "lat": 50.050728,
-    "lon": 36.271281,
-    "url": "https://lun.ua/new/kharkiv/park-house-residence"
-  },
-  {
-    "jk_name": "Таунхаус MerryLand",
-    "address": "пров. Променистий",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [],
-    "aliases": [
-      "Таунхаус Merry Land",
-      "Таунхаус Меріленд",
-      "Таунхаус МерріЛенд",
-      "Таунхаус Мері Ленд"
-    ],
-    "developer": "Townhouser",
-    "lat": 50.037397,
-    "lon": 36.306285,
-    "url": "https://lun.ua/new/kharkiv/merryland-townhouse"
-  },
-  {
-    "jk_name": "Таунхаус Гармонія",
-    "address": "вул. Дмитра Антоненка, 79",
-    "class": "Комфорт",
-    "district": "Шевченківський р-н",
-    "houses": [
-      [
-        200056,
-        "79"
-      ]
-    ],
-    "aliases": [
-      "Таунхаус Гармония",
-      "Минская 79",
-      "Дмитра Антоненка 79"
-    ],
-    "lat": 50.025351,
-    "lon": 36.234227
-  },
-  {
-    "jk_name": "Таунхаус Надпрудний",
-    "address": "Пісочин, вул. Надпрудна, 27",
-    "class": "Комфорт",
-    "district": "Передмістя",
-    "houses": [],
-    "lat": 49.932089,
-    "lon": 36.10812,
-    "url": "https://lun.ua/new/kharkiv/pisochyn-nadprudnyi-townhouse"
-  },
-  {
-    "jk_name": "Таунхаус Холодногірський",
-    "address": "вул. Комбайнівська, 4",
-    "class": "Комфорт",
-    "district": "Новобаварський р-н",
-    "houses": [
-      [
-        2933,
-        "4"
-      ]
-    ],
-    "aliases": [
-      "Холодногорський",
-      "Холодногірський"
-    ],
-    "developer": "STROIM group",
-    "lat": 49.973483,
-    "lon": 36.177529,
-    "url": "https://lun.ua/new/kharkiv/kholodnohirskyi-townhouse"
-  },
-  {
-    "jk_name": "Таунхауси в П'ятихатках",
-    "address": "вул. Лейпунського, вул. Москаленко",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [],
-    "lat": 50.099245,
-    "lon": 36.261504,
-    "url": "https://lun.ua/new/kharkiv/v-piatykhatkakh-townhouse"
-  },
-  {
-    "jk_name": "Таунхауси Журавлівська Слобода",
-    "address": "в-д Лазьківський 2-й, 8",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        3094,
-        "8"
-      ]
-    ],
-    "aliases": [
-      "Журавлевська Слобода"
-    ],
-    "developer": "Житлобуд-2",
-    "lat": 50.024199,
-    "lon": 36.303216,
-    "url": "https://lun.ua/new/kharkiv/zhuravlevskaia-sloboda-townhouse"
-  },
-  {
-    "jk_name": "Таунхауси у П’ятихатках",
-    "address": "вул. Москаленка, 8",
-    "class": "Комфорт",
-    "district": "Київський р-н",
-    "houses": [
-      [
-        4614,
-        "8"
-      ]
-    ],
-    "developer": "Таунхауси у П’ятихатках",
-    "lat": 50.09911,
-    "lon": 36.260947,
-    "url": "https://stroyobzor.ua/ua/kharkov/estate/taunkhausi-u-pyatikhatkakh"
+    "lat": 49.992379,
+    "lon": 36.267731,
+    "url": "https://lun.ua/new/kharkiv/iskrynskyi",
+    "rieltor_url": "https://rieltor.ua/harkov/flats-sale/%D0%86%D1%81%D0%BA%D1%80%D0%B8%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-n15946/",
+    "rieltor_id": 15946
   }
 ]
